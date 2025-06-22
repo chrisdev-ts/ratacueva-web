@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Rata Cueva",
   description: "E-commerce de productos gamers",
+  icons: {
+    icon: "/isotype.svg"
+  },
 };
 
 export default function RootLayout({
