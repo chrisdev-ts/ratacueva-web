@@ -1,3 +1,3 @@
-export default function OrderHistory() {
+export default function Category() {
   return <div>Recuperar contraseña</div>;
 }
