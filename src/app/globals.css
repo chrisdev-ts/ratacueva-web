@@ -1,9 +1,37 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+  :root {
+
+    /* Fuentes */
+    --font-title: 'Michroma', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --text-color: 0 0% 100%;      /* blanco */
+
+
+    /* Colores de la aplicación */
+
+    /* Tema claro */
+    --primary: 152 100% 50%;      /* #00FF95 */
+    --secondary: 180 100% 50%;    /* #00FFFF */
+    --dark: 0 0% 10%;             /* #1A1A1A */
+    --medium: 0 0% 18.4%;         /* #2F2F2F */
+    --accent: 322 100% 50%;       /* #FE01AC */
+    --danger: 0 100% 60%;         /* #FF3737 */
+  }
+
+  /* Tema oscuro */
+  .dark {
+    --primary: 152 100% 40%;
+    --secondary: 180 100% 40%;
+    --dark: 0 0% 10%;
+    --medium: 0 0% 18.4%;
+    --accent: 322 100% 50%;
+    --danger: 0 100% 60%;
+  }
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -20,7 +48,14 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+    font-family: var(--font-body);
+    font-size: 16pt;
+    color: hsl(var(--text-color));
+    background-color: hsl(var(--dark)); /* si definiste --dark */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-size: 32pt;
+    color: hsl(var(--text-color));
+  }
