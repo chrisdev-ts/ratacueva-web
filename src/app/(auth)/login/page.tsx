@@ -12,9 +12,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex w-full">
-      <div className="w-1/2 bg-[hsl(var(--medium))]" />
-      <div className="w-1/2 bg-[hsl(var(--dark))] flex flex-col justify-center items-center px-4 sm:px-12 lg:px-20">
+    <div className="min-h-screen flex flex-col lg:flex-row w-full">
+      <div className="hidden lg:flex w-full lg:w-1/2 bg-[hsl(var(--medium))] items-center justify-center py-10 lg:py-0 order-2 lg:order-1" />
+      <div className="w-full lg:w-1/2 bg-[hsl(var(--dark))] flex flex-col justify-center items-center px-4 sm:px-12 lg:px-20 py-10 lg:py-0 order-1 lg:order-2">
         <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
           <div className="flex justify-center py-7 pb-0">
             <img
