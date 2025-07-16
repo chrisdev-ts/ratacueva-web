@@ -7,18 +7,19 @@
     --font-title: 'Michroma', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --text-color: 0 0% 100%;      /* blanco */
+    --text-color: 0 0% 100%;
+    /* blanco */
 
 
     /* Colores de la aplicación */
 
     /* Tema claro */
-    --primary: 152 100% 50%;      /* #00FF95 */
-    --secondary: 180 100% 50%;    /* #00FFFF */
-    --dark: 0 0% 10%;             /* #1A1A1A */
-    --medium: 0 0% 18.4%;         /* #2F2F2F */
-    --accent: 322 100% 50%;       /* #FE01AC */
-    --danger: 0 100% 60%;         /* #FF3737 */
+    --primary: 152 100% 50%;      /* #00FF95  → Verde menta brillante */
+    --secondary: 180 100% 50%;    /* #00FFFF  → Cian neón */
+    --dark: 0 0% 10%;             /* #1A1A1A  → Negro personalizado */
+    --medium: 0 0% 18.4%;         /* #2F2F2F  → Gris oscuro */
+    --accent: 322 100% 50%;       /* #FE01AC  → Rosa neón */
+    --danger: 0 100% 60%;         /* #FF3737  → Rojo alerta */
   }
 
   /* Tema oscuro */
@@ -47,15 +48,65 @@
   }
 }
 
-body {
-    font-family: var(--font-body);
-    font-size: 16pt;
-    color: hsl(var(--text-color));
-    background-color: hsl(var(--dark)); /* si definiste --dark */
-  }
+/* Tipografía personalizada para RataCueva */
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-title);
-    font-size: 32pt;
-    color: hsl(var(--text-color));
-  }
+.text-display {
+  font-family: var(--font-title);
+  font-size: 3.5rem;  /* ~56px */
+  line-height: 1.2;
+  color: hsl(var(--text-color));
+}
+
+.text-h1 {
+  font-family: var(--font-title);
+  font-size: 2.5rem;  /* ~40px */
+  line-height: 1.3;
+  color: hsl(var(--text-color));
+}
+
+.text-h2 {
+  font-family: var(--font-title);
+  font-size: 2rem;  /* ~32px */
+  line-height: 1.3;
+  color: hsl(var(--text-color));
+}
+
+.text-h3 {
+  font-family: var(--font-title);
+  font-size: 1.5rem;  /* ~24px */
+  line-height: 1.4;
+  color: hsl(var(--text-color));
+}
+
+/* Subtitle se usa como h4, pero estilizado como subtítulo */
+.text-subtitle {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  /* ~20px */
+  line-height: 1.4;
+  color: hsl(var(--text-color));
+}
+
+/* Texto principal (body) */
+.text-body {
+  font-family: var(--font-body);
+  font-size: 1rem;  /* 16px */
+  line-height: 1.5;
+  color: hsl(var(--text-color));
+}
+
+/* Texto body pequeño */
+.text-body-sm {
+  font-family: var(--font-body);
+  font-size: 0.875rem;  /* 14px */
+  line-height: 1.5;
+  color: hsl(var(--text-color));
+}
+
+/* Caption / leyendas / notas */
+.text-caption {
+  font-family: var(--font-body);
+  font-size: 0.75rem;  /* 12px */
+  line-height: 1.4;
+  color: hsl(var(--text-color));
+}
