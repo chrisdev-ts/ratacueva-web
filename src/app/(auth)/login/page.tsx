@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Body } from "../../../components/common/Typography";
+import Link from "next/link";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -55,19 +56,18 @@ const LoginPage = () => {
           </div>
 
           <div className="text-right">
-            <Body
-              as="a"
-              href="#"
-              className="font-bold text-white hover:text-[hsl(var(--accent))] transition-colors"
-            >
-              ¿Olvidaste tu contraseña?
-            </Body>
+            <Link
+              href="/forgot-password"
+              className="font-bold text-white hover:underline underline-offset-4 decoration-[hsl(var(--accent))] hover:text-[hsl(var(--accent))] transition-colors">
+              <Body as="span">
+                ¿Olvidaste tu contraseña?
+              </Body>
+            </Link>
           </div>
 
           <button
             type="submit"
-            className="w-full h-11 bg-[hsl(var(--accent))] rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))]"
-          >
+            className="w-full h-11 bg-[hsl(var(--accent))] rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))]">
             <Body className="font-bold text-base text-white">
               Iniciar sesión
             </Body>
