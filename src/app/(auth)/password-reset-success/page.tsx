@@ -2,7 +2,7 @@
 
 import { Body } from "@/components/common/Typography";
 
-const ForgotPasswordPage = () => {
+const PasswordResetSuccessPage = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Lógica futura para envío de código
@@ -44,7 +44,7 @@ const ForgotPasswordPage = () => {
                         type="submit"
                         className="h-11 bg-[hsl(var(--accent))] rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))] mx-auto"
                         aria-label="Solicitar código de restablecimiento de contraseña">
-                        <Body className="font-bold text-base text-white" href="#">
+                        <Body className="font-bold text-base text-white">
                             Solicitar código de restablecimiento
                         </Body>
                     </button>
@@ -55,4 +55,4 @@ const ForgotPasswordPage = () => {
     );
 };
 
-export default ForgotPasswordPage;
+export default PasswordResetSuccessPage;
