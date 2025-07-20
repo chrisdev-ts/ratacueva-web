@@ -1,7 +1,7 @@
 "use client";
 
 import { Body } from "@/components/common/Typography";
-import { PolicyPageLayout, InfoCard } from "@/components/privacy-policy";
+import { PolicyPageLayout, InfoCard, PrivacyLayout } from "@/components/privacy-policy";
 import {
   BuildingOfficeIcon,
   EnvelopeIcon,
@@ -67,10 +67,12 @@ export default function IdentidadResponsablePage() {
   ];
 
   return (
+    <PrivacyLayout
+      breadcrumbs={breadcrumbItems}
+    >
     <PolicyPageLayout
-      title="¿Quién es responsable de tus datos? (Identidad y domicilio)"
+      title="¿Quién es responsable de tus datos?"
       subtitle="RataCueva es la entidad legal responsable del tratamiento de sus datos personales. Esto significa que RataCueva es quien decide sobre el uso y la protección de la información que usted nos confía. Nuestro compromiso es cumplir cabalmente con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su reglamento, así como con cualquier otra normativa aplicable en la materia."
-      breadcrumbItems={breadcrumbItems}
       currentPageNumber={1}
       highlightBox={{
         icon: <InformationCircleIcon className="h-6 w-6" />,
@@ -213,5 +215,6 @@ export default function IdentidadResponsablePage() {
         }}
       />
     </PolicyPageLayout>
+    </PrivacyLayout>
   );
 }
