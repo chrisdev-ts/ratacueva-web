@@ -36,7 +36,9 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           ) : (
             <BodySmall
               className={`text-sm ${
-                index === items.length - 1 ? "text-white" : "text-neutral-300"
+                index === items.length - 1
+                  ? "text-white font-bold"
+                  : "text-neutral-300"
               }`}
             >
               {item.label}
