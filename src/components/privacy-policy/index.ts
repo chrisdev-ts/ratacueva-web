@@ -7,3 +7,4 @@ export { PolicyPageLayout } from "./PolicyPageLayout";
 export { SectionDivider } from "./SectionDivider";
 export { PrivacyLayout } from "./PrivacyLayout";
 export { PrivacySidebar } from "./PrivacySidebar";
+export { PrivacyPolicyCard } from "./PrivacyPolicyCard";
