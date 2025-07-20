@@ -3,17 +3,29 @@
 import React, { useState } from "react";
 import { PrivacySidebar } from "@/components/privacy-policy/PrivacySidebar";
 import { Body } from "@/components/common/Typography";
+import { PageLayout, ContentLayout } from "@/components/layout";
+
+interface BreadcrumbItem {
+  label: string;
+  href: string;
+}
 
 interface PrivacyLayoutProps {
   children: React.ReactNode;
+  title?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
-export const PrivacyLayout: React.FC<PrivacyLayoutProps> = ({ children }) => {
+export const PrivacyLayout: React.FC<PrivacyLayoutProps> = ({
+  children,
+  title,
+  breadcrumbs,
+}) => {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--dark))] py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <PageLayout>
+      <ContentLayout title={title} breadcrumbs={breadcrumbs}>
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar - Hidden on mobile, visible on large screens */}
           <div className="hidden lg:block lg:w-80 flex-shrink-0">
@@ -83,7 +95,7 @@ export const PrivacyLayout: React.FC<PrivacyLayoutProps> = ({ children }) => {
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </ContentLayout>
+    </PageLayout>
   );
 };
