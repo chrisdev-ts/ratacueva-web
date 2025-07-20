@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  H1,
-  H2,
-  Body,
-  BodySmall,
-  Subtitle,
-} from "@/components/common/Typography";
-import { Breadcrumb } from "@/components/common/Breadcrumb";
+import { Body, BodySmall } from "@/components/common/Typography";
 import { PrivacyLayout, PrivacyPolicyCard } from "@/components/privacy-policy";
 import { PRIVACY_SECTIONS } from "@/constants/privacySections";
 
@@ -19,19 +12,13 @@ export default function PrivacyPolicyPage() {
   ];
 
   return (
-    <PrivacyLayout>
-      <div className="max-w-6xl space-y-8">
-        {/* Breadcrumb */}
-        <div>
-          <Breadcrumb items={breadcrumbItems} />
-        </div>
-
-        {/* Header */}
+    <PrivacyLayout
+      title="Declaración de privacidad y confidencialidad de la información de RataCueva"
+      breadcrumbs={breadcrumbItems}
+    >
+      <div className="space-y-8">
+        {/* Header Content */}
         <div className="space-y-4">
-          <H1 className="text-white mb-6">
-            Declaración de privacidad y confidencialidad de la información de
-            RataCueva
-          </H1>
           <Body className="text-neutral-300 max-w-4xl mx-auto leading-relaxed">
             En RataCueva (en adelante, "nosotros", "nuestro" o "la Plataforma"),
             valoramos profundamente su privacidad y nos comprometemos firmemente
