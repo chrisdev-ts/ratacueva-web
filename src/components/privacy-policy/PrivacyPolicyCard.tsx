@@ -5,7 +5,7 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 interface PrivacyPolicyCardProps {
   id: string;
   title: string;
-  description: string;
+  summary: string;
   href: string;
   icon: React.ReactNode;
 }
@@ -13,7 +13,7 @@ interface PrivacyPolicyCardProps {
 export function PrivacyPolicyCard({
   id,
   title,
-  description,
+  summary,
   href,
   icon,
 }: PrivacyPolicyCardProps) {
@@ -31,7 +31,7 @@ export function PrivacyPolicyCard({
           </Subtitle>
         </div>
         <Body className="text-neutral-300 text-sm leading-relaxed">
-          {description}
+          {summary}
         </Body>
         <div className="mt-4 font-bold flex items-center text-[hsl(var(--secondary))] text-sm transition-colors">
           <span>Leer más</span>

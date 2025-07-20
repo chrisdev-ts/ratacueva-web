@@ -2,10 +2,10 @@
 
 import { Body, BodySmall } from "@/components/common/Typography";
 import { PrivacyLayout, PrivacyPolicyCard } from "@/components/privacy-policy";
-import { PRIVACY_SECTIONS } from "@/constants/privacySections";
+import { getPrivacySections } from "@/constants/privacySectionsData";
 
 export default function PrivacyPolicyPage() {
-  const privacySections = PRIVACY_SECTIONS;
+  const privacySections = getPrivacySections();
   const breadcrumbItems = [
     { label: "Configuración", href: "/settings" },
     { label: "Aviso de privacidad", href: "/privacy-policy" },
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
               key={section.id}
               id={section.id}
               title={section.title}
-              description={section.description}
+              summary={section.summary}
               href={section.href}
               icon={section.icon}
             />

@@ -1,8 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { H3, Body, BodySmall, Subtitle } from "../common/Typography";
-import { getSidebarSections } from "@/constants/privacySections";
+import { Body, Subtitle } from "../common/Typography";
+import { getSidebarSections } from "@/constants/privacySectionsData";
 
 interface PrivacySidebarProps {
   className?: string;
@@ -101,12 +103,12 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
       {/* Footer info */}
       <div>
         <Body className="text-sm text-white font-normal">
-          ¿No tienes una cuenta?{" "}
+          ¿Necesitas ayuda?{" "}
           <a
-            href="/register"
+            href="/support"
             className="font-bold hover:text-[hsl(var(--accent))] transition-colors"
           >
-            Regístrate
+            Contactar soporte
           </a>
         </Body>
       </div>

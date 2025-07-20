@@ -1,10 +1,9 @@
 export { QuickAccessCard } from "./QuickAccessCard";
 export { HighlightBox } from "./HighlightBox";
-export { FAQItem } from "./FAQItem";
+export { FAQSection } from "./FAQSection";
 export { PrivacyNavigation } from "./PrivacyNavigation";
 export { InfoCard } from "./InfoCard";
 export { PolicyPageLayout } from "./PolicyPageLayout";
-export { SectionDivider } from "./SectionDivider";
 export { PrivacyLayout } from "./PrivacyLayout";
 export { PrivacySidebar } from "./PrivacySidebar";
 export { PrivacyPolicyCard } from "./PrivacyPolicyCard";

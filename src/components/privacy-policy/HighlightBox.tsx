@@ -1,12 +1,12 @@
 "use client";
 
-import { H2, Body } from "@/components/common/Typography";
+import { Subtitle, Body } from "@/components/common/Typography";
 
 interface HighlightBoxProps {
   type: "warning" | "info" | "success" | "urgent" | "legal";
   icon: React.ReactNode;
   title: string;
-  children: React.ReactNode;
+  content: string | string[]; // Acepta texto simple o array de textos
 }
 
 const typeStyles = {
@@ -29,15 +29,34 @@ export function HighlightBox({
   type,
   icon,
   title,
-  children,
+  content,
 }: HighlightBoxProps) {
+  const renderContent = () => {
+    if (Array.isArray(content)) {
+      return content.map((text, index) => (
+        <Body
+          key={index}
+          className={`${typeTextColors[type]} ${
+            index < content.length - 1 ? "mb-3" : ""
+          }`}
+        >
+          {text}
+        </Body>
+      ));
+    } else {
+      return <Body className={`${typeTextColors[type]}`}>{content}</Body>;
+    }
+  };
+
   return (
     <div className={`${typeStyles[type]} border rounded-lg p-6`}>
-      <H2 className={`${typeTextColors[type]} mb-4 flex items-center gap-2`}>
+      <Subtitle className={`${typeTextColors[type]} font-bold mb-4 flex items-center gap-2`}>
         <div className="text-2xl">{icon}</div>
         {title}
-      </H2>
-      <div className={`${typeTextColors[type]} space-y-3`}>{children}</div>
+      </Subtitle>
+      <div className={`${typeTextColors[type]} space-y-3`}>
+        {renderContent()}
+      </div>
     </div>
   );
 }
