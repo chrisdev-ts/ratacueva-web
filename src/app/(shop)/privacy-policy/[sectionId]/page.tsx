@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
-import { PrivacyLayout, PolicyPageLayout } from "@/components/privacy-policy";
+import {
+  PrivacyLayout,
+  PolicyPageLayout,
+} from "@/components/features/privacy-policy";
 import { getPrivacySectionData } from "@/constants/privacySectionsData";
 
 interface PrivacySectionPageProps {
@@ -20,7 +23,6 @@ export default async function PrivacySectionPage({
     notFound();
   }
 
-
   const breadcrumbItems = [
     { label: "Configuración", href: "/settings" },
     { label: "Aviso de privacidad", href: "/privacy-policy" },
@@ -28,9 +30,7 @@ export default async function PrivacySectionPage({
   ];
 
   return (
-    <PrivacyLayout
-      breadcrumbs={breadcrumbItems}
-    >
+    <PrivacyLayout breadcrumbs={breadcrumbItems}>
       <PolicyPageLayout
         title={sectionData.title}
         subtitle={sectionData.subtitle}

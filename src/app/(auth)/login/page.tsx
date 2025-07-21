@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Body } from "../../../components/common/Typography";
-import Link from "next/link";
+import { Body } from "@/components/atoms/Typography";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
