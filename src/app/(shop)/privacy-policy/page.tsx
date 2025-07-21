@@ -19,6 +19,11 @@ export default function PrivacyPolicyPage() {
       <div className="space-y-8">
         {/* Header Content */}
         <div className="space-y-4">
+          <div className=" text-neutral-400">
+            <BodySmall>
+              <strong>Última actualización:</strong> 2 de julio de 2025
+            </BodySmall>
+          </div>
           <Body className="text-neutral-300 max-w-4xl mx-auto leading-relaxed">
             En RataCueva (en adelante, "nosotros", "nuestro" o "la Plataforma"),
             valoramos profundamente su privacidad y nos comprometemos firmemente
@@ -37,14 +42,9 @@ export default function PrivacyPolicyPage() {
             confianza es fundamental para nosotros, y este documento es una
             muestra de nuestro compromiso con la protección de su información.
           </Body>
-          <div className="mt-6 text-neutral-400">
-            <BodySmall>
-              <strong>Última actualización:</strong> 2 de julio de 2025
-            </BodySmall>
-          </div>
         </div>
 
-        {/* Sections Grid - 2 columnas en pantallas medianas y grandes */}
+        {/* Sections Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {privacySections.map((section) => (
             <PrivacyPolicyCard

@@ -22,7 +22,7 @@ export function InfoCardFooterNote({ footerNote }: InfoCardFooterNoteProps) {
         p-4 rounded-lg border
         ${footerNoteStyles[footerNote.type].bg} 
         ${footerNoteStyles[footerNote.type].border}
-        transition-all duration-200 hover:scale-[1.01]
+        transition-all duration-200
       `}
     >
       <Body className={`text-sm ${footerNoteStyles[footerNote.type].text}`}>

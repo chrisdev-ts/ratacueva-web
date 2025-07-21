@@ -30,7 +30,7 @@ export interface FooterNote {
   text: string;
 }
 
-export type AccentColor = "blue" | "green" | "purple" | "orange" | "red";
+export type AccentColor = "blue" | "green" | "purple" | "orange" | "red" | "yellow";
 
 export interface ColorScheme {
   border: string;
