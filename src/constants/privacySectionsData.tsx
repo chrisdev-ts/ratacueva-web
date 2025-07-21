@@ -37,7 +37,7 @@ import {
   PhoneIcon,
   DocumentCheckIcon,
 } from "@heroicons/react/24/outline";
-import { InfoCard } from "@/components/privacy-policy";
+import { InfoCard } from "@/components/features/privacy-policy/templates/InfoCard";
 
 interface QuickAccessItem {
   title: string;
@@ -1598,7 +1598,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
         description: "Publicidad personalizada y seguimiento",
         href: "#cookies-marketing",
         category: "informativo",
-      }
+      },
     ],
     faqs: [
       {
