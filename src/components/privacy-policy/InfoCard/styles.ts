@@ -31,6 +31,12 @@ export const accentColors: Record<AccentColor, ColorScheme> = {
     text: "text-red-300",
     hover: "hover:border-red-400/50",
   },
+  yellow: {
+    border: "border-yellow-500/30",
+    bg: "bg-yellow-900/20",
+    text: "text-yellow-300",
+    hover: "hover:border-yellow-400/50",
+  },
 };
 
 export const footerNoteStyles = {
