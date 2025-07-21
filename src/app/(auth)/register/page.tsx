@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { Body } from "../../../components/common/Typography";
+import { Body } from "@/components/atoms/Typography";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");

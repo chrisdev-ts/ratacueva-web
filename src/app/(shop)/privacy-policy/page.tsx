@@ -1,7 +1,10 @@
 "use client";
 
-import { Body, BodySmall } from "@/components/common/Typography";
-import { PrivacyLayout, PrivacyPolicyCard } from "@/components/privacy-policy";
+import { Body, BodySmall } from "@/components/atoms/Typography";
+import {
+  PrivacyLayout,
+  PrivacyPolicyCard,
+} from "@/components/features/privacy-policy";
 import { getPrivacySections } from "@/constants/privacySectionsData";
 
 export default function PrivacyPolicyPage() {
