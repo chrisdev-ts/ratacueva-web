@@ -49,7 +49,7 @@ interface QuickAccessItem {
 interface HighlightBoxProps {
   icon: React.ReactNode;
   title: string;
-  type: "warning" | "info" | "success" | "urgent" | "legal";
+  variant: "default" | "success" | "danger";
   content: string | string[];
 }
 
@@ -91,7 +91,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <InformationCircleIcon className="h-6 w-6" />,
       title: "Información de contacto para privacidad",
-      type: "info",
+      variant: "success",
       content: [
         "Domicilio: Av. Universidad No. 350 Carretera Federal Cuitláhuac - La Tinaja, Localidad Dos Caminos, Cuitláhuac, Ver. CP. 94910.",
         "Correo electrónico: privacidad@ratacueva.com - Canal principal y directo para ejercer derechos y consultas sobre privacidad.",
@@ -124,7 +124,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="RataCueva como responsable del tratamiento"
           description="RataCueva es la entidad legal responsable del tratamiento de sus datos personales. Esto significa que RataCueva es quien decide sobre el uso y la protección de la información que usted nos confía."
           basicDescription="RataCueva es quien decide cómo se usan y protegen tus datos personales, siguiendo estrictamente las leyes mexicanas de privacidad."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 3 LFPDPPP",
@@ -178,7 +177,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Domicilio oficial del responsable"
           description="Este domicilio es nuestra sede principal y el lugar donde se centralizan las decisiones relacionadas con el tratamiento de sus datos personales. Es también el lugar donde puedes presentar solicitudes presenciales."
           basicDescription="Nuestra oficina principal está en Cuitláhuac, Veracruz. Es donde se centraliza la gestión de tus datos y puedes presentar solicitudes."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 16 LFPDPPP",
@@ -235,7 +233,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Correo electrónico de contacto para privacidad"
           description="Hemos habilitado esta dirección de correo electrónico como el canal principal y directo para que usted pueda ejercer sus derechos, realizar consultas o presentar cualquier inquietud relacionada con la privacidad de sus datos personales."
           basicDescription="privacidad@ratacueva.com es nuestro canal directo y principal para tus derechos ARCO, consultas y cualquier inquietud de privacidad."
-          accentColor="purple"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 16 LFPDPPP",
@@ -301,7 +298,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <ShieldCheckIcon className="h-6 w-6" />,
       title: "Protección de datos financieros",
-      type: "info",
+      variant: "success",
       content: [
         "RataCueva no almacena el número completo de su tarjeta de crédito ni el código de verificación (CVV/CVC).",
         "Esta información altamente sensible se solicita en cada transacción de manera temporal y es procesada directamente por nuestros proveedores de servicios de pago seguros y certificados.",
@@ -364,7 +361,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Datos de identificación y contacto"
           description="Esta categoría incluye información fundamental para identificarle y comunicarnos con usted, asegurando la entrega de sus compras y el soporte necesario."
           basicDescription="Recopilamos tu nombre, email, teléfono y dirección de envío para procesar pedidos y comunicarnos contigo."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 3 LFPDPPP",
@@ -410,7 +406,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Datos financieros y de pago"
           description="Para facilitar sus transacciones, recopilamos información relacionada con los métodos de pago que usted elija utilizar en nuestra plataforma, pero siempre con su seguridad como prioridad."
           basicDescription="Recopilamos tipo de tarjeta, últimos 4 dígitos y fecha de expiración para tus pagos, pero nunca el número completo ni el CVV."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 7, 8 LFPDPPP",
@@ -462,7 +457,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Datos de transacción"
           description="Esta información detalla su actividad de compra en RataCueva, lo cual nos permite gestionar su cuenta y brindar un soporte eficiente."
           basicDescription="Registramos productos comprados, historial de pedidos y fechas para gestionar tu cuenta y facilitar el soporte."
-          accentColor="purple"
           sections={[
             {
               subtitle: "Información de compras",
@@ -505,7 +499,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Datos de uso y preferencias"
           description="Para mejorar continuamente su experiencia en RataCueva, recopilamos información sobre cómo interactúa con nuestro sitio, incluyendo sus preferencias y aspectos técnicos de su conexión."
           basicDescription="Analizamos tus preferencias de juegos, navegación, IP y tipo de dispositivo para personalizar recomendaciones y optimizar el sitio."
-          accentColor="orange"
           legalBadge={{
             type: "optional",
             lawReference: "Consentimiento o Interés legítimo",
@@ -569,7 +562,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <InformationCircleIcon className="h-6 w-6" />,
       title: "¿Para qué usamos tus datos?",
-      type: "info",
+      variant: "success",
       content: [
         "Finalidades primarias: Indispensables para que RataCueva pueda operar como un e-commerce y cumplir con los servicios que esperas de nosotros.",
         "Finalidades secundarias: Buscan enriquecer tu interacción y ofrecerte un servicio más personalizado. Puedes oponerte a ellas en cualquier momento.",
@@ -622,7 +615,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Finalidades primarias (necesarias para el servicio)"
           description="Tus datos son utilizados para verificar la disponibilidad de los productos, procesar tu pago de forma segura, generar tu factura o comprobante de compra, preparar tu pedido para el envío y, en general, gestionar todo el ciclo de vida de tu compra. Esto incluye la validación de la información de pago y la prevención de fraudes."
           basicDescription="Usamos tus datos para procesar pedidos, gestionar envíos, comunicarnos sobre tu cuenta y pedidos, y garantizar la seguridad de tus transacciones."
-          accentColor="red" // Color rojo para indicar "obligatorio para la función principal"
+          // Color rojo para indicar "obligatorio para la función principal"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 18 LFPDPPP",
@@ -706,7 +699,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Finalidades secundarias (mejoran tu experiencia, pero son opcionales)"
           description="Estas finalidades no son indispensables para la funcionalidad básica de RataCueva, pero nos permiten enriquecer tu interacción y ofrecerte un servicio más personalizado y relevante. Puedes oponerte a ellas en cualquier momento sin afectar los servicios principales."
           basicDescription="Utilizamos tus datos para personalizar recomendaciones, enviarte marketing relevante, realizar análisis internos y prevenir fraudes, todo con el fin de mejorar tu experiencia."
-          accentColor="yellow" // Color amarillo para indicar "opcional"
+          // Color amarillo para indicar "opcional"
           legalBadge={{
             type: "optional",
             lawReference: "Art. 8 LFPDPPP",
@@ -774,7 +767,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Tu derecho de oposición a finalidades secundarias"
           description="Si no deseas que tus datos personales sean tratados para las finalidades secundarias, puedes manifestar tu negativa en cualquier momento enviando un correo electrónico a privacidad@ratacueva.com. Tu decisión de oponerte a estas finalidades no afectará de ninguna manera la prestación de los servicios principales que solicites o contrates con nosotros, como la compra y envío de productos."
           basicDescription="Puedes rechazar el uso de tus datos para finalidades secundarias (marketing, personalización, análisis) enviando un email. Esto no afecta los servicios principales."
-          accentColor="orange" // Color naranja para enfatizar la elección del usuario
+          // Color naranja para enfatizar la elección del usuario
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 10, 29 LFPDPPP",
@@ -820,7 +813,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <ShieldCheckIcon className="h-6 w-6" />,
       title: "Compromiso de protección total",
-      type: "info",
+      variant: "success",
       content: [
         "RataCueva jamás vende, alquila o intercambia sus datos personales con fines comerciales.",
         "Solo compartimos información cuando es estrictamente necesario para proporcionarle el servicio que solicita, siempre bajo contratos de confidencialidad y las más altas medidas de seguridad.",
@@ -895,7 +888,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Proveedores de servicios de pago"
           description="Para procesar sus compras de manera segura, trabajamos con plataformas de pago certificadas y reconocidas internacionalmente, garantizando que sus transacciones financieras estén protegidas."
           basicDescription="Tus pagos se procesan de forma segura con Stripe, PayPal, Oxxo Pay y Mercado Pago, todos certificados PCI DSS Nivel 1. RataCueva no almacena tus datos completos de tarjeta."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 37 LFPDPPP",
@@ -955,7 +947,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Empresas de logística y paquetería"
           description="Para entregar tus productos de manera segura y oportuna, colaboramos con empresas de transporte especializadas y certificadas, asegurando que tu compra llegue a su destino final."
           basicDescription="Compartimos tu nombre, dirección y teléfono con paqueterías líderes (DHL, FedEx, Estafeta, etc.) solo para la entrega de tus pedidos, bajo estrictos contratos de confidencialidad."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 37 LFPDPPP",
@@ -1019,7 +1010,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Proveedores de servicios en la nube"
           description="Para mantener nuestro sitio web funcionando de manera segura, confiable y eficiente las 24 horas del día, utilizamos servicios de infraestructura tecnológica en la nube de líderes del sector."
           basicDescription="Usamos servicios en la nube (AWS, Google Cloud, Azure) para hosting, bases de datos y seguridad. Estos proveedores cumplen con los más altos estándares de protección de datos."
-          accentColor="purple"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 19 LFPDPPP",
@@ -1083,7 +1073,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Servicios de análisis y marketing"
           description="Para mejorar continuamente nuestros servicios, entender las preferencias de los usuarios y personalizar tu experiencia de compra, trabajamos con herramientas especializadas de análisis y comunicación de marketing."
           basicDescription="Usamos Google Analytics, Hotjar, Mailchimp y Facebook Pixel para análisis de tráfico, personalización de contenido y envío de marketing, siempre respetando tu privacidad y opciones de control."
-          accentColor="orange"
           legalBadge={{
             type: "optional",
             lawReference: "Art. 8, 29 LFPDPPP",
@@ -1141,7 +1130,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Servicios de soporte y atención al cliente"
           description="Para brindarte la mejor y más eficiente experiencia de soporte cuando necesites ayuda, podemos trabajar con proveedores especializados en atención al cliente que nos ayudan a gestionar tus consultas."
           basicDescription="Colaboramos con Zendesk, Intercom y Twilio para tu soporte. Solo compartimos la información mínima necesaria para resolver tus consultas."
-          accentColor="yellow" // Cambiado a yellow para indicar "requiere atención del usuario para resolver problemas"
+          // Cambiado a yellow para indicar "requiere atención del usuario para resolver problemas"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 18 LFPDPPP",
@@ -1197,7 +1186,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Garantías de protección en todas las transferencias"
           description="Implementamos múltiples capas de protección legal, técnica y contractual para asegurar que tus datos estén completamente seguros en manos de cualquier tercero con el que colaboremos."
           basicDescription="Todas las transferencias de datos a terceros están protegidas por contratos legales estrictos, medidas técnicas de seguridad avanzadas y tu capacidad de ejercer control sobre tu información."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 37 LFPDPPP",
@@ -1264,7 +1252,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <ShieldCheckIcon className="h-6 w-6" />,
       title: "Protección multicapa garantizada",
-      type: "info",
+      variant: "success",
       content: [
         "Implementamos los más altos estándares de seguridad de la industria con tecnología de grado militar y certificaciones internacionales.",
         "Tu información está protegida por múltiples capas de seguridad que incluyen cifrado avanzado, controles de acceso estrictos y monitoreo continuo.",
@@ -1327,7 +1315,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Protecciones técnicas avanzadas"
           description="Utilizamos tecnología de seguridad de última generación para crear múltiples barreras de protección alrededor de tu información personal, desde el momento en que nos la confías hasta su almacenamiento."
           basicDescription="Empleamos cifrado de grado militar (AES-256, SSL/TLS 1.3), autenticación de dos factores (2FA) y una infraestructura de servidores altamente protegida y certificada."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 19 LFPDPPP",
@@ -1386,7 +1373,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Protecciones administrativas y humanas"
           description="Implementamos políticas internas estrictas y programas de capacitación continua para asegurar que solo las personas autorizadas, y bajo condiciones seguras, puedan acceder y tratar tu información personal."
           basicDescription="Contamos con personal capacitado, controles de acceso estrictos, contratos de confidencialidad y políticas internas robustas para el manejo seguro de tus datos."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 19 LFPDPPP",
@@ -1445,7 +1431,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Monitoreo continuo y auditorías"
           description="Mantenemos una vigilancia constante y proactiva de nuestros sistemas, además de realizar evaluaciones y auditorías regulares para identificar, prevenir y mitigar cualquier amenaza a la seguridad de tus datos en tiempo real."
           basicDescription="Vigilamos nuestros sistemas 24/7 con detección automática de amenazas, realizamos pruebas de penetración trimestrales y tenemos un equipo de respuesta a incidentes listo."
-          accentColor="purple"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 19 LFPDPPP",
@@ -1504,7 +1489,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Certificaciones y cumplimiento normativo"
           description="Cumplimos con los estándares más estrictos de la industria y mantenemos certificaciones internacionales de seguridad para validar la solidez de nuestras medidas de protección de datos."
           basicDescription="Contamos con certificaciones como ISO 27001, SOC 2 y PCI DSS, y cumplimos estrictamente con la LFPDPPP mexicana y mejores prácticas internacionales."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 19 LFPDPPP",
@@ -1568,7 +1552,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <ShieldCheckIcon className="h-6 w-6" />,
       title: "¿Qué son las cookies?",
-      type: "info",
+      variant: "success",
       content: [
         "Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (ordenador, tablet, móvil) cuando visitas nuestro sitio web.",
         "Utilizamos cookies para mejorar tu experiencia de usuario, recordar tus preferencias, analizar el tráfico del sitio y personalizar el contenido que te mostramos, todo con el fin de optimizar RataCueva para ti.",
@@ -1626,7 +1610,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Cookies esenciales (obligatorias)"
           description="Estas cookies son fundamentales para el funcionamiento básico de RataCueva y son indispensables para que puedas navegar por el sitio, iniciar sesión de forma segura y realizar compras."
           basicDescription="Cookies necesarias para el funcionamiento principal del sitio: gestionar tu sesión, recordar tu carrito, asegurar la navegación y procesar tus pagos."
-          accentColor="red" // Color rojo para indicar su naturaleza "obligatoria/crítica"
+          // Color rojo para indicar su naturaleza "obligatoria/crítica"
           legalBadge={{
             type: "mandatory",
             lawReference: "Interés legítimo",
@@ -1673,7 +1657,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Cookies de rendimiento y análisis"
           description="Estas cookies recopilan información agregada y anónima sobre cómo interactúas con nuestro sitio, lo que nos permite entender el comportamiento de los usuarios y mejorar continuamente la funcionalidad y el rendimiento de RataCueva."
           basicDescription="Herramientas como Google Analytics y Hotjar nos ayudan a mejorar el sitio al recopilar datos anónimos sobre tu navegación, rendimiento y posibles errores."
-          accentColor="blue" // Azul para indicar información general / funcional
+          // Azul para indicar información general / funcional
           legalBadge={{
             type: "optional",
             tooltip:
@@ -1732,7 +1716,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Cookies funcionales y de personalización"
           description="Estas cookies mejoran tu experiencia en RataCueva recordando tus preferencias y configuraciones, haciendo tu navegación más cómoda, relevante y personalizada a cada visita."
           basicDescription="Recuerdan tu idioma, región, configuraciones de visualización, y preferencias de productos para personalizar tu experiencia en el sitio."
-          accentColor="purple" // Púrpura para "personalización/preferencias"
+          // Púrpura para "personalización/preferencias"
           legalBadge={{
             type: "optional",
             tooltip:
@@ -1777,7 +1761,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Cookies de publicidad y marketing"
           description="Utilizadas por nosotros y nuestros socios publicitarios para mostrarte anuncios más relevantes y personalizados basados en tus intereses en productos gaming, así como para medir la efectividad de nuestras campañas."
           basicDescription="Nos permiten mostrarte anuncios relevantes de productos gaming, medir campañas y personalizar ofertas. Puedes desactivarlas si no quieres publicidad personalizada."
-          accentColor="orange" // Naranja para "publicidad/atención"
+          // Naranja para "publicidad/atención"
           legalBadge={{
             type: "optional",
             lawReference: "Art. 29 LFPDPPP",
@@ -1834,7 +1818,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Tu control total sobre las cookies"
           description="Tienes múltiples opciones para gestionar y controlar qué cookies acepta tu navegador, desde configuraciones básicas hasta controles granulares que te dan el poder sobre tu privacidad en línea."
           basicDescription="Controla tus cookies desde nuestro centro de preferencias, la configuración de tu navegador o herramientas de opt-out y extensiones especializadas."
-          accentColor="green" // Verde para "control / empoderamiento"
+          // Verde para "control / empoderamiento"
           legalBadge={{
             type: "recommendation",
             lawReference: "Derechos del usuario",
@@ -1902,7 +1886,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <ShieldExclamationIcon className="h-6 w-6" />,
       title: "Tus derechos fundamentales",
-      type: "legal", // 'legal' es un buen tipo para enfatizar la importancia legal
+      variant: "danger",
       content: [
         "Derechos ARCO: Tienes derecho a Acceder a tus datos, Rectificar información incorrecta, Cancelar datos innecesarios y Oponerte a ciertos tratamientos.",
         "Estos derechos son fundamentales para el control de tu información personal y están protegidos por la legislación mexicana de protección de datos (LFPDPPP).",
@@ -1959,7 +1943,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Derecho de acceso"
           description="Puedes solicitar conocer qué datos personales tenemos sobre ti, para qué los usamos, con quién los compartimos y cualquier información relacionada con su tratamiento. Este derecho te permite tener transparencia total sobre el manejo de tu información."
           basicDescription="Solicita ver todos tus datos personales que RataCueva tiene registrados, sus usos y con quién los compartimos."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 22, 29 LFPDPPP",
@@ -2007,7 +1990,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Derecho de rectificación"
           description="Si encuentras que alguno de tus datos personales en nuestros sistemas es incorrecto, está desactualizado o incompleto, puedes solicitar que lo corrijamos. Tu información debe ser exacta y estar actualizada en todo momento."
           basicDescription="Corrige cualquier dato personal incorrecto, desactualizado o incompleto que tengamos sobre ti."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 22, 29 LFPDPPP",
@@ -2058,7 +2040,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Derecho de cancelación"
           description="Puedes solicitar que eliminemos tus datos personales de nuestros registros cuando ya no sean necesarios para las finalidades que motivaron su tratamiento o cuando consideres que no se están utilizando conforme a los principios de protección de datos."
           basicDescription="Pide la eliminación de tus datos si ya no son necesarios para el fin original o si crees que se usan de forma incorrecta."
-          accentColor="red"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 22, 29 LFPDPPP",
@@ -2108,7 +2089,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Derecho de oposición"
           description="Puedes oponerte al tratamiento de tus datos personales cuando exista una causa legítima para ello o cuando el tratamiento tenga por objeto el envío de publicidad, prospección comercial o promoción de productos y servicios."
           basicDescription="Oponte al uso de tus datos para marketing directo o si tienes razones legítimas para que cese su tratamiento."
-          accentColor="orange"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 22, 29 LFPDPPP",
@@ -2158,7 +2138,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="¿Cómo ejercer tus derechos ARCO?"
           description="Para ejercer cualquiera de tus derechos ARCO, puedes contactarnos a través de los siguientes medios. Te responderemos en los plazos establecidos por ley y te guiaremos en todo el proceso para asegurar tu control sobre tus datos."
           basicDescription="Ejerce tus derechos ARCO contactándonos por email o a través de nuestro portal de privacidad. Necesitarás tu ID y una descripción clara de tu solicitud."
-          accentColor="purple"
           actionGuide={{
             title: "Proceso para enviar tu solicitud ARCO",
             description:
@@ -2222,7 +2201,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Plazos de respuesta"
           description="RataCueva se compromete a responder tus solicitudes de derechos ARCO en los plazos establecidos por la legislación mexicana de protección de datos personales para garantizar una atención oportuna."
           basicDescription="Respondemos a tus solicitudes ARCO en 20 días hábiles y las ejecutamos en 15 días adicionales si son procedentes."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 32, 33 LFPDPPP",
@@ -2267,7 +2245,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Limitaciones al ejercicio de los derechos ARCO"
           description="En algunos casos específicos, establecidos por la legislación mexicana, podríamos no estar en posibilidad de acceder a su solicitud de ejercicio de derechos ARCO. Estas limitaciones buscan proteger otros intereses legítimos o cumplir con obligaciones legales."
           basicDescription="Existen situaciones legales donde no es posible ejercer los derechos ARCO, como obligaciones legales, investigaciones o protección de intereses de terceros."
-          accentColor="red"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 26, 34 LFPDPPP",
@@ -2304,7 +2281,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Revocación del consentimiento"
           description="Puedes revocar el consentimiento que nos hayas otorgado para el tratamiento de tus datos personales en cualquier momento. Sin embargo, es importante que conozcas las implicaciones de esta decisión."
           basicDescription="Puedes retirar tu consentimiento en cualquier momento. Esto podría afectar algunos servicios, pero no anulará tratamientos previos ya realizados."
-          accentColor="orange"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 8, 10 LFPDPPP",
@@ -2357,7 +2333,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Mecanismos automatizados para ejercer tus derechos"
           description="Para facilitar y agilizar el ejercicio de tus derechos ARCO y la gestión de tu privacidad, hemos implementado los siguientes mecanismos automatizados y directos."
           basicDescription="Hemos habilitado un portal de privacidad y un centro de control de datos en tu cuenta para que gestiones tus derechos fácilmente."
-          accentColor="green"
           legalBadge={{
             type: "recommendation",
             tooltip:
@@ -2403,7 +2378,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <ExclamationTriangleIcon className="h-6 w-6" />,
       title: "Protección prioritaria de menores",
-      type: "urgent", // 'urgent' es un buen tipo para esta alerta crítica
+      variant: "danger", // 'urgent' es un buen tipo para esta alerta crítica
       content: [
         "NO recopilamos datos de menores sin consentimiento parental: Todo tratamiento de datos de menores de 18 años requiere autorización expresa de padres o tutores legales.",
         "Si detectas que un menor proporcionó datos sin autorización, contacta inmediatamente a menores@ratacueva.com para su eliminación.",
@@ -2460,7 +2435,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Verificación de edad y detección de menores"
           description="Implementamos múltiples mecanismos para identificar cuando un usuario es menor de edad y aplicar las protecciones correspondientes de manera inmediata y efectiva, priorizando su seguridad digital."
           basicDescription="Usamos declaración de edad, validación de pago y análisis de comportamiento para identificar a menores y activar protecciones especiales."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 8, 16 LFPDPPP",
@@ -2520,7 +2494,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Consentimiento parental y autorización de tutores"
           description="El consentimiento de padres o tutores legales es un requisito indispensable y verificado para cualquier tratamiento de datos personales de menores de 18 años. Este proceso garantiza que los adultos responsables autoricen expresamente y de forma informada cualquier uso de información de sus hijos."
           basicDescription="Requerimos y verificamos el consentimiento expreso de padres o tutores para procesar datos de menores, con un proceso claro de obtención y revocación."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 8 LFPDPPP, Lineamientos INAI",
@@ -2577,7 +2550,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Derechos especiales de los menores"
           description="Los menores de edad tienen derechos prioritarios y especiales en el tratamiento de sus datos personales, con protecciones adicionales que van más allá de los derechos ARCO estándar, reflejando su mayor vulnerabilidad."
           basicDescription="Los menores tienen derechos ARCO prioritarios y protecciones adicionales como el derecho al olvido reforzado y la prohibición de marketing directo."
-          accentColor="purple"
           legalBadge={{
             type: "mandatory",
             lawReference: "Lineamientos INAI, COPAA",
@@ -2629,7 +2601,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Responsabilidades de padres y tutores"
           description="Los padres y tutores legales tienen responsabilidades específicas y cruciales en la supervisión del uso de servicios digitales por menores, asegurando un entorno seguro y adecuado para ellos."
           basicDescription="Los padres y tutores deben supervisar activamente el uso de plataformas digitales por sus hijos, gestionar consentimientos y ejercer derechos en su nombre."
-          accentColor="orange"
           legalBadge={{
             type: "mandatory",
             lawReference: "Responsabilidad parental",
@@ -2687,7 +2658,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Procedimiento de notificación de uso no autorizado"
           description="Si descubre que un menor de edad proporcionó datos personales a RataCueva sin su consentimiento parental, es fundamental que siga este procedimiento para asegurar una resolución inmediata y la protección del menor."
           basicDescription="Si tu hijo menor usó la plataforma sin tu permiso, notifícanos a menores@ratacueva.com con evidencia parental para suspensión y eliminación de datos."
-          accentColor="red"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 8, 30 LFPDPPP",
@@ -2752,7 +2722,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Canal especializado para asuntos de menores"
           description="Disponemos de un canal de comunicación dedicado y especializado para atender exclusivamente temas relacionados con la privacidad de menores de edad, asegurando una atención prioritaria y experta."
           basicDescription="Usa nuestro email (menores@ratacueva.com) o línea directa para consultas, denuncias o solicitudes ARCO relacionadas con menores."
-          accentColor="blue"
           legalBadge={{
             type: "recommendation",
             tooltip:
@@ -2797,7 +2766,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Nuestro compromiso con la protección infantil"
           description="La protección de datos personales de menores de edad es una prioridad fundamental que guía todas nuestras decisiones de tratamiento de datos, y nos esforzamos por ir más allá de los requisitos legales mínimos."
           basicDescription="La protección de menores es un compromiso ético y legal fundamental de RataCueva, con estándares técnicos, políticas y monitoreo especializado."
-          accentColor="green"
           legalBadge={{
             type: "recommendation",
             tooltip:
@@ -2862,7 +2830,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <InformationCircleIcon className="h-6 w-6" />,
       title: "Plazos claros y eliminación garantizada",
-      type: "info",
+      variant: "success",
       content: [
         "Tus datos se conservan solo el tiempo necesario para cumplir con las finalidades informadas y las obligaciones legales.",
         "Puedes solicitar la eliminación anticipada de tus datos cuando ya no sean necesarios para el servicio o por motivos legítimos.",
@@ -2918,7 +2886,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Plazos legales de conservación"
           description="Conservamos tus datos personales conforme a los plazos estrictamente establecidos por la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y otras normativas aplicables."
           basicDescription="Conservamos tus datos por el tiempo legalmente requerido para cumplir con obligaciones fiscales (5-10 años) y la operación del servicio."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 11, 37 LFPDPPP",
@@ -2962,7 +2929,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Criterios para determinar el plazo de conservación"
           description="El plazo exacto de conservación de tus datos personales depende de la finalidad para la que fueron recopilados, el tipo de dato específico y las obligaciones legales aplicables."
           basicDescription="El plazo de conservación se basa en el propósito del dato, su tipo (ej. sensible) y nuestras obligaciones legales. Solo conservamos lo estrictamente necesario."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 11 LFPDPPP",
@@ -3017,7 +2983,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Eliminación anticipada de datos"
           description="Tienes el derecho de solicitar la eliminación anticipada de tus datos personales cuando ya no sean necesarios para la finalidad informada, salvo que exista una obligación legal que nos impida hacerlo."
           basicDescription="Puedes solicitar la eliminación anticipada de tus datos contactando a privacidad@ratacueva.com si ya no son necesarios, a menos que haya una obligación legal de conservarlos."
-          accentColor="purple"
           legalBadge={{
             type: "optional",
             lawReference: "Art. 22 LFPDPPP",
@@ -3062,7 +3027,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Proceso de eliminación segura"
           description="Cuando se cumple el período de conservación legal o de finalidad, implementamos procesos robustos y seguros para eliminar definitivamente tus datos personales, impidiendo su recuperación."
           basicDescription="Cuando el plazo se cumple, eliminamos tus datos de forma segura mediante sobrescritura, destrucción física y verificación, impidiendo su recuperación."
-          accentColor="red"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 19 LFPDPPP",
@@ -3107,7 +3071,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Revisión y actualización de políticas de retención"
           description="Mantenemos nuestras políticas de conservación de datos actualizadas y sometemos nuestros procesos a una revisión periódica y estricta para garantizar el cumplimiento legal y la máxima protección de tu privacidad."
           basicDescription="Revisamos anualmente nuestras políticas de retención de datos, ajustándolas a nuevas leyes y mejores prácticas, siempre priorizando tu privacidad."
-          accentColor="green"
           legalBadge={{
             type: "recommendation",
             tooltip:
@@ -3164,7 +3127,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <InformationCircleIcon className="h-6 w-6" />,
       title: "Transparencia total en modificaciones",
-      type: "info",
+      variant: "success",
       content: [
         "Siempre te informamos de los cambios: Cualquier modificación será publicada claramente en nuestro sitio web con la fecha de actualización y explicación de los cambios.",
         "Tu uso continuado de la plataforma después de las modificaciones constituye tu aceptación de los nuevos términos.",
@@ -3226,7 +3189,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Razones para modificaciones"
           description="Las modificaciones a nuestro aviso de privacidad obedecen a razones específicas que garantizan su relevancia, cumplimiento legal y adaptación a las necesidades cambiantes del entorno digital."
           basicDescription="Actualizamos nuestro aviso por cambios en leyes, evolución de nuestros servicios o implementación de mejores prácticas de protección."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 16 LFPDPPP",
@@ -3283,7 +3245,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Publicación y disponibilidad de cambios"
           description="Todos los cambios son publicados de manera clara y accesible para garantizar que puedas estar siempre informado sobre las modificaciones a nuestro aviso de privacidad, manteniendo total transparencia."
           basicDescription="Publicamos cada cambio en nuestro sitio web principal, con información detallada y la fecha de actualización visible."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 16 LFPDPPP",
@@ -3340,7 +3301,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Sistema de notificaciones"
           description="Implementamos múltiples canales de comunicación para asegurar que estés enterado de cambios importantes que puedan afectar tu privacidad y derechos, garantizando que ninguna actualización relevante pase desapercibida."
           basicDescription="Te notificamos sobre cambios importantes por email, notificaciones push, mensajes en tu cuenta y avisos en el sitio web."
-          accentColor="orange"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 16 LFPDPPP",
@@ -3401,7 +3361,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Recomendación de revisión periódica"
           description="Le recomendamos encarecidamente revisar regularmente nuestro aviso de privacidad para mantenerse informado sobre nuestras prácticas y cualquier modificación, garantizando así su control sobre su información."
           basicDescription="Revisa nuestro aviso periódicamente (trimestral o semestralmente) y siempre después de recibir notificaciones de cambios importantes."
-          accentColor="purple"
           legalBadge={{
             type: "recommendation",
             lawReference: "Buenas prácticas",
@@ -3456,7 +3415,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Aceptación de modificaciones"
           description="El proceso de aceptación de modificaciones está diseñado para ser claro y respetar su autonomía de decisión, brindándole tiempo y opciones para manifestar su conformidad o inconformidad con los cambios."
           basicDescription="Puedes aceptar los cambios continuando con el uso de la plataforma, o de forma explícita. Tienes 30 días para revisar y decidir."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 8 LFPDPPP",
@@ -3510,7 +3468,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Cronología y entrada en vigor"
           description="Establecemos cronologías claras para la implementación de modificaciones, respetando períodos razonables de adaptación para que siempre estés informado sobre cuándo y cómo los cambios se aplicarán."
           basicDescription="Los cambios siguen una cronología clara: publicación, notificación a usuarios, período de gracia y fecha de entrada en vigor para aplicación completa."
-          accentColor="red"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 16 LFPDPPP",
@@ -3574,7 +3531,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
     highlightBox: {
       icon: <ExclamationCircleIcon className="h-6 w-6" />,
       title: "Tu derecho a presentar quejas",
-      type: "warning",
+      variant: "danger",
       content: [
         "Antes de acudir al INAI: Te recomendamos intentar resolver la situación directamente con RataCueva a través de nuestros canales de atención en privacidad@ratacueva.com.",
         "Si consideras que hay una violación a la LFPDPPP o que tu derecho ha sido lesionado sin respuesta satisfactoria, puedes acudir al INAI.",
@@ -3631,7 +3588,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="El Instituto Nacional de Transparencia (INAI)"
           description="El INAI es la autoridad encargada de garantizar la protección de datos personales en México, según lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP). Actúa como tu defensor en caso de incumplimiento."
           basicDescription="El INAI es la autoridad mexicana que protege tus datos personales. Puedes acudir a ellos si tus derechos son vulnerados por RataCueva."
-          accentColor="blue"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 43 LFPDPPP",
@@ -3677,7 +3633,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Antes de acudir al INAI: Contacta a RataCueva"
           description="Te recomendamos encarecidamente intentar resolver cualquier situación relacionada con tus datos personales directamente con nosotros antes de presentar una queja formal ante el INAI. Nuestra meta es solucionar tus inquietudes de forma rápida y efectiva."
           basicDescription="Antes de ir al INAI, intenta resolver tu queja directamente con RataCueva. Estamos comprometidos a ayudarte."
-          accentColor="orange"
           legalBadge={{
             type: "recommendation",
             tooltip:
@@ -3726,7 +3681,6 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           title="Cómo contactar al INAI"
           description="El INAI pone a tu disposición múltiples canales para presentar quejas o denuncias relacionadas con la protección de datos personales, asegurando que tengas acceso fácil a la autoridad competente."
           basicDescription="Contacta al INAI a través de su sitio web oficial, teléfono o email para presentar quejas o denuncias sobre privacidad."
-          accentColor="green"
           legalBadge={{
             type: "mandatory",
             lawReference: "Art. 43 LFPDPPP",
