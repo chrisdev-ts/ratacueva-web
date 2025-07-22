@@ -1,4 +1,5 @@
 import { Subheading, Body, BodySmall } from "@/components/atoms/Typography";
+import type React from "react";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
@@ -6,28 +7,39 @@ import {
   ScaleIcon,
   ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
-import type { LegalBadge, ColorScheme } from "./InfoCardTypes";
-import { legalBadgeStyles } from "./InfoCardStyles";
+import type { LegalBadge } from "./InfoCardTypes";
+import { legalBadgeMap } from "./InfoCardTypes"; // <-- IMPORTADO
+// Eliminado palettes
 
-const legalBadgeIcons = {
-  mandatory: <ScaleIcon className="h-4 w-4" />,
-  optional: <ClipboardDocumentListIcon className="h-4 w-4" />,
-  recommendation: <LightBulbIcon className="h-4 w-4" />,
+const legalBadgeIcons: Record<keyof typeof legalBadgeMap, React.ReactElement> =
+  {
+    mandatory: <ScaleIcon className="h-4 w-4" />,
+    optional: <ClipboardDocumentListIcon className="h-4 w-4" />,
+    recommendation: <LightBulbIcon className="h-4 w-4" />,
+  };
+
+const legalBadgeLabels: Record<keyof typeof legalBadgeMap, string> = {
+  mandatory: "Obligatorio por ley",
+  optional: "Opcional",
+  recommendation: "Recomendado",
 };
 
-interface InfoCardHeaderProps {
+type InfoCardHeaderProps = {
   icon: React.ReactNode;
   title: string;
   description: string;
   basicDescription?: string;
-  legalBadge?: LegalBadge;
+  legalBadge?: {
+    type: keyof typeof legalBadgeMap;
+    lawReference?: string;
+    tooltip?: string;
+  };
   collapsible: boolean;
   isCardExpanded: boolean;
   showDetailed: boolean;
-  colorScheme: ColorScheme;
   onToggleCard: () => void;
   onToggleDetailed: () => void;
-}
+};
 
 export function InfoCardHeader({
   icon,
@@ -38,27 +50,27 @@ export function InfoCardHeader({
   collapsible,
   isCardExpanded,
   showDetailed,
-  colorScheme,
   onToggleCard,
   onToggleDetailed,
 }: InfoCardHeaderProps) {
+  // badge minimalista
+  let badgeClass = "bg-gray-700 text-white border border-gray-600";
+  if (legalBadge?.type === "mandatory")
+    badgeClass = "bg-danger/10 text-white border-danger";
+  if (legalBadge?.type === "optional")
+    badgeClass = "bg-secondary/10 text-secondary border-secondary";
+  if (legalBadge?.type === "recommendation")
+    badgeClass = "bg-success/10 text-success border-success";
   return (
     <div
-      className={`flex flex-col gap-2 ${
+      className={`flex flex-col gap-4 ${
         collapsible ? "cursor-pointer group" : ""
       }`}
       onClick={collapsible ? onToggleCard : undefined}
     >
-      {/* Title row with icon and expand/collapse button */}
       <div className="flex items-center gap-3">
         <div className="flex-shrink-0">{icon}</div>
-        <Subheading
-          className={`flex-1 ${
-            collapsible ? "group-hover:text-white transition-colors" : ""
-          }`}
-        >
-          {title}
-        </Subheading>
+        <Subheading className={`flex-1 transition-colors`}>{title}</Subheading>
         {collapsible && (
           <button className="p-1">
             {isCardExpanded ? (
@@ -70,19 +82,13 @@ export function InfoCardHeader({
         )}
       </div>
 
-      {/* Legal Badge */}
       {legalBadge && (
         <div
-          className={`
-            inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium w-fit
-            border ${legalBadgeStyles[legalBadge.type].bg} 
-            ${legalBadgeStyles[legalBadge.type].border}
-            ${legalBadgeStyles[legalBadge.type].text}
-          `}
+          className={`border inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium w-fit ${badgeClass}`}
           title={legalBadge.tooltip}
         >
           <span>{legalBadgeIcons[legalBadge.type]}</span>
-          <span>{legalBadgeStyles[legalBadge.type].label}</span>
+          <span>{legalBadgeLabels[legalBadge.type]}</span>
           {legalBadge.lawReference && (
             <span className="text-xs opacity-80">
               ({legalBadge.lawReference})
@@ -91,7 +97,6 @@ export function InfoCardHeader({
         </div>
       )}
 
-      {/* Description */}
       <BodySmall className="leading-relaxed">
         {collapsible && !isCardExpanded
           ? basicDescription || description
@@ -100,19 +105,17 @@ export function InfoCardHeader({
           : basicDescription || description}
       </BodySmall>
 
-      {/* Toggle detailed button */}
       {collapsible &&
         isCardExpanded &&
         basicDescription &&
         basicDescription !== description && (
-          <BodySmall as="button"
-            onClick={(e) => {
+          <BodySmall
+            as="button"
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               onToggleDetailed();
             }}
-            className={`transition-colors hover:text-white mt-2 self-start
-              ${colorScheme.text}
-            `}
+            className={`transition-colors hover:text-white mt-2 self-start`}
           >
             {showDetailed
               ? "Ver versión simplificada"
