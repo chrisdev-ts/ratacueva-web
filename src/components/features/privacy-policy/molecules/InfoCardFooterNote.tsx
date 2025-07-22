@@ -1,37 +1,47 @@
-import { Body } from "@/components/atoms/Typography";
+import { BodySmall } from "@/components/atoms/Typography";
+import React from "react";
 import {
   LightBulbIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/24/outline";
-import type { FooterNote } from "./InfoCardTypes";
-import { footerNoteStyles } from "./InfoCardStyles";
+import { footerNoteMap } from "./InfoCardTypes";
 
-const footerNoteIcons = {
-  tip: <LightBulbIcon className="h-4 w-4" />,
-  warning: <ExclamationTriangleIcon className="h-4 w-4" />,
+const footerNoteIcons: Record<keyof typeof footerNoteMap, React.ReactElement> =
+  {
+    tip: <LightBulbIcon className="h-4 w-4" />,
+    warning: <ExclamationTriangleIcon className="h-4 w-4" />,
+  };
+
+// Mapeo de etiquetas para mantener la consistencia
+const footerNoteLabels: Record<keyof typeof footerNoteMap, string> = {
+  tip: "Consejo:",
+  warning: "Importante:",
 };
 
-interface InfoCardFooterNoteProps {
-  footerNote: FooterNote;
-}
+type InfoCardFooterNoteProps = {
+  footerNote: {
+    type: keyof typeof footerNoteMap;
+    text: string;
+  };
+};
 
 export function InfoCardFooterNote({ footerNote }: InfoCardFooterNoteProps) {
+  const label = footerNoteLabels[footerNote.type];
+  let base = "bg-gray-800 text-white border-gray-600";
+  if (footerNote.type === "tip")
+    base = "bg-success/10 text-success border-success";
+  if (footerNote.type === "warning")
+    base = "bg-danger/10 text-white border-danger";
   return (
     <div
-      className={`
-        p-4 rounded-lg border
-        ${footerNoteStyles[footerNote.type].bg} 
-        ${footerNoteStyles[footerNote.type].border}
-        transition-all duration-200
-      `}
+      className={`p-4 rounded-lg border ${base} transition-all duration-200`}
     >
-      <Body className={`text-sm ${footerNoteStyles[footerNote.type].text}`}>
+      <BodySmall>
         <span className="mr-2 inline-flex">
           {footerNoteIcons[footerNote.type]}
         </span>
-        <strong>{footerNoteStyles[footerNote.type].label}</strong>{" "}
-        {footerNote.text}
-      </Body>
+        <strong>{label}</strong> {footerNote.text}
+      </BodySmall>
     </div>
   );
 }

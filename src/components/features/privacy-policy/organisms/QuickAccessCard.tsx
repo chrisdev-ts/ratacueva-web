@@ -1,29 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { BodySmall, Subtitle } from "@/components/atoms/Typography";
+import { BodySmall, Subheading } from "@/components/atoms/Typography";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
+
+// Mapeo de categorías a variantes sobrias
+const categoryMap = {
+  importante: "success",
+  informativo: "secondary",
+  contacto: "success",
+  derechos: "secondary",
+};
 
 interface QuickAccessCardProps {
   title: string;
   description: string;
   href: string;
-  category: "importante" | "informativo" | "contacto" | "derechos";
+  category: keyof typeof categoryMap;
 }
-
-const categoryStyles = {
-  importante: "bg-yellow-900/30 border-yellow-700 hover:bg-yellow-900/50",
-  informativo: "bg-blue-900/30 border-blue-700 hover:bg-blue-900/50",
-  contacto: "bg-green-900/30 border-green-700 hover:bg-green-900/50",
-  derechos: "bg-purple-900/30 border-purple-700 hover:bg-purple-900/50",
-};
-
-const categoryTextColors = {
-  importante: "text-yellow-100",
-  informativo: "text-blue-100",
-  contacto: "text-green-100",
-  derechos: "text-purple-100",
-};
 
 export function QuickAccessCard({
   title,
@@ -31,38 +25,45 @@ export function QuickAccessCard({
   href,
   category,
 }: QuickAccessCardProps) {
+  // Solo dos variantes visuales: success y gray, success solo para contacto
+  let base = "bg-gray";
+  let accent = "";
+  if (categoryMap[category] === "success") {
+    base = "bg-success/10 border-success/25 text-success";
+    accent = "group-hover:text-white";
+  }
+  if (categoryMap[category] === "secondary") {
+    base = "bg-secondary/10 border-secondary/25 text-secondary";
+    accent = "group-hover:text-white";
+  }
+
   return (
     <Link href={href}>
       <div
         className={`
-        ${categoryStyles[category]} text-white
-        border rounded-lg p-4 transition-all duration-300 
-        hover:scale-[1.02] cursor-pointer group h-full
-      `}
+          ${base} border rounded-lg p-4 transition-all duration-300
+          hover:scale-[1.02] cursor-pointer group h-full
+        `}
       >
         <div className="flex flex-col h-full space-y-2">
-          {/* Header con icono y título */}
           <div className="flex items-start gap-3">
             <div className="flex-1 min-w-0">
-              <Subtitle
-                className={`${categoryTextColors[category]} font-bold leading-tight group-hover:text-white transition-colors`}
+              <Subheading
+                className={`font-bold leading-tight transition-colors ${accent}`}
               >
                 {title}
-              </Subtitle>
-              <span
-                className={`text-xs ${categoryTextColors[category]} bg-current/20 px-2 py-1 rounded mt-1 inline-block capitalize`}
+              </Subheading>
+              <BodySmall
+                className={`bg-current/20 px-2 py-1 rounded mt-1 inline-block capitalize ${accent}`}
               >
                 {category}
-              </span>
+              </BodySmall>
             </div>
             <ChevronRightIcon className="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity flex-shrink-0" />
           </div>
 
-          {/* Descripción */}
           <div className="flex-1">
-            <BodySmall
-              className={`${categoryTextColors[category]} opacity-90 leading-relaxed line-clamp-3`}
-            >
+            <BodySmall className={`opacity-90 leading-relaxed line-clamp-3 ${accent}`}>
               {description}
             </BodySmall>
           </div>

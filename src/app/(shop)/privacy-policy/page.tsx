@@ -22,12 +22,12 @@ export default function PrivacyPolicyPage() {
       <div className="space-y-8">
         {/* Header Content */}
         <div className="space-y-4">
-          <div className=" text-neutral-400">
+          <div className=" ">
             <BodySmall>
               <strong>Última actualización:</strong> 2 de julio de 2025
             </BodySmall>
           </div>
-          <Body className="text-neutral-300 max-w-4xl mx-auto leading-relaxed">
+          <Body className="max-w-4xl leading-relaxed">
             En RataCueva (en adelante, "nosotros", "nuestro" o "la Plataforma"),
             valoramos profundamente su privacidad y nos comprometemos firmemente
             a proteger la integridad y confidencialidad de sus datos personales.
@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage() {
             [www.ratacueva.com] (en adelante, el "Sitio") y al hacer uso de
             nuestros servicios.
           </Body>
-          <Body className="text-neutral-300 max-w-4xl mx-auto leading-relaxed">
+          <Body className="max-w-4xl leading-relaxed">
             Al acceder, navegar y utilizar nuestros servicios, usted reconoce
             haber leído y comprendido este Aviso de privacidad, y acepta las
             prácticas de tratamiento de datos personales aquí descritas. Su

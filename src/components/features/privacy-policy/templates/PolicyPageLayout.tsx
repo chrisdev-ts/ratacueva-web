@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { H1, Body } from "@/components/atoms/Typography";
 import { HighlightBox } from "@/components/features/privacy-policy/atoms/HighlightBox";
 import { QuickAccessCard } from "@/components/features/privacy-policy/organisms/QuickAccessCard";
 import { PrivacyNavigation } from "@/components/features/privacy-policy/organisms/PrivacyNavigation";
 import { FAQSection } from "@/components/features/privacy-policy/molecules/FAQSection";
+import { Body, Display } from '@/components/atoms/Typography';
 
 interface QuickAccessItem {
   title: string;
@@ -17,8 +17,7 @@ interface QuickAccessItem {
 interface HighlightBoxProps {
   icon: React.ReactNode;
   title: string;
-  type: "warning" | "info" | "success" | "urgent" | "legal";
-  content: string | string[]; // Acepta texto simple o array de textos
+  content: string | string[];
 }
 
 interface FAQ {
@@ -55,8 +54,8 @@ export function PolicyPageLayout({
     <div className="max-w-4xl space-y-8">
       {/* Page Header */}
       <div>
-        <H1 className="text-white font-bold mb-4">{title}</H1>
-        <Body className="text-neutral-300">{subtitle}</Body>
+        <Display className="mb-4">{title}</Display>
+        <Body>{subtitle}</Body>
       </div>
 
       {/* Highlight Box - Summary */}
@@ -64,7 +63,6 @@ export function PolicyPageLayout({
         <HighlightBox
           icon={highlightBox.icon}
           title={highlightBox.title}
-          type={highlightBox.type}
           content={highlightBox.content}
         />
       </section>

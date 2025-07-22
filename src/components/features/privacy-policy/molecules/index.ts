@@ -9,8 +9,4 @@ export type {
   LegalBadge,
   ActionGuide,
   FooterNote,
-  AccentColor,
-  ColorScheme,
 } from "./InfoCardTypes";
-
-export { accentColors } from "./InfoCardStyles";

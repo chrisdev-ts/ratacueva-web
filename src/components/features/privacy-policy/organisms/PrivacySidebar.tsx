@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Body, Subtitle } from "@/components/atoms/Typography";
+import { Body, BodySmall, Subheading } from "@/components/atoms/Typography";
 import { getSidebarSections } from "@/constants/privacySectionsData";
 
 interface PrivacySidebarProps {
@@ -32,18 +32,18 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
 
   return (
     <aside
-      className={`bg-[hsl(var(--medium))] space-y-8 rounded-lg p-6 sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto ${className}`}
+      className={`bg-gray space-y-8 rounded-lg p-6 sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto ${className}`}
     >
       {/* Header */}
       <div className="space-y-6">
-        <Subtitle className="text-neutral-400 font-bold">
+        <Subheading>
           Sección {getCurrentSectionIndex()} de {privacySections.length}
-        </Subtitle>
+        </Subheading>
 
         {/* Progress bar */}
         <div className="w-full bg-neutral-700 rounded-full h-2">
           <div
-            className="bg-[hsl(var(--primary))] h-2 rounded-full transition-all duration-300"
+            className="bg-success h-2 rounded-full transition-all duration-300"
             style={{
               width: `${
                 (getCurrentSectionIndex() / privacySections.length) * 100
@@ -66,29 +66,29 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
               group flex items-center p-4 rounded-lg transition-all duration-200
               ${
                 isActive(section.href)
-                  ? "bg-[hsl(var(--dark))] text-white font-bold"
+                  ? "bg-dark text-white font-bold"
                   : "text-neutral-300 hover:text-white hover:bg-neutral-700"
               }
             `}
           >
             {/* Number indicator */}
-            <span
+            <BodySmall
               className={`
-              flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mr-3
+              flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-3
               ${
                 isActive(section.href)
-                  ? "bg-white text-[hsl(var(--dark))]"
+                  ? "bg-white text-dark"
                   : "bg-neutral-600 text-neutral-300 group-hover:bg-neutral-500"
               }
             `}
             >
               {index + 1}
-            </span>
+            </BodySmall>
 
             {/* Title */}
             <Body
-              className={`text-sm leading-tight ${
-                isActive(section.href) ? "text-black" : ""
+              className={`leading-tight ${
+                isActive(section.href) ? "" : ""
               }`}
             >
               {section.title}
@@ -106,7 +106,7 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
           ¿Necesitas ayuda?{" "}
           <a
             href="/support"
-            className="font-bold hover:text-[hsl(var(--accent))] transition-colors"
+            className="font-bold hover:text-primary transition-colors"
           >
             Contactar soporte
           </a>

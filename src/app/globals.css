@@ -1,131 +1,39 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
+@theme {
+  --color-primary: #FE01AC; /* Pink */
+  --color-secondary: #00FFFF; /* Cyan */
+  --color-success: #00FF95; /* Green */
+  --color-danger: #FF3737; /* Red */
+  --color-dark: #1A1A1A; /* Dark background */
+  --color-gray: #2F2F2F; /* Gray background */
+  --color-text: #FFFFFF; /* White text */
 
-    /* Fuentes */
-    --font-title: 'Michroma', sans-serif;
-    --font-body: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
-    --text-color: 0 0% 100%;
-    /* blanco */
-
-
-    /* Colores de la aplicación */
-
-    /* Tema claro */
-    --primary: 152 100% 50%;
-    /* #00FF95  → Verde menta brillante */
-    --secondary: 180 100% 50%;
-    /* #00FFFF  → Cian neón */
-    --dark: 0 0% 10%;
-    /* #1A1A1A  → Negro personalizado */
-    --medium: 0 0% 18.4%;
-    /* #2F2F2F  → Gris oscuro */
-    --accent: 322 100% 50%;
-    /* #FE01AC  → Rosa neón */
-    --danger: 0 100% 60%;
-    /* #FF3737  → Rojo alerta */
-  }
-
-  /* Fondo global de la aplicación */
-  body {
-    background-color: hsl(var(--dark));
-    min-height: 100vh;
-  }
-
-  /* Tema oscuro */
-  .dark {
-    --primary: 152 100% 40%;
-    --secondary: 180 100% 40%;
-    --dark: 0 0% 10%;
-    --medium: 0 0% 18.4%;
-    --accent: 322 100% 50%;
-    --danger: 0 100% 60%;
-  }
+  --text-display: 2rem; /* 32px */
+  --text-heading: 1.5rem; /* 24px */
+  --text-subheading: 1.25rem; /* 20px */
+  --text-body: 1rem; /* 16px */
+  --text-body-small: 0.875rem; /* 14px */
+  --text-caption: 0.75rem; /* 12px */
 }
 
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --background: var(--color-dark);
+  --foreground: var(--color-text);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-dark);
+    --foreground: var(--color-text);
   }
 }
 
-/* Tipografía personalizada para RataCueva */
-
-.text-display {
-  font-family: var(--font-title);
-  font-size: 3.5rem;
-  /* ~56px */
-  line-height: 1.2;
-  color: hsl(var(--text-color));
-}
-
-.text-h1 {
-  font-family: var(--font-title);
-  font-size: 2.5rem;
-  /* ~40px */
-  line-height: 1.3;
-  color: hsl(var(--text-color));
-}
-
-.text-h2 {
-  font-family: var(--font-title);
-  font-size: 2rem;
-  /* ~32px */
-  line-height: 1.3;
-  color: hsl(var(--text-color));
-}
-
-.text-h3 {
-  font-family: var(--font-title);
-  font-size: 1.5rem;
-  /* ~24px */
-  line-height: 1.4;
-  color: hsl(var(--text-color));
-}
-
-/* Subtitle se usa como h4, pero estilizado como subtítulo */
-.text-subtitle {
-  font-family: var(--font-title);
-  font-size: 1.25rem;
-  /* ~20px */
-  line-height: 1.4;
-  color: hsl(var(--text-color));
-}
-
-/* Texto principal (body) */
-.text-body {
+body {
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-body);
-  font-size: 1rem;
-  /* 16px */
-  line-height: 1.5;
-  color: hsl(var(--text-color));
-}
-
-/* Texto body pequeño */
-.text-body-sm {
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  /* 14px */
-  line-height: 1.5;
-  color: hsl(var(--text-color));
-}
-
-/* Caption / leyendas / notas */
-.text-caption {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  /* 12px */
-  line-height: 1.4;
-  color: hsl(var(--text-color));
+  min-height: 100vh;
 }

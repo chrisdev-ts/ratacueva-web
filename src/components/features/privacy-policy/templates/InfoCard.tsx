@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { InfoCardProps } from "../molecules/InfoCardTypes";
-import { accentColors } from "../molecules/InfoCardStyles";
 import { InfoCardHeader } from "../molecules/InfoCardHeader";
 import { InfoCardSection } from "../organisms/InfoCardSection";
 import { InfoCardActionGuide } from "../molecules/InfoCardActionGuide";
@@ -15,7 +14,6 @@ export function InfoCard({
   sections = [],
   footerNote,
   id,
-  accentColor = "blue",
   legalBadge,
   actionGuide,
   basicDescription,
@@ -49,16 +47,15 @@ export function InfoCard({
     setShowDetailed(!showDetailed);
   };
 
-  const colorScheme = accentColors[accentColor];
+  // Pide la variante 'interactive' de la paleta
 
   return (
     <div
       className={`
-        bg-[hsl(var(--medium))] rounded-xl p-6
-        border ${colorScheme.border} ${colorScheme.hover}
+        bg-gray rounded-xl p-6
         transition-all duration-300 ease-out
         hover:shadow-lg hover:scale-[1.01]
-        hover:bg-[hsl(var(--medium))]/90
+        group
       `}
       id={id}
     >
@@ -71,12 +68,10 @@ export function InfoCard({
         collapsible={collapsible}
         isCardExpanded={isCardExpanded}
         showDetailed={showDetailed}
-        colorScheme={colorScheme}
         onToggleCard={toggleCard}
         onToggleDetailed={toggleDetailed}
       />
 
-      {/* Collapsible Content Wrapper */}
       <div
         className={`
           grid transition-all duration-300 ease-out
@@ -89,7 +84,6 @@ export function InfoCard({
       >
         <div className="overflow-hidden">
           <div className="space-y-4">
-            {/* Sections */}
             {sections.length > 0 && (
               <div className="space-y-4">
                 {sections.map((section, index) => (
@@ -99,7 +93,6 @@ export function InfoCard({
                     index={index}
                     isExpanded={expandedSections.has(index)}
                     isDetailedExpanded={expandedSections.has(index + 1000)}
-                    colorScheme={colorScheme}
                     onToggleSection={toggleSection}
                     onToggleDetailed={(idx) => toggleSection(idx + 1000)}
                   />
@@ -107,10 +100,7 @@ export function InfoCard({
               </div>
             )}
 
-            {/* Action Guide */}
             {actionGuide && <InfoCardActionGuide actionGuide={actionGuide} />}
-
-            {/* Footer Note */}
             {footerNote && <InfoCardFooterNote footerNote={footerNote} />}
           </div>
         </div>

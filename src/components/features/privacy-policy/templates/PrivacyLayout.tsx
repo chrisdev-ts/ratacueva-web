@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { PrivacySidebar } from "@/components/features/privacy-policy/organisms/PrivacySidebar";
 import { Body } from "@/components/atoms/Typography";
 import { PageLayout, ContentLayout } from "@/components/templates";
+import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
 
 interface BreadcrumbItem {
   label: string;
@@ -45,26 +46,14 @@ export const PrivacyLayout: React.FC<PrivacyLayoutProps> = ({
               />
 
               {/* Sidebar */}
-              <div className="relative w-80 bg-[hsl(var(--dark))] h-full overflow-y-auto p-6">
+              <div className="relative w-80 bg-dark h-full overflow-y-auto p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <Body className="text-white font-bold">Navegación</Body>
+                  <Body className="font-bold">Navegación</Body>
                   <button
                     onClick={() => setIsMobileSidebarOpen(false)}
-                    className="text-white hover:text-[hsl(var(--primary))] transition-colors"
+                    className="hover:text-success transition-colors"
                   >
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
+                    <XMarkIcon className="w-6 h-6" />
                   </button>
                 </div>
                 <PrivacySidebar />
@@ -76,22 +65,10 @@ export const PrivacyLayout: React.FC<PrivacyLayoutProps> = ({
           <div className="lg:hidden fixed bottom-6 right-6 z-40">
             <button
               onClick={() => setIsMobileSidebarOpen(true)}
-              className="bg-[hsl(var(--primary))] text-black p-4 rounded-full shadow-lg hover:bg-[hsl(var(--accent))] transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))]"
+              className="bg-success text-black p-4 rounded-full shadow-lg hover:bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-success focus:ring-offset-2 focus:ring-offset-dark"
               aria-label="Abrir navegación"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              <Bars3Icon className="w-6 h-6" />
             </button>
           </div>
         </div>

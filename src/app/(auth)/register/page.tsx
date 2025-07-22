@@ -1,8 +1,7 @@
-// src/app/(auth)/register/page.tsx
 "use client";
 
 import { useState } from "react";
-import { Body } from "@/components/atoms/Typography";
+import { Body } from "@/components/atoms/Typography/index";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -19,7 +18,7 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row w-full">
-      <div className="w-full lg:w-1/2 bg-[hsl(var(--dark))] flex flex-col justify-center items-center px-4 sm:px-12 lg:px-20 py-10 lg:py-0 order-1 lg:order-1">
+      <div className="w-full lg:w-1/2 bg-dark flex flex-col justify-center items-center px-4 sm:px-12 lg:px-20 py-10 lg:py-0 order-1 lg:order-1">
         <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
           <div className="flex justify-center py-7 pb-0">
             <img
@@ -30,7 +29,7 @@ const RegisterPage = () => {
           </div>
 
           <div className="space-y-2">
-            <Body as="label" htmlFor="name" className="block text-white">
+            <Body as="label" htmlFor="name" className="block">
               Nombre
             </Body>
             <input
@@ -40,13 +39,13 @@ const RegisterPage = () => {
               onChange={(e) => setName(e.target.value)}
               placeholder="Ej: Juan"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-[hsl(var(--medium))] text-white placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))] box-border"
+              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
             />
           </div>
 
           <div className="flex gap-6 flex-col sm:flex-row">
             <div className="w-full sm:w-1/2 space-y-2">
-              <Body as="label" htmlFor="lastName1" className="block text-white">
+              <Body as="label" htmlFor="lastName1" className="block">
                 Primer apellido
               </Body>
               <input
@@ -56,12 +55,12 @@ const RegisterPage = () => {
                 onChange={(e) => setLastName1(e.target.value)}
                 placeholder="Ej: López"
                 required
-                className="w-full h-[44px] px-4 py-3 rounded-lg border border-[#555] bg-[hsl(var(--medium))] text-white placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))] box-border"
+                className="w-full h-[44px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
               />
             </div>
 
             <div className="w-full sm:w-1/2 space-y-2">
-              <Body as="label" htmlFor="lastName2" className="block text-white">
+              <Body as="label" htmlFor="lastName2" className="block">
                 Segundo apellido
               </Body>
               <input
@@ -70,13 +69,13 @@ const RegisterPage = () => {
                 value={lastName2}
                 onChange={(e) => setLastName2(e.target.value)}
                 placeholder="Ej: Pérez"
-                className="w-full h-[44px] px-4 py-3 rounded-lg border border-[#555] bg-[hsl(var(--medium))] text-white placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))] box-border"
+                className="w-full h-[44px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Body as="label" htmlFor="email" className="block text-white">
+            <Body as="label" htmlFor="email" className="block">
               Correo electrónico
             </Body>
             <input
@@ -86,12 +85,12 @@ const RegisterPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ej: correo@ejemplo.com"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-[hsl(var(--medium))] text-white placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))] box-border"
+              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
             />
           </div>
 
           <div className="space-y-2">
-            <Body as="label" htmlFor="password" className="block text-white">
+            <Body as="label" htmlFor="password" className="block">
               Contraseña
             </Body>
             <input
@@ -101,7 +100,7 @@ const RegisterPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-[hsl(var(--medium))] text-white placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))] box-border"
+              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
             />
           </div>
 
@@ -109,7 +108,7 @@ const RegisterPage = () => {
             <Body
               as="label"
               htmlFor="confirmPassword"
-              className="block text-white"
+              className="block"
             >
               Repetir contraseña
             </Body>
@@ -120,23 +119,23 @@ const RegisterPage = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="********"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-[hsl(var(--medium))] text-white placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))] box-border"
+              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full h-11 bg-[hsl(var(--accent))] rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--dark))]"
+            className="w-full h-11 bg-primary rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
           >
-            <Body className="font-bold text-white">Registrarse</Body>
+            <Body className="font-bold">Registrarse</Body>
           </button>
 
           <div className="text-center pb-8">
-            <Body className="text-sm font-normal">
+            <Body>
               ¿Ya tienes una cuenta?{" "}
               <a
                 href="/login"
-                className="font-bold hover:text-[hsl(var(--accent))] transition-colors"
+                className="font-bold hover:text-primary transition-colors"
               >
                 Inicia sesión
               </a>
@@ -145,7 +144,7 @@ const RegisterPage = () => {
         </form>
       </div>
 
-      <div className="w-full lg:w-1/2 bg-[hsl(var(--medium))] flex items-center justify-center py-10 lg:py-0 order-2 lg:order-2"></div>
+      <div className="w-full lg:w-1/2 bg-gray flex items-center justify-center py-10 lg:py-0 order-2 lg:order-2"></div>
     </div>
   );
 };
