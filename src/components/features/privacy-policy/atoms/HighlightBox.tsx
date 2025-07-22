@@ -1,6 +1,6 @@
 "use client";
 
-import { Subtitle, Body } from "@/components/atoms/Typography";
+import { Subheading, Body } from "@/components/atoms/Typography";
 
 interface HighlightBoxProps {
   type: "warning" | "info" | "success" | "urgent" | "legal";
@@ -50,10 +50,10 @@ export function HighlightBox({
 
   return (
     <div className={`${typeStyles[type]} border rounded-lg p-6`}>
-      <Subtitle className={`${typeTextColors[type]} font-bold mb-4 flex items-center gap-2`}>
+      <Subheading className={`${typeTextColors[type]} mb-4 flex items-center gap-2`}>
         <div className="text-2xl">{icon}</div>
         {title}
-      </Subtitle>
+      </Subheading>
       <div className={`${typeTextColors[type]} space-y-3`}>
         {renderContent()}
       </div>

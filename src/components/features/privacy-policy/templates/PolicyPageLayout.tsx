@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { H1, Body } from "@/components/atoms/Typography";
 import { HighlightBox } from "@/components/features/privacy-policy/atoms/HighlightBox";
 import { QuickAccessCard } from "@/components/features/privacy-policy/organisms/QuickAccessCard";
 import { PrivacyNavigation } from "@/components/features/privacy-policy/organisms/PrivacyNavigation";
 import { FAQSection } from "@/components/features/privacy-policy/molecules/FAQSection";
+import { Body, Display } from '@/components/atoms/Typography';
 
 interface QuickAccessItem {
   title: string;
@@ -55,8 +55,8 @@ export function PolicyPageLayout({
     <div className="max-w-4xl space-y-8">
       {/* Page Header */}
       <div>
-        <H1 className="text-white font-bold mb-4">{title}</H1>
-        <Body className="text-neutral-300">{subtitle}</Body>
+        <Display className="mb-4">{title}</Display>
+        <Body>{subtitle}</Body>
       </div>
 
       {/* Highlight Box - Summary */}
