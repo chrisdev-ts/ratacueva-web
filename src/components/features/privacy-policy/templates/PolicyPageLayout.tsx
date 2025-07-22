@@ -17,8 +17,7 @@ interface QuickAccessItem {
 interface HighlightBoxProps {
   icon: React.ReactNode;
   title: string;
-  type: "warning" | "info" | "success" | "urgent" | "legal";
-  content: string | string[]; // Acepta texto simple o array de textos
+  content: string | string[];
 }
 
 interface FAQ {
@@ -64,7 +63,6 @@ export function PolicyPageLayout({
         <HighlightBox
           icon={highlightBox.icon}
           title={highlightBox.title}
-          type={highlightBox.type}
           content={highlightBox.content}
         />
       </section>
