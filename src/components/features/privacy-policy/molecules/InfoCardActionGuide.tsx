@@ -11,10 +11,10 @@ interface InfoCardActionGuideProps {
 
 export function InfoCardActionGuide({ actionGuide }: InfoCardActionGuideProps) {
   return (
-    <div className="bg-gradient-to-r from-blue-900/20 to-green-900/20 border border-blue-700/50 rounded-lg p-4">
+    <div className="bg-gray-800/30 hover:bg-gray-800/50 border-gray-600/50 border rounded-lg p-4">
       <div className="flex items-center gap-2 mb-3">
-        <CheckCircleIcon className="h-5 w-5 text-blue-400" />
-        <Subheading className="text-blue-300">
+        <CheckCircleIcon className="h-5 w-5 text-success" />
+        <Subheading className="text-success">
           {actionGuide.title}
         </Subheading>
       </div>
@@ -24,13 +24,13 @@ export function InfoCardActionGuide({ actionGuide }: InfoCardActionGuideProps) {
       </Body>
 
       <div className="space-y-3">
-        <BodySmall className="text-blue-300">
+        <BodySmall className="text-success">
           Pasos a seguir:
         </BodySmall>
         <ol className="space-y-2">
           {actionGuide.steps.map((step, stepIndex) => (
             <li key={stepIndex} className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
+              <div className="flex-shrink-0 w-6 h-6 bg-success text-dark rounded-full flex items-center justify-center text-xs font-bold">
                 {stepIndex + 1}
               </div>
               <Body className="leading-relaxed pt-0.5">
@@ -51,7 +51,7 @@ export function InfoCardActionGuide({ actionGuide }: InfoCardActionGuideProps) {
                 ? "noopener noreferrer"
                 : undefined
             }
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-full transition-colors text-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-success text-dark font-bold rounded-full transition-colors text-sm"
           >
             <span>{actionGuide.nextAction.label}</span>
             {actionGuide.nextAction.external && (
