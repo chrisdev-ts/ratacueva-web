@@ -1,40 +1,29 @@
 import { Body, BodySmall, Caption } from "@/components/atoms/Typography";
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import type {
-  InfoCardSection as InfoCardSectionType,
-  ColorScheme,
-} from "../molecules/InfoCardTypes";
 
-interface InfoCardSectionProps {
+import type { InfoCardSection as InfoCardSectionType } from "../molecules/InfoCardTypes";
+// Eliminado palettes
+
+type InfoCardSectionProps = {
   section: InfoCardSectionType;
   index: number;
   isExpanded: boolean;
   isDetailedExpanded: boolean;
-  colorScheme: ColorScheme;
   onToggleSection: (index: number) => void;
   onToggleDetailed: (index: number) => void;
-}
+};
 
 export function InfoCardSection({
   section,
   index,
   isExpanded,
   isDetailedExpanded,
-  colorScheme,
   onToggleSection,
   onToggleDetailed,
 }: InfoCardSectionProps) {
   return (
     <div
-      className={`
-        border border-gray-600/50 rounded-lg p-4 
-        transition-all duration-200
-        ${
-          section.variant === "highlight"
-            ? `${colorScheme.bg} ${colorScheme.border}`
-            : "bg-gray-800/30 hover:bg-gray-800/50"
-        }
-      `}
+      className={`border rounded-lg p-4 transition-all duration-200 bg-gray-800/30 hover:bg-gray-800/50 border-gray-600/50`}
     >
       {/* Section Header */}
       <div
@@ -45,9 +34,7 @@ export function InfoCardSection({
         onClick={section.collapsible ? () => onToggleSection(index) : undefined}
       >
         <div className="flex items-center gap-2 flex-1">
-          <BodySmall className={`font-semibold ${colorScheme.text}`}>
-            {section.subtitle}
-          </BodySmall>
+          <BodySmall className={`font-semibold`}>{section.subtitle}</BodySmall>
         </div>
 
         {section.collapsible && (
