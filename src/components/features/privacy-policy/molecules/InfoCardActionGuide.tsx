@@ -1,4 +1,4 @@
-import { H3, Body } from "@/components/atoms/Typography";
+import { Subheading, Body, BodySmall } from "@/components/atoms/Typography";
 import {
   CheckCircleIcon,
   ArrowTopRightOnSquareIcon,
@@ -14,26 +14,26 @@ export function InfoCardActionGuide({ actionGuide }: InfoCardActionGuideProps) {
     <div className="bg-gradient-to-r from-blue-900/20 to-green-900/20 border border-blue-700/50 rounded-lg p-4">
       <div className="flex items-center gap-2 mb-3">
         <CheckCircleIcon className="h-5 w-5 text-blue-400" />
-        <H3 className="text-blue-300 text-lg font-semibold">
+        <Subheading className="text-blue-300">
           {actionGuide.title}
-        </H3>
+        </Subheading>
       </div>
 
-      <Body className="text-gray-300 mb-4 leading-relaxed">
+      <Body className="mb-4 leading-relaxed">
         {actionGuide.description}
       </Body>
 
       <div className="space-y-3">
-        <Body className="text-sm font-medium text-blue-300">
+        <BodySmall className="text-blue-300">
           Pasos a seguir:
-        </Body>
+        </BodySmall>
         <ol className="space-y-2">
           {actionGuide.steps.map((step, stepIndex) => (
             <li key={stepIndex} className="flex items-start gap-3">
               <div className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
                 {stepIndex + 1}
               </div>
-              <Body className="text-sm text-gray-200 leading-relaxed pt-0.5">
+              <Body className="leading-relaxed pt-0.5">
                 {step}
               </Body>
             </li>
@@ -51,7 +51,7 @@ export function InfoCardActionGuide({ actionGuide }: InfoCardActionGuideProps) {
                 ? "noopener noreferrer"
                 : undefined
             }
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-full transition-colors font-medium text-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-full transition-colors text-sm"
           >
             <span>{actionGuide.nextAction.label}</span>
             {actionGuide.nextAction.external && (

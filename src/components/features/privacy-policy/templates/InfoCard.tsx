@@ -54,11 +54,11 @@ export function InfoCard({
   return (
     <div
       className={`
-        bg-[hsl(var(--medium))] rounded-xl p-6
+        bg-gray rounded-xl p-6
         border ${colorScheme.border} ${colorScheme.hover}
         transition-all duration-300 ease-out
         hover:shadow-lg hover:scale-[1.01]
-        hover:bg-[hsl(var(--medium))]/90
+        hover:bg-gray/90
       `}
       id={id}
     >

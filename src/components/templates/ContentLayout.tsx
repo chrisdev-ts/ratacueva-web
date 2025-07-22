@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Breadcrumb } from "@/components/organisms/Breadcrumb";
-import { H1, H3 } from "@/components/atoms/Typography";
+import { Subheading } from "../atoms/Typography";
 
 interface BreadcrumbItem {
   label: string;
@@ -45,7 +45,7 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({
       {/* Page Title */}
       {title && (
         <div>
-          <H3 className="text-white font-bold">{title}</H3>
+          <Subheading>{title}</Subheading>
         </div>
       )}
 

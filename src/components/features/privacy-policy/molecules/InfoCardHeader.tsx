@@ -1,4 +1,4 @@
-import { H3, Body } from "@/components/atoms/Typography";
+import { Subheading, Body, BodySmall } from "@/components/atoms/Typography";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
@@ -51,16 +51,16 @@ export function InfoCardHeader({
     >
       {/* Title row with icon and expand/collapse button */}
       <div className="flex items-center gap-3">
-        <div className="text-2xl text-white flex-shrink-0">{icon}</div>
-        <H3
-          className={`text-[hsl(var(--accent))] font-semibold flex-1 ${
+        <div className="flex-shrink-0">{icon}</div>
+        <Subheading
+          className={`flex-1 ${
             collapsible ? "group-hover:text-white transition-colors" : ""
           }`}
         >
           {title}
-        </H3>
+        </Subheading>
         {collapsible && (
-          <button className="text-gray-400 hover:text-white transition-colors p-1">
+          <button className="p-1">
             {isCardExpanded ? (
               <ChevronDownIcon className="h-5 w-5" />
             ) : (
@@ -92,33 +92,32 @@ export function InfoCardHeader({
       )}
 
       {/* Description */}
-      <Body className="text-gray-300 leading-relaxed text-sm">
+      <BodySmall className="leading-relaxed">
         {collapsible && !isCardExpanded
           ? basicDescription || description
           : showDetailed
           ? description
           : basicDescription || description}
-      </Body>
+      </BodySmall>
 
       {/* Toggle detailed button */}
       {collapsible &&
         isCardExpanded &&
         basicDescription &&
         basicDescription !== description && (
-          <button
+          <BodySmall as="button"
             onClick={(e) => {
               e.stopPropagation();
               onToggleDetailed();
             }}
-            className={`
-              text-sm font-medium transition-colors hover:text-white mt-2 self-start
+            className={`transition-colors hover:text-white mt-2 self-start
               ${colorScheme.text}
             `}
           >
             {showDetailed
               ? "Ver versión simplificada"
               : "Ver versión detallada"}
-          </button>
+          </BodySmall>
         )}
     </div>
   );

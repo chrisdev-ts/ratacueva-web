@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Body, BodySmall } from "@/components/atoms/Typography";
+import { BodySmall } from "@/components/atoms/Typography";
 
 interface BreadcrumbItem {
   label: string;
@@ -24,23 +24,17 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       {items.map((item, index) => (
         <React.Fragment key={index}>
           {index > 0 && (
-            <span className="text-neutral-400 text-sm mx-2">&gt;</span>
+            <span className="mx-2">&gt;</span>
           )}
           {item.href && index < items.length - 1 ? (
             <Link
               href={item.href}
-              className="text-[hsl(var(--primary))] hover:text-[hsl(var(--accent))] transition-colors"
+              className="hover:underline"
             >
-              <BodySmall className="text-sm">{item.label}</BodySmall>
+              <BodySmall>{item.label}</BodySmall>
             </Link>
           ) : (
-            <BodySmall
-              className={`text-sm ${
-                index === items.length - 1
-                  ? "text-white font-bold"
-                  : "text-neutral-300"
-              }`}
-            >
+            <BodySmall className="font-bold">
               {item.label}
             </BodySmall>
           )}

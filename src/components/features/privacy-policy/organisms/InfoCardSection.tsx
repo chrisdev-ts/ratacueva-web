@@ -1,4 +1,4 @@
-import { Body } from "@/components/atoms/Typography";
+import { Body, BodySmall, Caption } from "@/components/atoms/Typography";
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import type {
   InfoCardSection as InfoCardSectionType,
@@ -45,13 +45,13 @@ export function InfoCardSection({
         onClick={section.collapsible ? () => onToggleSection(index) : undefined}
       >
         <div className="flex items-center gap-2 flex-1">
-          <Body className={`font-semibold text-sm ${colorScheme.text}`}>
+          <BodySmall className={`font-semibold ${colorScheme.text}`}>
             {section.subtitle}
-          </Body>
+          </BodySmall>
         </div>
 
         {section.collapsible && (
-          <button className="text-gray-400 hover:text-white transition-colors">
+          <button className="hover:text-white transition-colors">
             {isExpanded ? (
               <ChevronDownIcon className="h-4 w-4" />
             ) : (
@@ -94,14 +94,14 @@ export function InfoCardSection({
                   e.stopPropagation();
                   onToggleDetailed(index);
                 }}
-                className="text-xs text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
+                className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
               >
                 {isDetailedExpanded ? (
                   <ChevronDownIcon className="h-3 w-3" />
                 ) : (
                   <ChevronRightIcon className="h-3 w-3" />
                 )}
-                <span>Ver detalles técnicos/legales</span>
+                <Caption>Ver detalles técnicos/legales</Caption>
               </button>
             )}
 
@@ -123,12 +123,10 @@ export function InfoCardSection({
                   <ul className="space-y-2 mt-2">
                     {section.list.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start gap-3">
-                        <span className="text-[hsl(var(--primary))] mt-1 text-sm font-bold">
-                          ▸
-                        </span>
-                        <Body className="text-sm text-gray-200 leading-relaxed">
+                        <ChevronRightIcon className="text-success mt-1 h-4 w-4" />
+                        <BodySmall className="leading-relaxed">
                           {item}
-                        </Body>
+                        </BodySmall>
                       </li>
                     ))}
                   </ul>
@@ -136,9 +134,9 @@ export function InfoCardSection({
 
                 {/* Original plain text content */}
                 {section.plainText && (
-                  <Body className="text-sm text-gray-200 leading-relaxed mt-2">
+                  <BodySmall className="leading-relaxed mt-2">
                     {section.plainText}
-                  </Body>
+                  </BodySmall>
                 )}
 
                 {/* New detailed content */}
@@ -151,19 +149,17 @@ export function InfoCardSection({
                             key={itemIndex}
                             className="flex items-start gap-3"
                           >
-                            <span className="text-[hsl(var(--primary))] mt-1.5 text-xs">
-                              •
-                            </span>
-                            <Body className="text-sm text-gray-300 leading-relaxed">
+                            <ChevronRightIcon className="text-success mt-1.5 h-3 w-3" />
+                            <BodySmall className="leading-relaxed">
                               {item}
-                            </Body>
+                            </BodySmall>
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <Body className="text-sm text-gray-300 leading-relaxed">
+                      <BodySmall className="leading-relaxed">
                         {section.detailedContent}
-                      </Body>
+                      </BodySmall>
                     )}
                   </div>
                 )}

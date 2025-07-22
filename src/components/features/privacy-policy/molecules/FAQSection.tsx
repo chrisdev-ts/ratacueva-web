@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Body, Subtitle } from "@/components/atoms/Typography";
+import { Body, Heading, Subheading } from "@/components/atoms/Typography";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 interface FAQ {
@@ -28,25 +28,25 @@ export function FAQSection({
 
   return (
     <section>
-      <h2 className="text-2xl text-white font-bold mb-6">
+      <Heading className="mb-6">
         {title}
-      </h2>
+      </Heading>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="bg-[hsl(var(--medium))] rounded-lg"
+            className="bg-gray rounded-lg"
           >
             <button
               onClick={() => toggleFAQ(index)}
               className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-700/50 transition-colors rounded-lg"
               aria-expanded={openIndex === index}
             >
-              <Subtitle className="text-white font-medium pr-4">
+              <Subheading className="font-medium pr-4">
                 {faq.question}
-              </Subtitle>
+              </Subheading>
               <ChevronDownIcon
-                className={`w-5 h-5 text-neutral-400 transition-transform flex-shrink-0 ${
+                className={`w-5 h-5 transition-transform flex-shrink-0 ${
                   openIndex === index ? "rotate-180" : ""
                 }`}
               />
@@ -54,7 +54,7 @@ export function FAQSection({
 
             {openIndex === index && (
               <div className="px-6 pb-4 pt-2">
-                <Body className="text-neutral-300 leading-relaxed">
+                <Body className="leading-relaxed">
                   {faq.answer}
                 </Body>
               </div>

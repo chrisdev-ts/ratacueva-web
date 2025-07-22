@@ -36,7 +36,7 @@ export default async function PrivacySectionPage({
         subtitle={sectionData.subtitle}
         currentPageNumber={sectionData.currentPageNumber}
         highlightBox={sectionData.highlightBox}
-        quickAccessCards={sectionData.quickAccessCards}
+        quickAccessCards={sectionData.quickAccessCards ?? []}
         faqs={sectionData.faqs}
       >
         {sectionData.content}{" "}

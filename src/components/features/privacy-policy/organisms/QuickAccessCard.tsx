@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BodySmall, Subtitle } from "@/components/atoms/Typography";
+import { BodySmall, Subheading } from "@/components/atoms/Typography";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 interface QuickAccessCardProps {
@@ -35,7 +35,7 @@ export function QuickAccessCard({
     <Link href={href}>
       <div
         className={`
-        ${categoryStyles[category]} text-white
+        ${categoryStyles[category]}
         border rounded-lg p-4 transition-all duration-300 
         hover:scale-[1.02] cursor-pointer group h-full
       `}
@@ -44,16 +44,16 @@ export function QuickAccessCard({
           {/* Header con icono y título */}
           <div className="flex items-start gap-3">
             <div className="flex-1 min-w-0">
-              <Subtitle
+              <Subheading
                 className={`${categoryTextColors[category]} font-bold leading-tight group-hover:text-white transition-colors`}
               >
                 {title}
-              </Subtitle>
-              <span
-                className={`text-xs ${categoryTextColors[category]} bg-current/20 px-2 py-1 rounded mt-1 inline-block capitalize`}
+              </Subheading>
+              <BodySmall
+                className={`${categoryTextColors[category]} bg-current/20 px-2 py-1 rounded mt-1 inline-block capitalize`}
               >
                 {category}
-              </span>
+              </BodySmall>
             </div>
             <ChevronRightIcon className="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity flex-shrink-0" />
           </div>

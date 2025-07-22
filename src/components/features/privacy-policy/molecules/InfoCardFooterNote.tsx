@@ -1,4 +1,4 @@
-import { Body } from "@/components/atoms/Typography";
+import { Body, BodySmall } from "@/components/atoms/Typography";
 import {
   LightBulbIcon,
   ExclamationTriangleIcon,
@@ -25,13 +25,13 @@ export function InfoCardFooterNote({ footerNote }: InfoCardFooterNoteProps) {
         transition-all duration-200
       `}
     >
-      <Body className={`text-sm ${footerNoteStyles[footerNote.type].text}`}>
+      <BodySmall className={`${footerNoteStyles[footerNote.type].text}`}>
         <span className="mr-2 inline-flex">
           {footerNoteIcons[footerNote.type]}
         </span>
         <strong>{footerNoteStyles[footerNote.type].label}</strong>{" "}
         {footerNote.text}
-      </Body>
+      </BodySmall>
     </div>
   );
 }
