@@ -23,38 +23,38 @@ export function PrivacyNavigation({ currentPage }: PrivacyNavigationProps) {
     currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null;
 
   return (
-    <div className="mt-12 pt-8 border-t border-neutral-700">
+    <div className="pt-8 border-t border-gray">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
         {/* Botón anterior */}
         {previousPage ? (
           <Link
             href={previousPage.href}
-            className="inline-flex items-center px-6 py-3 border border-success text-success rounded-lg hover:bg-success hover:text-black transition-colors"
+            className="inline-flex items-center px-6 py-3 bg-success/10 border border-success text-success rounded-lg hover:bg-success hover:text-dark transition-colors"
           >
             <ChevronLeftIcon className="mr-2 w-4 h-4" />
             <Body className="font-bold">Anterior: {previousPage.title}</Body>
           </Link>
         ) : (
-          <div></div> // Espacio vacío para mantener el layout
+          <div></div>
         )}
 
         {/* Botón siguiente */}
         {nextPage ? (
           <Link
             href={nextPage.href}
-            className="inline-flex items-center px-6 py-3 bg-success text-black rounded-lg hover:bg-success/80 transition-colors"
+            className="inline-flex items-center px-6 py-3 bg-success/10 border border-success text-success rounded-lg hover:bg-success hover:text-dark transition-colors"
           >
             <Body className="font-bold">Siguiente: {nextPage.title}</Body>
             <ChevronRightIcon className="ml-2 w-4 h-4" />
           </Link>
         ) : (
-            <Link
+          <Link
             href="/privacy-policy"
-            className="inline-flex items-center px-6 py-3 border border-success text-success rounded-lg hover:bg-success hover:text-black transition-colors"
-            >
+            className="inline-flex items-center px-6 py-3 bg-success/10 border border-success text-success rounded-lg hover:bg-success hover:text-dark transition-colors"
+          >
             <Body className="font-bold">Volver al índice</Body>
             <ChevronRightIcon className="ml-2 w-4 h-4" />
-            </Link>
+          </Link>
         )}
       </div>
     </div>
