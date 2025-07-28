@@ -75,7 +75,6 @@ export default function AddProduct() {
         <main className="flex flex-col max-w-none mx-auto p-8 lg:px-7 lg:py-8 gap-8 flex-1 bg-[#1A1A1A] text-white font-body min-h-screen">
             {/* Page Title */}
             <Display>Agregar producto</Display>
-
             {/* Form Container */}
             <div className="flex-1 bg-[#2F2F2F] rounded-lg p-8 flex flex-col">
                 <div className="flex flex-col gap-6 flex-1">
@@ -83,32 +82,18 @@ export default function AddProduct() {
                     <div className="flex gap-6">
                         <div className="flex-1 flex flex-col gap-4">
                             <Body className="text-white">Nombre del producto *</Body>
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleInputChange}
-                                placeholder="Ej: RTX 2030"
-                                className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px]"
-                            />
+                            <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Ej: RTX 2030" className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px]" />
                         </div>
                         <div className="flex-1 flex flex-col gap-4">
                             <Body className="text-white">Categoria</Body>
                             <div className="relative">
-                                <select
-                                    name="category"
-                                    value={formData.category}
-                                    onChange={handleInputChange}
-                                    className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px] w-full appearance-none cursor-pointer"
-                                >
+                                <select name="category" value={formData.category} onChange={handleInputChange} className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px] w-full appearance-none cursor-pointer">
                                     <option value="" className="text-[#9A9A9A]">Ej: Componentes</option>
                                     <option value="componentes">Componentes</option>
                                     <option value="hardware">Hardware</option>
                                     <option value="software">Software</option>
                                 </select>
-                                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                                    <ChevronDownIcon />
-                                </div>
+                                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"><ChevronDownIcon /></div>
                             </div>
                         </div>
                     </div>
@@ -117,107 +102,46 @@ export default function AddProduct() {
                     <div className="flex gap-6">
                         <div className="flex-1 flex flex-col gap-4">
                             <Body className="text-white">Precio *</Body>
-                            <input
-                                type="text"
-                                name="price"
-                                value={formData.price}
-                                onChange={handleInputChange}
-                                placeholder="Ej: 15000"
-                                className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px]"
-                            />
+                            <input type="text" name="price" value={formData.price} onChange={handleInputChange} placeholder="Ej: 15000" className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px]" />
                         </div>
                         <div className="flex-1 flex flex-col gap-4">
                             <Body className="text-white">Modelo *</Body>
-                            <input
-                                type="text"
-                                name="model"
-                                value={formData.model}
-                                onChange={handleInputChange}
-                                placeholder="Ej: NVIDIA Geforce"
-                                className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px]"
-                            />
+                            <input type="text" name="model" value={formData.model} onChange={handleInputChange} placeholder="Ej: NVIDIA Geforce" className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px]" />
                         </div>
                     </div>
 
                     {/* Third Row - Inventory */}
                     <div className="flex flex-col gap-4">
                         <Body className="text-white">Inventario *</Body>
-                        <input
-                            type="text"
-                            name="inventory"
-                            value={formData.inventory}
-                            onChange={handleInputChange}
-                            placeholder="Ej: 276"
-                            className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px] max-w-[455px]"
-                        />
+                        <input type="text" name="inventory" value={formData.inventory} onChange={handleInputChange} placeholder="Ej: 276" className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px] max-w-[455px]" />
                     </div>
 
                     {/* Fourth Row - Description */}
                     <div className="flex flex-col gap-4">
                         <Body className="text-white">Descripción *</Body>
-                        <textarea
-                            name="description"
-                            value={formData.description}
-                            onChange={handleInputChange}
-                            placeholder="Ej: Tarjeta gráfica ideal para gaming y productividad."
-                            rows={3}
-                            className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors resize-none h-[88px]"
-                        />
+                        <textarea name="description" value={formData.description} onChange={handleInputChange} placeholder="Ej: Tarjeta gráfica ideal para gaming y productividad." rows={3} className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white placeholder-[#9A9A9A] text-body outline-none focus:border-[#00FF95] transition-colors resize-none h-[88px]" />
                     </div>
 
                     {/* Fifth Row - Image Upload */}
                     <div className="flex flex-col gap-4">
                         <Body className="text-white">Imagen del producto *</Body>
-                        <div
-                            className={`border-2 border-dashed border-[#555] rounded-lg bg-[#2F2F2F] p-6 flex flex-col items-center justify-center gap-4 min-h-[176px] transition-colors cursor-pointer ${dragActive ? 'border-[#00FF95] bg-[#1A1A1A]' : ''
-                                }`}
-                            onDragEnter={handleDrag}
-                            onDragLeave={handleDrag}
-                            onDragOver={handleDrag}
-                            onDrop={handleDrop}
-                            onClick={() => document.getElementById('file-input')?.click()}
-                        >
-                            <input
-                                id="file-input"
-                                type="file"
-                                accept=".jpg,.jpeg,.png,.webp"
-                                onChange={handleFileSelect}
-                                className="hidden"
-                            />
-
+                        <div className={`border-2 border-dashed border-[#555] rounded-lg bg-[#2F2F2F] p-6 flex flex-col items-center justify-center gap-4 min-h-[176px] transition-colors cursor-pointer ${dragActive ? 'border-[#00FF95] bg-[#1A1A1A]' : ''}`} onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop} onClick={() => document.getElementById('file-input')?.click()}>
+                            <input id="file-input" type="file" accept=".jpg,.jpeg,.png,.webp" onChange={handleFileSelect} className="hidden" />
                             <FileIcon />
-
                             <div className="flex flex-col items-center gap-2">
-                                <Body className="text-white font-bold text-center">
-                                    Arrastra una imagen<br />o haz clic
-                                </Body>
-                                <Caption className="text-white text-center">
-                                    Sube al menos 1 foto del producto. Se admiten 6 fotos en total.
-                                </Caption>
-                                <Caption className="text-white text-center">
-                                    JPEG, JPG, PNG O WEBP
-                                </Caption>
+                                <Body className="text-white font-bold text-center">Arrastra una imagen<br />o haz clic</Body>
+                                <Caption className="text-white text-center">Sube al menos 1 foto del producto. Se admiten 6 fotos en total.</Caption>
+                                <Caption className="text-white text-center">JPEG, JPG, PNG O WEBP</Caption>
                             </div>
-
-                            {formData.image && (
-                                <div className="mt-2">
-                                    <Caption className="text-[#00FF95]">
-                                        Archivo seleccionado: {formData.image.name}
-                                    </Caption>
-                                </div>
-                            )}
+                            {formData.image && (<div className="mt-2"><Caption className="text-[#00FF95]">Archivo seleccionado: {formData.image.name}</Caption></div>)}
                         </div>
                     </div>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="flex items-center gap-6 mt-8 justify-end">
-                    <button className="bg-[#FF3737] text-white px-4 py-2.5 rounded-full font-bold text-body hover:bg-[#e52e2e] transition-colors cursor-pointer">
-                        Cancelar
-                    </button>
-                    <button className="bg-[#00FF95] text-[#1A1A1A] px-4 py-2.5 rounded-full font-bold text-body hover:bg-[#00e585] transition-colors cursor-pointer">
-                        Agregar producto
-                    </button>
+                    <button className="bg-[#FF3737] text-white px-4 py-2.5 rounded-full font-bold text-body hover:bg-[#e52e2e] transition-colors cursor-pointer">Cancelar</button>
+                    <button className="bg-[#00FF95] text-[#1A1A1A] px-4 py-2.5 rounded-full font-bold text-body hover:bg-[#00e585] transition-colors cursor-pointer">Agregar producto</button>
                 </div>
             </div>
         </main>

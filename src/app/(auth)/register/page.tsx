@@ -29,7 +29,7 @@ const RegisterPage = () => {
           </div>
 
           <div className="space-y-2">
-            <Body as="label" htmlFor="name" className="block">
+            <Body as="label" htmlFor="name" className="block text-text">
               Nombre
             </Body>
             <input
@@ -39,13 +39,13 @@ const RegisterPage = () => {
               onChange={(e) => setName(e.target.value)}
               placeholder="Ej: Juan"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-border bg-gray placeholder:text-placeholder transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border text-text"
             />
           </div>
 
           <div className="flex gap-6 flex-col sm:flex-row">
             <div className="w-full sm:w-1/2 space-y-2">
-              <Body as="label" htmlFor="lastName1" className="block">
+              <Body as="label" htmlFor="lastName1" className="block text-text">
                 Primer apellido
               </Body>
               <input
@@ -55,12 +55,12 @@ const RegisterPage = () => {
                 onChange={(e) => setLastName1(e.target.value)}
                 placeholder="Ej: López"
                 required
-                className="w-full h-[44px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+                className="w-full h-[44px] px-4 py-3 rounded-lg border border-border bg-gray placeholder:text-placeholder transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border text-text"
               />
             </div>
 
             <div className="w-full sm:w-1/2 space-y-2">
-              <Body as="label" htmlFor="lastName2" className="block">
+              <Body as="label" htmlFor="lastName2" className="block text-text">
                 Segundo apellido
               </Body>
               <input
@@ -69,13 +69,13 @@ const RegisterPage = () => {
                 value={lastName2}
                 onChange={(e) => setLastName2(e.target.value)}
                 placeholder="Ej: Pérez"
-                className="w-full h-[44px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+                className="w-full h-[44px] px-4 py-3 rounded-lg border border-border bg-gray placeholder:text-placeholder transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border text-text"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Body as="label" htmlFor="email" className="block">
+            <Body as="label" htmlFor="email" className="block text-text">
               Correo electrónico
             </Body>
             <input
@@ -85,12 +85,12 @@ const RegisterPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ej: correo@ejemplo.com"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-border bg-gray placeholder:text-placeholder transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border text-text"
             />
           </div>
 
           <div className="space-y-2">
-            <Body as="label" htmlFor="password" className="block">
+            <Body as="label" htmlFor="password" className="block text-text">
               Contraseña
             </Body>
             <input
@@ -100,7 +100,7 @@ const RegisterPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-border bg-gray placeholder:text-placeholder transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border text-text"
             />
           </div>
 
@@ -108,7 +108,7 @@ const RegisterPage = () => {
             <Body
               as="label"
               htmlFor="confirmPassword"
-              className="block"
+              className="block text-text"
             >
               Repetir contraseña
             </Body>
@@ -119,24 +119,23 @@ const RegisterPage = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="********"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-border bg-gray placeholder:text-placeholder transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border text-text"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full h-11 bg-primary rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+            className="w-full h-11 bg-primary rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-primary/90 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark text-dark"
           >
-            <Body className="font-bold">Registrarse</Body>
+            <Body className="font-bold text-text">Registrarse</Body>
           </button>
 
           <div className="text-center pb-8">
-            <Body>
+            <Body className="text-text">
               ¿Ya tienes una cuenta?{" "}
               <a
                 href="/login"
-                className="font-bold hover:text-primary transition-colors"
-              >
+              className="font-bold hover:text-primary transition-colors">
                 Inicia sesión
               </a>
             </Body>

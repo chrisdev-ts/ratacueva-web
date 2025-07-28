@@ -1,39 +1,49 @@
+
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #FE01AC; /* Pink */
-  --color-secondary: #00FFFF; /* Cyan */
-  --color-success: #00FF95; /* Green */
-  --color-danger: #FF3737; /* Red */
-  --color-dark: #1A1A1A; /* Dark background */
-  --color-gray: #2F2F2F; /* Gray background */
-  --color-text: #FFFFFF; /* White text */
+    --color-primary: #FE01AC; /* Pink */
+    --color-secondary: #00FFFF; /* Cyan */
+    --color-success: #00FF95; /* Green */
+    --color-danger: #FF3737; /* Red */
+    --color-dark: #1A1A1A; /* Dark background */
+    --color-gray: #2F2F2F; /* Gray background */
+    --color-text: #FFFFFF; /* White text */
 
-  --font-body: 'Inter', sans-serif;
+    --color-border: #555; /* Border gray */
+    --color-placeholder: #9A9A9A; /* Placeholder gray */
+    --color-warning: #FFC71D; /* Warning yellow */
+    --color-accent: #B455FD; /* Accent purple */
+    --color-success-dark: #0B472E; /* Success dark text */
+    --color-warning-dark: #614E15; /* Warning dark text */
+    --color-accent-dark: #481D6A; /* Accent dark text */
+    --color-danger-dark: #591516; /* Danger dark text */
 
-  --text-display: 2rem; /* 32px */
-  --text-heading: 1.5rem; /* 24px */
-  --text-subheading: 1.25rem; /* 20px */
-  --text-body: 1rem; /* 16px */
-  --text-body-small: 0.875rem; /* 14px */
-  --text-caption: 0.75rem; /* 12px */
+    --font-body: 'Inter', sans-serif;
+
+    --text-display: 2rem; /* 32px */
+    --text-heading: 1.5rem; /* 24px */
+    --text-subheading: 1.25rem; /* 20px */
+    --text-body: 1rem; /* 16px */
+    --text-body-small: 0.875rem; /* 14px */
+    --text-caption: 0.75rem; /* 12px */
 }
 
 :root {
-  --background: var(--color-dark);
-  --foreground: var(--color-text);
+    --background: var(--color-dark);
+    --foreground: var(--color-text);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-dark);
-    --foreground: var(--color-text);
-  }
+    :root {
+        --background: var(--color-dark);
+        --foreground: var(--color-text);
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body);
-  min-height: 100vh;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    min-height: 100vh;
 }

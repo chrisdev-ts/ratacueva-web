@@ -48,10 +48,10 @@ export default function Items() {
     const totalPages = Math.ceil(totalRecords / itemsPerPage);
 
     return (
-        <main className="flex flex-col max-w-none mx-auto p-8 lg:px-7 lg:py-8 gap-8 flex-1 bg-[var(--color-dark)] text-[var(--color-text)] font-body">
+        <main className="flex flex-col max-w-none mx-auto p-8 lg:px-7 lg:py-8 gap-8 flex-1 bg-dark text-text font-body">
             <div className="flex justify-between items-center">
                 <Display>Administrar productos</Display>
-                <button className="bg-[var(--color-success)] text-[#0B472E] px-4 py-2.5 rounded-full font-bold text-body hover:bg-[var(--color-success)]/80 transition-colors cursor-pointer">
+                <button className="bg-success text-success-dark px-4 py-2.5 rounded-full font-bold text-body hover:bg-success/90 transition-colors cursor-pointer">
                     Agregar producto
                 </button>
             </div>
@@ -59,59 +59,59 @@ export default function Items() {
             <div className="flex flex-col gap-6">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-3 border border-[#D9D9D9] rounded-2xl px-4 py-2.5 cursor-pointer">
-                            <Body className="text-[#D9D9D9]">{itemsPerPage}</Body>
+                        <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer">
+                            <Body className="text-placeholder">{itemsPerPage}</Body>
                             <ChevronDownIcon />
                         </div>
-                        <Body className="text-[var(--color-text)]">entradas por página</Body>
+                        <Body className="text-text">entradas por página</Body>
                     </div>
 
-                    <div className="flex items-center gap-3 border border-[#D9D9D9] rounded-2xl px-4 py-2.5 w-[341px]">
+                    <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 w-[341px]">
                         <SearchIcon />
                         <input
                             type="text"
                             placeholder="Buscar productos..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="bg-transparent text-[var(--color-text)] placeholder-[#D9D9D9] outline-none flex-1 text-body"
+                            className="bg-transparent text-text placeholder-placeholder outline-none flex-1 text-body"
                         />
                     </div>
                 </div>
 
-                <div className="bg-[var(--color-gray)] rounded-lg overflow-hidden">
-                    <div className="flex gap-4 px-6 py-5 border-b-2 border-[var(--color-dark)]">
+                <div className="bg-gray rounded-lg overflow-hidden">
+                    <div className="flex gap-4 px-6 py-5 border-b-2 border-dark">
                         {["ID", "PRODUCT NAME", "CATEGORY", "TYPE", "STOCK/KEYS", "PRICE", "STATUS", "ACTIONS"].map((header) => (
                             <div key={header} className="flex-1">
-                                <Body className="text-[var(--color-text)] font-bold uppercase">{header}</Body>
+                                <Body className="text-text font-bold uppercase">{header}</Body>
                             </div>
                         ))}
                     </div>
 
                     {mockProducts.slice(0, itemsPerPage).map((product, index) => (
-                        <div key={index} className="flex gap-4 px-6 py-4 border-b border-[var(--color-dark)] last:border-b-0">
+                        <div key={index} className="flex gap-4 px-6 py-4 border-b border-dark last:border-b-0">
                             {["id", "name", "category", "type"].map((field) => (
                                 <div key={field} className="flex-1">
-                                    <Body className="text-[var(--color-text)]">{product[field as keyof typeof product]}</Body>
+                                    <Body className="text-text">{product[field as keyof typeof product]}</Body>
                                 </div>
                             ))}
                             <div className="flex-1">
-                                <div className="bg-[var(--color-success)] text-[#0B472E] px-3 py-2 rounded-full font-bold text-body-small inline-flex items-center justify-center">
+                                <div className="bg-success text-success-dark px-3 py-2 rounded-full font-bold text-body-small inline-flex items-center justify-center">
                                     {product.stock}
                                 </div>
                             </div>
                             <div className="flex-1">
-                                <Body className="text-[var(--color-text)]">{product.price}</Body>
+                                <Body className="text-text">{product.price}</Body>
                             </div>
                             <div className="flex-1">
-                                <div className="bg-[var(--color-success)] text-[#0B472E] px-3 py-2 rounded-full font-bold text-body-small inline-flex items-center justify-center">
+                                <div className="bg-success text-success-dark px-3 py-2 rounded-full font-bold text-body-small inline-flex items-center justify-center">
                                     {product.status}
                                 </div>
                             </div>
                             <div className="flex-1 flex items-center gap-2">
-                                <button className="p-1 hover:bg-[var(--color-dark)] rounded transition-colors">
+                                <button className="p-1 hover:bg-dark rounded transition-colors">
                                     <EditIcon />
                                 </button>
-                                <button className="p-1 hover:bg-[var(--color-dark)] rounded transition-colors">
+                                <button className="p-1 hover:bg-dark rounded transition-colors">
                                     <DeleteIcon />
                                 </button>
                             </div>
@@ -120,7 +120,7 @@ export default function Items() {
                 </div>
 
                 <div className="flex justify-between items-center">
-                    <Body className="text-[var(--color-text)]">
+                    <Body className="text-text">
                         Mostrando 1 de {itemsPerPage} en {totalRecords} registros
                     </Body>
 
@@ -129,7 +129,7 @@ export default function Items() {
                             <button
                                 key={i}
                                 onClick={() => typeof label === "number" && setCurrentPage(label)}
-                                className={`w-[42px] h-[42px] flex items-center justify-center border border-[var(--color-gray)] rounded-lg text-[var(--color-text)] hover:bg-[var(--color-gray)] transition-colors cursor-pointer ${currentPage === label ? "bg-[var(--color-gray)]" : ""}`}
+                                className={`w-[42px] h-[42px] flex items-center justify-center border border-gray rounded-lg text-text hover:bg-gray transition-colors cursor-pointer ${currentPage === label ? "bg-gray" : ""}`}
                             >
                                 {label}
                             </button>

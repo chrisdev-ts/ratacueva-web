@@ -156,7 +156,7 @@ const quickActions: QuickAction[] = [
 export default function Overview() {
     return (
         <div>
-            <main className="flex px-7 py-8 flex-col items-start gap-8 flex-1">
+            <main className="flex px-7 py-8 flex-col items-start gap-8 flex-1 bg-dark text-text">
                 <Display>Vista general</Display>
 
                 {/* Sales Metrics Grid */}
@@ -170,8 +170,8 @@ export default function Overview() {
                                     </svg>
                                     <Body as="span">{metric.title}</Body>
                                 </div>
-                                <Display as="div" className="!text-[32px]">{metric.value}</Display>
-                                <Body as="span" className={metric.isPositive ? "text-[var(--color-success)]" : "text-[var(--color-danger)]"}>
+                                <Display as="div" className="text-display">{metric.value}</Display>
+                                <Body as="span" className={metric.isPositive ? "text-success" : "text-danger"}>
                                     {metric.change}
                                 </Body>
                             </div>
@@ -186,8 +186,8 @@ export default function Overview() {
                                     </svg>
                                     <Body as="span">{metric.title}</Body>
                                 </div>
-                                <Display as="div" className="!text-[32px]">{metric.value}</Display>
-                                <Body as="span" className={metric.isPositive ? "text-[var(--color-success)]" : "text-[var(--color-danger)]"}>
+                                <Display as="div" className="text-display">{metric.value}</Display>
+                                <Body as="span" className={metric.isPositive ? "text-success" : "text-danger"}>
                                     {metric.change}
                                 </Body>
                             </div>
@@ -198,40 +198,40 @@ export default function Overview() {
                 {/* Pedidos recientes */}
                 <div className="self-stretch">
                     <div className="flex justify-between items-center self-stretch mb-8">
-                        <Display as="h2" className=" ">Pedidos recientes</Display>
-                        <button className="flex h-11 min-h-11 px-4 py-2.5 justify-center items-center gap-3 rounded-[99px] border border-[var(--color-secondary)] bg-transparent text-[var(--color-secondary)] font-bold hover:bg-[var(--color-secondary)]/10 transition-all">
+                        <Display as="h2">Pedidos recientes</Display>
+                        <button className="flex h-11 min-h-11 px-4 py-2.5 justify-center items-center gap-3 rounded-[99px] border border-secondary bg-transparent text-secondary font-bold hover:bg-secondary/10 transition-all">
                             Ver todo
                         </button>
                     </div>
 
-                    <div className="flex flex-col items-start self-stretch rounded-lg bg-[#2F2F2F]">
+                    <div className="flex flex-col items-start self-stretch rounded-lg bg-gray">
                         {/* Table Header */}
-                        <div className="flex px-6 py-5 items-start self-stretch border-b-2 border-[#1A1A1A]">
-                            <div className="flex-1 text-white font-inter text-base font-bold leading-normal">ORDER ID</div>
-                            <div className="flex-1 text-white font-inter text-base font-bold leading-normal">CUSTOMER</div>
-                            <div className="flex-1 text-white font-inter text-base font-bold leading-normal">PRODUCTS</div>
-                            <div className="flex-1 text-white font-inter text-base font-bold leading-normal">TOTAL</div>
-                            <div className="flex-1 text-white font-inter text-base font-bold leading-normal">STATUS</div>
-                            <div className="flex-1 text-white font-inter text-base font-bold leading-normal">DATE</div>
+                        <div className="flex px-6 py-5 items-start self-stretch border-b-2 border-dark">
+                            <div className="flex-1 text-text font-inter text-base font-bold leading-normal">ORDER ID</div>
+                            <div className="flex-1 text-text font-inter text-base font-bold leading-normal">CUSTOMER</div>
+                            <div className="flex-1 text-text font-inter text-base font-bold leading-normal">PRODUCTS</div>
+                            <div className="flex-1 text-text font-inter text-base font-bold leading-normal">TOTAL</div>
+                            <div className="flex-1 text-text font-inter text-base font-bold leading-normal">STATUS</div>
+                            <div className="flex-1 text-text font-inter text-base font-bold leading-normal">DATE</div>
                         </div>
 
                         {/* Table Rows */}
                         {ordersData.map((order, index) => (
-                            <div key={index} className="flex px-6 py-4 items-start self-stretch border-b border-[#1A1A1A]/50">
-                                <div className="flex-1 text-white font-inter text-base font-normal leading-normal">{order.id}</div>
-                                <div className="flex-1 text-white font-inter text-base font-normal leading-normal">{order.customer}</div>
-                                <div className="flex-1 text-white font-inter text-base font-normal leading-normal">{order.products}</div>
-                                <div className="flex-1 text-white font-inter text-base font-normal leading-normal">{order.total}</div>
+                            <div key={index} className="flex px-6 py-4 items-start self-stretch border-b border-dark/50">
+                                <div className="flex-1 text-text font-inter text-base font-normal leading-normal">{order.id}</div>
+                                <div className="flex-1 text-text font-inter text-base font-normal leading-normal">{order.customer}</div>
+                                <div className="flex-1 text-text font-inter text-base font-normal leading-normal">{order.products}</div>
+                                <div className="flex-1 text-text font-inter text-base font-normal leading-normal">{order.total}</div>
                                 <div className="flex-1">
-                                    <div className={`flex px-3 py-2 justify-center items-center rounded-[100px] w-fit ${order.status === 'completed' ? 'bg-[#00FF95]' :
-                                            order.status === 'pending' ? 'bg-[#FFC71D]' :
-                                                order.status === 'processing' ? 'bg-[#B455FD]' :
-                                                    'bg-[#FF3737]'
+                                    <div className={`flex px-3 py-2 justify-center items-center rounded-[100px] w-fit ${order.status === 'completed' ? 'bg-success' :
+                                            order.status === 'pending' ? 'bg-warning' :
+                                                order.status === 'processing' ? 'bg-accent' :
+                                                    'bg-danger'
                                         }`}>
-                                        <span className={`font-inter text-sm font-bold leading-normal ${order.status === 'completed' ? 'text-[#0B472E]' :
-                                                order.status === 'pending' ? 'text-[#614E15]' :
-                                                    order.status === 'processing' ? 'text-[#481D6A]' :
-                                                        'text-[#591516]'
+                                        <span className={`font-inter text-sm font-bold leading-normal ${order.status === 'completed' ? 'text-success-dark' :
+                                                order.status === 'pending' ? 'text-warning-dark' :
+                                                    order.status === 'processing' ? 'text-accent-dark' :
+                                                        'text-danger-dark'
                                             }`}>
                                             {order.status === 'completed' ? 'Completed' :
                                                 order.status === 'pending' ? 'Pending' :
@@ -240,7 +240,7 @@ export default function Overview() {
                                         </span>
                                     </div>
                                 </div>
-                                <div className="flex-1 text-white font-inter text-base font-normal leading-normal">{order.date}</div>
+                                <div className="flex-1 text-text font-inter text-base font-normal leading-normal">{order.date}</div>
                             </div>
                         ))}
                     </div>
@@ -248,7 +248,7 @@ export default function Overview() {
 
                 {/* Chart Section */}
                 <div className="self-stretch">
-                    <Display as="h2" className="mb-8  ">Rendimiento de ventas a lo largo del tiempo</Display>
+                    <Display as="h2" className="mb-8">Rendimiento de ventas a lo largo del tiempo</Display>
                     <div className="flex h-[331px] p-6 flex-col items-start gap-6 self-stretch rounded-lg bg-gray"></div>
                 </div>
 
@@ -256,15 +256,15 @@ export default function Overview() {
                 <div className="flex items-start gap-8 self-stretch">
                     {/* Top Selling Products */}
                     <div className="flex h-full p-6 flex-col items-start gap-6 flex-1 rounded-lg bg-gray">
-                        <Display as="h3" className="self-stretch  ">Productos más vendidos</Display>
+                        <Display as="h3" className="self-stretch">Productos más vendidos</Display>
                         <div className="flex flex-col items-start self-stretch">
                             {topProducts.map((product, index) => (
-                                <div key={index} className="flex p-4 items-start gap-4 self-stretch border-t border-[#1A1A1A]">
+                                <div key={index} className="flex p-4 items-start gap-4 self-stretch border-t border-dark">
                                     <div className="flex flex-col items-start gap-2">
-                                        <h4 className="text-white font-inter text-base font-bold leading-normal">{product.name}</h4>
-                                        <p className="text-white font-inter text-base font-normal leading-normal">{product.description}</p>
+                                        <h4 className="text-text font-inter text-base font-bold leading-normal">{product.name}</h4>
+                                        <p className="text-text font-inter text-base font-normal leading-normal">{product.description}</p>
                                     </div>
-                                    <div className="flex-1 text-white text-right font-inter text-base font-bold leading-normal">{product.unitsSold}</div>
+                                    <div className="flex-1 text-text text-right font-inter text-base font-bold leading-normal">{product.unitsSold}</div>
                                 </div>
                             ))}
                         </div>
@@ -272,10 +272,10 @@ export default function Overview() {
 
                     {/* Quick Actions */}
                     <div className="flex p-6 flex-col items-start gap-6 flex-1 self-stretch rounded-lg bg-gray">
-                        <Display as="h3" className="self-stretch  ">Acciones rápidas</Display>
+                        <Display as="h3" className="self-stretch">Acciones rápidas</Display>
                         <div className="grid grid-cols-2 gap-6 flex-1 self-stretch">
                             {quickActions.map((action, index) => (
-                                <button key={index} className="flex p-6 justify-center items-center gap-4 flex-1 self-stretch rounded-2xl bg-[#1A1A1A] hover:bg-white/10 transition-all text-white">
+                                <button key={index} className="flex p-6 justify-center items-center gap-4 flex-1 self-stretch rounded-2xl bg-dark hover:bg-white/10 transition-all text-text">
                                     {action.icon}
                                     <span className="flex-1 font-inter text-base font-bold leading-normal">{action.title}</span>
                                 </button>

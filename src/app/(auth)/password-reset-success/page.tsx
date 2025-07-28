@@ -28,17 +28,15 @@ const PasswordResetSuccessPage = () => {
             />
           </div>
 
-          <Body className="text-base sm:text-lg text-center w-full max-w-lg px-2.5 sm:px-0">
-            Haz clic en el botón para solicitar un código de restablecimiento,
-            posteriormente introdúcelo en el formulario de la siguiente interfaz
+          <Body className="text-base sm:text-lg text-center w-full max-w-lg px-2.5 sm:px-0 text-text">
+            Tu contraseña ha sido restablecida exitosamente.
           </Body>
 
           <button
             type="submit"
-            className="h-11 bg-primary rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark mx-auto"
-            aria-label="Solicitar código de restablecimiento de contraseña"
-          >
-            <Body className="font-bold text-base">Inicio de sesión</Body>
+            className="h-11 bg-primary rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-primary/90 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark mx-auto text-dark"
+                        aria-label="Ir a inicio de sesión">
+            <Body className="font-bold text-base text-text">Inicio de sesión</Body>
           </button>
         </form>
       </div>
