@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Star, Heart, ShoppingCart } from "lucide-react"
+import { Subheading, BodySmall, Caption } from "@/components/atoms/Typography"
 
 interface ProductCardProps {
   product: {
@@ -40,17 +41,17 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Info */}
       <div className="p-4 lg:p-6">
-        <h3 className="text-white text-lg lg:text-xl font-semibold mb-2 line-clamp-2 group-hover:text-cyan-400 transition-colors">
+        <Subheading className="text-white mb-2 line-clamp-2 group-hover:text-cyan-400 transition-colors">
           {product.name}
-        </h3>
+        </Subheading>
 
         {/* Rating */}
         <div className="flex items-center gap-2 mb-3">
           <div className="flex items-center gap-1">
             <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-            <span className="text-white text-sm font-medium">{product.rating}</span>
+            <BodySmall className="text-white font-medium">{product.rating}</BodySmall>
           </div>
-          <span className="text-zinc-400 text-sm">({product.reviews} reseñas)</span>
+          <Caption className="text-zinc-400">({product.reviews} reseñas)</Caption>
         </div>
 
         {/* Price */}

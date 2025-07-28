@@ -3,6 +3,7 @@ import { useRef } from "react"
 import ProductCard from "./product-card"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
+import { Heading } from "@/components/atoms/Typography"
 
 interface ProductSectionProps {
   title: string
@@ -36,7 +37,7 @@ export default function ProductSection({ title, products, showViewAll = false }:
     <section className="py-8 lg:py-12">
       {/* Header */}
       <div className="flex justify-between items-center mb-6 lg:mb-8">
-        <h2 className="text-white text-xl lg:text-2xl xl:text-3xl font-bold">{title}</h2>
+        <Heading className="text-white">{title}</Heading>
         {showViewAll && (
           <Link
             href={`/category/${title.toLowerCase().replace(/\s+/g, "-")}`}

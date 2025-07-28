@@ -1,3 +1,5 @@
+import { Body } from "@/components/atoms/Typography"
+
 export default function HeroSection() {
   return (
     <section className="w-full h-[400px] lg:h-[600px] xl:h-[700px] relative bg-gradient-to-br from-zinc-800 via-zinc-900 to-black">
@@ -9,9 +11,9 @@ export default function HeroSection() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-cyan-400">gaming</span> te
             espera
           </h1>
-          <p className="text-lg lg:text-xl text-zinc-300 mb-8">
+          <Body className="text-lg lg:text-xl text-zinc-300 mb-8">
             Descubre los productos más innovadores para llevar tu experiencia gaming al siguiente nivel
-          </p>
+          </Body>
           <div className="flex flex-col sm:flex-row gap-4">
             <button className="px-8 py-4 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-lg transition-colors">
               Explorar productos

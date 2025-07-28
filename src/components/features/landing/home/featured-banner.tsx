@@ -1,3 +1,5 @@
+import { Subheading, Body } from "@/components/atoms/Typography"
+
 export default function FeaturedBanner() {
   return (
     <section className="py-8 lg:py-12">
@@ -6,8 +8,8 @@ export default function FeaturedBanner() {
         <div className="relative h-[300px] lg:h-[500px] bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg overflow-hidden group cursor-pointer">
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           <div className="absolute bottom-6 left-6 right-6">
-            <h3 className="text-white text-2xl lg:text-3xl font-bold mb-2">Oferta Especial</h3>
-            <p className="text-zinc-300 text-lg mb-4">Hasta 50% de descuento en componentes</p>
+            <Subheading className="text-white mb-2">Oferta Especial</Subheading>
+            <Body className="text-zinc-300 text-lg mb-4">Hasta 50% de descuento en componentes</Body>
             <button className="px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-lg transition-colors">
               Ver ofertas
             </button>
@@ -28,8 +30,8 @@ export default function FeaturedBanner() {
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-3 left-3 right-3">
-                <h4 className="text-white text-sm lg:text-lg font-bold mb-1">{item.title}</h4>
-                <p className="text-zinc-300 text-xs lg:text-sm">{item.subtitle}</p>
+                <Subheading className="text-white text-sm lg:text-lg mb-1">{item.title}</Subheading>
+                <Body className="text-zinc-300 text-xs lg:text-sm">{item.subtitle}</Body>
               </div>
             </div>
           ))}

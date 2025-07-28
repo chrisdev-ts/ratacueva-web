@@ -1,14 +1,17 @@
-import Footer from "@/components/templates/landing/home/footer";
-import Header from "@/components/templates/landing/home/header";
+import type React from "react"
+import Footer from "@/components/organisms/footer"           
+import Header from "@/components/organisms/header"    
 
-export default function ShopLayout({ children }: { children: React.ReactNode }) {
+export default function ShopLayout({
+  children,
+}: {  
+  children: React.ReactNode
+}) {
   return (
-    <>
-      <div className="w-full bg-zinc-900 flex flex-col justify-start items-start overflow-hidden">
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </div>
-    </>
-  );
+    <div className="w-full bg-zinc-900 flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </div>
+  )
 }

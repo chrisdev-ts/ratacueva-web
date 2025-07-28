@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
+import { Heading, Subheading, Body } from "@/components/atoms/Typography"
 
 const faqItems = [
   {
@@ -46,19 +47,19 @@ export default function FaqSection() {
         {/* Left Column - Payment & Shipping Info */}
         <div className="space-y-8 lg:space-y-12">
           <div>
-            <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-4 lg:mb-6">Preguntas frecuentes</h2>
-            <p className="text-lg text-zinc-300">
+            <Heading className="text-white mb-4 lg:mb-6">Preguntas frecuentes</Heading>
+            <Body className="text-lg text-zinc-300">
               Encuentra respuestas a las preguntas más comunes sobre nuestros productos y servicios.
-            </p>
+            </Body>
           </div>
 
           <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
           <div>
-            <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6">Métodos de pago disponibles</h3>
-            <p className="text-zinc-300 mb-6">
+            <Subheading className="text-white mb-4 lg:mb-6">Métodos de pago disponibles</Subheading>
+            <Body className="text-zinc-300 mb-6">
               Ofrecemos múltiples opciones para que puedas pagar de la forma que prefieras.
-            </p>
+            </Body>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
               {paymentMethods.map((method, index) => (
                 <div
@@ -72,7 +73,7 @@ export default function FaqSection() {
           </div>
 
           <div>
-            <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6">Depósitos en efectivo</h3>
+            <Subheading className="text-white mb-4 lg:mb-6">Depósitos en efectivo</Subheading>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-4">
               {cashDepositLocations.map((location, index) => (
                 <div
@@ -88,10 +89,10 @@ export default function FaqSection() {
           <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
           <div>
-            <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6">Empresas de envío</h3>
-            <p className="text-zinc-300 mb-6">
+            <Subheading className="text-white mb-4 lg:mb-6">Empresas de envío</Subheading>
+            <Body className="text-zinc-300 mb-6">
               Tu paquete en las mejores manos, trabajamos con las empresas más confiables.
-            </p>
+            </Body>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
               {shippingCompanies.map((company, index) => (
                 <div
@@ -122,7 +123,7 @@ export default function FaqSection() {
               </button>
               {activeIndex === index && (
                 <div className="px-6 pb-4">
-                  <p className="text-zinc-300 text-sm lg:text-base leading-relaxed">{item.answer}</p>
+                  <Body className="text-zinc-300 text-sm lg:text-base leading-relaxed">{item.answer}</Body>
                 </div>
               )}
             </div>
