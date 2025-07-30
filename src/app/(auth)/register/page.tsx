@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Body } from "@/components/atoms/Typography/index";
+import Input from "@/components/atoms/Input";
+import Button from "@/components/atoms/Button";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -18,7 +20,7 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row w-full">
-      <div className="w-full lg:w-1/2 bg-dark flex flex-col justify-center items-center px-4 sm:px-12 lg:px-20 py-10 lg:py-0 order-1 lg:order-1">
+      <div className="w-full lg:w-1/2  flex flex-col justify-center items-center px-4 sm:px-12 lg:px-20 py-10 lg:py-0 order-1 lg:order-1">
         <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
           <div className="flex justify-center py-7 pb-0">
             <img
@@ -29,78 +31,78 @@ const RegisterPage = () => {
           </div>
 
           <div className="space-y-2">
-            <Body as="label" htmlFor="name" className="block">
+            <Body as="label" htmlFor="name" className="block text-text">
               Nombre
             </Body>
-            <input
+            <Input
               id="name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Ej: Juan"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+              className="min-w-[240px]"
             />
           </div>
 
           <div className="flex gap-6 flex-col sm:flex-row">
             <div className="w-full sm:w-1/2 space-y-2">
-              <Body as="label" htmlFor="lastName1" className="block">
+              <Body as="label" htmlFor="lastName1" className="block text-text">
                 Primer apellido
               </Body>
-              <input
+              <Input
                 id="lastName1"
                 type="text"
                 value={lastName1}
                 onChange={(e) => setLastName1(e.target.value)}
                 placeholder="Ej: López"
                 required
-                className="w-full h-[44px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+                className=""
               />
             </div>
 
             <div className="w-full sm:w-1/2 space-y-2">
-              <Body as="label" htmlFor="lastName2" className="block">
+              <Body as="label" htmlFor="lastName2" className="block text-text">
                 Segundo apellido
               </Body>
-              <input
+              <Input
                 id="lastName2"
                 type="text"
                 value={lastName2}
                 onChange={(e) => setLastName2(e.target.value)}
                 placeholder="Ej: Pérez"
-                className="w-full h-[44px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+                className=""
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Body as="label" htmlFor="email" className="block">
+            <Body as="label" htmlFor="email" className="block text-text">
               Correo electrónico
             </Body>
-            <input
+            <Input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ej: correo@ejemplo.com"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+              className="min-w-[240px]"
             />
           </div>
 
           <div className="space-y-2">
-            <Body as="label" htmlFor="password" className="block">
+            <Body as="label" htmlFor="password" className="block text-text">
               Contraseña
             </Body>
-            <input
+            <Input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+              className="min-w-[240px]"
             />
           </div>
 
@@ -108,35 +110,29 @@ const RegisterPage = () => {
             <Body
               as="label"
               htmlFor="confirmPassword"
-              className="block"
+              className="block text-text"
             >
               Repetir contraseña
             </Body>
-            <input
+            <Input
               id="confirmPassword"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="********"
               required
-              className="w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-[#555] bg-gray placeholder:text-neutral-400 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border"
+              className="min-w-[240px]"
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full h-11 bg-primary rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
-          >
-            <Body className="font-bold">Registrarse</Body>
-          </button>
+          <Button type="submit" variant="primary" className="w-full">Registrarse</Button>
 
           <div className="text-center pb-8">
-            <Body>
+            <Body className="text-text">
               ¿Ya tienes una cuenta?{" "}
               <a
                 href="/login"
-                className="font-bold hover:text-primary transition-colors"
-              >
+              className="font-bold hover:text-primary transition-colors">
                 Inicia sesión
               </a>
             </Body>
