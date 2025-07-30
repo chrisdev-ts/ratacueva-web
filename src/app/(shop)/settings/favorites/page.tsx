@@ -6,7 +6,7 @@ import { mockFavoriteItems, type FavoriteItem } from "@/app/lib/data"
 import { PageLayout } from "@/components/templates/PageLayout"
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 import { Body, Subheading } from "@/components/atoms/Typography";
-import { Button } from "@/components/ui/button";
+import Button from "@/components/atoms/Button";
 import { Trash2 } from "lucide-react";
 
 export default function FavoritesPage() {
@@ -40,7 +40,7 @@ export default function FavoritesPage() {
               {favoriteItems.map((item) => (
                 <div
                   key={item.product.id}
-                  className="p-6 bg-zinc-800 rounded-lg flex flex-col sm:flex-row justify-start items-center gap-6"
+                  className="p-6 bg-gray rounded-lg flex flex-col sm:flex-row justify-start items-center gap-6"
                 >
                   <Image
                     className="w-24 h-24 object-contain"
@@ -59,8 +59,8 @@ export default function FavoritesPage() {
                       </Body>
                     </div>
                     <div className="flex justify-start items-start gap-3">
-                      <Button onClick={() => handleRemoveFavorite(item.product.id)} className="rounded-[99px] min-w-[160px] bg-pink-600 hover:bg-pink-700 transition-colors text-white">
-                        <Trash2 className="w-5 h-5" />Eliminar
+                      <Button onClick={() => handleRemoveFavorite(item.product.id)}>
+                        <Trash2 className="w-5 h-5 mr-2" />Eliminar
                       </Button>
                     </div>
                   </div>

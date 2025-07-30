@@ -1,4 +1,4 @@
-import ProductDetailPage from "@/components/features/landing/search/product-detail-page";
+import ProductDetailPage from "@/components/features/home/organisms/ProductDetailPage";
 import {
   getProductById,
   getRelatedProducts,

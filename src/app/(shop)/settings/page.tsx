@@ -58,8 +58,8 @@ export default function SettingsPage() {
   return (
     <PageLayout>
       <div className="self-stretch flex-1 pt-12 pb-8 flex flex-col justify-start items-center gap-8">
-        <div className="self-stretch inline-flex flex-col sm:flex-row justify-start items-center gap-8">
-          <div className="w-20 h-20 p-2.5 bg-zinc-800 rounded-[99px] flex items-center justify-center overflow-hidden">
+        <div className="self-stretch flex flex-col sm:flex-row justify-start items-center gap-8">
+          <div className="w-20 h-20 p-2.5 bg-gray rounded-[99px] flex items-center justify-center overflow-hidden">
             <Image
               src="/placeholder.svg?height=80&width=80"
               alt="User Avatar"
@@ -68,7 +68,7 @@ export default function SettingsPage() {
               className="rounded-full object-cover"
             />
           </div>
-          <div className="inline-flex flex-col justify-center items-start gap-2 text-center sm:text-left">
+          <div className="flex flex-col justify-center items-start gap-2 text-center sm:text-left">
             <div className="text-white text-3xl font-bold">
               Jorge Christian Serrano Puertos
             </div>
@@ -82,15 +82,15 @@ export default function SettingsPage() {
             <Link
               key={index}
               href={category.href}
-              className="flex-1 self-stretch p-6 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-lg inline-flex flex-col justify-start items-start gap-4 overflow-hidden group"
+              className="flex-1 self-stretch p-6 bg-gray hover:bg-zinc-700 transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group"
             >
-              <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                <div className="p-0.5 py-1 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
-                  <category.icon className="w-6 h-6 text-white group-hover:text-pink-600 transition-colors" />
+              <div className="self-stretch flex justify-start items-center gap-2.5">
+                <div className="p-0.5 py-1 flex flex-col justify-start items-start gap-2.5 overflow-hidden">
+                  <category.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors" />
                 </div>
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-2">
-                <div className="text-white text-xl font-bold group-hover:text-pink-600 transition-colors">
+                <div className="text-white text-xl font-bold group-hover:text-primary transition-colors">
                   {category.title}
                 </div>
                 <div className="self-stretch text-white text-base font-normal">
@@ -107,15 +107,15 @@ export default function SettingsPage() {
             <Link
               key={index}
               href={category.href}
-              className="flex-1 self-stretch p-6 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-lg inline-flex flex-col justify-start items-start gap-4 overflow-hidden group"
+              className="flex-1 self-stretch p-6 bg-gray hover:bg-zinc-700 transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group"
             >
-              <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                <div className="p-0.5 py-1 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
-                  <category.icon className="w-6 h-6 text-white group-hover:text-pink-600 transition-colors" />
+              <div className="self-stretch flex justify-start items-center gap-2.5">
+                <div className="p-0.5 py-1 flex flex-col justify-start items-start gap-2.5 overflow-hidden">
+                  <category.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors" />
                 </div>
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-2">
-                <div className="text-white text-xl font-bold group-hover:text-pink-600 transition-colors">
+                <div className="text-white text-xl font-bold group-hover:text-primary transition-colors">
                   {category.title}
                 </div>
                 <div className="self-stretch text-white text-base font-normal">
@@ -132,15 +132,15 @@ export default function SettingsPage() {
             <Link
               key={index}
               href={category.href}
-              className="flex-1 self-stretch p-6 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-lg inline-flex flex-col justify-start items-start gap-4 overflow-hidden group"
+              className="flex-1 self-stretch p-6 bg-gray hover:bg-zinc-700 transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group"
             >
-              <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                <div className="p-0.5 py-1 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
-                  <category.icon className="w-6 h-6 text-white group-hover:text-pink-600 transition-colors" />
+              <div className="self-stretch flex justify-start items-center gap-2.5">
+                <div className="p-0.5 py-1 flex flex-col justify-start items-start gap-2.5 overflow-hidden">
+                  <category.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors" />
                 </div>
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-2">
-                <div className="text-white text-xl font-bold group-hover:text-pink-600 transition-colors">
+                <div className="text-white text-xl font-bold group-hover:text-primary transition-colors">
                   {category.title}
                 </div>
                 <div className="self-stretch text-white text-base font-normal">

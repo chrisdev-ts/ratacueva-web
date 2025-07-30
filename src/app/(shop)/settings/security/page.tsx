@@ -15,7 +15,7 @@ export default function SecurityPage() {
       <div className="pt-12 pb-8">
         <div className="mb-6">
           <div className="flex items-center gap-4 mb-4">
-            <Link href="/settings" className="text-white hover:text-pink-600 transition-colors">
+            <Link href="/settings" className="text-white hover:text-primary transition-colors">
               <ChevronLeft className="w-6 h-6" />
             </Link>
             <div className="text-white text-2xl font-bold">Seguridad</div>
@@ -24,7 +24,7 @@ export default function SecurityPage() {
         <div className="space-y-6">
           <div className="p-6 bg-zinc-800 rounded-lg">
             <div className="flex items-center gap-3 mb-4">
-              <Shield className="w-6 h-6 text-pink-600" />
+              <Shield className="w-6 h-6 text-primary" />
               <div className="text-white text-xl font-bold">Cambiar contraseña</div>
             </div>
             <div className="space-y-4">
@@ -81,7 +81,7 @@ export default function SecurityPage() {
 
           <div className="p-6 bg-zinc-800 rounded-lg">
             <div className="flex items-center gap-3 mb-4">
-              <Key className="w-6 h-6 text-pink-600" />
+              <Key className="w-6 h-6 text-primary" />
               <div className="text-white text-xl font-bold">Autenticación de dos factores</div>
             </div>
             <div className="flex items-center justify-between">
@@ -89,7 +89,7 @@ export default function SecurityPage() {
                 <div className="text-white font-medium">Verificación en dos pasos</div>
                 <div className="text-zinc-400 text-sm">Añade una capa extra de seguridad a tu cuenta</div>
               </div>
-              <button className="px-4 py-2 bg-pink-600 hover:bg-pink-700 transition-colors text-white font-medium rounded-lg">
+              <button className="px-4 py-2 bg-primary hover:bg-primary/80 transition-colors text-white font-medium rounded-lg">
                 Activar
               </button>
             </div>
@@ -97,7 +97,7 @@ export default function SecurityPage() {
 
           <div className="p-6 bg-zinc-800 rounded-lg">
             <div className="flex items-center gap-3 mb-4">
-              <Smartphone className="w-6 h-6 text-pink-600" />
+              <Smartphone className="w-6 h-6 text-primary" />
               <div className="text-white text-xl font-bold">Dispositivos conectados</div>
             </div>
             <div className="space-y-3">
@@ -123,7 +123,7 @@ export default function SecurityPage() {
           </div>
           
           <div className="flex justify-end">
-            <button className="px-6 py-3 bg-pink-600 hover:bg-pink-700 transition-colors text-white font-bold rounded-lg">
+            <button className="px-6 py-3 bg-primary hover:bg-primary/80 transition-colors text-white font-bold rounded-lg">
               Guardar cambios
             </button>
           </div>
