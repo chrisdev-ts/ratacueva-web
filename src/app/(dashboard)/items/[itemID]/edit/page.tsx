@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import DashboardContentLayout from "@/components/templates/DashboardContentLayout";
+import Button from "@/components/atoms/Button";
+import Input from "@/components/atoms/Input";
 import { Display, Body } from "@/components/atoms/Typography";
 
 interface EditProductProps {
@@ -41,117 +44,72 @@ export default function EditProduct({ params }: EditProductProps) {
   );
 
   return (
-    <main className="flex flex-col max-w-none mx-auto p-8 lg:px-7 lg:py-8 gap-8 flex-1 bg-dark text-text font-body min-h-screen">
-      {/* Page Title */}
-      <Display>Editar producto</Display>
-
-      {/* Form Container */}
-      <div className="flex-1 bg-gray rounded-lg p-8 flex flex-col">
-        <div className="flex flex-col gap-6 flex-1">
-          {/* First Row - Name and Category */}
-          <div className="flex gap-6">
-            <div className="flex-1 flex flex-col gap-4">
-              <Body className="text-text">Nombre del producto *</Body>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors min-h-[44px]"
-              />
-            </div>
-            <div className="flex-1 flex flex-col gap-4">
-              <Body className="text-text">Categoria</Body>
-              <div className="relative">
-                <select
-                  name="category"
-                  value={formData.category}
-                  onChange={handleInputChange}
-                  className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors min-h-[44px] w-full appearance-none cursor-pointer"
-                >
-                  <option value="Workstation">Workstation</option>
-                  <option value="Componentes">Componentes</option>
-                  <option value="Hardware">Hardware</option>
-                  <option value="Software">Software</option>
-                </select>
-                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <ChevronDownIcon />
+    <div className=" text-text font-body min-h-screen flex-1">
+      <DashboardContentLayout>
+        {/* Page Title */}
+        <Display>Editar producto</Display>
+        {/* Form Container */}
+        <div className="flex-1 bg-gray rounded-lg p-8 flex flex-col">
+          <div className="flex flex-col gap-6 flex-1">
+            {/* First Row - Name and Category */}
+            <div className="flex gap-6">
+              <div className="flex-1 flex flex-col gap-4">
+                <Body className="text-text">Nombre del producto *</Body>
+                <Input type="text" name="name" value={formData.name} onChange={handleInputChange} className="min-h-[44px]" />
+              </div>
+              <div className="flex-1 flex flex-col gap-4">
+                <Body className="text-text">Categoria</Body>
+                <div className="relative">
+                  <select name="category" value={formData.category} onChange={handleInputChange} className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors min-h-[44px] w-full appearance-none cursor-pointer">
+                    <option value="Workstation">Workstation</option>
+                    <option value="Componentes">Componentes</option>
+                    <option value="Hardware">Hardware</option>
+                    <option value="Software">Software</option>
+                  </select>
+                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"><ChevronDownIcon /></div>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Second Row - Price and Model */}
-          <div className="flex gap-6">
-            <div className="flex-1 flex flex-col gap-4">
-              <Body className="text-text">Precio *</Body>
-              <input
-                type="text"
-                name="price"
-                value={formData.price}
-                onChange={handleInputChange}
-                className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors min-h-[44px]"
-              />
+            {/* Second Row - Price and Model */}
+            <div className="flex gap-6">
+              <div className="flex-1 flex flex-col gap-4">
+                <Body className="text-text">Precio *</Body>
+                <Input type="text" name="price" value={formData.price} onChange={handleInputChange} className="min-h-[44px]" />
+              </div>
+              <div className="flex-1 flex flex-col gap-4">
+                <Body className="text-text">Modelo *</Body>
+                <Input type="text" name="model" value={formData.model} onChange={handleInputChange} className="min-h-[44px]" />
+              </div>
             </div>
-            <div className="flex-1 flex flex-col gap-4">
-              <Body className="text-text">Modelo *</Body>
-              <input
-                type="text"
-                name="model"
-                value={formData.model}
-                onChange={handleInputChange}
-                className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors min-h-[44px]"
-              />
+            {/* Third Row - Inventory */}
+            <div className="flex flex-col gap-4">
+              <Body className="text-text">Inventario *</Body>
+              <Input type="text" name="inventory" value={formData.inventory} onChange={handleInputChange} className="min-h-[44px] max-w-[455px]" />
+            </div>
+            {/* Fourth Row - Description */}
+            <div className="flex flex-col gap-4">
+              <Body className="text-text">Descripción *</Body>
+              <textarea name="description" value={formData.description} onChange={handleInputChange} rows={3} className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors resize-none h-[88px]" />
+            </div>
+            {/* Fifth Row - Product Images */}
+            <div className="flex flex-col gap-4">
+              <Body className="text-text">Imagen del producto *</Body>
+              <div className="border border-dashed border-border rounded-lg bg-gray p-6 flex items-center gap-0 min-h-[176px]">
+                {existingImages.map((imageUrl, index) => (
+                  <div key={index} className="relative">
+                    <img src={imageUrl} alt={`Product image ${index + 1}`} className="w-[225px] h-[225px] object-cover aspect-square" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-
-          {/* Third Row - Inventory */}
-          <div className="flex flex-col gap-4">
-            <Body className="text-text">Inventario *</Body>
-            <input
-              type="text"
-              name="inventory"
-              value={formData.inventory}
-              onChange={handleInputChange}
-              className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors min-h-[44px] max-w-[455px]"
-            />
-          </div>
-
-          {/* Fourth Row - Description */}
-          <div className="flex flex-col gap-4">
-            <Body className="text-text">Descripcin *</Body>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              rows={3}
-              className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors resize-none h-[88px]"
-            />
-          </div>
-
-          {/* Fifth Row - Product Images */}
-          <div className="flex flex-col gap-4">
-            <Body className="text-text">Imagen del producto *</Body>
-            <div className="border border-dashed border-border rounded-lg bg-gray p-6 flex items-center gap-0 min-h-[176px]">
-              {existingImages.map((imageUrl, index) => (
-                <div key={index} className="relative">
-                  <img
-                    src={imageUrl}
-                    alt={`Product image ${index + 1}`}
-                    className="w-[225px] h-[225px] object-cover aspect-square"
-                  />
-                </div>
-              ))}
-            </div>
+          {/* Action Buttons */}
+          <div className="flex items-center gap-6 mt-8 justify-end">
+            <Button variant="danger">Cancelar</Button>
+            <Button variant="warning">Editar producto</Button>
           </div>
         </div>
-
-        {/* Action Buttons */}
-        <div className="flex items-center gap-6 mt-8 justify-end">
-          <button className="bg-danger text-white px-4 py-2.5 rounded-full font-bold text-body hover:bg-danger-dark transition-colors cursor-pointer">Cancelar</button>
-          <button className="bg-warning text-dark px-4 py-2.5 rounded-full font-bold text-body hover:bg-warning-dark transition-colors cursor-pointer">Editar producto</button>
-        </div>
-      </div>
-    </main>
+      </DashboardContentLayout>
+    </div>
   );
 }

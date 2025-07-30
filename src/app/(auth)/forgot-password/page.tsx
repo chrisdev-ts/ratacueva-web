@@ -2,16 +2,17 @@
 "use client";
 
 import { Body } from "@/components/atoms/Typography/index";
+import Button from "@/components/atoms/Button";
+import Input from "@/components/atoms/Input";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 
 const ForgotPasswordPage = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Lógica futura para envío de código
     };
 
     return (
-        <div className="min-h-screen w-full bg-dark relative">
+        <div className="min-h-screen w-full relative">
             <div className="absolute top-15 left-20">
                 <img src="/images/logotipo-base.svg" alt="Rata Cueva Logo" className="w-[120px] sm:w-[150px] md:w-[180px] h-auto" />
             </div>
@@ -21,9 +22,7 @@ const ForgotPasswordPage = () => {
                         <ArrowPathIcon className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[214px] md:h-[214px] aspect-square" aria-label="Restart icon" />
                     </div>
                     <Body className="text-base sm:text-lg text-center w-full max-w-lg px-2.5 sm:px-0 text-text">Haz clic en el botón para solicitar un código de restablecimiento, posteriormente introdúcelo en el formulario de la siguiente interfaz</Body>
-                    <button type="submit" className="h-11 bg-primary rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-primary/90 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark mx-auto text-dark" aria-label="Solicitar código de restablecimiento de contraseña">
-                        <Body className="font-bold text-text" href="#">Solicitar código de restablecimiento</Body>
-                    </button>
+                    <Button type="submit" variant="primary" className="mx-auto">Solicitar código de restablecimiento</Button>
                 </form>
             </div>
         </div>

@@ -9,6 +9,7 @@
 "use client";
 
 import { Body } from "@/components/atoms/Typography";
+import Button from "@/components/atoms/Button";
 
 const PasswordResetPage = () => {
     const handleSubmit = (e: React.FormEvent) => {
@@ -17,7 +18,7 @@ const PasswordResetPage = () => {
     };
 
     return (
-        <div className="min-h-screen w-full bg-dark relative">
+        <div className="min-h-screen w-full  relative">
             <div className="absolute top-15 left-20">
                 <img
                     src="/images/logotipo-base.svg"
@@ -49,14 +50,7 @@ const PasswordResetPage = () => {
                         posteriormente introdúcelo en el formulario de la siguiente interfaz
                     </Body>
 
-                    <button
-                        type="submit"
-                        className="h-11 bg-primary rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-primary/90 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark mx-auto text-dark"
-                        aria-label="Solicitar código de restablecimiento de contraseña">
-                        <Body className="font-bold text-base text-text">
-                            Restablecer contraseña
-                        </Body>
-                    </button>
+                    <Button type="submit" variant="primary" className="mx-auto">Restablecer contraseña</Button>
                 </form>
             </div>
         </div>

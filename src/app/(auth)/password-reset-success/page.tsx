@@ -2,6 +2,7 @@
 
 import { Body } from "@/components/atoms/Typography";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import Button from "@/components/atoms/Button";
 
 const PasswordResetSuccessPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -10,7 +11,7 @@ const PasswordResetSuccessPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-dark relative">
+    <div className="min-h-screen w-full  relative">
       <div className="absolute top-15 left-20">
         <img
           src="/images/logotipo-base.svg"
@@ -32,12 +33,7 @@ const PasswordResetSuccessPage = () => {
             Tu contraseña ha sido restablecida exitosamente.
           </Body>
 
-          <button
-            type="submit"
-            className="h-11 bg-primary rounded-full flex items-center justify-center px-4 py-2.5 hover:bg-primary/90 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark mx-auto text-dark"
-                        aria-label="Ir a inicio de sesión">
-            <Body className="font-bold text-base text-text">Inicio de sesión</Body>
-          </button>
+          <Button type="submit" variant="primary" className="mx-auto">Inicio de sesión</Button>
         </form>
       </div>
     </div>

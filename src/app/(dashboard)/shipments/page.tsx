@@ -1,10 +1,13 @@
 import React from "react";
+import DashboardContentLayout from "@/components/templates/DashboardContentLayout";
 
 export default function Shipments() {
     return (
-        <main className="min-h-screen bg-dark text-text px-8 py-8">
-            <h1 className="text-3xl font-bold mb-4">Envíos</h1>
-            <p className="text-lg">Seguimiento y control de envíos.</p>
-        </main>
+        <div className=" text-text flex-1">
+            <DashboardContentLayout>
+                <h1 className="text-3xl font-bold mb-4">Envíos</h1>
+                <p className="text-lg">Seguimiento y control de envíos.</p>
+            </DashboardContentLayout>
+        </div>
     );
 }
