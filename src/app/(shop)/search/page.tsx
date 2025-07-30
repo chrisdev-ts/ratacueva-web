@@ -3,7 +3,7 @@ import { mockProducts, type Filters } from "@/app/lib/data"
 import SearchClientPage from "@/components/features/landing/search/search-client-page"
 
 interface SearchPageProps {
-  searchParams: {
+  searchParams: Promise<{
     q?: string
     sortBy?: string
     priceRange?: string // e.g., "0-2000000"
@@ -12,15 +12,16 @@ interface SearchPageProps {
     locations?: string
     freeShipping?: string // "true" or "false"
     withDiscount?: string // "true" or "false"
-  }
+  }>
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const query = searchParams.q || ""
-  const sortBy = searchParams.sortBy || "relevance"
+  const params = await searchParams
+  const query = params.q || ""
+  const sortBy = params.sortBy || "relevance"
 
-  const parsedPriceRange: [number, number] = searchParams.priceRange
-    ? (searchParams.priceRange.split("-").map(Number) as [number, number])
+  const parsedPriceRange: [number, number] = params.priceRange
+    ? (params.priceRange.split("-").map(Number) as [number, number])
     : [0, 2000000]
 
   // Asegurar que el rango de precios sea siempre válido (min <= max)
@@ -29,11 +30,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     Math.max(parsedPriceRange[0], parsedPriceRange[1]),
   ]
 
-  const parsedCategories = searchParams.categories ? searchParams.categories.split(",") : []
-  const parsedBrands = searchParams.brands ? searchParams.brands.split(",") : []
-  const parsedLocations = searchParams.locations ? searchParams.locations.split(",") : []
-  const parsedFreeShipping = searchParams.freeShipping === "true"
-  const parsedWithDiscount = searchParams.withDiscount === "true"
+  const parsedCategories = params.categories ? params.categories.split(",") : []
+  const parsedBrands = params.brands ? params.brands.split(",") : []
+  const parsedLocations = params.locations ? params.locations.split(",") : []
+  const parsedFreeShipping = params.freeShipping === "true"
+  const parsedWithDiscount = params.withDiscount === "true"
 
   const currentFilters: Filters = {
     priceRange: effectivePriceRange, // Usar el rango de precios efectivo aquí
