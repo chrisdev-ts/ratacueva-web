@@ -17,7 +17,7 @@ const statusClasses: Record<StatusType, string> = {
 
 const StatusTag: React.FC<StatusTagProps> = ({ status, className = "" }) => (
     <div className={clsx(
-        "flex px-3 py-2 justify-center items-center rounded-[100px] w-fit font-inter text-sm font-bold leading-normal",
+        "flex px-3 py-2 justify-center items-center rounded-[100px] w-fit text-sm font-bold leading-normal",
         statusClasses[status],
         className
     )}>

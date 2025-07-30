@@ -4,15 +4,15 @@ import React, { useState } from "react";
 import Button from "@/components/atoms/Button";
 import { Body, Display } from "@/components/atoms/Typography";
 import Input from "@/components/atoms/Input";
-import BaseTable from "@/components/atoms/BaseTable";
-import StatusTag from "@/components/atoms/StatusTag";
+import BaseTable from "@/components/features/dashboard/atoms/BaseTable";
+import StatusTag from "@/components/features/dashboard/atoms/StatusTag";
 import {
     PencilSquareIcon,
     TrashIcon,
     MagnifyingGlassIcon,
     ChevronDownIcon,
 } from "@heroicons/react/24/solid";
-import DashboardContentLayout from "@/components/templates/DashboardContentLayout";
+import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
 

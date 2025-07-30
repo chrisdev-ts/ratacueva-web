@@ -9,7 +9,7 @@ import {
     DocumentArrowDownIcon,
     ChevronDownIcon,
 } from "@heroicons/react/24/solid";
-import DashboardContentLayout from "@/components/templates/DashboardContentLayout";
+import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 
 export default function AddProduct() {
     const [formData, setFormData] = useState({

@@ -1,5 +1,5 @@
 import React from "react";
-import DashboardContentLayout from "@/components/templates/DashboardContentLayout";
+import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 
 export default function Sales() {
     return (

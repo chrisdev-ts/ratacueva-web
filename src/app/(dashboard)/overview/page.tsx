@@ -3,9 +3,9 @@
 import React from "react";
 import Button from "@/components/atoms/Button";
 import { Body, Display } from "@/components/atoms/Typography";
-import DashboardContentLayout from "@/components/templates/DashboardContentLayout";
-import BaseTable from "@/components/atoms/BaseTable";
-import StatusTag from "@/components/atoms/StatusTag";
+import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
+import BaseTable from "@/components/features/dashboard/atoms/BaseTable";
+import StatusTag from "@/components/features/dashboard/atoms/StatusTag";
 import {
     PlusCircleIcon,
     TruckIcon,

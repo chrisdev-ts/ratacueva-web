@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import DashboardContentLayout from "@/components/templates/DashboardContentLayout";
+import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 import Button from "@/components/atoms/Button";
 import Input from "@/components/atoms/Input";
 import { Display, Body } from "@/components/atoms/Typography";
