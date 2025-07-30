@@ -1,11 +1,4 @@
-import HeroSection from "@/components/features/landing/home/hero-section"
-import ProductSection from "@/components/features/landing/home/product-section"
-import FeaturedBanner from "@/components/features/landing/home/featured-banner"
-import CommunitySection from "@/components/features/landing/home/community-section"
-import FaqSection from "@/components/features/landing/home/faq-section"
-
-// Productos destacados con ofertas y nuevos lanzamientos
-const featuredProducts = [
+export const featuredProducts = [
   {
     id: 1,
     name: 'Monitor Samsung 47"',
@@ -62,10 +55,9 @@ const featuredProducts = [
     price: 12999,
     image: "/placeholder.svg?height=200&width=200",
   },
-]
+];
 
-// Productos de gaming y consolas
-const gamingProducts = [
+export const gamingProducts = [
   {
     id: 7,
     name: "PlayStation 5",
@@ -114,10 +106,9 @@ const gamingProducts = [
     price: 8999,
     image: "/placeholder.svg?height=200&width=200",
   },
-]
+];
 
-// Componentes de PC
-const componentProducts = [
+export const componentProducts = [
   {
     id: 13,
     name: "Motherboard ASUS ROG",
@@ -166,10 +157,9 @@ const componentProducts = [
     price: 4999,
     image: "/placeholder.svg?height=200&width=200",
   },
-]
+];
 
-// Computadoras completas
-const computerProducts = [
+export const computerProducts = [
   {
     id: 19,
     name: "PC Gaming RTX 4070",
@@ -203,10 +193,9 @@ const computerProducts = [
     price: 38999,
     image: "/placeholder.svg?height=200&width=200",
   },
-]
+];
 
-// Accesorios gaming
-const accessoryProducts = [
+export const accessoryProducts = [
   {
     id: 23,
     name: "Webcam 4K",
@@ -255,63 +244,4 @@ const accessoryProducts = [
     price: 899,
     image: "/placeholder.svg?height=200&width=200",
   },
-]
-
-export default function Home() {
-  return (
-    <>
-      <HeroSection />
-
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-        {/* Ofertas y nuevos lanzamientos */}
-        <section className="py-8">
-          <ProductSection title="Ofertas y nuevos lanzamientos" products={featuredProducts} />
-        </section>
-
-        {/* Featured Banner */}
-        <section className="py-8">
-          <FeaturedBanner />
-        </section>
-
-        {/* Videojuegos y Consolas */}
-        <section className="py-8">
-          <ProductSection title="Videojuegos y Consolas" products={gamingProducts} showViewAll={true} />
-        </section>
-
-        {/* Componentes de PC */}
-        <section className="py-8">
-          <ProductSection title="Componentes de PC" products={componentProducts} showViewAll={true} />
-        </section>
-
-        {/* Computadoras completas */}
-        <section className="py-8">
-          <ProductSection title="Computadoras Gaming" products={computerProducts} showViewAll={true} />
-        </section>
-
-        {/* Workstations - usando productos de computadoras */}
-        <section className="py-8">
-          <ProductSection
-            title="Workstations Profesionales"
-            products={computerProducts.slice(1, 5)}
-            showViewAll={true}
-          />
-        </section>
-
-        {/* Accesorios Gaming */}
-        <section className="py-8">
-          <ProductSection title="Accesorios Gaming" products={accessoryProducts} showViewAll={true} />
-        </section>
-
-        {/* Community Section */}
-        <section className="py-12">
-          <CommunitySection />
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-12">
-          <FaqSection />
-        </section>
-      </div>
-    </>
-  )
-}
+];
