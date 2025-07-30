@@ -48,30 +48,6 @@ body {
 }
 
 /* Scrollbar personalizado */
-.scroll-container {
-  scrollbar-width: thin; /* Para Firefox */
-  scrollbar-color: transparent transparent; /* scrollbar invisible inicialmente */
-}
-
-.scroll-container::-webkit-scrollbar {
-  width: 1px;
-  height: 1px;
-  background: transparent;
-}
-
-.scroll-container::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  border-radius: 30px;
-}
-
-.scroll-container:hover::-webkit-scrollbar-thumb {
-  background-color: var(--color-text);
-}
-
-.scroll-container:hover {
-  scrollbar-color: var(--color-text) transparent;
-}
-
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
