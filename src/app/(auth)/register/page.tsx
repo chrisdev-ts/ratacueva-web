@@ -57,7 +57,7 @@ const RegisterPage = () => {
                 onChange={(e) => setLastName1(e.target.value)}
                 placeholder="Ej: López"
                 required
-                className=""
+                className="w-full min-w-0"
               />
             </div>
 
@@ -71,7 +71,7 @@ const RegisterPage = () => {
                 value={lastName2}
                 onChange={(e) => setLastName2(e.target.value)}
                 placeholder="Ej: Pérez"
-                className=""
+                className="w-full min-w-0"
               />
             </div>
           </div>
@@ -132,7 +132,7 @@ const RegisterPage = () => {
               ¿Ya tienes una cuenta?{" "}
               <a
                 href="/login"
-              className="font-bold hover:text-primary transition-colors">
+                className="font-bold hover:text-primary transition-colors">
                 Inicia sesión
               </a>
             </Body>

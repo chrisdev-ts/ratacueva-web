@@ -21,12 +21,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ({ variant = "default", className = "", label, labelClassName = "", ...props }, ref) => (
         <div className="space-y-2 w-full">
             {label && <label className={clsx("block text-text", labelClassName)}>{label}</label>}
-        <input
-            ref={ref}
-            className={clsx(
-                "w-full h-[44px] min-w-[240px] px-4 py-3 rounded-lg border border-border bg-gray placeholder-placeholder transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border text-text text-body",
-                className
-            )} {...props}/>
+            <input
+                ref={ref}
+                className={clsx(
+                    "w-full h-[44px] px-4 py-3 rounded-lg border border-border bg-gray placeholder-placeholder transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border text-text text-body",
+                    className
+                )}
+                {...props} />
         </div>
     )
 );
