@@ -9,6 +9,15 @@
   --color-gray: #2F2F2F; /* Gray background */
   --color-text: #FFFFFF; /* White text */
 
+  --color-border: #555; /* Border gray */
+  --color-placeholder: #9A9A9A; /* Placeholder gray */
+  --color-warning: #FFC71D; /* Warning yellow */
+  --color-accent: #B455FD; /* Accent purple */
+  --color-success-dark: #0B472E; /* Success dark text */
+  --color-warning-dark: #614E15; /* Warning dark text */
+  --color-accent-dark: #481D6A; /* Accent dark text */
+  --color-danger-dark: #591516; /* Danger dark text */
+
   --font-body: 'Inter', sans-serif;
 
   --text-display: 2rem; /* 32px */
@@ -38,28 +47,20 @@ body {
   min-height: 100vh;
 }
 
-
 /* Scrollbar personalizado */
-.scroll-container {
-  scrollbar-width: thin; /* Para Firefox */
-  scrollbar-color: transparent transparent; /* scrollbar invisible inicialmente */
-}
-
-.scroll-container::-webkit-scrollbar {
-  width: 1px;
-  height: 1px;
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
   background: transparent;
 }
 
-.scroll-container::-webkit-scrollbar-thumb {
-  background-color: transparent;
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-text);
   border-radius: 30px;
 }
 
-.scroll-container:hover::-webkit-scrollbar-thumb {
-  background-color: var(--color-text);
-}
-
-.scroll-container:hover {
+/* Firefox */
+* {
+  scrollbar-width: thin;
   scrollbar-color: var(--color-text) transparent;
 }
