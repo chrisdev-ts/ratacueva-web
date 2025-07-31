@@ -1,7 +1,7 @@
 "use client"
 
 import { PageLayout } from "@/components/templates/PageLayout"
-import { Save } from "lucide-react"
+import { CheckIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
 import { Body, BodySmall, Subheading } from "@/components/atoms/Typography";
 import Button from "@/components/atoms/Button";
@@ -209,7 +209,7 @@ export default function NotificationsPage() {
           </div>
           
           <div className="flex justify-end">
-            <Button><Save className="w-5 h-5 mr-2" />Guardar cambios</Button>
+            <Button><CheckIcon className="w-5 h-5 mr-2" />Guardar cambios</Button>
           </div>
         </div>
       </div>

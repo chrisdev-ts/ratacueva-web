@@ -1,6 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react"
+import { 
+  EnvelopeIcon, 
+  PhoneIcon, 
+  MapPinIcon 
+} from "@heroicons/react/24/outline"
 import { Subheading, Body, Caption } from "@/components/atoms/Typography"
 
 export default function Footer() {
@@ -12,13 +16,12 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex justify-start items-center gap-2 mb-6">
               <Image
-                className="w-10 h-10"
-                src="/images/isotipo.svg"
+                className="h-10 lg:h-12"
+                src="/images/logotipo-base.svg"
                 alt="RataCueva Logo"
-                width={40}
-                height={40}
+                width={126}
+                height={22}
               />
-              <div className="text-neutral-400 text-2xl lg:text-3xl font-black font-exo">RataCueva</div>
             </Link>
             <Body className="text-zinc-300 text-base lg:text-lg mb-6 leading-relaxed">
               Tu tienda de confianza para productos gaming y tecnología. Llevamos tu experiencia al siguiente nivel.
@@ -29,17 +32,18 @@ export default function Footer() {
               <Subheading className="text-white mb-4">Síguenos</Subheading>
               <div className="flex gap-3">
                 {[
-                  { icon: Facebook, href: "#" },
-                  { icon: Instagram, href: "#" },
-                  { icon: Twitter, href: "#" },
-                  { icon: Youtube, href: "#" },
+                  { href: "#", label: "Facebook" },
+                  { href: "#", label: "Instagram" },
+                  { href: "#", label: "Twitter" },
+                  { href: "#", label: "YouTube" },
                 ].map((social, index) => (
                   <Link
                     key={index}
                     href={social.href}
                     className="w-10 h-10 bg-primary hover:bg-primary/80 transition-colors rounded-full flex justify-center items-center"
+                    aria-label={social.label}
                   >
-                    <social.icon className="w-5 h-5 text-white" />
+                    <span className="text-white text-sm font-bold">{social.label.charAt(0)}</span>
                   </Link>
                 ))}
               </div>
@@ -100,21 +104,21 @@ export default function Footer() {
             <Subheading className="text-white mb-6">Contacto</Subheading>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
+                <EnvelopeIcon className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <Body className="text-zinc-300 text-base">support@ratacueva.com</Body>
                   <Body className="text-zinc-300 text-base">pedidos@ratacueva.com</Body>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
+                <PhoneIcon className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <Body className="text-zinc-300 text-base">+506 2222-3333</Body>
                   <Body className="text-zinc-300 text-base">+506 8888-9999</Body>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
+                <MapPinIcon className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
                 <Body className="text-zinc-300 text-base">
                   San José, Costa Rica
                   <br />

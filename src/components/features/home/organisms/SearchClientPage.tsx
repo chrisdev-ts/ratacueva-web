@@ -5,7 +5,7 @@ import { useState, useCallback } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import SearchFilters from "@/components/features/home/molecules/SearchFilters"
 import SearchResults from "@/components/features/home/molecules/SearchResults"
-import { SlidersHorizontal } from "lucide-react"
+import { FunnelIcon } from "@heroicons/react/24/outline"
 import type { Product, Filters } from "@/app/lib/data"
 import Button from "@/components/atoms/Button"
 import { PageLayout } from "@/components/templates/PageLayout"
@@ -69,7 +69,7 @@ export default function SearchClientPage({
             onClick={() => setShowFilters(!showFilters)}
             
           >
-            <SlidersHorizontal className="w-5 h-5 text-white" />
+            <FunnelIcon className="w-5 h-5 text-white" />
             <span className="text-white font-medium">Filtros</span>
           </Button>
         </div>

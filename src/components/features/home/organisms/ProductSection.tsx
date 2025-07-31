@@ -1,7 +1,7 @@
 "use client"
 import { useRef } from "react"
 import ProductCard from "@/components/features/home/atoms/ProductCard"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import { Heading } from "@/components/atoms/Typography"
 
@@ -67,13 +67,13 @@ export default function ProductSection({ title, products, showViewAll = false }:
           onClick={scrollRight}
           className="w-12 h-12 lg:w-14 lg:h-14 absolute right-0 top-1/2 -translate-y-1/2 bg-neutral-600/90 hover:bg-neutral-500 backdrop-blur-sm rounded-full flex justify-center items-center z-10 transition-colors"
         >
-          <ChevronRight className="w-6 h-6 text-white" />
+          <ChevronRightIcon className="w-6 h-6 text-white" />
         </button>
         <button
           onClick={scrollLeft}
           className="w-12 h-12 lg:w-14 lg:h-14 absolute left-0 top-1/2 -translate-y-1/2 bg-neutral-600/90 hover:bg-neutral-500 backdrop-blur-sm rounded-full flex justify-center items-center z-10 transition-colors"
         >
-          <ChevronLeft className="w-6 h-6 text-white" />
+          <ChevronLeftIcon className="w-6 h-6 text-white" />
         </button>
       </div>
     </section>

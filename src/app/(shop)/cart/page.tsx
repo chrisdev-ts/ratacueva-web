@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { Minus, Plus } from "lucide-react"
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline"
 import { mockCartItems, type CartItem } from "@/app/lib/data"
 import { PageLayout } from "@/components/templates/PageLayout"
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb"
@@ -94,7 +94,7 @@ export default function CartPage() {
                             className="h-11 min-h-11 p-2.5 rounded-tl-[99px] rounded-bl-[99px] flex justify-center items-center gap-3 text-cyan-400 hover:bg-cyan-400 hover:text-white transition-colors"
                             aria-label="Disminuir cantidad"
                           >
-                            <Minus className="w-4 h-4" />
+                            <MinusIcon className="w-4 h-4" />
                           </button>
                           <div className="h-11 min-h-11 p-2.5 flex justify-center items-center gap-3">
                             <div className="justify-start text-cyan-400 text-base font-bold font-['Inter']">
@@ -106,7 +106,7 @@ export default function CartPage() {
                             className="h-11 min-h-11 p-2.5 rounded-tr-[99px] rounded-br-[99px] flex justify-center items-center gap-3 text-cyan-400 hover:bg-cyan-400 hover:text-white transition-colors"
                             aria-label="Aumentar cantidad"
                           >
-                            <Plus className="w-4 h-4" />
+                            <PlusIcon className="w-4 h-4" />
                           </button>
                         </div>
                       </div>

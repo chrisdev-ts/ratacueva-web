@@ -1,6 +1,6 @@
 "use client"
 
-import { ShoppingCart, User, Heart, Menu } from "lucide-react"
+import { ShoppingCartIcon, UserIcon, HeartIcon, Bars3Icon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useRef, useEffect } from "react"
@@ -62,13 +62,12 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex justify-start items-center gap-2 flex-shrink-0">
             <Image
-              className="w-8 h-8 lg:w-10 lg:h-10"
-              src="/images/isotipo.svg"
+              className="h-10 lg:h-12"
+              src="/images/logotipo-base.svg"
               alt="RataCueva Logo"
-              width={40}
-              height={40}
+              width={126}
+              height={22}
             />
-            <div className="text-neutral-400 text-xl lg:text-3xl font-black font-exo">RataCueva</div>
           </Link>
 
           {/* Search Bar - Expandido en desktop */}
@@ -102,7 +101,7 @@ export default function Header() {
               href="/build-pc"
               className="h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center gap-3"
             >
-              <ShoppingCart className="w-5 h-5 text-white" />
+              <ShoppingCartIcon className="w-5 h-5 text-white" />
               <span className="text-white text-sm xl:text-base font-bold">Arma tu PC</span>
             </Link>
             <div className="flex justify-start items-center gap-3">
@@ -110,13 +109,13 @@ export default function Header() {
                 href="/settings/favorites"
                 className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center"
               >
-                <Heart className="w-5 h-5 text-white" />
+                <HeartIcon className="w-5 h-5 text-white" />
               </Link>
               <Link
                 href="/cart"
                 className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center relative"
               >
-                <ShoppingCart className="w-5 h-5 text-white" />
+                <ShoppingCartIcon className="w-5 h-5 text-white" />
                 {/* Cart badge - you can add cart count here later */}
                 {/* <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span> */}
               </Link>
@@ -124,14 +123,14 @@ export default function Header() {
                 href="/settings"
                 className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center"
               >
-                <User className="w-5 h-5 text-white" />
+                <UserIcon className="w-5 h-5 text-white" />
               </Link>
             </div>
           </div>
 
           {/* Mobile Menu Button */}
           <button className="lg:hidden h-11 min-h-11 p-2.5 bg-primary rounded-[99px] flex justify-center items-center">
-            <Menu className="w-5 h-5 text-white" />
+            <Bars3Icon className="w-5 h-5 text-white" />
           </button>
         </div>
       </div>

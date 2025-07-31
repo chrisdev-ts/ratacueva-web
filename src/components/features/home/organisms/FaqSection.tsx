@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline"
 import { Heading, Subheading, Body } from "@/components/atoms/Typography"
 
 const faqItems = [
@@ -116,9 +116,9 @@ export default function FaqSection() {
               >
                 <span className="text-white text-base lg:text-lg font-medium pr-4">{item.question}</span>
                 {activeIndex === index ? (
-                  <ChevronUp className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                  <ChevronUpIcon className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-zinc-400 flex-shrink-0" />
+                  <ChevronDownIcon className="w-5 h-5 text-zinc-400 flex-shrink-0" />
                 )}
               </button>
               {activeIndex === index && (

@@ -3,7 +3,7 @@
 
 import Image from "next/image"
 import { useState } from "react"  
-import { ChevronRight, Star, Minus, Plus, ThumbsUp, ThumbsDown } from "lucide-react"
+import { ChevronRightIcon, StarIcon, MinusIcon, PlusIcon, HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/outline"
 import type { Product, Review } from "@/app/lib/data"
 import Link from "next/link"
 import Button from "@/components/atoms/Button"
@@ -67,7 +67,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
           <Link href="/search" className="justify-start text-white text-sm font-normal  hover:underline">
             Tecnología
           </Link>
-          <ChevronRight className="w-4 h-4 text-white" />
+          <ChevronRightIcon className="w-4 h-4 text-white" />
           <div className="justify-start text-white text-sm font-bold ">{product.category}</div>
         </div>
 
@@ -172,14 +172,14 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                       className="w-6 h-6 flex items-center justify-center rounded-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white transition-colors"
                       aria-label="Disminuir cantidad"
                     >
-                      <Minus className="w-4 h-4" />
+                      <MinusIcon className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleQuantityChange(1)}
                       className="w-6 h-6 flex items-center justify-center rounded-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white transition-colors"
                       aria-label="Aumentar cantidad"
                     >
-                      <Plus className="w-4 h-4" />
+                      <PlusIcon className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
@@ -256,11 +256,11 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                   </div>
                   <div className="flex justify-start items-center gap-4">
                     <button className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors">
-                      <ThumbsUp className="w-5 h-5" />
+                      <HandThumbUpIcon className="w-5 h-5" />
                       <span className="text-sm">{review.upvotes}</span>
                     </button>
                     <button className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors">
-                      <ThumbsDown className="w-5 h-5" />
+                      <HandThumbDownIcon className="w-5 h-5" />
                       <span className="text-sm">{review.downvotes}</span>
                     </button>
                   </div>
@@ -286,7 +286,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                 <div className="inline-flex justify-start items-start gap-[1.61px]">
                   {/* Star rating visual */}
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star
+                    <StarIcon
                       key={i}
                       className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-zinc-600"}`}
                     />

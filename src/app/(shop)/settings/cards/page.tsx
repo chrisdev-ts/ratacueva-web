@@ -1,7 +1,7 @@
 "use client"
 
 import { PageLayout } from "@/components/templates/PageLayout"
-import { CreditCard, Trash2, Star } from "lucide-react"
+import { CreditCardIcon, TrashIcon, StarIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 import { Body, Subheading } from "@/components/atoms/Typography";
@@ -79,7 +79,7 @@ export default function CardsPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 relative bg-white rounded-[99px] flex items-center justify-center flex-shrink-0">
-                        <CreditCard className="w-8 h-8 text-zinc-800" />
+                        <CreditCardIcon className="w-8 h-8 text-zinc-800" />
                       </div>
                       <div>
                         <Subheading className="text-white font-medium">
@@ -99,11 +99,11 @@ export default function CardsPage() {
                     <div className="flex flex-col items-stretch gap-2">
                       {!card.isDefault && (
                         <Button className="min-w-[160px]"onClick={() => handleSetDefault(card.id)}>
-                          <Star className="w-5 h-5 mr-2" />Predeterminar
+                          <StarIcon className="w-5 h-5 mr-2" />Predeterminar
                         </Button>
                       )}
                       <Button className="min-w-[160px]" onClick={() => handleDeleteCard(card.id)}>
-                        <Trash2 className="w-5 h-5 mr-2" />Eliminar
+                        <TrashIcon className="w-5 h-5 mr-2" />Eliminar
                       </Button>
                     </div>
                   </div>
