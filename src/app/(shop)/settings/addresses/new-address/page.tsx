@@ -11,7 +11,7 @@ import { Body, BodySmall } from "@/components/atoms/Typography";
 
 export default function NewAddressPage() {
   return (
-    <PageLayout>
+    <PageLayout className="px-[240px]">
       <div className="pt-8 pb-4">
         <SettingsBreadcrumb
           items={[

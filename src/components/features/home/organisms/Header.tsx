@@ -56,7 +56,7 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="w-full border-b border-zinc-800">
+    <header className="w-full">
       <div className="max-w-[1440px] mx-auto px-[80px] py-4 lg:py-6">
         <div className="flex justify-between items-center gap-4">
           {/* Logo */}

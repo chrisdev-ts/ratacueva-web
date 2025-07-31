@@ -64,7 +64,7 @@ export default function SettingsPage() {
   ]
 
   return (
-    <PageLayout>
+    <PageLayout className="px-[240px]">
       <div className="self-stretch flex-1 pt-12 pb-8 flex flex-col justify-start items-center gap-8">
         <div className="self-stretch flex flex-col sm:flex-row justify-start items-center gap-8">
           <div className="w-20 h-20 p-2.5 bg-gray rounded-[99px] flex items-center justify-center overflow-hidden">
