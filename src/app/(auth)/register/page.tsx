@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Body } from "@/components/atoms/Typography/index";
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
+import { registerUser, RegisterPayload } from "@/services/auth/register";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -13,9 +15,32 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Formulario de registro enviado");
+
+    if (password !== confirmPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    const payload: RegisterPayload = {
+      name,
+      lastName: lastName1,
+      secondLastName: lastName2,
+      email,
+      password,
+    };
+
+    try {
+      const response = await registerUser(payload);
+      console.log("Usuario registrado:", response);
+      router.push("/login");
+    } catch (error: any) {
+      console.error("Error al registrar:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "Hubo un error al registrar");
+    }
   };
 
   return (
