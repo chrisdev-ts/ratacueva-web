@@ -2,19 +2,27 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Receipt, Heart, ClipboardList, CreditCard, MapPin, Lock, Bell } from "lucide-react"
+import { 
+  DocumentTextIcon, 
+  HeartIcon, 
+  ClipboardDocumentCheckIcon, 
+  CreditCardIcon, 
+  MapPinIcon, 
+  LockClosedIcon, 
+  BellIcon 
+} from "@heroicons/react/24/outline"
 import { PageLayout } from "@/components/templates/PageLayout"
 
 export default function SettingsPage() {
   const row1 = [
     {
-      icon: Receipt,
+      icon: DocumentTextIcon,
       title: "Historial de compras",
       description: "Lista de todas las compras que has realizado.",
       href: "/settings/purchases",
     },
     {
-      icon: Heart,
+      icon: HeartIcon,
       title: "Favoritos",
       description: "Lista de productos que has marcado como favoritos.",
       href: "/settings/favorites",
@@ -22,19 +30,19 @@ export default function SettingsPage() {
   ]
   const row2 = [
     {
-      icon: ClipboardList,
+      icon: ClipboardDocumentCheckIcon,
       title: "Información personal",
       description: "Información de tu identificación oficial y tu actividad fiscal.",
       href: "/settings/personal-info",
     },
     {
-      icon: CreditCard,
+      icon: CreditCardIcon,
       title: "Tarjetas",
       description: "Tarjetas guardadas en la cuenta.",
       href: "/settings/cards",
     },
     {
-      icon: MapPin,
+      icon: MapPinIcon,
       title: "Direcciones",
       description: "Direcciones guardadas en tu cuenta.",
       href: "/settings/addresses",
@@ -42,13 +50,13 @@ export default function SettingsPage() {
   ]
   const row3 = [
     {
-      icon: Lock,
+      icon: LockClosedIcon,
       title: "Privacidad",
       description: "Preferencias y control sobre el uso de tus datos.",
       href: "/settings/privacy-policy",
     },
     {
-      icon: Bell,
+      icon: BellIcon,
       title: "Notificaciones",
       description: "Elige qué tipo de información quieres recibir.",
       href: "/settings/notifications",
@@ -56,7 +64,7 @@ export default function SettingsPage() {
   ]
 
   return (
-    <PageLayout>
+    <PageLayout className="px-[240px]">
       <div className="self-stretch flex-1 pt-12 pb-8 flex flex-col justify-start items-center gap-8">
         <div className="self-stretch flex flex-col sm:flex-row justify-start items-center gap-8">
           <div className="w-20 h-20 p-2.5 bg-gray rounded-[99px] flex items-center justify-center overflow-hidden">

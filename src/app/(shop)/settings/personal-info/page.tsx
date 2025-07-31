@@ -4,12 +4,12 @@ import { PageLayout } from "@/components/templates/PageLayout"
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 import Input from "@/components/atoms/Input"
 import Button from "@/components/atoms/Button"
-import { Calendar, Save } from "lucide-react"
+import { CalendarIcon, CheckIcon } from "@heroicons/react/24/outline"
 import { Body, BodySmall } from "@/components/atoms/Typography"
 
 export default function PersonalInfoPage() {
   return (
-    <PageLayout>
+    <PageLayout className="px-[240px]">
       <div className="pt-8 pb-4">
         <SettingsBreadcrumb
           items={[
@@ -84,7 +84,7 @@ export default function PersonalInfoPage() {
               </BodySmall>
               <div className="flex h-[44px] w-full items-center justify-between rounded-lg border border-neutral-600 bg-gray px-4 py-3 box-border">
                 <Body className="text-base font-medium text-white">20/07/2004</Body>
-                <Calendar className="h-6 w-6 text-white flex-shrink-0" />
+                <CalendarIcon className="h-6 w-6 text-white flex-shrink-0" />
               </div>
             </div>
             
@@ -123,7 +123,7 @@ export default function PersonalInfoPage() {
           
           <div className="flex w-full justify-end">
             <Button>
-              <Save className="w-5 h-5 mr-2" />
+              <CheckIcon className="w-5 h-5 mr-2" />
               Actualizar
             </Button>
           </div>

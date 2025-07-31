@@ -1,7 +1,7 @@
 "use client"
 import type React from "react"
 import { useState } from "react"
-import { X, ChevronDown, ChevronUp } from "lucide-react"
+import { XMarkIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline"
 import { Subheading, Body } from "@/components/atoms/Typography"
 import Button from "@/components/atoms/Button"
 import type { Filters } from "@/app/lib/data"
@@ -83,9 +83,9 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
       >
         <Subheading className="text-white">{title}</Subheading>
         {isExpanded ? (
-          <ChevronUp className="w-5 h-5 text-zinc-400" />
+          <ChevronUpIcon className="w-5 h-5 text-zinc-400" />
         ) : (
-          <ChevronDown className="w-5 h-5 text-zinc-400" />
+          <ChevronDownIcon className="w-5 h-5 text-zinc-400" />
         )}
       </Button>
       {isExpanded && <div className="px-4 pb-4">{children}</div>}
@@ -102,7 +102,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
             Limpiar todo
           </button>
           <Button onClick={onClose} variant="icon" className="lg:hidden text-zinc-400 hover:text-white bg-transparent border-none shadow-none h-auto p-0 rounded-none">
-            <X className="w-5 h-5" />
+            <XMarkIcon className="w-5 h-5" />
           </Button>
         </div>
       </div>

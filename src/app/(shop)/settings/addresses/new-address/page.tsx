@@ -2,7 +2,7 @@
 
 import { PageLayout } from "@/components/templates/PageLayout"
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
-import { MapPin, Save } from "lucide-react"
+import { MapPinIcon, CheckIcon } from "@heroicons/react/24/outline"
 import Input from "@/components/atoms/Input"
 import Button from "@/components/atoms/Button"
 import { RadioGroup, RadioGroupItem } from "@/components/atoms/radio-group"
@@ -11,7 +11,7 @@ import { Body, BodySmall } from "@/components/atoms/Typography";
 
 export default function NewAddressPage() {
   return (
-    <PageLayout>
+    <PageLayout className="px-[240px]">
       <div className="pt-8 pb-4">
         <SettingsBreadcrumb
           items={[
@@ -26,7 +26,7 @@ export default function NewAddressPage() {
         <div className="overflow-hidden rounded-lg bg-gray p-6">
           <div className="mb-6 flex w-full flex-col items-start gap-6 self-stretch">
             <div className="inline-flex h-auto min-h-11 items-center justify-start gap-3 px-0 py-0 text-cyan-400">
-              <MapPin className="h-6 w-6 text-cyan-400" />
+              <MapPinIcon className="h-6 w-6 text-cyan-400" />
               <Subheading className="text-cyan-400">Usar mi ubicación</Subheading>
             </div>
 
@@ -172,7 +172,7 @@ export default function NewAddressPage() {
 
           <div className="flex w-full justify-end">
             <Button>
-              <Save className="w-5 h-5 mr-2" />
+              <CheckIcon className="w-5 h-5 mr-2" />
               Guardar nueva dirección
             </Button>
           </div>

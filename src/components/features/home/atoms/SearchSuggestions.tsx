@@ -1,6 +1,6 @@
 //C:\Users\Misrael\Documents\WEBS\ratacueva-web\src\components\organisms\search\search-suggestions.tsx
 "use client"
-import { Search, TrendingUp, Star, Truck } from "lucide-react"
+import { MagnifyingGlassIcon, ArrowTrendingUpIcon, StarIcon, TruckIcon } from "@heroicons/react/24/outline"
 import { Body, BodySmall, Caption } from "@/components/atoms/Typography"
 import Button from "@/components/atoms/Button"
 import { mockProducts } from "@/app/lib/data"
@@ -64,13 +64,13 @@ export default function SearchSuggestions({ query, suggestions, onSelect, onClos
                       <Body className="text-white text-sm truncate">{product.name}</Body>
                       <div className="flex items-center gap-2 mt-1">
                         <div className="flex items-center gap-1">
-                          <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                          <StarIcon className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                           <BodySmall className="text-white text-xs">{product.rating}</BodySmall>
                         </div>
                         <Caption className="text-zinc-400 text-xs">₡{product.price.toLocaleString()}</Caption>
                         {product.shipping && (
                           <div className="flex items-center gap-1">
-                            <Truck className="w-3 h-3 text-green-400" />
+                            <TruckIcon className="w-3 h-3 text-green-400" />
                             <Caption className="text-green-400 text-xs">{product.shipping}</Caption>
                           </div>
                         )}
@@ -95,9 +95,9 @@ export default function SearchSuggestions({ query, suggestions, onSelect, onClos
                   variant="icon"
                   className="w-full px-4 py-3 text-left hover:bg-zinc-700 rounded-lg transition-colors flex items-center gap-3 h-auto bg-transparent border-none shadow-none"
                 >
-                  <Search className="w-4 h-4 text-zinc-400 flex-shrink-0" />
+                  <MagnifyingGlassIcon className="w-4 h-4 text-zinc-400 flex-shrink-0" />
                   <Body className="text-white flex-1">{suggestion}</Body>
-                  <TrendingUp className="w-4 h-4 text-zinc-500" />
+                  <ArrowTrendingUpIcon className="w-4 h-4 text-zinc-500" />
                 </Button>
               ))}
             </div>

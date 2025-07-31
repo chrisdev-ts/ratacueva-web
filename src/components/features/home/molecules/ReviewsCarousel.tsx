@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ReviewCard } from "../atoms"
-import { Review } from "../../../../../lib/userReviews"
+import { Review } from "@/lib/userReviews"
 
 interface ReviewsCarouselProps {
   reviews: Review[]

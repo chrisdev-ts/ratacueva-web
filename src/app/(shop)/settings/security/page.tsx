@@ -1,7 +1,7 @@
 "use client"
 
 import { PageLayout } from "@/components/templates/PageLayout"
-import { ChevronLeft, Eye, EyeOff, Shield, Key, Smartphone } from "lucide-react"
+import { ChevronLeftIcon, EyeIcon, EyeSlashIcon, ShieldCheckIcon, KeyIcon, DevicePhoneMobileIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -16,7 +16,7 @@ export default function SecurityPage() {
         <div className="mb-6">
           <div className="flex items-center gap-4 mb-4">
             <Link href="/settings" className="text-white hover:text-primary transition-colors">
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeftIcon className="w-6 h-6" />
             </Link>
             <div className="text-white text-2xl font-bold">Seguridad</div>
           </div>
@@ -24,7 +24,7 @@ export default function SecurityPage() {
         <div className="space-y-6">
           <div className="p-6 bg-zinc-800 rounded-lg">
             <div className="flex items-center gap-3 mb-4">
-              <Shield className="w-6 h-6 text-primary" />
+              <ShieldCheckIcon className="w-6 h-6 text-primary" />
               <div className="text-white text-xl font-bold">Cambiar contraseña</div>
             </div>
             <div className="space-y-4">
@@ -40,7 +40,7 @@ export default function SecurityPage() {
                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400 hover:text-white"
                   >
-                    {showCurrentPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showCurrentPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
@@ -56,7 +56,7 @@ export default function SecurityPage() {
                     onClick={() => setShowNewPassword(!showNewPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400 hover:text-white"
                   >
-                    {showNewPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showNewPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
@@ -72,7 +72,7 @@ export default function SecurityPage() {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400 hover:text-white"
                   >
-                    {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showConfirmPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
@@ -81,7 +81,7 @@ export default function SecurityPage() {
 
           <div className="p-6 bg-zinc-800 rounded-lg">
             <div className="flex items-center gap-3 mb-4">
-              <Key className="w-6 h-6 text-primary" />
+              <KeyIcon className="w-6 h-6 text-primary" />
               <div className="text-white text-xl font-bold">Autenticación de dos factores</div>
             </div>
             <div className="flex items-center justify-between">
@@ -97,7 +97,7 @@ export default function SecurityPage() {
 
           <div className="p-6 bg-zinc-800 rounded-lg">
             <div className="flex items-center gap-3 mb-4">
-              <Smartphone className="w-6 h-6 text-primary" />
+              <DevicePhoneMobileIcon className="w-6 h-6 text-primary" />
               <div className="text-white text-xl font-bold">Dispositivos conectados</div>
             </div>
             <div className="space-y-3">
