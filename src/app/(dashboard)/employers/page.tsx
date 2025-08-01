@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@/components/atoms/Button";
 import { Body, Display } from "@/components/atoms/Typography";
 import Input from "@/components/atoms/Input";
@@ -13,15 +13,7 @@ import {
 import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-
-interface Employee {
-    id: string;
-    name: string;
-    phone: string;
-    email: string;
-    city: string;
-}
-
+import { useRouter } from "next/navigation";
 
 // Mock data for employees - replace with actual API data
 const mockEmployees = [
@@ -98,6 +90,26 @@ const mockEmployees = [
 ];
 
 export default function Employers() {
+
+    const [loading, setLoading] = useState(true);
+    const router = useRouter();
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (!storedUser) {
+            router.push("/login");
+            return;
+        }
+
+        const user = JSON.parse(storedUser);
+        if (user.role !== "admin") {
+            router.push("/overview"); // redirige si no es admin
+        } else {
+            setLoading(false); // muestra el contenido si es admin
+        }
+    }, []);
+
+    if (loading) return null; // o un loader
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");

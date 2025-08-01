@@ -29,11 +29,13 @@ const LoginPage = () => {
         throw new Error(data.message || "Error al iniciar sesión");
       }
 
-      // Guarda el token si lo necesitas en localStorage (opcional)
+      // Guarda el token y el usuario
       localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-      // Redirige al dashboard o a /overview
+      // Redirige al dashboard
       router.push("/overview");
+
 
     } catch (error: any) {
       setErrorMessage(error.message);
