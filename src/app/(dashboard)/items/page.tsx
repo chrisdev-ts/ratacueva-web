@@ -110,14 +110,15 @@ export default function Items() {
                             </div>
                             <Body className="text-text p-2">entradas por página</Body>
                         </div>
-                        <div className="flex items-center gap-3 rounded-2xl px-4 py-2.5 w-[341px]">
-                            <MagnifyingGlassIcon className="w-6 h-6 text-text" />
+                        <div className="w-[341px] relative">
+                            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-placeholder pointer-events-none" />
                             <Input
+                                variant="searchbar"
                                 type="text"
                                 placeholder="Buscar productos..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="bg-transparent text-text placeholder-placeholder outline-none flex-1 text-body" />
+                                className="pl-10"/>
                         </div>
                     </div>
 
@@ -130,7 +131,7 @@ export default function Items() {
                         <BaseTable data={products ?? []} columns={columns} />
                     )}
 
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center flex-wrap gap-6">
                         <Body className="text-text">
                             Mostrando {startItem} - {endItem} de {totalRecords} registros
                         </Body>
