@@ -90,8 +90,11 @@ const mockEmployees = [
 ];
 
 export default function Employers() {
-
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(10);
+    const [searchTerm, setSearchTerm] = useState("");
+
     const router = useRouter();
 
     useEffect(() => {
@@ -103,16 +106,13 @@ export default function Employers() {
 
         const user = JSON.parse(storedUser);
         if (user.role !== "admin") {
-            router.push("/overview"); // redirige si no es admin
+            router.push("/overview");
         } else {
-            setLoading(false); // muestra el contenido si es admin
+            setLoading(false);
         }
     }, []);
 
-    if (loading) return null; // o un loader
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(10);
-    const [searchTerm, setSearchTerm] = useState("");
+    if (loading) return null;
 
 
 
