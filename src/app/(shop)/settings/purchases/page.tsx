@@ -3,9 +3,9 @@
 import { useState } from "react"
 import Image from "next/image"
 import { PageLayout } from "@/components/templates/PageLayout"
-import { Search, ChevronDown, Eye, RotateCcw } from "lucide-react"
-import { Input } from "@/components/ui/input"   
-import { Button } from "@/components/ui/button"
+import { MagnifyingGlassIcon, EyeIcon, ArrowPathIcon, FunnelIcon } from "@heroicons/react/24/outline"
+import Input from "@/components/atoms/Input"
+import Button from "@/components/atoms/Button"
 import {  Body } from "@/components/atoms/Typography";
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 
@@ -78,24 +78,23 @@ export default function PurchasesPage() {
         />
 
         <div className="mb-8 flex items-center gap-6">
-          <div className="flex-1">
-            <div className="flex h-11 items-center gap-3 rounded-2xl border border-zinc-300 px-4 py-2.5">
-              <Search className="h-6 w-6 text-zinc-300" />
-              <Input
-                type="text"
-                placeholder="Buscar productos..."
-                className="flex-1 border-none bg-transparent p-0 text-base font-normal text-zinc-300 placeholder:text-zinc-300 focus-visible:ring-0 focus-visible:ring-offset-0"
-              />
-            </div>
+          <div className="flex-1 relative">
+            <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-zinc-400 z-10" />
+            <Input
+              type="text"
+              placeholder="Buscar productos..."
+              className="h-11 pl-12"
+              variant="search"
+            />
           </div>
-          <Button className="h-11 min-h-11 rounded-[99px] border border-cyan-400 px-4 py-2.5 font-bold text-cyan-400 hover:bg-cyan-400/10">
+          <button className="h-11 min-h-11 rounded-[99px] border border-cyan-400 px-4 py-2.5 font-bold text-cyan-400 hover:bg-cyan-400/10 flex items-center gap-2">
+            <FunnelIcon className="w-5 h-5" />
             Todas
-            <ChevronDown className="ml-3 h-6 w-6" />
-          </Button>
+          </button>
         </div>
         <div className="space-y-8">
           {purchaseGroups.map((group) => (
-            <div key={group.date} className="overflow-hidden rounded-lg bg-zinc-800 p-6">
+            <div key={group.date} className="overflow-hidden rounded-lg bg-gray p-6">
               <Body className="mb-6 text-white font-bold">{group.date}</Body>
               <div className="h-px w-full bg-white" />
               <div className="mt-6 space-y-6">
@@ -118,8 +117,8 @@ export default function PurchasesPage() {
                         <Body className="self-stretch text-white">{item.description}</Body>
                       </div>
                       <div className="flex flex-col items-start gap-6">
-                        <Button className="rounded-[99px] min-w-[160px] bg-pink-600 hover:bg-pink-700 transition-colors text-white"><Eye className="w-5 h-5" />Ver compra</Button>
-                        <Button className="rounded-[99px] min-w-[160px] bg-pink-600 hover:bg-pink-700 transition-colors text-white"><RotateCcw className="w-5 h-5" />Volver a comprar</Button>
+                        <Button className="min-w-[160px] "><EyeIcon className="w-5 h-5 mr-2" />Ver compra</Button>
+                        <Button className="min-w-[160px] "><ArrowPathIcon className="w-5 h-5 mr-2" />Volver a comprar</Button>
                       </div>
                     </div>
                   </div>

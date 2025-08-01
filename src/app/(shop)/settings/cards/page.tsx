@@ -1,11 +1,11 @@
 "use client"
 
 import { PageLayout } from "@/components/templates/PageLayout"
-import { CreditCard, Trash2, Star } from "lucide-react"
+import { CreditCardIcon, TrashIcon, StarIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 import { Body, Subheading } from "@/components/atoms/Typography";
-import { Button } from "@/components/ui/button"
+import Button from "@/components/atoms/Button"
 
 type Card = {
   id: number
@@ -75,11 +75,11 @@ export default function CardsPage() {
               <Body className="text-white text-center text-xl w-full py-8">No tienes tarjetas guardadas.</Body>
             ) : (
               savedCards.map((card) => (
-                <div key={card.id} className="p-6 bg-zinc-800 rounded-lg">
+                <div key={card.id} className="p-6 bg-gray rounded-lg">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 relative bg-white rounded-[99px] flex items-center justify-center flex-shrink-0">
-                        <CreditCard className="w-8 h-8 text-zinc-800" />
+                        <CreditCardIcon className="w-8 h-8 text-zinc-800" />
                       </div>
                       <div>
                         <Subheading className="text-white font-medium">
@@ -89,7 +89,7 @@ export default function CardsPage() {
                         <Body className="text-zinc-400 text-sm">
                           Vencimiento: {card.expiry}
                           {card.isDefault && (
-                            <span className="ml-2 px-2 py-1 bg-pink-600 text-white text-xs rounded-full">
+                            <span className="ml-2 px-2 py-1 bg-primary text-white text-xs rounded-full">
                               Predeterminada
                             </span>
                           )}
@@ -98,12 +98,12 @@ export default function CardsPage() {
                     </div>
                     <div className="flex flex-col items-stretch gap-2">
                       {!card.isDefault && (
-                        <Button className="min-w-[160px] rounded-[99px] bg-pink-600 hover:bg-pink-700 transition-colors text-white" onClick={() => handleSetDefault(card.id)}>
-                          <Star className="w-5 h-5" />Predeterminar
+                        <Button className="min-w-[160px]"onClick={() => handleSetDefault(card.id)}>
+                          <StarIcon className="w-5 h-5 mr-2" />Predeterminar
                         </Button>
                       )}
-                      <Button className="min-w-[160px] rounded-[99px] bg-pink-600 hover:bg-pink-700 transition-colors text-white" onClick={() => handleDeleteCard(card.id)}>
-                        <Trash2 className="w-5 h-5" />Eliminar
+                      <Button className="min-w-[160px]" onClick={() => handleDeleteCard(card.id)}>
+                        <TrashIcon className="w-5 h-5 mr-2" />Eliminar
                       </Button>
                     </div>
                   </div>

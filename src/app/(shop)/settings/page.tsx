@@ -2,19 +2,27 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Receipt, Heart, ClipboardList, CreditCard, MapPin, Lock, Bell } from "lucide-react"
+import { 
+  DocumentTextIcon, 
+  HeartIcon, 
+  ClipboardDocumentCheckIcon, 
+  CreditCardIcon, 
+  MapPinIcon, 
+  LockClosedIcon, 
+  BellIcon 
+} from "@heroicons/react/24/outline"
 import { PageLayout } from "@/components/templates/PageLayout"
 
 export default function SettingsPage() {
   const row1 = [
     {
-      icon: Receipt,
+      icon: DocumentTextIcon,
       title: "Historial de compras",
       description: "Lista de todas las compras que has realizado.",
       href: "/settings/purchases",
     },
     {
-      icon: Heart,
+      icon: HeartIcon,
       title: "Favoritos",
       description: "Lista de productos que has marcado como favoritos.",
       href: "/settings/favorites",
@@ -22,19 +30,19 @@ export default function SettingsPage() {
   ]
   const row2 = [
     {
-      icon: ClipboardList,
+      icon: ClipboardDocumentCheckIcon,
       title: "Información personal",
       description: "Información de tu identificación oficial y tu actividad fiscal.",
       href: "/settings/personal-info",
     },
     {
-      icon: CreditCard,
+      icon: CreditCardIcon,
       title: "Tarjetas",
       description: "Tarjetas guardadas en la cuenta.",
       href: "/settings/cards",
     },
     {
-      icon: MapPin,
+      icon: MapPinIcon,
       title: "Direcciones",
       description: "Direcciones guardadas en tu cuenta.",
       href: "/settings/addresses",
@@ -42,13 +50,13 @@ export default function SettingsPage() {
   ]
   const row3 = [
     {
-      icon: Lock,
+      icon: LockClosedIcon,
       title: "Privacidad",
       description: "Preferencias y control sobre el uso de tus datos.",
       href: "/settings/privacy-policy",
     },
     {
-      icon: Bell,
+      icon: BellIcon,
       title: "Notificaciones",
       description: "Elige qué tipo de información quieres recibir.",
       href: "/settings/notifications",
@@ -56,10 +64,10 @@ export default function SettingsPage() {
   ]
 
   return (
-    <PageLayout>
+    <PageLayout className="px-[240px]">
       <div className="self-stretch flex-1 pt-12 pb-8 flex flex-col justify-start items-center gap-8">
-        <div className="self-stretch inline-flex flex-col sm:flex-row justify-start items-center gap-8">
-          <div className="w-20 h-20 p-2.5 bg-zinc-800 rounded-[99px] flex items-center justify-center overflow-hidden">
+        <div className="self-stretch flex flex-col sm:flex-row justify-start items-center gap-8">
+          <div className="w-20 h-20 p-2.5 bg-gray rounded-[99px] flex items-center justify-center overflow-hidden">
             <Image
               src="/placeholder.svg?height=80&width=80"
               alt="User Avatar"
@@ -68,7 +76,7 @@ export default function SettingsPage() {
               className="rounded-full object-cover"
             />
           </div>
-          <div className="inline-flex flex-col justify-center items-start gap-2 text-center sm:text-left">
+          <div className="flex flex-col justify-center items-start gap-2 text-center sm:text-left">
             <div className="text-white text-3xl font-bold">
               Jorge Christian Serrano Puertos
             </div>
@@ -82,15 +90,15 @@ export default function SettingsPage() {
             <Link
               key={index}
               href={category.href}
-              className="flex-1 self-stretch p-6 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-lg inline-flex flex-col justify-start items-start gap-4 overflow-hidden group"
+              className="flex-1 self-stretch p-6 bg-gray hover:bg-zinc-700 transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group"
             >
-              <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                <div className="p-0.5 py-1 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
-                  <category.icon className="w-6 h-6 text-white group-hover:text-pink-600 transition-colors" />
+              <div className="self-stretch flex justify-start items-center gap-2.5">
+                <div className="p-0.5 py-1 flex flex-col justify-start items-start gap-2.5 overflow-hidden">
+                  <category.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors" />
                 </div>
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-2">
-                <div className="text-white text-xl font-bold group-hover:text-pink-600 transition-colors">
+                <div className="text-white text-xl font-bold group-hover:text-primary transition-colors">
                   {category.title}
                 </div>
                 <div className="self-stretch text-white text-base font-normal">
@@ -107,15 +115,15 @@ export default function SettingsPage() {
             <Link
               key={index}
               href={category.href}
-              className="flex-1 self-stretch p-6 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-lg inline-flex flex-col justify-start items-start gap-4 overflow-hidden group"
+              className="flex-1 self-stretch p-6 bg-gray hover:bg-zinc-700 transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group"
             >
-              <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                <div className="p-0.5 py-1 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
-                  <category.icon className="w-6 h-6 text-white group-hover:text-pink-600 transition-colors" />
+              <div className="self-stretch flex justify-start items-center gap-2.5">
+                <div className="p-0.5 py-1 flex flex-col justify-start items-start gap-2.5 overflow-hidden">
+                  <category.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors" />
                 </div>
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-2">
-                <div className="text-white text-xl font-bold group-hover:text-pink-600 transition-colors">
+                <div className="text-white text-xl font-bold group-hover:text-primary transition-colors">
                   {category.title}
                 </div>
                 <div className="self-stretch text-white text-base font-normal">
@@ -132,15 +140,15 @@ export default function SettingsPage() {
             <Link
               key={index}
               href={category.href}
-              className="flex-1 self-stretch p-6 bg-zinc-800 hover:bg-zinc-700 transition-colors rounded-lg inline-flex flex-col justify-start items-start gap-4 overflow-hidden group"
+              className="flex-1 self-stretch p-6 bg-gray hover:bg-zinc-700 transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group"
             >
-              <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                <div className="p-0.5 py-1 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
-                  <category.icon className="w-6 h-6 text-white group-hover:text-pink-600 transition-colors" />
+              <div className="self-stretch flex justify-start items-center gap-2.5">
+                <div className="p-0.5 py-1 flex flex-col justify-start items-start gap-2.5 overflow-hidden">
+                  <category.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors" />
                 </div>
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-2">
-                <div className="text-white text-xl font-bold group-hover:text-pink-600 transition-colors">
+                <div className="text-white text-xl font-bold group-hover:text-primary transition-colors">
                   {category.title}
                 </div>
                 <div className="self-stretch text-white text-base font-normal">
