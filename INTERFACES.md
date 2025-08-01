@@ -18,12 +18,13 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
 
 1. [Respeta los mockups y Figma](#1-respeta-los-mockups-y-figma)
 2. [Estructura y ubicación de componentes](#2-estructura-y-ubicación-de-componentes)
-3. [Uso de layouts](#3-uso-de-layouts)
-4. [Tipografía y textos](#4-tipografía-y-textos)
-5. [Colores y estilos](#5-colores-y-estilos)
-6. [Paddings, margins y espaciados](#6-paddings-margins-y-espaciados)
-7. [Componentes reutilizables](#7-componentes-reutilizables)
-8. [Buenas prácticas y reglas de código](#8-buenas-prácticas-y-reglas-de-código)
+3. [Cómo crear nuevas páginas y cómo funcionan las rutas](#3-cómo-crear-nuevas-páginas-y-cómo-funcionan-las-rutas)
+4. [Uso de layouts](#4-uso-de-layouts)
+5. [Tipografía y textos](#5-tipografía-y-textos)
+6. [Colores y estilos](#6-colores-y-estilos)
+7. [Paddings, margins y espaciados](#7-paddings-margins-y-espaciados)
+8. [Componentes reutilizables](#8-componentes-reutilizables)
+9. [Buenas prácticas y reglas de código](#9-buenas-prácticas-y-reglas-de-código)
 
 ---
 
@@ -42,6 +43,15 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
 - **Features:** Funcionalidad específica por dominio (dashboard, products, privacy-policy): `src/components/features/<dominio>/`
   - **Dentro de cada feature** debes replicar la estructura atomic design (`atoms/`, `molecules/`, `organisms/`, `templates/`), pero solo para componentes muy específicos que solo se usen en esa sección. Si el componente puede ser útil en otras partes del proyecto, debe ir en la estructura general de `src/components/`.
 - **¿Nuevo componente?** Ubícalo donde corresponda. Si no encaja, consulta al equipo.
+
+## 3. Cómo crear nuevas páginas y cómo funcionan las rutas
+
+- El proyecto usa el sistema de rutas basado en el filesystem de Next.js (app router).
+- Cada carpeta dentro de `src/app/` representa una ruta. Por ejemplo, `src/app/shop/home/page.tsx` será accesible en `/shop/home`.
+- Para crear una nueva página, crea una carpeta con el nombre de la ruta y dentro un archivo `page.tsx`.
+- Si necesitas rutas dinámicas, usa corchetes: `src/app/shop/products/[id]/page.tsx` será `/shop/products/123`.
+- Los layouts (`layout.tsx`) y templates se pueden anidar para compartir estructura y estilos entre páginas.
+- No modifiques rutas existentes sin consultar, para evitar romper navegación o enlaces.
 
 ## 3. Uso de layouts
 
