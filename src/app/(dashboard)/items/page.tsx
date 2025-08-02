@@ -119,7 +119,7 @@ export default function Items() {
                             <Input
                                 variant="searchbar"
                                 type="text"
-                                placeholder="Buscar productos..."
+                                placeholder="Buscar producto..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="pl-10"/>

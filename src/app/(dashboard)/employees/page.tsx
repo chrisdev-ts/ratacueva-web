@@ -170,11 +170,10 @@ export default function Employees() {
                             <Input
                                 variant="searchbar"
                                 type="text"
-                                placeholder="Buscar empleados..."
+                                placeholder="Buscar empleado..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10"
-                            />
+                                className="pl-10"/>
                         </div>
                     </div>
 

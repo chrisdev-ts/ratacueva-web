@@ -161,7 +161,7 @@ export default function Shipments() {
                 <div className="flex flex-col gap-6">
                     <div className="flex justify-between items-center flex-wrap gap-6">
                         <div className="flex items-center py-1">
-                            <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer min-w-[240px]">
+                            <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer">
                                 <Body className="text-placeholder">{itemsPerPage}</Body>
                                 <ChevronDownIcon className="w-6 h-6 text-placeholder" />
                             </div>
@@ -175,8 +175,7 @@ export default function Shipments() {
                                 placeholder="Buscar envío..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10"
-                            />
+                                className="pl-10"/>
                         </div>
                     </div>
 

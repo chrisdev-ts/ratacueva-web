@@ -25,8 +25,8 @@ export default function Sales() {
 
     const filteredSales = useMemo(() => {
         if (!sales) return [];
-        
-        return sales.filter(sale => 
+
+        return sales.filter(sale =>
             sale.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
             sale.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
             sale.shippingCity.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -89,10 +89,10 @@ export default function Sales() {
 
     const generatePaginationItems = () => {
         const items: (string | number)[] = ["«", "‹"];
-        
+
         // Show first few pages, current page area, and last few pages
         const showPages = Math.min(6, totalPages);
-        
+
         if (totalPages <= 6) {
             // Show all pages if total is small
             for (let i = 1; i <= totalPages; i++) {
@@ -122,7 +122,7 @@ export default function Sales() {
                 items.push(totalPages);
             }
         }
-        
+
         items.push("›", "»");
         return items;
     };
@@ -137,8 +137,8 @@ export default function Sales() {
                 <div className="flex flex-col gap-6">
                     <div className="flex justify-between items-center flex-wrap gap-6">
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer min-w-[240px]">
-                                <Body className="text-text">{itemsPerPage}</Body>
+                            <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer">
+                                <Body className="text-placeholder">{itemsPerPage}</Body>
                                 <ChevronDownIcon className="w-6 h-6 text-placeholder" />
                             </div>
                             <Body className="text-text whitespace-nowrap">entradas por página</Body>
@@ -151,8 +151,7 @@ export default function Sales() {
                                 placeholder="Buscar venta..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-12"
-                            />
+                                className="pl-12"/>
                         </div>
                     </div>
 
