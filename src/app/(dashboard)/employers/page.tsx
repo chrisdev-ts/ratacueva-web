@@ -150,8 +150,7 @@ export default function Employers() {
                     <Link href="/employers/add">
                         <Button
                             variant="success"
-                            className="px-4 py-3 rounded-full font-bold text-dark flex items-center gap-3"
-                        >
+                            className="px-4 py-3 rounded-full font-bold text-dark flex items-center gap-3">
                             Agregar empleado
                         </Button>
                     </Link>
