@@ -34,7 +34,7 @@ export const SettingsBreadcrumb: React.FC<SettingsBreadcrumbProps> = ({
             <React.Fragment key={index}>
               {index > 0 && <span className={`mx-2 ${color}`}>{">"}</span>}
               {item.href && index < items.length - 1 ? (
-                <Link href={item.href} className={`${color} hover:text-pink-600 transition-colors`}>
+                <Link href={item.href} className={`${color} hover:text-primary transition-colors`}>
                   <BreadcrumbTypography>{item.label}</BreadcrumbTypography>
                 </Link>
               ) : (

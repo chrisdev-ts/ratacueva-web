@@ -1,10 +1,10 @@
 "use client"
 
 import { PageLayout } from "@/components/templates/PageLayout"
-import { Save } from "lucide-react"
+import { CheckIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
 import { Body, BodySmall, Subheading } from "@/components/atoms/Typography";
-import { Button } from "@/components/ui/button";
+import Button from "@/components/atoms/Button";
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 
 export default function NotificationsPage() {
@@ -48,7 +48,7 @@ export default function NotificationsPage() {
           className="mb-8"
         />
         <div className="space-y-6">
-          <div className="p-6 bg-zinc-800 rounded-lg">
+          <div className="p-6 bg-gray rounded-lg">
             <div className="flex items-center gap-3 mb-4">
               <Subheading className="text-white text-xl font-bold">Notificaciones por email</Subheading>
             </div>
@@ -61,7 +61,7 @@ export default function NotificationsPage() {
                 <button
                   onClick={() => updateEmailSetting('orders')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    emailNotifications.orders ? 'bg-pink-600' : 'bg-zinc-600'
+                    emailNotifications.orders ? 'bg-primary' : 'bg-zinc-600'
                   }`}
                 >
                   <span
@@ -79,7 +79,7 @@ export default function NotificationsPage() {
                 <button
                   onClick={() => updateEmailSetting('promotions')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    emailNotifications.promotions ? 'bg-pink-600' : 'bg-zinc-600'
+                    emailNotifications.promotions ? 'bg-primary' : 'bg-zinc-600'
                   }`}
                 >
                   <span
@@ -97,7 +97,7 @@ export default function NotificationsPage() {
                 <button
                   onClick={() => updateEmailSetting('newsletter')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    emailNotifications.newsletter ? 'bg-pink-600' : 'bg-zinc-600'
+                    emailNotifications.newsletter ? 'bg-primary' : 'bg-zinc-600'
                   }`}
                 >
                   <span
@@ -115,7 +115,7 @@ export default function NotificationsPage() {
                 <button
                   onClick={() => updateEmailSetting('security')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    emailNotifications.security ? 'bg-pink-600' : 'bg-zinc-600'
+                    emailNotifications.security ? 'bg-primary' : 'bg-zinc-600'
                   }`}
                 >
                   <span
@@ -128,7 +128,7 @@ export default function NotificationsPage() {
             </div>
           </div>
 
-          <div className="p-6 bg-zinc-800 rounded-lg">
+          <div className="p-6 bg-gray rounded-lg">
             <div className="flex items-center gap-3 mb-4">
               <Subheading className="text-white text-xl font-bold">Notificaciones push</Subheading>
             </div>
@@ -141,7 +141,7 @@ export default function NotificationsPage() {
                 <button
                   onClick={() => updatePushSetting('orders')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    pushNotifications.orders ? 'bg-pink-600' : 'bg-zinc-600'
+                    pushNotifications.orders ? 'bg-primary' : 'bg-zinc-600'
                   }`}
                 >
                   <span
@@ -159,7 +159,7 @@ export default function NotificationsPage() {
                 <button
                   onClick={() => updatePushSetting('promotions')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    pushNotifications.promotions ? 'bg-pink-600' : 'bg-zinc-600'
+                    pushNotifications.promotions ? 'bg-primary' : 'bg-zinc-600'
                   }`}
                 >
                   <span
@@ -177,7 +177,7 @@ export default function NotificationsPage() {
                 <button
                   onClick={() => updatePushSetting('chat')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    pushNotifications.chat ? 'bg-pink-600' : 'bg-zinc-600'
+                    pushNotifications.chat ? 'bg-primary' : 'bg-zinc-600'
                   }`}
                 >
                   <span
@@ -195,7 +195,7 @@ export default function NotificationsPage() {
                 <button
                   onClick={() => updatePushSetting('updates')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    pushNotifications.updates ? 'bg-pink-600' : 'bg-zinc-600'
+                    pushNotifications.updates ? 'bg-primary' : 'bg-zinc-600'
                   }`}
                 >
                   <span
@@ -209,7 +209,7 @@ export default function NotificationsPage() {
           </div>
           
           <div className="flex justify-end">
-            <Button><Save className="w-5 h-5" />Guardar cambios</Button>
+            <Button><CheckIcon className="w-5 h-5 mr-2" />Guardar cambios</Button>
           </div>
         </div>
       </div>

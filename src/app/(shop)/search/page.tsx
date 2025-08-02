@@ -1,6 +1,6 @@
 //C:\Users\Misrael\Documents\WEBS\ratacueva-web\src\app\search\page.tsx
 import { mockProducts, type Filters } from "@/app/lib/data"
-import SearchClientPage from "@/components/features/landing/search/search-client-page"
+import SearchClientPage from "@/components/features/home/organisms/SearchClientPage"
 
 interface SearchPageProps {
   searchParams: Promise<{

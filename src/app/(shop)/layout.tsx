@@ -1,6 +1,5 @@
 import type React from "react"
-import Footer from "@/components/organisms/Footer"           
-import Header from "@/components/organisms/Header"    
+import { Footer, Header } from "@/components/features/home/organisms"    
 
 export default function ShopLayout({
   children,
