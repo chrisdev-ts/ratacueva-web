@@ -14,86 +14,19 @@ import DashboardContentLayout from "@/components/features/dashboard/templates/Da
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
+import { useEmployees, useDeleteEmployee } from "@/hook/dashboard/useEmployees";
+import type { Address } from "@/hook/dashboard/useEmployees";
 
-// Mock data for employees - replace with actual API data
-const mockEmployees = [
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-    {
-        id: "688ab10d8dfb0",
-        name: "Emanuel Najera",
-        phone: "2711234567",
-        email: "emanuel@ejemplo.com",
-        city: "Mexico City",
-    },
-];
 
 export default function Employers() {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");
+
+    const { data: employees, isLoading, error } = useEmployees();
+    console.log("Employees data:", employees);
+    const { mutate: deleteEmployee } = useDeleteEmployee();
 
     const router = useRouter();
 
@@ -110,18 +43,21 @@ export default function Employers() {
         } else {
             setLoading(false);
         }
-    }, []);
+    }, [router]);
 
     if (loading) return null;
 
+    const handleDeleteEmployee = (id: string) => {
+        const confirmDelete = window.confirm("¿Eliminar empleado?");
+        if (!confirmDelete) return;
+        deleteEmployee(id);
+    };
 
-
-    // Filter employees based on search term
-    const filteredEmployees = mockEmployees.filter(employee =>
+    const filteredEmployees = (employees ?? []).filter((employee) =>
         employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.phone.includes(searchTerm) ||
-        employee.id.includes(searchTerm)
+        employee._id.includes(searchTerm)
     );
 
     const totalRecords = filteredEmployees.length;
@@ -130,7 +66,6 @@ export default function Employers() {
     const startItem = (currentPage - 1) * itemsPerPage + 1;
     const endItem = Math.min(currentPage * itemsPerPage, totalRecords);
 
-    // Get current page data
     const currentData = filteredEmployees.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
@@ -138,48 +73,68 @@ export default function Employers() {
 
     const columns: ColumnDef<any>[] = [
         {
-            accessorKey: "id",
+            accessorKey: "_id",
             header: "EMPLOYEE ID",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>,
+            size: 122,
+            cell: (info) => (
+                <Link href={`/employers/${info.getValue()}`} className="text-text underline hover:no-underline transition-all">
+                    <Body className="text-current truncate max-w-[120px]">{String(info.getValue())}</Body>
+                </Link>
+            ),
         },
         {
-            accessorKey: "name",
             header: "NAME",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>,
+            size: 122,
+            cell: (info) => {
+                const { name, lastName } = info.row.original;
+                return (
+                    <Body className="text-text truncate max-w-[120px]">
+                        {name} {lastName}
+                    </Body>
+                );
+            },
         },
+
         {
             accessorKey: "phone",
             header: "PHONE NUMBER",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>,
+            size: 122,
+            cell: (info) => <Body className="text-text truncate max-w-[120px]">{String(info.getValue())}</Body>,
         },
         {
             accessorKey: "email",
             header: "EMAIL",
-            size: 120,
-            cell: info => <Body className="text-text truncate max-w-[120px]">{String(info.getValue())}</Body>,
+            size: 122,
+            cell: (info) => (
+                <Body className="text-text truncate max-w-[120px]">{String(info.getValue())}</Body>
+            ),
         },
         {
-            accessorKey: "city",
+            accessorKey: "addresses",
             header: "CITY",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>,
+            size: 122,
+            cell: (info) => {
+                const addresses = info.row.original.addresses || [];
+                const defaultAddress = addresses.find((addr: Address) => addr.isDefault);
+                return (
+                    <Body className="text-text truncate max-w-[120px]">
+                        {defaultAddress?.city || "—"}
+                    </Body>
+                );
+            },
         },
         {
             id: "actions",
             header: "ACTIONS",
             cell: ({ row }) => (
                 <div className="flex items-center gap-2">
-                    <Button variant="icon" onClick={() => handleDeleteEmployee(row.original.id)}>
+                    <Button variant="icon" onClick={() => handleDeleteEmployee(row.original._id)}>
                         <TrashIcon className="w-6 h-6 text-danger" />
                     </Button>
                 </div>
             ),
         },
     ];
-
-    const handleDeleteEmployee = (employeeId: string) => {
-        // Add delete functionality here
-        console.log("Delete employee:", employeeId);
-    };
 
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
@@ -195,7 +150,8 @@ export default function Employers() {
                     <Link href="/employers/add">
                         <Button
                             variant="success"
-                            className="px-4 py-3 rounded-full font-bold text-dark flex items-center gap-3">
+                            className="px-4 py-3 rounded-full font-bold text-dark flex items-center gap-3"
+                        >
                             Agregar empleado
                         </Button>
                     </Link>
@@ -204,7 +160,7 @@ export default function Employers() {
                 <div className="flex flex-col gap-6">
                     <div className="flex justify-between items-center flex-wrap gap-6">
                         <div className="flex items-center py-1">
-                            <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer min-w-[240px]">
+                            <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer">
                                 <Body className="text-placeholder">{itemsPerPage}</Body>
                                 <ChevronDownIcon className="w-6 h-6 text-placeholder" />
                             </div>
@@ -223,11 +179,17 @@ export default function Employers() {
                         </div>
                     </div>
 
-                    <BaseTable columns={columns} data={currentData} />
+                    {isLoading ? (
+                        <p className="text-gray-400">Cargando empleados...</p>
+                    ) : error ? (
+                        <p className="text-red-400">Error al cargar empleados</p>
+                    ) : (
+                        <BaseTable data={currentData} columns={columns} />
+                    )}
 
                     <div className="flex justify-between items-center flex-wrap gap-6">
                         <Body className="text-text">
-                            Mostrando {startItem} de {itemsPerPage} en {totalRecords} registros
+                            Mostrando {startItem} a {endItem} de {totalRecords} registros
                         </Body>
 
                         <div className="flex items-center gap-1">
@@ -243,7 +205,8 @@ export default function Employers() {
                                             else if (label === "»") setCurrentPage(totalPages);
                                             else if (typeof label === "number") setCurrentPage(label);
                                         }}
-                                        className={currentPage === label ? "bg-gray" : ""}>
+                                        className={currentPage === label ? "bg-gray" : ""}
+                                    >
                                         {label}
                                     </Button>
                                 )

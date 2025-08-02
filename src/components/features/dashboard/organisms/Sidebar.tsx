@@ -31,8 +31,8 @@ export default function Sidebar() {
         { name: "Inicio", icon: HomeIcon, href: "/overview" },
         { name: "Productos", icon: CubeIcon, href: "/items" },
         ...(role === "admin" ? [{ name: "Empleados", icon: UsersIcon, href: "/employers" }] : []),
-        { name: "Ventas", icon: ShoppingCartIcon, href: "/sales" },
         { name: "Envíos", icon: TruckIcon, href: "/shipments" },
+        { name: "Ventas", icon: ShoppingCartIcon, href: "/sales" },
     ];
 
     const bottomNavigationItems = [

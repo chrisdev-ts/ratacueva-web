@@ -11,12 +11,6 @@ type Product = {
     price: number;
 };
 
-type ProductsResponse = {
-    data: Product[];
-    pagination: { totalProducts: number; totalPages: number; currentPage: number };
-};
-
-
 export const useProducts = () => {
     return useQuery<Product[]>({
         queryKey: ["products"],

@@ -36,7 +36,11 @@ export default function Items() {
         {
             accessorKey: "name",
             header: "PRODUCT NAME",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>,
+            cell: info => (
+                <Link href={`/items/${info.row.original.id || info.row.index}`} className="text-text underline hover:no-underline transition-all">
+                    <Body className="text-current">{String(info.getValue())}</Body>
+                </Link>
+            ),
         },
         {
             accessorKey: "category",
