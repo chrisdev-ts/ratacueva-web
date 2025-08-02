@@ -7,6 +7,8 @@ import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { searchSuggestions } from "@/app/lib/data"
 import SearchSuggestions from "@/components/features/landing/search/search-suggestions"
+import Input from "../atoms/Input"
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -72,18 +74,23 @@ export default function Header() {
 
           {/* Search Bar - Expandido en desktop */}
           <div className="flex-1 max-w-2xl mx-4 lg:mx-8 relative" ref={searchRef}>
-            <form onSubmit={handleSearch} className="min-h-11 px-4 py-2.5 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-300 flex justify-start items-center gap-3 bg-zinc-800/50">
-              <Search className="w-5 h-5 lg:w-6 lg:h-6 text-zinc-300 flex-shrink-0" />
-              <input
+            <form
+              onSubmit={handleSearch}
+              className="relative"
+              role="search"
+              aria-label="Buscar productos">
+              <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-placeholder pointer-events-none" />
+
+              <Input
+                variant="searchbar"
                 type="text"
                 placeholder="Buscar productos..."
                 value={searchQuery}
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
-                className="flex-1 bg-transparent text-zinc-300 text-sm lg:text-base font-normal outline-none placeholder:text-zinc-500"
-              />
+                className="pl-10"/>
             </form>
-            
+
             {/* Dropdown de sugerencias */}
             {showSuggestions && (
               <SearchSuggestions
@@ -94,6 +101,7 @@ export default function Header() {
               />
             )}
           </div>
+
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex justify-start items-center gap-4 xl:gap-6">

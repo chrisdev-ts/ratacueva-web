@@ -6,6 +6,7 @@ export type StatusType = "completed" | "pending" | "processing" | "cancelled";
 interface StatusTagProps {
     status: StatusType;
     className?: string;
+    children?: React.ReactNode;
 }
 
 const statusClasses: Record<StatusType, string> = {
@@ -15,13 +16,20 @@ const statusClasses: Record<StatusType, string> = {
     cancelled: "bg-danger text-danger-dark"
 };
 
-const StatusTag: React.FC<StatusTagProps> = ({ status, className = "" }) => (
+// Función helper para determinar el status según el stock
+export const getStockStatus = (stock: number): StatusType => {
+    if (stock >= 50) return "completed";
+    if (stock > 0) return "pending";
+    return "cancelled";
+};
+
+const StatusTag: React.FC<StatusTagProps> = ({ status, className = "", children }) => (
     <div className={clsx(
         "flex px-3 py-2 justify-center items-center rounded-[100px] w-fit text-sm font-bold leading-normal",
         statusClasses[status],
         className
     )}>
-        {status.charAt(0).toUpperCase() + status.slice(1)}
+        {children ?? (status.charAt(0).toUpperCase() + status.slice(1))}
     </div>
 );
 
