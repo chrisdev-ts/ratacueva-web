@@ -1,6 +1,7 @@
 export { default as CommunitySection } from "./CommunitySection"
 export { default as HeroSection } from "./HeroSection"
 export { default as ProductSection } from "./ProductSection"
+export { default as DynamicProductSections } from "./DynamicProductSections"
 export { default as FaqSection } from "./FaqSection"
 export { default as FeaturedBanner } from "./FeaturedBanner"
 export { default as ProductDetailPage } from "./ProductDetailPage"

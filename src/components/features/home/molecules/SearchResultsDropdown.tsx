@@ -100,9 +100,9 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
           {/* Price */}
           <div className="space-y-1">
             {product.originalPrice && (
-              <div className="text-zinc-500 text-sm line-through">₡{product.originalPrice.toLocaleString()}</div>
+              <div className="text-zinc-500 text-sm line-through">${product.originalPrice.toLocaleString()}</div>
             )}
-            <div className="text-white text-lg font-bold">₡{product.price.toLocaleString()}</div>
+            <div className="text-white text-lg font-bold">${product.price.toLocaleString()}</div>
           </div>
           {/* Location */}
           <Caption className="text-zinc-400 text-xs mt-2">{product.location}</Caption>

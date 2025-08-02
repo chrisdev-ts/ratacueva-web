@@ -8,12 +8,19 @@ import { useRouter } from "next/navigation"
 import { searchSuggestions } from "@/app/lib/data"
 import SearchSuggestions from "@/components/features/home/atoms/SearchSuggestions"
 import Input from "@/components/atoms/Input"
+import { useCart } from "@/contexts/CartContext"
+import { useFavorites } from "@/contexts/FavoritesContext"
+import { useAuth } from "@/contexts/AuthContext"
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState("")
   const [showSuggestions, setShowSuggestions] = useState(false)
+
   const router = useRouter()
   const searchRef = useRef<HTMLDivElement>(null)
+  const { getCartCount } = useCart()
+  const { getFavoritesCount } = useFavorites()
+  const { isAuthenticated } = useAuth()
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,6 +45,14 @@ export default function Header() {
   const handleInputFocus = () => {
     if (searchQuery.length > 0) {
       setShowSuggestions(true)
+    }
+  }
+
+  const handleUserButtonClick = () => {
+    if (isAuthenticated) {
+      router.push('/settings')
+    } else {
+      router.push('/auth/login')
     }
   }
 
@@ -75,7 +90,6 @@ export default function Header() {
             <form onSubmit={handleSearch}>
               <Input
                 type="search"
-                variant="search"
                 placeholder="Buscar productos..."
                 value={searchQuery}
                 onChange={handleInputChange}
@@ -107,24 +121,32 @@ export default function Header() {
             <div className="flex justify-start items-center gap-3">
               <Link
                 href="/settings/favorites"
-                className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center"
+                className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center relative"
               >
                 <HeartIcon className="w-5 h-5 text-white" />
+                {getFavoritesCount() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                    {getFavoritesCount() > 99 ? '99+' : getFavoritesCount()}
+                  </span>
+                )}
               </Link>
               <Link
                 href="/cart"
                 className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center relative"
               >
                 <ShoppingCartIcon className="w-5 h-5 text-white" />
-                {/* Cart badge - you can add cart count here later */}
-                {/* <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span> */}
+                {getCartCount() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                    {getCartCount() > 99 ? '99+' : getCartCount()}
+                  </span>
+                )}
               </Link>
-              <Link
-                href="/settings"
+              <button
+                onClick={handleUserButtonClick}
                 className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center"
               >
                 <UserIcon className="w-5 h-5 text-white" />
-              </Link>
+              </button>
             </div>
           </div>
 

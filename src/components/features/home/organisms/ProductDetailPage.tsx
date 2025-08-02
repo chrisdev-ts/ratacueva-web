@@ -3,11 +3,14 @@
 
 import Image from "next/image"
 import { useState } from "react"  
-import { ChevronRightIcon, StarIcon, MinusIcon, PlusIcon, HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/outline"
+import { ChevronRightIcon, StarIcon, MinusIcon, PlusIcon, HandThumbUpIcon, HandThumbDownIcon, HeartIcon, ShoppingCartIcon } from "@heroicons/react/24/outline"
 import type { Product, Review } from "@/app/lib/data"
 import Link from "next/link"
 import Button from "@/components/atoms/Button"
 import { PageLayout } from "@/components/templates/PageLayout"
+import { useCart } from "@/contexts/CartContext"
+import { useFavorites } from "@/contexts/FavoritesContext"
+import { useRouter } from "next/navigation"
 
 interface ProductDetailPageProps {
   product: Product
@@ -18,11 +21,52 @@ interface ProductDetailPageProps {
 export default function ProductDetailPage({ product, relatedProducts, reviews }: ProductDetailPageProps) {
   const [showFullDescription, setShowFullDescription] = useState(false)
   const [quantity, setQuantity] = useState(1)
+  const { addToCart } = useCart()
+  const { addToFavorites, isInFavorites } = useFavorites()
+  const router = useRouter()
 
   const displayDescription = showFullDescription ? product.description : `${product.description?.substring(0, 250)}...`
 
   const handleQuantityChange = (delta: number) => {
     setQuantity((prev) => Math.max(1, prev + delta))
+  }
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      brand: product.brand || '',
+      category: product.category || '',
+    })
+  }
+
+  const handleToggleFavorite = () => {
+    addToFavorites({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      brand: product.brand || '',
+      category: product.category || '',
+    })
+  }
+
+  const handleBuyNow = () => {
+    // Add the product to cart with the selected quantity
+    for (let i = 0; i < quantity; i++) {
+      addToCart({
+        id: product.id.toString(),
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        brand: product.brand || '',
+        category: product.category || '',
+      })
+    }
+    // Redirect to the form page
+    router.push('/cart/form-page')
   }
 
   const ProductCard = ({ product }: { product: Product }) => (
@@ -53,7 +97,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
           </div>
         </div>
         <div className="self-stretch justify-start text-white text-xl font-semibold ">
-          ₡{product.price.toLocaleString()}
+          ${product.price.toLocaleString()}
         </div>
       </div>
     </Link>
@@ -152,7 +196,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
             <div className="self-stretch p-6 bg-zinc-800 rounded-lg flex flex-col justify-start items-center gap-12 overflow-hidden">
               <div className="self-stretch flex flex-col justify-start items-start gap-6">
                 <div className="justify-start text-white text-3xl font-bold ">
-                  ₡{product.price.toLocaleString()}
+                  ${product.price.toLocaleString()}
                 </div>
                 {product.shipping && (
                   <div className="justify-start">
@@ -186,11 +230,32 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                 <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-4">
-                <button className="self-stretch h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] inline-flex justify-center items-center gap-3">
+                <button 
+                  onClick={handleBuyNow}
+                  className="self-stretch h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] inline-flex justify-center items-center gap-3"
+                >
+                  <ShoppingCartIcon className="w-5 h-5 text-white" />
                   <div className="justify-start text-white text-base font-bold ">Comprar ahora</div>
                 </button>
-                <button className="self-stretch h-11 min-h-11 px-4 py-2.5 rounded-[99px] outline outline-1 outline-offset-[-1px] outline-primary inline-flex justify-center items-center gap-3 text-primary hover:bg-primary hover:text-white transition-colors">
+                <button 
+                  onClick={handleAddToCart}
+                  className="self-stretch h-11 min-h-11 px-4 py-2.5 rounded-[99px] outline outline-1 outline-offset-[-1px] outline-primary inline-flex justify-center items-center gap-3 text-primary hover:bg-primary hover:text-white transition-colors"
+                >
+                  <ShoppingCartIcon className="w-5 h-5" />
                   <div className="justify-start text-base font-bold ">Agregar al carrito</div>
+                </button>
+                <button 
+                  onClick={handleToggleFavorite}
+                  className={`self-stretch h-11 min-h-11 px-4 py-2.5 rounded-[99px] outline outline-1 outline-offset-[-1px] inline-flex justify-center items-center gap-3 transition-colors ${
+                    isInFavorites(product.id.toString())
+                      ? 'outline-red-500 text-red-500 hover:bg-red-500 hover:text-white'
+                      : 'outline-gray-400 text-gray-400 hover:bg-gray-400 hover:text-white'
+                  }`}
+                >
+                  <HeartIcon className="w-5 h-5" />
+                  <div className="justify-start text-base font-bold">
+                    {isInFavorites(product.id.toString()) ? "Remover de favoritos" : "Agregar a favoritos"}
+                  </div>
                 </button>
               </div>
             </div>

@@ -39,12 +39,12 @@ export default function EditProduct({ params }: EditProductProps) {
 
   const ChevronDownIcon = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17 10L12 15L7 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M17 10L12 15L7 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 
   return (
-    <div className=" text-text font-body min-h-screen flex-1">
+    <div className="flex flex-col max-w-none mx-auto p-8 lg:px-7 lg:py-8 flex-1 bg-[#1A1A1A] text-white font-body">
       <DashboardContentLayout>
         {/* Page Title */}
         <Display>Editar producto</Display>

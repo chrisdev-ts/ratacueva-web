@@ -108,9 +108,9 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
         <div className="flex items-center justify-between mb-3">
           <div className="space-y-1">
             {product.originalPrice && (
-              <div className="text-zinc-500 text-sm line-through">₡{product.originalPrice.toLocaleString()}</div>
+              <div className="text-zinc-500 text-sm line-through">${product.originalPrice.toLocaleString()}</div>
             )}
-            <div className="text-white text-xl lg:text-2xl font-bold">₡{product.price.toLocaleString()}</div>
+            <div className="text-white text-xl lg:text-2xl font-bold">${product.price.toLocaleString()}</div>
           </div>
         </div>
         
