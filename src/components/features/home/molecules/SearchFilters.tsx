@@ -138,7 +138,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
                 onClick={() => onFiltersChange({ ...filters, priceRange: [0, price] })}
                 className="px-3 py-1 bg-zinc-700 hover:bg-zinc-600 text-zinc-300 text-xs rounded-full transition-colors"
               >
-                Hasta ₡{price.toLocaleString()}
+                Hasta ${price.toLocaleString()}
               </button>
             ))}
           </div>

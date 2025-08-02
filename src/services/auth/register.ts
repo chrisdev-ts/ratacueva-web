@@ -1,7 +1,7 @@
 // src/services/auth/register.ts
 import axios from "axios";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://ratacueva-api.onrender.com/api";
 
 export interface RegisterPayload {
     name: string;

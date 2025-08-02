@@ -1,21 +1,58 @@
+"use client"
+
 import Image from "next/image"
 import { StarIcon } from "@heroicons/react/24/solid"
+import { ShoppingCartIcon, HeartIcon } from "@heroicons/react/24/outline"
 import { Subheading, BodySmall, Caption } from "@/components/atoms/Typography"
+import Link from "next/link"
+import { useCart } from "@/contexts/CartContext"
+import { useFavorites } from "@/contexts/FavoritesContext"
 
 interface ProductCardProps {
   product: {
-    id: number
+    id: string
     name: string
     rating: number
     reviews: number
     price: number
     image: string
+    brand?: string
+    category?: string
   }
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useCart()
+  const { addToFavorites, isInFavorites } = useFavorites()
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      brand: product.brand || '',
+      category: product.category || '',
+    })
+  }
+
+  const handleToggleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addToFavorites({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      brand: product.brand || '',
+      category: product.category || '',
+    })
+  }
   return (
-    <div className="bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg overflow-hidden group">
+    <Link href={`/products/${product.id}`} className="block">
+      <div className="bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg overflow-hidden group cursor-pointer">
       {/* Image Container */}
       <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center bg-zinc-800/50">
         <Image
@@ -57,11 +94,32 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Caption className="text-zinc-400">({product.reviews} reseñas)</Caption>
         </div>
 
-        {/* Price */}
+        {/* Price and Actions */}
         <div className="flex items-center justify-between">
           <div className="text-white text-xl lg:text-2xl font-bold">${product.price.toLocaleString()}</div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleToggleFavorite}
+              className={`p-2 transition-colors rounded-full ${
+                isInFavorites(product.id)
+                  ? 'bg-red-500 text-white'
+                  : 'bg-primary hover:bg-primary/80 transition-colors rounded-full text-white'
+              }`}
+              title={isInFavorites(product.id) ? "Remover de favoritos" : "Agregar a favoritos"}
+            >
+              <HeartIcon className="w-5 h-5" />
+            </button>
+            <button
+              onClick={handleAddToCart}
+              className="p-2 bg-primary hover:bg-primary/80 transition-colors rounded-full text-white"
+              title="Agregar al carrito"
+            >
+              <ShoppingCartIcon className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    </Link>
   )
 }

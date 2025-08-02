@@ -8,7 +8,7 @@ import { Heading } from "@/components/atoms/Typography"
 interface ProductSectionProps {
   title: string
   products: Array<{
-    id: number
+    id: string
     name: string
     rating: number
     reviews: number
