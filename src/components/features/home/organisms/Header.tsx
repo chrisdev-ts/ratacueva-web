@@ -83,7 +83,7 @@ export default function Header() {
                 className="min-h-11 rounded-2xl"
               />
             </form>
-            
+
             {/* Dropdown de sugerencias */}
             {showSuggestions && (
               <SearchSuggestions
@@ -94,6 +94,7 @@ export default function Header() {
               />
             )}
           </div>
+
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex justify-start items-center gap-4 xl:gap-6">
