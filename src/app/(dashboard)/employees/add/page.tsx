@@ -48,7 +48,7 @@ export default function addEmployee() {
     };
 
     const handleCancel = () => {
-        router.push('/employers');
+        router.push('/employees');
     };
 
     const handleSubmit = () => {
@@ -62,8 +62,8 @@ export default function addEmployee() {
         // Add employee logic here
         console.log('Employee data:', formData);
         
-        // Redirect back to employers list
-        router.push('/employers');
+        // Redirect back to employees list
+        router.push('/employees');
     };
 
     return (

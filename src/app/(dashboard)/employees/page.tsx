@@ -18,7 +18,7 @@ import { useEmployees, useDeleteEmployee } from "@/hook/dashboard/useEmployees";
 import type { Address } from "@/hook/dashboard/useEmployees";
 
 
-export default function Employers() {
+export default function Employees() {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10);
@@ -77,7 +77,7 @@ export default function Employers() {
             header: "EMPLOYEE ID",
             size: 122,
             cell: (info) => (
-                <Link href={`/employers/${info.getValue()}`} className="text-text underline hover:no-underline transition-all">
+                <Link href={`/employees/${info.getValue()}`} className="text-text underline hover:no-underline transition-all">
                     <Body className="text-current truncate max-w-[120px]">{String(info.getValue())}</Body>
                 </Link>
             ),
@@ -147,7 +147,7 @@ export default function Employers() {
             <DashboardContentLayout>
                 <div className="flex justify-between items-center pb-3">
                     <Display>Administrar empleados</Display>
-                    <Link href="/employers/add">
+                    <Link href="/employees/add">
                         <Button
                             variant="success"
                             className="px-4 py-3 rounded-full font-bold text-dark flex items-center gap-3">
