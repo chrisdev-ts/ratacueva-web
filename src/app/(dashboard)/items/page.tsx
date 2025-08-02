@@ -5,7 +5,7 @@ import Button from "@/components/atoms/Button";
 import { Body, Display } from "@/components/atoms/Typography";
 import Input from "@/components/atoms/Input";
 import BaseTable from "@/components/features/dashboard/atoms/BaseTable";
-import StatusTag from "@/components/features/dashboard/atoms/StatusTag";
+import StatusTag, { getStockStatus } from "@/components/features/dashboard/atoms/StatusTag";
 import {
     PencilSquareIcon,
     TrashIcon,
@@ -15,68 +15,66 @@ import {
 import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-
-const mockProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `PROD00${i + 1}`,
-    name: "Gaming PC Xtreme",
-    category: "Hardware",
-    type: "Physical",
-    stock: 85,
-    price: "2025-06-20",
-    status: "Completed" as const,
-}));
+import { useProducts } from "@/hook/dashboard/useProduct";
 
 export default function Items() {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");
 
-    const totalRecords = 57;
+
+    const { data: products, isLoading, error } = useProducts();
+
+    const totalRecords = products?.length ?? 0;
     const totalPages = Math.ceil(totalRecords / itemsPerPage);
 
-    // Column definitions for BaseTable
-    const columns: ColumnDef<typeof mockProducts[0]>[] = [
-        {
-            accessorKey: "id",
-            header: "ID",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>
-        },
+    const startItem = (currentPage - 1) * itemsPerPage + 1;
+    const endItem = Math.min(currentPage * itemsPerPage, totalRecords);
+
+
+    const columns: ColumnDef<any>[] = [
         {
             accessorKey: "name",
             header: "PRODUCT NAME",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>
+            cell: info => (
+                <Link href={`/items/${info.row.original.id || info.row.index}`} className="text-text underline hover:no-underline transition-all">
+                    <Body className="text-current">{String(info.getValue())}</Body>
+                </Link>
+            ),
         },
         {
             accessorKey: "category",
             header: "CATEGORY",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>
+            cell: info => <Body className="text-text">{String(info.getValue())}</Body>,
         },
-        {
-            accessorKey: "type",
-            header: "TYPE",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>
-        },
+        // Si 'type' no existe, elimina o cambia a otro campo válido:
+        // {
+        //   accessorKey: "subcategory",
+        //   header: "SUBCATEGORY",
+        //   cell: info => <Body className="text-text">{String(info.getValue())}</Body>,
+        // },
         {
             accessorKey: "stock",
             header: "STOCK/KEYS",
-            cell: info => (
-                <div className="bg-success text-success-dark px-3 py-2 rounded-full font-bold text-body-small inline-flex items-center justify-center">
-                    {String(info.getValue())}
-                </div>
-            )
+            cell: info => {
+                const stock = info.getValue() as number;
+                const status = getStockStatus(stock);
+                return <StatusTag status={status}>{stock}</StatusTag>;
+            }
         },
         {
             accessorKey: "price",
             header: "PRICE",
-            cell: info => <Body className="text-text">{String(info.getValue())}</Body>
+            cell: info => <Body className="text-text">{String(info.getValue())}</Body>,
         },
-        {
-            accessorKey: "status",
-            header: "STATUS",
-            cell: info => (
-                <StatusTag status={String(info.getValue()).toLowerCase() as "completed" | "pending" | "processing" | "cancelled"} />
-            )
-        },
+        // Elimina si no tienes status o adapta:
+        // {
+        //   accessorKey: "stock",
+        //   header: "STATUS",
+        //   cell: info => (
+        //     <StatusTag status={info.getValue() > 0 ? "completed" : "cancelled"} />
+        //   ),
+        // },
         {
             id: "actions",
             header: "ACTIONS",
@@ -89,8 +87,8 @@ export default function Items() {
                         <TrashIcon className="w-6 h-6 text-danger" />
                     </Button>
                 </div>
-            )
-        }
+            ),
+        },
     ];
 
     return (
@@ -99,7 +97,9 @@ export default function Items() {
                 <div className="flex justify-between items-center pb-3">
                     <Display>Administrar productos</Display>
                     <Link href="/items/add">
-                        <Button variant="success" className="px-4 py-2.5 rounded-full font-bold text-body flex items-center gap-2">
+                        <Button
+                            variant="success"
+                            className="px-4 py-2.5 rounded-full font-bold text-body flex items-center gap-2">
                             Agregar producto
                         </Button>
                     </Link>
@@ -114,37 +114,50 @@ export default function Items() {
                             </div>
                             <Body className="text-text p-2">entradas por página</Body>
                         </div>
-                        <div className="flex items-center gap-3 rounded-2xl px-4 py-2.5 w-[341px]">
-                            <MagnifyingGlassIcon className="w-6 h-6 text-text" />
+                        <div className="w-[341px] relative">
+                            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-placeholder pointer-events-none" />
                             <Input
+                                variant="searchbar"
                                 type="text"
-                                placeholder="Buscar productos..."
+                                placeholder="Buscar producto..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="bg-transparent text-text placeholder-placeholder outline-none flex-1 text-body"
-                            />
+                                className="pl-10"/>
                         </div>
                     </div>
 
-                    <BaseTable data={mockProducts.slice(0, itemsPerPage)} columns={columns} />
+                    {/* Aquí renderizamos la tabla con datos de la API */}
+                    {isLoading ? (
+                        <p className="text-gray-400">Cargando productos...</p>
+                    ) : error ? (
+                        <p className="text-red-400">Error al cargar productos</p>
+                    ) : (
+                        <BaseTable data={products ?? []} columns={columns} />
+                    )}
 
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center flex-wrap gap-6">
                         <Body className="text-text">
-                            Mostrando 1 de {itemsPerPage} en {totalRecords} registros
+                            Mostrando {startItem} - {endItem} de {totalRecords} registros
                         </Body>
 
                         <div className="flex items-center gap-1">
-                            {["«", "‹", ...Array.from({ length: totalPages }, (_, i) => i + 1), "›", "»"]
-                                .map((label, i) => (
+                            {["«", "‹", ...Array.from({ length: totalPages }, (_, i) => i + 1), "›", "»"].map(
+                                (label, i) => (
                                     <Button
                                         key={i}
                                         variant="pagination"
-                                        onClick={() => typeof label === "number" && setCurrentPage(label)}
-                                        className={currentPage === label ? "bg-gray" : ""}
-                                    >
+                                        onClick={() => {
+                                            if (label === "«") setCurrentPage(1);
+                                            else if (label === "‹" && currentPage > 1) setCurrentPage(currentPage - 1);
+                                            else if (label === "›" && currentPage < totalPages) setCurrentPage(currentPage + 1);
+                                            else if (label === "»") setCurrentPage(totalPages);
+                                            else if (typeof label === "number") setCurrentPage(label);
+                                        }}
+                                        className={currentPage === label ? "bg-gray" : ""}>
                                         {label}
                                     </Button>
-                                ))}
+                                )
+                            )}
                         </div>
                     </div>
                 </div>
