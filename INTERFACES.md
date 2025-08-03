@@ -21,9 +21,9 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
   - [1. Respeta los mockups y Figma](#1-respeta-los-mockups-y-figma)
   - [2. Estructura y ubicación de componentes](#2-estructura-y-ubicación-de-componentes)
   - [2.1 Uso de `hook`, `lib` y `services`](#21-uso-de-hook-lib-y-services)
-    - [🔁 `src/hook/`](#-srchook)
-    - [🔧 `src/lib/`](#-srclib)
-    - [🌐 `src/services/`](#-srcservices)
+    - [`src/hook/`](#srchook)
+    - [`src/lib/`](#srclib)
+    - [`src/services/`](#srcservices)
     - [📌 Recomendaciones al importar](#-recomendaciones-al-importar)
   - [3. Cómo crear nuevas páginas y cómo funcionan las rutas](#3-cómo-crear-nuevas-páginas-y-cómo-funcionan-las-rutas)
   - [3. Uso de layouts](#3-uso-de-layouts)
@@ -56,7 +56,7 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
 
 Para mantener una arquitectura clara y sostenible, la lógica de negocio, funciones utilitarias y comunicación con APIs debe organizarse fuera de los componentes visuales, usando estas carpetas en `src/`:
 
-### 🔁 `src/hook/`
+### `src/hook/`
 
 Contiene **custom hooks** para encapsular lógica reactiva (fetch, manejo de estado, debounce, etc.) separada de los componentes de UI.  
 Se organiza por dominio cuando aplica:  
@@ -68,7 +68,7 @@ Ejemplos:
 
 ---
 
-### 🔧 `src/lib/`
+### `src/lib/`
 
 Contiene **funciones utilitarias, configuración de librerías y datos simulados**, no dependientes de React.
 Ejemplos:
@@ -80,7 +80,7 @@ Ejemplos:
 
 ---
 
-### 🌐 `src/services/`
+### `src/services/`
 
 Contiene **funciones para acceder a datos externos**, como APIs REST o servicios internos.
 También se organiza por dominio para mantener claridad.
@@ -104,7 +104,7 @@ import { formatCurrency } from '@/lib/utils';
 
 ---
 
-📎 **Importante:** Estas carpetas ya existen dentro de `src/` y **no deben duplicarse dentro de `src/app/` ni de ninguna feature**. Centralizamos su uso para evitar confusión y duplicidad.
+**Importante:** Estas carpetas ya existen dentro de `src/` y **no deben duplicarse dentro de `src/app/` ni de ninguna feature**. Centralizamos su uso para evitar confusión y duplicidad.
 
 ## 3. Cómo crear nuevas páginas y cómo funcionan las rutas
 
