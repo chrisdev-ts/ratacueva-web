@@ -8,9 +8,12 @@ import { useRouter } from "next/navigation"
 import { searchSuggestions } from "@/app/lib/data"
 import SearchSuggestions from "@/components/features/home/atoms/SearchSuggestions"
 import Input from "@/components/atoms/Input"
+<<<<<<< HEAD
+=======
 import { useCart } from "@/contexts/CartContext"
 import { useFavorites } from "@/contexts/FavoritesContext"
 import { useAuth } from "@/contexts/AuthContext"
+>>>>>>> 017d92bedc55f80b463897b044c617286893aa62
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -90,6 +93,10 @@ export default function Header() {
             <form onSubmit={handleSearch}>
               <Input
                 type="search"
+<<<<<<< HEAD
+                variant="search"
+=======
+>>>>>>> 017d92bedc55f80b463897b044c617286893aa62
                 placeholder="Buscar productos..."
                 value={searchQuery}
                 onChange={handleInputChange}
