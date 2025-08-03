@@ -26,12 +26,12 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
     - [`src/services/`](#srcservices)
     - [📌 Recomendaciones al importar](#-recomendaciones-al-importar)
   - [3. Cómo crear nuevas páginas y cómo funcionan las rutas](#3-cómo-crear-nuevas-páginas-y-cómo-funcionan-las-rutas)
-  - [3. Uso de layouts](#3-uso-de-layouts)
-  - [4. Tipografía y textos](#4-tipografía-y-textos)
-  - [5. Colores y estilos](#5-colores-y-estilos)
-  - [6. Paddings, margins y espaciados](#6-paddings-margins-y-espaciados)
-  - [7. Componentes reutilizables](#7-componentes-reutilizables)
-  - [8. Buenas prácticas y reglas de código](#8-buenas-prácticas-y-reglas-de-código)
+  - [4. Uso de layouts](#4-uso-de-layouts)
+  - [5. Tipografía y textos](#5-tipografía-y-textos)
+  - [6. Colores y estilos](#6-colores-y-estilos)
+  - [7. Paddings, margins y espaciados](#7-paddings-margins-y-espaciados)
+  - [8. Componentes reutilizables](#8-componentes-reutilizables)
+  - [9. Buenas prácticas y reglas de código](#9-buenas-prácticas-y-reglas-de-código)
 
 ---
 
@@ -115,41 +115,41 @@ import { formatCurrency } from '@/lib/utils';
 - Los layouts (`layout.tsx`) y templates se pueden anidar para compartir estructura y estilos entre páginas.
 - No modifiques rutas existentes sin consultar, para evitar romper navegación o enlaces.
 
-## 3. Uso de layouts
+## 4. Uso de layouts
 
 - **Siempre usa el layout adecuado:**
   - Dashboard: **usando siempre** [`DashboardContentLayout`] desde `components/features/dashboard/templates/`.
   - Shop: **usando siempre** [`PageLayout`] desde `src/components/templates/` como contenedor principal y dentro de este [`ContentLayout`] desde `src/components/templates/` para el contenido de cada página. Así aseguras consistencia de paddings, anchos y espaciados.
 - **No dupliques layouts.** Extiende los existentes.
 
-## 4. Tipografía y textos
+## 5. Tipografía y textos
 
 - **Usa SIEMPRE los componentes de tipografía:**
   - `Display`, `Heading`, `Subheading`, `Body`, `BodySmall`, `Caption` desde `src/components/atoms/Typography/`
 - **No uses `<h1>`, `<p>`, etc.** directamente, salvo casos muy justificados.
 - **Textos:** Copia y pega desde Figma. No inventes ni cambies redacción.
 
-## 5. Colores y estilos
+## 6. Colores y estilos
 
 - **Colores:** Usa las clases de Tailwind ya definidas (`bg-primary`, `text-accent`, etc.).
 - **No uses valores hex ni rgb directos.**
 - **Variables:** Si necesitas un color nuevo, consulta antes de agregarlo.
 - **Estilos globales:** Todos los estilos base y utilidades personalizadas están en `src/app/globals.css`. Desde Tailwind v4 no existe archivo de configuración `tailwind.config.js`.
 
-## 6. Paddings, margins y espaciados
+## 7. Paddings, margins y espaciados
 
 - **Respeta los valores de Figma.**
 - Usa las utilidades de Tailwind (`px-4`, `py-8`, `gap-6`, etc.).
 - **No uses estilos en línea** salvo casos muy justificados.
 - Los templates como `PageLayout` y `ContentLayout` ya manejan la mayoría de los espaciados globales.
 
-## 7. Componentes reutilizables
+## 8. Componentes reutilizables
 
 - **Antes de crear un componente, revisa si ya existe.**
 - Si creas uno nuevo, hazlo reutilizable y documenta sus props.
 - **Ejemplo:** Un botón debe ir en `atoms/Button.tsx`.
 
-## 8. Buenas prácticas y reglas de código
+## 9. Buenas prácticas y reglas de código
 
 - **No modifiques el diseño sin aprobación.**
 - **No mezcles lógica de negocio con UI.**
