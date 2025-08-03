@@ -29,8 +29,7 @@ export default function PersonalInfoPage() {
               <Input
                 id="fullName"
                 type="text"
-                defaultValue="Jorge Christian"
-              />
+                defaultValue="Jorge Christian"/>
             </div>
             
             <div className="flex w-full items-start gap-4 sm:gap-6">
@@ -63,8 +62,7 @@ export default function PersonalInfoPage() {
               <Input
                 id="email"
                 type="email"
-                defaultValue="christiansp7231@gmail.com"
-              />
+                defaultValue="christiansp7231@gmail.com"/>
             </div>
             
             <div className="flex w-full flex-col items-start gap-4">
@@ -74,8 +72,7 @@ export default function PersonalInfoPage() {
               <Input
                 id="phoneNumber"
                 type="tel"
-                defaultValue="271823712830"
-              />
+                defaultValue="271823712830"/>
             </div>
             
             <div className="flex w-full flex-col items-start gap-4">
@@ -96,8 +93,7 @@ export default function PersonalInfoPage() {
                 id="currentPassword"
                 type="password"
                 defaultValue="********"
-                className="text-neutral-400"
-              />
+                className="text-neutral-400"/>
             </div>
             
             <div className="flex w-full flex-col items-start gap-4">
@@ -106,8 +102,7 @@ export default function PersonalInfoPage() {
               </BodySmall>
               <Input
                 id="newPassword"
-                type="password"
-              />
+                type="password"/>
             </div>
             
             <div className="flex w-full flex-col items-start gap-4">
@@ -116,8 +111,7 @@ export default function PersonalInfoPage() {
               </BodySmall>
               <Input
                 id="repeatNewPassword"
-                type="password"
-              />
+                type="password"/>
             </div>
           </div>
           

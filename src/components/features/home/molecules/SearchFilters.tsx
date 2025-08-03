@@ -117,8 +117,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
                 value={filters.priceRange[0]}
                 onChange={(e) => handlePriceChange(0, e.target.value)}
                 className="w-full px-3 py-2 bg-zinc-700 border border-zinc-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-dark"
-                placeholder="0"
-              />
+                placeholder="0"/>
             </div>
             <div className="flex-1">
               <Body className="text-zinc-300 text-sm mb-1">Máximo</Body>
@@ -127,8 +126,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
                 value={filters.priceRange[1]}
                 onChange={(e) => handlePriceChange(1, e.target.value)}
                 className="w-full px-3 py-2 bg-zinc-700 border border-zinc-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-dark"
-                placeholder="2000000"
-              />
+                placeholder="2000000"/>
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -160,8 +158,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
                 type="checkbox"
                 checked={filters.categories.includes(category)}
                 onChange={() => handleArrayFilter("categories", category)}
-                className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"
-              />
+                className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"/>
               <Body className="text-zinc-300 text-sm">{category}</Body>
             </label>
           ))}
@@ -176,8 +173,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
                 type="checkbox"
                 checked={filters.brands.includes(brand)}
                 onChange={() => handleArrayFilter("brands", brand)}
-                className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"
-              />
+                className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"/>
               <Body className="text-zinc-300 text-sm">{brand}</Body>
             </label>
           ))}
@@ -199,8 +195,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
                 type="checkbox"
                 checked={filters.locations.includes(location)}
                 onChange={() => handleArrayFilter("locations", location)}
-                className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"
-              />
+                className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"/>
               <Body className="text-zinc-300 text-sm">{location}</Body>
             </label>
           ))}
@@ -218,8 +213,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
               type="checkbox"
               checked={filters.freeShipping}
               onChange={(e) => onFiltersChange({ ...filters, freeShipping: e.target.checked })}
-              className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"
-            />
+              className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"/>
             <Body className="text-zinc-300 text-sm">Envío gratis</Body>
           </label>
           <label className="flex items-center gap-3 cursor-pointer hover:bg-zinc-700/50 p-2 rounded-lg">
@@ -227,8 +221,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
               type="checkbox"
               checked={filters.withDiscount}
               onChange={(e) => onFiltersChange({ ...filters, withDiscount: e.target.checked })}
-              className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"
-            />
+              className="w-4 h-4 text-primary bg-zinc-700 border-zinc-600 rounded focus:ring-pink-500"/>
             <Body className="text-zinc-300 text-sm">Con descuento</Body>
           </label>
         </div>

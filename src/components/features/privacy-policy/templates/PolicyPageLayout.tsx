@@ -77,8 +77,7 @@ export function PolicyPageLayout({
                 title={card.title}
                 description={card.description}
                 href={card.href}
-                category={card.category}
-              />
+                category={card.category}/>
             ))}
           </div>
         </section>

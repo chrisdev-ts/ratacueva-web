@@ -56,8 +56,7 @@ const LoginPage = () => {
                 alt="Rata Cueva Logo"
                 width={126}
                 height={22}
-                className="w-[60%] h-auto"
-              />
+                className="w-[60%] h-auto"/>
             </div>
 
             <div className="flex flex-col gap-2">
@@ -72,8 +71,7 @@ const LoginPage = () => {
                 placeholder="Ej: correo@ejemplo.com"
                 required
                 disabled={isLoading}
-                className="min-w-[240px]"
-              />
+                className="min-w-[240px]"/>
             </div>
 
             <div className="flex flex-col gap-2">
@@ -88,8 +86,7 @@ const LoginPage = () => {
                 placeholder="********"
                 required
                 disabled={isLoading}
-                className="min-w-[240px]"
-              />
+                className="min-w-[240px]"/>
             </div>
 
             {errorMessage && (

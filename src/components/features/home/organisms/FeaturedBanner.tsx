@@ -27,8 +27,7 @@ export default function FeaturedBanner() {
             {[...Array(4)].map((_, index) => (
               <div
                 key={index}
-                className="relative h-[140px] lg:h-[240px] bg-zinc-800 rounded-lg animate-pulse"
-              />
+                className="relative h-[140px] lg:h-[240px] bg-zinc-800 rounded-lg animate-pulse"/>
             ))}
           </div>
         </div>
@@ -82,8 +81,7 @@ export default function FeaturedBanner() {
                 src={category.image}
                 alt={category.name}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+                className="object-cover group-hover:scale-105 transition-transform duration-300"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-3 left-3 right-3">
                 <Subheading className="text-white text-sm lg:text-lg mb-1">{category.name}</Subheading>

@@ -57,8 +57,7 @@ const NewPasswordPage = () => {
             <div className="flex justify-center items-center">
               <LockClosedIcon
                 className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[214px] md:h-[214px] aspect-square text-white"
-                aria-label="Lock icon"
-              />
+                aria-label="Lock icon"/>
             </div>
 
             <Body className="text-white text-base sm:text-lg text-center w-full">
@@ -76,8 +75,7 @@ const NewPasswordPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Mínimo 8 caracteres"
                 required
-                className="min-w-[240px]"
-              />
+                className="min-w-[240px]"/>
             </div>
 
             <div className="flex flex-col gap-2">
@@ -91,8 +89,7 @@ const NewPasswordPage = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Repite tu contraseña"
                 required
-                className="min-w-[240px]"
-              />
+                className="min-w-[240px]"/>
             </div>
 
             {errorMessage && (

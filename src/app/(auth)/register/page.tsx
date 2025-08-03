@@ -51,8 +51,7 @@ const RegisterPage = () => {
             <img
               src="/images/logotipo-base.svg"
               alt="Rata Cueva Logo"
-              className="w-[60%] h-auto"
-            />
+              className="w-[60%] h-auto"/>
           </div>
 
           <div className="space-y-2">
@@ -66,8 +65,7 @@ const RegisterPage = () => {
               onChange={(e) => setName(e.target.value)}
               placeholder="Ej: Juan"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <div className="flex gap-6 flex-col sm:flex-row">
@@ -82,8 +80,7 @@ const RegisterPage = () => {
                 onChange={(e) => setLastName1(e.target.value)}
                 placeholder="Ej: López"
                 required
-                className="w-full min-w-0"
-              />
+                className="w-full min-w-0"/>
             </div>
 
             <div className="w-full sm:w-1/2 space-y-2">
@@ -96,8 +93,7 @@ const RegisterPage = () => {
                 value={lastName2}
                 onChange={(e) => setLastName2(e.target.value)}
                 placeholder="Ej: Pérez"
-                className="w-full min-w-0"
-              />
+                className="w-full min-w-0"/>
             </div>
           </div>
 
@@ -112,8 +108,7 @@ const RegisterPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ej: correo@ejemplo.com"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <div className="space-y-2">
@@ -127,8 +122,7 @@ const RegisterPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <div className="space-y-2 pb-2">
@@ -146,8 +140,7 @@ const RegisterPage = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="********"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <Button type="submit" variant="primary" className="w-full">Registrarse</Button>

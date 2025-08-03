@@ -60,8 +60,7 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ej: correo@ejemplo.com"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <div className="space-y-2">
@@ -73,8 +72,7 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           {errorMessage && (

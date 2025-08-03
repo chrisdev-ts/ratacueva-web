@@ -20,8 +20,7 @@ export default function Footer() {
                 src="/images/logotipo-base.svg"
                 alt="RataCueva Logo"
                 width={126}
-                height={22}
-              />
+                height={22}/>
             </Link>
             <Body className="text-zinc-300 text-base lg:text-lg mb-6 leading-relaxed">
               Tu tienda de confianza para productos gaming y tecnología. Llevamos tu experiencia al siguiente nivel.

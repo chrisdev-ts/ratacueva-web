@@ -29,8 +29,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     variantClasses[variant],
                     className
                 )}
-                {...props}
-            />
+                {...props}/>
         </div>
     )
 );

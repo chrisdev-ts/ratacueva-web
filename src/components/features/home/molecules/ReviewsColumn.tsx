@@ -21,8 +21,7 @@ const ReviewsColumn = ({ reviews, columnIndex }: ReviewsColumnProps) => (
       <ReviewCard 
         key={review.id} 
         review={review} 
-        index={columnIndex * 2 + index} 
-      />
+        index={columnIndex * 2 + index} />
     ))}
   </div>
 )

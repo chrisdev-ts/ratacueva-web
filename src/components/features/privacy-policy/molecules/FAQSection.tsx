@@ -48,8 +48,7 @@ export function FAQSection({
               <ChevronDownIcon
                 className={`w-5 h-5 transition-transform flex-shrink-0 ${
                   openIndex === index ? "rotate-180" : ""
-                }`}
-              />
+                }`}/>
             </button>
 
             {openIndex === index && (

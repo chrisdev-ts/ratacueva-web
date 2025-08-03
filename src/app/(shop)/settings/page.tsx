@@ -73,8 +73,7 @@ export default function SettingsPage() {
               alt="User Avatar"
               width={80}
               height={80}
-              className="rounded-full object-cover"
-            />
+              className="rounded-full object-cover"/>
           </div>
           <div className="flex flex-col justify-center items-start gap-2 text-center sm:text-left">
             <div className="text-white text-3xl font-bold">

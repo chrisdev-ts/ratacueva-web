@@ -42,8 +42,7 @@ export const PrivacyLayout: React.FC<PrivacyLayoutProps> = ({
               {/* Backdrop */}
               <div
                 className="fixed inset-0 bg-black bg-opacity-50"
-                onClick={() => setIsMobileSidebarOpen(false)}
-              />
+                onClick={() => setIsMobileSidebarOpen(false)}/>
 
               {/* Sidebar */}
               <div className="relative w-80 bg-dark h-full overflow-y-auto p-6">

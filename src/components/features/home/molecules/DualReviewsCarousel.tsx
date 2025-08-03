@@ -49,8 +49,7 @@ const DualReviewsCarousel = ({ reviews }: DualReviewsCarouselProps) => {
             <div key={`first-${review.id}-${index}`} className="h-56">
               <ReviewCard 
                 review={review} 
-                index={index} 
-              />
+                index={index} />
             </div>
           ))}
         </motion.div>
@@ -67,8 +66,7 @@ const DualReviewsCarousel = ({ reviews }: DualReviewsCarouselProps) => {
             <div key={`second-${review.id}-${index}`} className="h-56">
               <ReviewCard 
                 review={review} 
-                index={index} 
-              />
+                index={index} />
             </div>
           ))}
         </motion.div>

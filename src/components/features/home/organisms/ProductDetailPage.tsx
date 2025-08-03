@@ -2,7 +2,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"  
+import { useState } from "react"
 import { ChevronRightIcon, StarIcon, MinusIcon, PlusIcon, HandThumbUpIcon, HandThumbDownIcon, HeartIcon, ShoppingCartIcon } from "@heroicons/react/24/outline"
 import type { Product, Review } from "@/app/lib/data"
 import Link from "next/link"
@@ -230,27 +230,26 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                 <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-4">
-                <button 
+                <button
                   onClick={handleBuyNow}
                   className="self-stretch h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] inline-flex justify-center items-center gap-3"
                 >
                   <ShoppingCartIcon className="w-5 h-5 text-white" />
                   <div className="justify-start text-white text-base font-bold ">Comprar ahora</div>
                 </button>
-                <button 
+                <button
                   onClick={handleAddToCart}
                   className="self-stretch h-11 min-h-11 px-4 py-2.5 rounded-[99px] outline outline-1 outline-offset-[-1px] outline-primary inline-flex justify-center items-center gap-3 text-primary hover:bg-primary hover:text-white transition-colors"
                 >
                   <ShoppingCartIcon className="w-5 h-5" />
                   <div className="justify-start text-base font-bold ">Agregar al carrito</div>
                 </button>
-                <button 
+                <button
                   onClick={handleToggleFavorite}
-                  className={`self-stretch h-11 min-h-11 px-4 py-2.5 rounded-[99px] outline outline-1 outline-offset-[-1px] inline-flex justify-center items-center gap-3 transition-colors ${
-                    isInFavorites(product.id.toString())
+                  className={`self-stretch h-11 min-h-11 px-4 py-2.5 rounded-[99px] outline outline-1 outline-offset-[-1px] inline-flex justify-center items-center gap-3 transition-colors ${isInFavorites(product.id.toString())
                       ? 'outline-red-500 text-red-500 hover:bg-red-500 hover:text-white'
                       : 'outline-gray-400 text-gray-400 hover:bg-gray-400 hover:text-white'
-                  }`}
+                    }`}
                 >
                   <HeartIcon className="w-5 h-5" />
                   <div className="justify-start text-base font-bold">
@@ -332,7 +331,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                 </div>
                 <div className="justify-start text-white text-xl font-normal ">
                   {review.content}
-                  {review.content.length > 100 && ( 
+                  {review.content.length > 100 && (
                     <span className="text-cyan-400 text-xl font-bold  cursor-pointer hover:underline">
                       {" "}
                       Leer más

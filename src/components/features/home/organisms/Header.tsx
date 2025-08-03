@@ -81,8 +81,7 @@ export default function Header() {
               src="/images/logotipo-base.svg"
               alt="RataCueva Logo"
               width={126}
-              height={22}
-            />
+              height={22}/>
           </Link>
 
           {/* Search Bar - Expandido en desktop */}
@@ -95,8 +94,7 @@ export default function Header() {
                 value={searchQuery}
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
-                className="min-h-11 rounded-2xl"
-              />
+                className="min-h-11 rounded-2xl"/>
             </form>
 
             {/* Dropdown de sugerencias */}
@@ -105,8 +103,7 @@ export default function Header() {
                 query={searchQuery}
                 suggestions={searchSuggestions}
                 onSelect={handleSuggestionSelect}
-                onClose={() => setShowSuggestions(false)}
-              />
+                onClose={() => setShowSuggestions(false)}/>
             )}
           </div>
 

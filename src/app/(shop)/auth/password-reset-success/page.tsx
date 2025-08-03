@@ -22,8 +22,7 @@ const PasswordResetSuccessPage = () => {
             <div className="flex justify-center items-center">
               <ArrowPathIcon
                 className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[214px] md:h-[214px] aspect-square text-white"
-                aria-label="Restart icon"
-              />
+                aria-label="Restart icon"/>
             </div>
 
             <Body className="text-base sm:text-lg text-center w-full text-white">

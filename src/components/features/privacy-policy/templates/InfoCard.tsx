@@ -69,8 +69,7 @@ export function InfoCard({
         isCardExpanded={isCardExpanded}
         showDetailed={showDetailed}
         onToggleCard={toggleCard}
-        onToggleDetailed={toggleDetailed}
-      />
+        onToggleDetailed={toggleDetailed}/>
 
       <div
         className={`

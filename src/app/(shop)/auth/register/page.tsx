@@ -101,8 +101,7 @@ const RegisterPage = () => {
                 alt="Rata Cueva Logo"
                 width={126}
                 height={22}
-                className="w-[60%] h-auto"
-              />
+                className="w-[60%] h-auto"/>
             </div>
 
             {/* General error message */}
@@ -128,8 +127,7 @@ const RegisterPage = () => {
                 }}
                 placeholder="Ej: Juan"
                 required
-                className={`min-w-[240px] ${hasFieldError('name') ? 'border-red-500' : ''}`}
-              />
+                className={`min-w-[240px] ${hasFieldError('name') ? 'border-red-500' : ''}`}/>
               {getFieldError('name') && (
                 <Body className="text-red-400 text-sm mt-1">
                   {getFieldError('name')}
@@ -190,8 +188,7 @@ const RegisterPage = () => {
                 }}
                 placeholder="Ej: correo@ejemplo.com"
                 required
-                className={`min-w-[240px] ${hasFieldError('email') ? 'border-red-500' : ''}`}
-              />
+                className={`min-w-[240px] ${hasFieldError('email') ? 'border-red-500' : ''}`}/>
               {getFieldError('email') && (
                 <Body className="text-red-400 text-sm mt-1">
                   {getFieldError('email')}
@@ -213,8 +210,7 @@ const RegisterPage = () => {
                 }}
                 placeholder="********"
                 required
-                className={`min-w-[240px] ${hasFieldError('password') ? 'border-red-500' : ''}`}
-              />
+                className={`min-w-[240px] ${hasFieldError('password') ? 'border-red-500' : ''}`}/>
               {getFieldError('password') && (
                 <div className="mt-1">
                   {errors.password?.map((error, index) => (
@@ -244,8 +240,7 @@ const RegisterPage = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="********"
                 required
-                className="min-w-[240px]"
-              />
+                className="min-w-[240px]"/>
             </div>
 
             <Button 

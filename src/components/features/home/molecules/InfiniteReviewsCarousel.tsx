@@ -37,8 +37,7 @@ const InfiniteReviewsCarousel = ({ reviews }: InfiniteReviewsCarouselProps) => {
           <div key={`${review.id}-${index}`} className="h-56">
             <ReviewCard 
               review={review} 
-              index={index} 
-            />
+              index={index} />
           </div>
         ))}
       </motion.div>
