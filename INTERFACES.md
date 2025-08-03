@@ -16,15 +16,22 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
 
 ## Índice
 
-1. [Respeta los mockups y Figma](#1-respeta-los-mockups-y-figma)
-2. [Estructura y ubicación de componentes](#2-estructura-y-ubicación-de-componentes)
-3. [Cómo crear nuevas páginas y cómo funcionan las rutas](#3-cómo-crear-nuevas-páginas-y-cómo-funcionan-las-rutas)
-4. [Uso de layouts](#4-uso-de-layouts)
-5. [Tipografía y textos](#5-tipografía-y-textos)
-6. [Colores y estilos](#6-colores-y-estilos)
-7. [Paddings, margins y espaciados](#7-paddings-margins-y-espaciados)
-8. [Componentes reutilizables](#8-componentes-reutilizables)
-9. [Buenas prácticas y reglas de código](#9-buenas-prácticas-y-reglas-de-código)
+- [Guía para contribuir en interfaces – RataCueva](#guía-para-contribuir-en-interfaces--ratacueva)
+  - [Índice](#índice)
+  - [1. Respeta los mockups y Figma](#1-respeta-los-mockups-y-figma)
+  - [2. Estructura y ubicación de componentes](#2-estructura-y-ubicación-de-componentes)
+  - [2.1 Uso de `hook`, `lib` y `services`](#21-uso-de-hook-lib-y-services)
+    - [`src/hook/`](#srchook)
+    - [`src/lib/`](#srclib)
+    - [`src/services/`](#srcservices)
+    - [📌 Recomendaciones al importar](#-recomendaciones-al-importar)
+  - [3. Cómo crear nuevas páginas y cómo funcionan las rutas](#3-cómo-crear-nuevas-páginas-y-cómo-funcionan-las-rutas)
+  - [4. Uso de layouts](#4-uso-de-layouts)
+  - [5. Tipografía y textos](#5-tipografía-y-textos)
+  - [6. Colores y estilos](#6-colores-y-estilos)
+  - [7. Paddings, margins y espaciados](#7-paddings-margins-y-espaciados)
+  - [8. Componentes reutilizables](#8-componentes-reutilizables)
+  - [9. Buenas prácticas y reglas de código](#9-buenas-prácticas-y-reglas-de-código)
 
 ---
 
@@ -44,6 +51,61 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
   - **Dentro de cada feature** debes replicar la estructura atomic design (`atoms/`, `molecules/`, `organisms/`, `templates/`), pero solo para componentes muy específicos que solo se usen en esa sección. Si el componente puede ser útil en otras partes del proyecto, debe ir en la estructura general de `src/components/`.
 - **¿Nuevo componente?** Ubícalo donde corresponda. Si no encaja, consulta al equipo.
 
+
+## 2.1 Uso de `hook`, `lib` y `services`
+
+Para mantener una arquitectura clara y sostenible, la lógica de negocio, funciones utilitarias y comunicación con APIs debe organizarse fuera de los componentes visuales, usando estas carpetas en `src/`:
+
+### `src/hook/`
+
+Contiene **custom hooks** para encapsular lógica reactiva (fetch, manejo de estado, debounce, etc.) separada de los componentes de UI.  
+Se organiza por dominio cuando aplica:  
+Ejemplos:
+- `src/hook/useProducts.ts`
+- `src/hook/dashboard/useEmployees.ts`
+
+> ✅ Usa esta carpeta cuando necesites reutilizar lógica con `useState`, `useEffect`, React Query, etc.
+
+---
+
+### `src/lib/`
+
+Contiene **funciones utilitarias, configuración de librerías y datos simulados**, no dependientes de React.
+Ejemplos:
+- `src/lib/utils.ts`: Funciones genéricas (formateo, validaciones, etc.)
+- `src/lib/react-query-client.ts`: Configuración global de React Query
+- `src/lib/featuredProducts.ts`: Datos simulados para desarrollo
+
+> ✅ Ideal para helpers, configuraciones o datos temporales.
+
+---
+
+### `src/services/`
+
+Contiene **funciones para acceder a datos externos**, como APIs REST o servicios internos.
+También se organiza por dominio para mantener claridad.
+Ejemplos:
+- `src/services/auth/login.ts`
+- `src/services/home/products/index.tsx`
+
+> ✅ Toda la lógica de acceso a datos (fetch, axios, etc.) debe vivir aquí.
+
+---
+
+### 📌 Recomendaciones al importar
+
+Al trabajar con componentes, importa la lógica desde estas carpetas para mantener una separación clara entre la presentación y la lógica:
+
+```tsx
+import { useProducts } from '@/hook/home/useProducts';
+import { fetchHomeProducts } from '@/services/home/products';
+import { formatCurrency } from '@/lib/utils';
+```
+
+---
+
+**Importante:** Estas carpetas ya existen dentro de `src/` y **no deben duplicarse dentro de `src/app/` ni de ninguna feature**. Centralizamos su uso para evitar confusión y duplicidad.
+
 ## 3. Cómo crear nuevas páginas y cómo funcionan las rutas
 
 - El proyecto usa el sistema de rutas basado en el filesystem de Next.js (app router).
@@ -53,41 +115,41 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
 - Los layouts (`layout.tsx`) y templates se pueden anidar para compartir estructura y estilos entre páginas.
 - No modifiques rutas existentes sin consultar, para evitar romper navegación o enlaces.
 
-## 3. Uso de layouts
+## 4. Uso de layouts
 
 - **Siempre usa el layout adecuado:**
   - Dashboard: **usando siempre** [`DashboardContentLayout`] desde `components/features/dashboard/templates/`.
   - Shop: **usando siempre** [`PageLayout`] desde `src/components/templates/` como contenedor principal y dentro de este [`ContentLayout`] desde `src/components/templates/` para el contenido de cada página. Así aseguras consistencia de paddings, anchos y espaciados.
 - **No dupliques layouts.** Extiende los existentes.
 
-## 4. Tipografía y textos
+## 5. Tipografía y textos
 
 - **Usa SIEMPRE los componentes de tipografía:**
   - `Display`, `Heading`, `Subheading`, `Body`, `BodySmall`, `Caption` desde `src/components/atoms/Typography/`
 - **No uses `<h1>`, `<p>`, etc.** directamente, salvo casos muy justificados.
 - **Textos:** Copia y pega desde Figma. No inventes ni cambies redacción.
 
-## 5. Colores y estilos
+## 6. Colores y estilos
 
 - **Colores:** Usa las clases de Tailwind ya definidas (`bg-primary`, `text-accent`, etc.).
 - **No uses valores hex ni rgb directos.**
 - **Variables:** Si necesitas un color nuevo, consulta antes de agregarlo.
 - **Estilos globales:** Todos los estilos base y utilidades personalizadas están en `src/app/globals.css`. Desde Tailwind v4 no existe archivo de configuración `tailwind.config.js`.
 
-## 6. Paddings, margins y espaciados
+## 7. Paddings, margins y espaciados
 
 - **Respeta los valores de Figma.**
 - Usa las utilidades de Tailwind (`px-4`, `py-8`, `gap-6`, etc.).
 - **No uses estilos en línea** salvo casos muy justificados.
 - Los templates como `PageLayout` y `ContentLayout` ya manejan la mayoría de los espaciados globales.
 
-## 7. Componentes reutilizables
+## 8. Componentes reutilizables
 
 - **Antes de crear un componente, revisa si ya existe.**
 - Si creas uno nuevo, hazlo reutilizable y documenta sus props.
 - **Ejemplo:** Un botón debe ir en `atoms/Button.tsx`.
 
-## 8. Buenas prácticas y reglas de código
+## 9. Buenas prácticas y reglas de código
 
 - **No modifiques el diseño sin aprobación.**
 - **No mezcles lógica de negocio con UI.**
