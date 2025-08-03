@@ -16,15 +16,22 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
 
 ## Índice
 
-1. [Respeta los mockups y Figma](#1-respeta-los-mockups-y-figma)
-2. [Estructura y ubicación de componentes](#2-estructura-y-ubicación-de-componentes)
-3. [Cómo crear nuevas páginas y cómo funcionan las rutas](#3-cómo-crear-nuevas-páginas-y-cómo-funcionan-las-rutas)
-4. [Uso de layouts](#4-uso-de-layouts)
-5. [Tipografía y textos](#5-tipografía-y-textos)
-6. [Colores y estilos](#6-colores-y-estilos)
-7. [Paddings, margins y espaciados](#7-paddings-margins-y-espaciados)
-8. [Componentes reutilizables](#8-componentes-reutilizables)
-9. [Buenas prácticas y reglas de código](#9-buenas-prácticas-y-reglas-de-código)
+- [Guía para contribuir en interfaces – RataCueva](#guía-para-contribuir-en-interfaces--ratacueva)
+  - [Índice](#índice)
+  - [1. Respeta los mockups y Figma](#1-respeta-los-mockups-y-figma)
+  - [2. Estructura y ubicación de componentes](#2-estructura-y-ubicación-de-componentes)
+  - [2.1 Uso de `hook`, `lib` y `services`](#21-uso-de-hook-lib-y-services)
+    - [🔁 `src/hook/`](#-srchook)
+    - [🔧 `src/lib/`](#-srclib)
+    - [🌐 `src/services/`](#-srcservices)
+    - [📌 Recomendaciones al importar](#-recomendaciones-al-importar)
+  - [3. Cómo crear nuevas páginas y cómo funcionan las rutas](#3-cómo-crear-nuevas-páginas-y-cómo-funcionan-las-rutas)
+  - [3. Uso de layouts](#3-uso-de-layouts)
+  - [4. Tipografía y textos](#4-tipografía-y-textos)
+  - [5. Colores y estilos](#5-colores-y-estilos)
+  - [6. Paddings, margins y espaciados](#6-paddings-margins-y-espaciados)
+  - [7. Componentes reutilizables](#7-componentes-reutilizables)
+  - [8. Buenas prácticas y reglas de código](#8-buenas-prácticas-y-reglas-de-código)
 
 ---
 
@@ -43,6 +50,61 @@ Lee el resto de la guía solo si necesitas detalles o ejemplos.
 - **Features:** Funcionalidad específica por dominio (dashboard, products, privacy-policy): `src/components/features/<dominio>/`
   - **Dentro de cada feature** debes replicar la estructura atomic design (`atoms/`, `molecules/`, `organisms/`, `templates/`), pero solo para componentes muy específicos que solo se usen en esa sección. Si el componente puede ser útil en otras partes del proyecto, debe ir en la estructura general de `src/components/`.
 - **¿Nuevo componente?** Ubícalo donde corresponda. Si no encaja, consulta al equipo.
+
+
+## 2.1 Uso de `hook`, `lib` y `services`
+
+Para mantener una arquitectura clara y sostenible, la lógica de negocio, funciones utilitarias y comunicación con APIs debe organizarse fuera de los componentes visuales, usando estas carpetas en `src/`:
+
+### 🔁 `src/hook/`
+
+Contiene **custom hooks** para encapsular lógica reactiva (fetch, manejo de estado, debounce, etc.) separada de los componentes de UI.  
+Se organiza por dominio cuando aplica:  
+Ejemplos:
+- `src/hook/useProducts.ts`
+- `src/hook/dashboard/useEmployees.ts`
+
+> ✅ Usa esta carpeta cuando necesites reutilizar lógica con `useState`, `useEffect`, React Query, etc.
+
+---
+
+### 🔧 `src/lib/`
+
+Contiene **funciones utilitarias, configuración de librerías y datos simulados**, no dependientes de React.
+Ejemplos:
+- `src/lib/utils.ts`: Funciones genéricas (formateo, validaciones, etc.)
+- `src/lib/react-query-client.ts`: Configuración global de React Query
+- `src/lib/featuredProducts.ts`: Datos simulados para desarrollo
+
+> ✅ Ideal para helpers, configuraciones o datos temporales.
+
+---
+
+### 🌐 `src/services/`
+
+Contiene **funciones para acceder a datos externos**, como APIs REST o servicios internos.
+También se organiza por dominio para mantener claridad.
+Ejemplos:
+- `src/services/auth/login.ts`
+- `src/services/home/products/index.tsx`
+
+> ✅ Toda la lógica de acceso a datos (fetch, axios, etc.) debe vivir aquí.
+
+---
+
+### 📌 Recomendaciones al importar
+
+Al trabajar con componentes, importa la lógica desde estas carpetas para mantener una separación clara entre la presentación y la lógica:
+
+```tsx
+import { useProducts } from '@/hook/home/useProducts';
+import { fetchHomeProducts } from '@/services/home/products';
+import { formatCurrency } from '@/lib/utils';
+```
+
+---
+
+📎 **Importante:** Estas carpetas ya existen dentro de `src/` y **no deben duplicarse dentro de `src/app/` ni de ninguna feature**. Centralizamos su uso para evitar confusión y duplicidad.
 
 ## 3. Cómo crear nuevas páginas y cómo funcionan las rutas
 
