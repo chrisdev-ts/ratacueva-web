@@ -1,5 +1,7 @@
 "use client"
 
+import { useState } from "react"
+import axios from "axios";
 import { PageLayout } from "@/components/templates/PageLayout"
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 import { MapPinIcon, CheckIcon } from "@heroicons/react/24/outline"
@@ -8,8 +10,109 @@ import Button from "@/components/atoms/Button"
 import { RadioGroup, RadioGroupItem } from "@/components/atoms/radio-group"
 import { Subheading } from "@/components/atoms/Typography";
 import { Body, BodySmall } from "@/components/atoms/Typography";
+import Toast from "@/components/atoms/Toast";
 
 export default function NewAddressPage() {
+
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://ratacueva-api.onrender.com/api";
+
+  const [postalCode, setPostalCode] = useState("");
+  const [street, setStreet] = useState("");
+  const [externalNumber, setExternalNumber] = useState("");
+  const [internalNumber, setInternalNumber] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("México");
+  const [fullAddress, setFullAddress] = useState("");
+  const [locality, setLocality] = useState("");
+  const [deliveryInstructions, setDeliveryInstructions] = useState("");
+  const [recipientName, setRecipientName] = useState("");
+  const [recipientPhone, setRecipientPhone] = useState("");
+  const [addressType, setAddressType] = useState<"home" | "work">("home");
+  const [isDefault, setIsDefault] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [isToastVisible, setIsToastVisible] = useState(false);
+  const [toastType, setToastType] = useState<"success" | "info" | "warning">("success");
+
+  const token = localStorage.getItem("token");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const isValid = validateForm();
+    if (!isValid) {
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      await axios.post(`${API_URL}/users/addresses`, {
+        postalCode,
+        street: fullAddress,
+        externalNumber,
+        internalNumber,
+        neighborhood,
+        city,
+        state,
+        country,
+        fullAddress,
+        locality,
+        deliveryInstructions,
+        recipientName,
+        recipientPhone,
+        addressType,
+        isDefault
+      },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      setToastMessage("Dirección añadida con éxito");
+      setToastType("success");
+      setIsToastVisible(true);
+      resetForm();
+    } catch (error: any) {
+      setToastMessage(error.response?.data?.message || "Hubo un error al añadir la dirección");
+      setToastType("warning");
+      setIsToastVisible(true);
+      console.error(error)
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resetForm = () => {
+    setPostalCode("");
+    setStreet("");
+    setExternalNumber("");
+    setInternalNumber("");
+    setNeighborhood("");
+    setCity("");
+    setState("");
+    setCountry("");
+    setFullAddress("");
+    setLocality("");
+    setDeliveryInstructions("");
+    setRecipientName("");
+    setRecipientPhone("");
+    setAddressType("home");
+    setIsDefault(false);
+  }
+
+  const validateForm = () => {
+    if (!fullAddress.trim() || !postalCode.trim() || !city.trim() || !state.trim() || !recipientName.trim() || !recipientPhone.trim()) {
+      setToastMessage("Por favor, completa todos los campos obligatorios.");
+      setToastType("warning");
+      setIsToastVisible(true);
+      return false;
+    }
+    return true;
+  }
+
   return (
     <PageLayout className="px-[240px]">
       <div className="pt-8 pb-4">
@@ -23,7 +126,7 @@ export default function NewAddressPage() {
           color="text-white"
           className="mb-8"
         />
-        <div className="overflow-hidden rounded-lg bg-gray p-6">
+        <form onSubmit={handleSubmit} className="overflow-hidden rounded-lg bg-gray p-6">
           <div className="mb-6 flex w-full flex-col items-start gap-6 self-stretch">
             <div className="inline-flex h-auto min-h-11 items-center justify-start gap-3 px-0 py-0 text-cyan-400">
               <MapPinIcon className="h-6 w-6 text-cyan-400" />
@@ -41,17 +144,23 @@ export default function NewAddressPage() {
                   id="deliveryAddress"
                   type="text"
                   placeholder="Ej: Avenida los leones 4563"
+                  value={fullAddress}
+                  onChange={(e) => setFullAddress(e.target.value)}
                 />
               </div>
 
               <div className="flex w-full flex-col items-start gap-4">
-                <BodySmall as="label" htmlFor="postalCode" className="text-base font-medium text-white">
+                <BodySmall as="label" htmlFor="postalCode" className="text-base font-medium text-white" pattern="\d{5}" maxLength={5}>
                   Código postal
                 </BodySmall>
                 <Input
                   id="postalCode"
                   type="text"
                   placeholder="Ej: 09440"
+                  value={postalCode}
+                  onChange={(e) => setPostalCode(e.target.value)}
+                  pattern="\d{5}"
+                  maxLength={5}
                 />
               </div>
 
@@ -64,6 +173,10 @@ export default function NewAddressPage() {
                     id="state"
                     type="text"
                     placeholder="Debes seleccionar una opción"
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                    minLength={2}
+                    maxLength={100}
                   />
                 </div>
                 <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
@@ -74,6 +187,10 @@ export default function NewAddressPage() {
                     id="municipality"
                     type="text"
                     placeholder="Ej: Córdoba"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    minLength={2}
+                    maxLength={100}
                   />
                 </div>
               </div>
@@ -87,6 +204,10 @@ export default function NewAddressPage() {
                     id="locality"
                     type="text"
                     placeholder="Ej: Córdoba"
+                    value={locality}
+                    onChange={(e) => setLocality(e.target.value)}
+                    minLength={2}
+                    maxLength={100}
                   />
                 </div>
                 <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
@@ -97,6 +218,10 @@ export default function NewAddressPage() {
                     id="neighborhood"
                     type="text"
                     placeholder="Ej: México"
+                    value={neighborhood}
+                    onChange={(e) => setNeighborhood(e.target.value)}
+                    minLength={2}
+                    maxLength={255}
                   />
                 </div>
               </div>
@@ -109,6 +234,9 @@ export default function NewAddressPage() {
                   id="interiorNumber"
                   type="text"
                   placeholder="Ej: 266"
+                  value={internalNumber}
+                  onChange={(e) => setInternalNumber(e.target.value)}
+                  maxLength={20}
                 />
               </div>
 
@@ -120,15 +248,22 @@ export default function NewAddressPage() {
                   id="deliveryInstructions"
                   type="text"
                   placeholder="Ej: Entre calles, color del edificio, no tiene timbre."
+                  value={deliveryInstructions}
+                  onChange={(e) => setDeliveryInstructions(e.target.value)}
+                  maxLength={255}
                 />
               </div>
 
               <div className="flex w-full flex-col items-start gap-4">
                 <BodySmall className="text-base font-medium text-white">Tipo de domicilio</BodySmall>
-                <RadioGroup defaultValue="residential" className="flex flex-col items-start gap-2">
+                <RadioGroup
+                  defaultValue="home"
+                  className="flex flex-col items-start gap-2"
+                  onValueChange={(value) => setAddressType(value as "home" | "work")}
+                >
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="residential" id="residential" className="border-white text-primary" />
-                    <BodySmall as="label" htmlFor="residential" className="text-base font-medium text-white">
+                    <RadioGroupItem value="home" id="home" className="border-white text-primary" />
+                    <BodySmall as="label" htmlFor="home" className="text-base font-medium text-white">
                       Residencial
                     </BodySmall>
                   </div>
@@ -154,6 +289,10 @@ export default function NewAddressPage() {
                   id="contactName"
                   type="text"
                   placeholder="Ej: Juan Martinez"
+                  value={recipientName}
+                  onChange={(e) => setRecipientName(e.target.value)}
+                  minLength={2}
+                  maxLength={255}
                 />
               </div>
 
@@ -165,19 +304,30 @@ export default function NewAddressPage() {
                   id="contactPhone"
                   type="tel"
                   placeholder="Ej: 2712667564"
+                  value={recipientPhone}
+                  onChange={(e) => setRecipientPhone(e.target.value)}
+                  pattern="\d{10,15}"
+                  minLength={10}
+                  maxLength={15}
                 />
               </div>
             </div>
           </div>
 
           <div className="flex w-full justify-end">
-            <Button>
+            <Button type="submit" disabled={isLoading}>
               <CheckIcon className="w-5 h-5 mr-2" />
-              Guardar nueva dirección
+              {isLoading ? "Guardando..." : "Guardar nueva dirección"}
             </Button>
           </div>
-        </div>
+        </form>
       </div>
+      <Toast
+        message={toastMessage}
+        isVisible={isToastVisible}
+        onClose={() => setIsToastVisible(false)}
+        type={toastType}
+      />
     </PageLayout>
   )
 }
