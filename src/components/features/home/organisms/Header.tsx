@@ -255,3 +255,90 @@ export default function Header() {
     </header>
   )
 }
+
+/**
+ * Obtiene las iniciales de un nombre completo
+ * @param name - Nombre completo del usuario
+ * @returns Las iniciales en mayúsculas
+ */
+export function getInitials(name: string): string {
+  if (!name || typeof name !== 'string') {
+    return '';
+  }
+  
+  return name
+    .split(' ')
+    .map(word => word.charAt(0))
+    .join('')
+    .toUpperCase()
+    .substring(0, 2); // Limitar a 2 caracteres máximo
+}
+
+/**
+ * Genera un color de avatar basado en el nombre
+ * @param name - Nombre del usuario
+ * @returns Color en formato hex
+ */
+export function getAvatarColor(name: string): string {
+  if (!name || typeof name !== 'string') {
+    return '#6B7280'; // Color gris por defecto
+  }
+  
+  const colors = [
+    '#EF4444', // red-500
+    '#F59E0B', // amber-500
+    '#10B981', // emerald-500
+    '#3B82F6', // blue-500
+    '#8B5CF6', // violet-500
+    '#EC4899', // pink-500
+    '#F97316', // orange-500
+    '#84CC16', // lime-500
+    '#06B6D4', // cyan-500
+    '#6366F1', // indigo-500
+  ];
+  
+  // Generar un índice basado en el nombre
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  
+  const colorIndex = Math.abs(hash) % colors.length;
+  return colors[colorIndex];
+}
+
+/**
+ * Clase utilitaria para combinar clases CSS condicionalmente
+ * @param classes - Array de clases o condiciones
+ * @returns String con las clases combinadas
+ */
+export function cn(...classes: (string | undefined | null | false)[]): string {
+  return classes.filter(Boolean).join(' ');
+}
+
+/**
+ * Formatea un número como moneda en colones costarricenses
+ * @param amount - Cantidad a formatear
+ * @returns String formateado como moneda
+ */
+export function formatCurrency(amount: number): string {
+  return new Intl.NumberFormat('es-CR', {
+    style: 'currency',
+    currency: 'CRC',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
+/**
+ * Trunca un texto a una longitud específica
+ * @param text - Texto a truncar
+ * @param length - Longitud máxima
+ * @returns Texto truncado con "..." si es necesario
+ */
+export function truncateText(text: string, length: number): string {
+  if (!text || text.length <= length) {
+    return text;
+  }
+  return text.substring(0, length) + '...';
+}

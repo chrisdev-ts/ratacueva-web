@@ -1,7 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { checkTokenValidity, clearAuthData } from '@/lib/checkAuth'
+import { checkTokenValidity, clearAuthData } from '@/libs/checkAuth'
 
 interface User {
   id?: string

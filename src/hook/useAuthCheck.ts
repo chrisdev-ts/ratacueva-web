@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { checkTokenValidity, redirectToLogin } from '@/lib/checkAuth'
+import { checkTokenValidity, redirectToLogin } from '@/libs/checkAuth'
 
 const PUBLIC_ROUTES = [
   '/auth/login',

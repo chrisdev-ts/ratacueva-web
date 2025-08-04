@@ -315,11 +315,24 @@ export default function SuccessfulPurchasePage() {
                 </Button>
               </Link>
               <Link href="/shop" className="w-full max-w-xs">
-                <Button variant="outline" className="w-full h-11 px-4 py-2.5">
+                <Button  className="w-full h-11 px-4 py-2.5">
                   Continuar comprando
                 </Button>
               </Link>
             </div>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  // Si no hay datos de compra, mostrar un mensaje de carga o error
+  if (!purchaseData) {
+    return (
+      <PageLayout>
+        <div className="px-4 lg:px-60 py-8 flex flex-col justify-center items-center gap-8">
+          <div className="text-center">
+            <Body className="text-white text-xl">Cargando información de la compra...</Body>
           </div>
         </div>
       </PageLayout>
@@ -338,20 +351,12 @@ export default function SuccessfulPurchasePage() {
       <div className="px-4 lg:px-60 py-8 flex flex-col justify-center items-center gap-8">
         <div className="w-full flex flex-col justify-start items-center gap-12">
           <div className="w-full flex flex-col justify-start items-start gap-8">
-<<<<<<< Updated upstream
             {/* Card del producto comprado */}
             <div className="w-full p-6 bg-dark rounded-lg flex justify-start items-center gap-6">
               <div className="flex-1 flex flex-col justify-start items-start gap-4">
                 {/* Fecha de llegada */}
                 <div className="w-full flex justify-start items-center gap-2.5">
                   <Body className="text-emerald-400 text-xl font-bold">
-=======
-            {/* Fecha de entrega */}
-            {purchaseData && (
-              <>
-                <div className="w-full p-4 bg-zinc-800 rounded-lg">
-                  <Body className="text-emerald-400 text-xl font-bold text-center">
->>>>>>> Stashed changes
                     Llega el {purchaseData.deliveryDate}
                   </Body>
                 </div>
@@ -397,8 +402,8 @@ export default function SuccessfulPurchasePage() {
                     </Subheading>
                   </div>
                 </div>
-              </>
-            )}
+              </div>
+            </div>
 
             {/* Botones de acción */}
             <div className="w-full flex justify-center items-center">

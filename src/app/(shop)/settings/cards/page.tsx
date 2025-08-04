@@ -89,23 +89,7 @@ export default function CardsPage() {
     }
   };
 
-  const getCardIcon = (type: string) => {
-    switch (type) {
-      case "credit_card":
-      case "debit_card":
-        return <CreditCardIcon className="w-8 h-8 text-zinc-800" />;
-      case "paypal":
-        return <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
-          <span className="text-white text-xs font-bold">PP</span>
-        </div>;
-      case "oxxo_cash":
-        return <div className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center">
-          <span className="text-white text-xs font-bold">OX</span>
-        </div>;
-      default:
-        return <CreditCardIcon className="w-8 h-8 text-zinc-800" />;
-    }
-  };
+
 
   if (loading) {
     return (
@@ -174,12 +158,12 @@ export default function CardsPage() {
                         <Subheading className="text-white font-medium">
                           {getCardTypeDisplay(method.type)}
                         </Subheading>
-                        <Body className="text-placeholder text-sm">{card.bank}</Body>
+                        <Body className="text-placeholder text-sm">{method.provider || 'N/A'}</Body>
                         <Body className="text-placeholder text-sm">
-                          Vencimiento: {card.expiry}
-                          {card.isDefault && (
-                            <span className="ml-2 px-2 py-1 bg-primary text-white text-xs rounded-full">
-                              Predeterminada
+                          {method.last4 && `Terminada en ${method.last4}`}
+                          {method.expiration && (
+                            <span className="ml-2">
+                              Vencimiento: {method.expiration}
                             </span>
                           )}
                         </Body>

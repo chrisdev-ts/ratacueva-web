@@ -13,13 +13,10 @@ import {
 } from "@heroicons/react/24/outline"
 import { PageLayout } from "@/components/templates/PageLayout"
 import { useAuth } from "@/contexts/AuthContext"
-import { getInitials, getAvatarColor } from "@/lib/utils"
+import { getInitials, getAvatarColor } from "@/libs/utils"
 
 export default function SettingsPage() {
   const { user } = useAuth();
-  
-  // Console log para ver los datos del usuario
-  console.log('User data in settings:', user);
   
   const row1 = [
     {
@@ -35,6 +32,7 @@ export default function SettingsPage() {
       href: "/settings/favorites",
     },
   ]
+  
   const row2 = [
     {
       icon: ClipboardDocumentCheckIcon,
@@ -55,6 +53,7 @@ export default function SettingsPage() {
       href: "/settings/addresses",
     },
   ]
+  
   const row3 = [
     {
       icon: LockClosedIcon,
@@ -70,11 +69,17 @@ export default function SettingsPage() {
     },
   ]
 
+  // Usar datos del usuario autenticado o valores por defecto
+  const userName = user?.name ? `${user.name} ${user.lastName || ''}`.trim() : "Jorge Christian Serrano Puertos";
+  const userEmail = user?.email || "christiansp7231@gmail.com";
+  const userInitials = getInitials(userName);
+  const avatarColor = getAvatarColor(userName);
+
   return (
     <PageLayout className="px-[240px]">
       <div className="self-stretch flex-1 pt-12 pb-8 flex flex-col justify-start items-center gap-8">
         <div className="self-stretch flex flex-col sm:flex-row justify-start items-center gap-8">
-          <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+          <div className="w-20 h-20 p-2.5 bg-gray rounded-[99px] flex items-center justify-center overflow-hidden">
             {user?.avatar ? (
               <Image
                 src={user.avatar}
@@ -84,18 +89,19 @@ export default function SettingsPage() {
                 className="rounded-full object-cover"
               />
             ) : (
-              <div className={`w-full h-full rounded-full flex items-center justify-center text-white text-2xl font-bold ${getAvatarColor(user?.name || '')}`}>
-                {getInitials(user?.name || '')}
+              <div 
+                className="w-full h-full rounded-full flex items-center justify-center text-white font-bold text-xl"
+                style={{ backgroundColor: avatarColor }}
+              >
+                {userInitials}
               </div>
             )}
           </div>
           <div className="flex flex-col justify-center items-start gap-2 text-center sm:text-left">
             <div className="text-white text-3xl font-bold">
-              {user?.name && user?.lastName && user?.secondLastName 
-                ? `${user.name} ${user.lastName} ${user.secondLastName}`
-                : user?.name || 'Usuario'}
+              {userName}
             </div>
-            <div className="text-white text-base font-normal">{user?.email || 'usuario@ejemplo.com'}</div>
+            <div className="text-white text-base font-normal">{userEmail}</div>
           </div>
         </div>
 
