@@ -55,7 +55,7 @@ export default function ProductSection({ title, products, showViewAll = false }:
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {products.map((product) => (
-            <div key={product.id} className="min-w-[280px] lg:min-w-[320px] xl:min-w-[350px] flex-shrink-0">
+            <div key={product.id} className="min-w-[270px] flex-shrink-0">
               <ProductCard product={product} />
             </div>
           ))}

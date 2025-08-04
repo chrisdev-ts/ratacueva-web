@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { ShoppingCartIcon, UserIcon, HeartIcon, Bars3Icon, ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline"
+import { ShoppingCartIcon, UserIcon, HeartIcon, Bars3Icon, ArrowRightOnRectangleIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useRef, useEffect } from "react"
@@ -22,25 +22,24 @@ export default function Header() {
   const router = useRouter()
   const searchRef = useRef<HTMLDivElement>(null)
   const userDropdownRef = useRef<HTMLDivElement>(null)
-  const searchTimeoutRef = useRef<NodeJS.Timeout>()
-  
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null)  
   const { getCartCount } = useCart()
   const { getFavoritesCount } = useFavorites()
   const { isAuthenticated, logout } = useAuth()
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`)
-      setShowSuggestions(false)
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setShowSuggestions(false);
     }
-  }
+  };
 
   const handleSuggestionSelect = (suggestion: string) => {
-    setSearchQuery(suggestion)
-    router.push(`/search?q=${encodeURIComponent(suggestion)}`)
-    setShowSuggestions(false)
-  }
+    setSearchQuery(suggestion);
+    router.push(`/search?q=${encodeURIComponent(suggestion)}`);
+    setShowSuggestions(false);
+  };
 
   const handleProductSelect = (productId: string) => {
     router.push(`/product/${productId}`)
@@ -94,15 +93,15 @@ export default function Header() {
         performSearch(searchQuery)
       }
     }
-  }
+  };
 
   const handleUserButtonClick = () => {
     if (isAuthenticated) {
       setShowUserDropdown(!showUserDropdown)
     } else {
-      router.push('/auth/login')
+      router.push("/auth/login");
     }
-  }
+  };
 
   const handleLogout = () => {
     logout()
@@ -122,28 +121,33 @@ export default function Header() {
   // Cerrar sugerencias y dropdown al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-        setShowSuggestions(false)
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
       }
       if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
         setShowUserDropdown(false)
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="w-full">
-      <div className="max-w-[1440px] mx-auto px-[80px] py-4 lg:py-6">
-        <div className="flex justify-between items-center gap-4">
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-20 xl:px-[80px] py-6">
+        <div className="flex justify-between items-center gap-6 lg:gap-12">
           {/* Logo */}
-          <Link href="/" className="flex justify-start items-center gap-2 flex-shrink-0">
+          <Link
+            href="/"
+            className="flex justify-start items-center gap-2 flex-shrink-0"
+          >
             <Image
-              className="h-10 lg:h-12"
               src="/images/logotipo-base.svg"
               alt="RataCueva Logo"
               width={126}
@@ -154,17 +158,23 @@ export default function Header() {
           </Link>
 
           {/* Search Bar - Expandido en desktop */}
-          <div className="flex-1 max-w-2xl mx-4 lg:mx-8 relative" ref={searchRef}>
-            <form onSubmit={handleSearch}>
-              <Input
-                type="search"
-                variant="searchbar"      // Solo era poner el tipo correcto de variante, en este caso "searchbar"          
-                placeholder="Buscar productos..."
-                value={searchQuery}
-                onChange={handleInputChange}
-                onFocus={handleInputFocus}
-                className="min-h-11 rounded-2xl"
-              />
+          <div
+            className="flex-1 max-w-2xl mx-4 lg:mx-8 relative"
+            ref={searchRef}
+          >
+            <form onSubmit={handleSearch} className="relative">
+              <div className="relative">
+                <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2 z-10" />
+                <Input
+                  type="search"
+                  variant="searchbar"
+                  placeholder="Buscar productos..."
+                  value={searchQuery}
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+                  className="min-h-11 rounded-2xl pl-12 border-gray-200 focus:border-primary"
+                />
+              </div>
             </form>
 
             {/* Dropdown de sugerencias */}
@@ -197,21 +207,23 @@ export default function Header() {
                 <HeartIcon className="w-5 h-5 text-white" />
                 {getFavoritesCount() > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-                    {getFavoritesCount() > 99 ? '99+' : getFavoritesCount()}
+                    {getFavoritesCount() > 99 ? "99+" : getFavoritesCount()}
                   </span>
                 )}
               </Link>
-              <Link
-                href="/cart"
-                className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center relative"
-              >
-                <ShoppingCartIcon className="w-5 h-5 text-white" />
-                {getCartCount() > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-                    {getCartCount() > 99 ? '99+' : getCartCount()}
-                  </span>
-                )}
-              </Link>
+              <div className="relative">
+                <Link
+                  href="/cart"
+                  className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center relative"
+                >
+                  <ShoppingCartIcon className="w-5 h-5 text-white" />
+                  {getCartCount() > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                      {getCartCount() > 99 ? "99+" : getCartCount()}
+                    </span>
+                  )}
+                </Link>
+              </div>
               <div className="relative" ref={userDropdownRef}>
                 <button
                   onClick={handleUserButtonClick}
@@ -222,7 +234,7 @@ export default function Header() {
                 
                 {/* User Dropdown */}
                 {showUserDropdown && isAuthenticated && (
-                  <div className="absolute right-0 top-full mt-2 w-48 bg-gray rounded-lg shadow-lg border border-zinc-700 z-50">
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-zinc-700 z-50">
                     <div className="py-1">
                       <Link
                         href="/settings"
@@ -247,13 +259,13 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="lg:hidden h-11 min-h-11 p-2.5 bg-primary rounded-[99px] flex justify-center items-center">
+          <button className="lg:hidden h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center">
             <Bars3Icon className="w-5 h-5 text-white" />
           </button>
         </div>
       </div>
     </header>
-  )
+  );
 }
 
 /**

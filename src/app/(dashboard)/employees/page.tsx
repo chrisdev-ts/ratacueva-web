@@ -178,7 +178,7 @@ export default function Employees() {
                 {isLoading ? (
                     <p className="text-gray-400">Cargando empleados...</p>
                 ) : error ? (
-                    <p className="text-red-400">Error al cargar empleados</p>
+                    <p className="text-red-400">Error al cargar los empleados</p>
                 ) : (
                     <BaseTable data={currentData} columns={columns} />
                 )}
