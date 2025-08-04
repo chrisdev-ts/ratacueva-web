@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Body, Display } from "@/components/atoms/Typography";
+import { Body, Display, Heading } from "@/components/atoms/Typography";
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
 import BaseTable from "@/components/features/dashboard/atoms/BaseTable";
@@ -128,10 +128,9 @@ export default function Sales() {
     };
 
     return (
-        <div className="flex flex-col max-w-none mx-auto p-8 lg:px-7 lg:py-8 gap-8 flex-1 text-text font-body">
             <DashboardContentLayout>
                 <div className="flex justify-between items-center pb-3">
-                    <Display>Administrar ventas</Display>
+                    <Heading>Administrar ventas</Heading>
                 </div>
 
                 <div className="flex flex-col gap-6">
@@ -200,6 +199,5 @@ export default function Sales() {
                     </div>
                 </div>
             </DashboardContentLayout>
-        </div>
     );
 }

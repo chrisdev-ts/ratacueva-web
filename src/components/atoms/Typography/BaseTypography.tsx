@@ -22,7 +22,7 @@ export const BaseTypography: React.FC<BaseTypographyInternalProps> = ({
 
   // Agrega font-bold por defecto para display, heading y subheading
   const isBold = ["display", "heading", "subheading"].includes(variant);
-  const baseClasses = `font-body text-${variant}${isBold ? " font-bold" : ""}`;
+  const baseClasses = `text-${variant}${isBold ? " font-bold" : ""}`;
 
   return (
     <Component className={`${baseClasses} ${className}`.trim()}>
