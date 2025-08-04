@@ -79,7 +79,7 @@ export default function NewAddressPage() {
       setToastMessage(error.response?.data?.message || "Hubo un error al añadir la dirección");
       setToastType("warning");
       setIsToastVisible(true);
-      console.error(error)
+      // console.error(error)
     } finally {
       setIsLoading(false);
     }
