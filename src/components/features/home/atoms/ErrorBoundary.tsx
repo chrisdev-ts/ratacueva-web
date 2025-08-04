@@ -35,7 +35,7 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="flex flex-col items-center justify-center p-8 text-center">
           <div className="text-red-400 text-6xl mb-4">⚠️</div>
-          <BodySmall className="text-zinc-400 mb-2">
+          <BodySmall className="text-placeholder mb-2">
             Algo salió mal al cargar los productos
           </BodySmall>
           <button

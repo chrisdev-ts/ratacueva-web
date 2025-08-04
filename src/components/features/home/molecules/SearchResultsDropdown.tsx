@@ -26,7 +26,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
   const [showSortDropdown, setShowSortDropdown] = useState(false)
 
   const ProductCard = ({ product }: { product: Product }) => (
-    <div className="bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg overflow-hidden group cursor-pointer relative">
+    <div className="block bg-gray hover:bg-dark border border-2 border-transparent hover:border-gray transition-colors transition-border rounded-lg overflow-hidden group cursor-pointer">
       {" "}
       {/* Added relative */}
       <Link 
@@ -40,7 +40,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
       </Link>
       <div className="relative">
         {/* Product Image */}
-        <div className="relative h-48 p-4 flex items-center justify-center bg-zinc-800/50">
+        <div className="relative h-48 p-4 flex items-center justify-center">
           <Image
             src={product.image || "/placeholder.svg"}
             alt={product.name}
@@ -95,17 +95,17 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
               <StarIcon className="w-3 h-3 fill-yellow-400 text-yellow-400" />
               <BodySmall className="text-white text-xs">{product.rating}</BodySmall>
             </div>
-            <Caption className="text-zinc-400 text-xs">({product.reviews})</Caption>
+            <Caption className="text-placeholder text-xs">({product.reviews})</Caption>
           </div>
           {/* Price */}
           <div className="space-y-1">
             {product.originalPrice && (
-              <div className="text-zinc-500 text-sm line-through">${product.originalPrice.toLocaleString()}</div>
+              <div className="text-placeholder text-sm line-through">${product.originalPrice.toLocaleString()}</div>
             )}
             <div className="text-white text-lg font-bold">${product.price.toLocaleString()}</div>
           </div>
           {/* Location */}
-          <Caption className="text-zinc-400 text-xs mt-2">{product.location}</Caption>
+          <Caption className="text-placeholder text-xs mt-2">{product.location}</Caption>
         </div>
       </div>
     </div>
@@ -116,7 +116,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
       <div className="text-center py-12">
         <div className="text-6xl mb-4">🔍</div>
         <Subheading className="text-white mb-2">No encontramos productos</Subheading>
-        <Body className="text-zinc-400">
+        <Body className="text-placeholder">
           {query ? `No hay resultados para "${query}"` : "Intenta con otros términos de búsqueda"}
         </Body>
       </div>
@@ -127,13 +127,13 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
     <div>
       {/* Sort Controls */}
       <div className="flex justify-between items-center mb-6">
-        <Body className="text-zinc-300">
+        <Body className="text-placeholder">
           {products.length} {products.length === 1 ? "resultado" : "resultados"}
         </Body>
         <div className="relative">
           <button
             onClick={() => setShowSortDropdown(!showSortDropdown)}
-            className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 rounded-lg text-white text-sm transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-gray hover:bg-dark border border-gray rounded-lg text-white text-sm transition-colors"
           >
             <span>Ordenar: {sortOptions.find((opt) => opt.value === sortBy)?.label}</span>
             <ChevronDownIcon className="w-4 h-4" />
@@ -141,7 +141,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
           {showSortDropdown && (
             <>
               <div className="fixed inset-0 z-40" onClick={() => setShowSortDropdown(false)} />
-              <div className="absolute top-full right-0 mt-2 w-48 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl z-50">
+              <div className="absolute top-full right-0 mt-2 w-48 bg-gray border border-dark rounded-lg shadow-xl z-50">
                 {sortOptions.map((option) => (
                   <button
                     key={option.value}
@@ -149,7 +149,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
                       onSortChange(option.value)
                       setShowSortDropdown(false)
                     }}
-                    className={`w-full px-4 py-3 text-left text-sm hover:bg-zinc-700 transition-colors ${
+                    className={`w-full px-4 py-3 text-left text-sm hover:bg-dark transition-colors ${
                       sortBy === option.value ? "text-cyan-400" : "text-white"
                     }`}
                   >

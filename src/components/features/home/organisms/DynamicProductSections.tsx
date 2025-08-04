@@ -17,10 +17,10 @@ export default function DynamicProductSections() {
       <div className="space-y-8">
         {[...Array(4)].map((_, index) => (
           <div key={index} className="animate-pulse">
-            <div className="h-8 bg-zinc-700 rounded mb-6 w-1/3"></div>
+            <div className="h-8 bg-placeholder rounded mb-6 w-1/3"></div>
             <div className="flex gap-4 overflow-hidden">
               {[...Array(4)].map((_, i) => (
-                <div key={i} className="min-w-[280px] h-64 bg-zinc-700 rounded"></div>
+                <div key={i} className="min-w-[280px] h-64 bg-placeholder rounded"></div>
               ))}
             </div>
           </div>
@@ -39,7 +39,7 @@ export default function DynamicProductSections() {
 
   if (!allProducts?.data) {
     return (
-      <div className="text-zinc-400 p-8 text-center">
+      <div className="text-placeholder p-8 text-center">
         No hay productos disponibles
       </div>
     );
@@ -60,7 +60,7 @@ export default function DynamicProductSections() {
 
   if (categories.length === 0) {
     return (
-      <div className="text-zinc-400 p-8 text-center">
+      <div className="text-placeholder p-8 text-center">
         No se encontraron categorías de productos
       </div>
     );

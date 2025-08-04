@@ -79,12 +79,12 @@ export default function PurchasesPage() {
 
         <div className="mb-8 flex items-center gap-6">
           <div className="flex-1 relative">
-            <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-zinc-400 z-10" />
+            <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-placeholder z-10" />
             <Input
               type="text"
               placeholder="Buscar productos..."
               className="h-11 pl-12"
-              variant="search"
+              variant="searchbar" // En este que me encontré por accidente también solo era poner "searchbar"
             />
           </div>
           <button className="h-11 min-h-11 rounded-[99px] border border-cyan-400 px-4 py-2.5 font-bold text-cyan-400 hover:bg-cyan-400/10 flex items-center gap-2">

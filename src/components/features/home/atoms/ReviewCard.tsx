@@ -23,7 +23,7 @@ const ReviewCard = ({ review, index }: ReviewCardProps) => (
       delay: index * 0.2,
       ease: "easeOut"
     }}
-    className="h-56 bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg cursor-pointer group p-6"
+    className="h-56 bg-gray hover:bg-dark transition-colors rounded-lg cursor-pointer group p-6"
   >
     <div className="w-full h-full flex flex-col justify-between">
       <div>
@@ -49,7 +49,7 @@ const ReviewCard = ({ review, index }: ReviewCardProps) => (
         </div>
         <div>
           <p className="text-white font-medium text-sm">{review.name}</p>
-          <p className="text-zinc-400 text-xs">{review.platform}</p>
+          <p className="text-placeholder text-xs">{review.platform}</p>
         </div>
       </div>
     </div>

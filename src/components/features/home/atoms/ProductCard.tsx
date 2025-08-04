@@ -52,9 +52,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   }
   return (
     <Link href={`/products/${product.id}`} className="block">
-      <div className="bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg overflow-hidden group cursor-pointer">
+      <div className="bg-gray hover:bg-dark transition-colors rounded-lg overflow-hidden group cursor-pointer">
       {/* Image Container */}
-      <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center bg-zinc-800/50">
+      <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center bg-dark">
         <Image
           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
           src={product.image || "/placeholder.svg"}
@@ -84,14 +84,14 @@ export default function ProductCard({ product }: ProductCardProps) {
                   className={`w-4 h-4 ${
                     index < Math.floor(product.rating)
                       ? "text-yellow-400"
-                      : "text-zinc-600"
+                      : "text-white"
                   }`}
                 />
               ))}
             </div>
             <BodySmall className="text-white font-medium">{product.rating}</BodySmall>
           </div>
-          <Caption className="text-zinc-400">({product.reviews} reseñas)</Caption>
+          <Caption className="text-placeholder">({product.reviews} reseñas)</Caption>
         </div>
 
         {/* Price and Actions */}

@@ -35,12 +35,12 @@ export default function SearchSuggestions({ query, suggestions, onSelect, onClos
   return (
     <>
       <div className="fixed inset-0 z-40" onClick={onClose} />
-      <div className="absolute top-full left-0 right-0 mt-2 bg-zinc-800 border border-zinc-700 rounded-2xl shadow-xl z-50 max-h-96 overflow-y-auto">
+      <div className="absolute top-full left-0 right-0 mt-2 bg-dark border border-gray rounded-2xl shadow-xl z-50 max-h-96 overflow-y-auto">
         <div className="p-2">
           {/* Productos que coinciden */}
           {matchingProducts.length > 0 && (
             <div className="mb-4">
-              <div className="px-4 py-2 text-xs font-medium text-zinc-400 uppercase tracking-wide">
+              <div className="px-4 py-2 text-xs font-medium text-placeholder uppercase tracking-wide">
                 Productos
               </div>
               {matchingProducts.map((product) => (
@@ -48,7 +48,7 @@ export default function SearchSuggestions({ query, suggestions, onSelect, onClos
                   key={product.id}
                   href={`/products/${product.id}`}
                   onClick={onClose}
-                  className="block px-4 py-3 hover:bg-zinc-700 rounded-lg transition-colors"
+                  className="block px-4 py-3 hover:bg-dark rounded-lg transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 flex-shrink-0">
@@ -67,7 +67,7 @@ export default function SearchSuggestions({ query, suggestions, onSelect, onClos
                           <StarIcon className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                           <BodySmall className="text-white text-xs">{product.rating}</BodySmall>
                         </div>
-                        <Caption className="text-zinc-400 text-xs">${product.price.toLocaleString()}</Caption>
+                        <Caption className="text-placeholder text-xs">${product.price.toLocaleString()}</Caption>
                         {product.shipping && (
                           <div className="flex items-center gap-1">
                             <TruckIcon className="w-3 h-3 text-green-400" />
@@ -85,7 +85,7 @@ export default function SearchSuggestions({ query, suggestions, onSelect, onClos
           {/* Sugerencias de búsqueda */}
           {filteredSuggestions.length > 0 && (
             <div>
-              <div className="px-4 py-2 text-xs font-medium text-zinc-400 uppercase tracking-wide">
+              <div className="px-4 py-2 text-xs font-medium text-placeholder uppercase tracking-wide">
                 Sugerencias
               </div>
               {filteredSuggestions.map((suggestion, index) => (
@@ -93,22 +93,22 @@ export default function SearchSuggestions({ query, suggestions, onSelect, onClos
                   key={index}
                   onClick={() => onSelect(suggestion)}
                   variant="icon"
-                  className="w-full px-4 py-3 text-left hover:bg-zinc-700 rounded-lg transition-colors flex items-center gap-3 h-auto bg-transparent border-none shadow-none"
+                  className="w-full px-4 py-3 text-left hover:bg-dark rounded-lg transition-colors flex items-center gap-3 h-auto bg-transparent border-none shadow-none"
                 >
-                  <MagnifyingGlassIcon className="w-4 h-4 text-zinc-400 flex-shrink-0" />
+                  <MagnifyingGlassIcon className="w-4 h-4 text-placeholder flex-shrink-0" />
                   <Body className="text-white flex-1">{suggestion}</Body>
-                  <ArrowTrendingUpIcon className="w-4 h-4 text-zinc-500" />
+                  <ArrowTrendingUpIcon className="w-4 h-4 text-placeholder" />
                 </Button>
               ))}
             </div>
           )}
 
           {/* Ver todos los resultados */}
-          <div className="border-t border-zinc-700 mt-2 pt-2">
+          <div className="border-t border-placeholder mt-2 pt-2">
             <Link
               href={`/search?q=${encodeURIComponent(query)}`}
               onClick={onClose}
-              className="block px-4 py-3 text-center text-cyan-400 hover:bg-zinc-700 rounded-lg transition-colors text-sm font-medium"
+              className="block px-4 py-3 text-center text-cyan-400 hover:bg-dark rounded-lg transition-colors text-sm font-medium"
             >
               Ver todos los resultados para &quot;{query}&quot;
             </Link>

@@ -133,7 +133,7 @@ export default function AddCardPage() {
                 </div>
                 
                 {/* Card Visual */}
-                <div className="w-96 h-48 bg-zinc-900 rounded-2xl flex items-center justify-center">
+                <div className="w-96 h-48 bg-dark rounded-2xl flex items-center justify-center">
                   <Body className="text-white/50">Vista previa de la tarjeta</Body>
                 </div>
               </div>

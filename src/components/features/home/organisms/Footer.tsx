@@ -9,7 +9,7 @@ import { Subheading, Body, Caption } from "@/components/atoms/Typography"
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-zinc-800">
+    <footer className="w-full border-t border-gray">
       <div className="max-w-[1440px] mx-auto px-[80px] py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Column */}
@@ -23,7 +23,7 @@ export default function Footer() {
                 height={22}
               />
             </Link>
-            <Body className="text-zinc-300 text-base lg:text-lg mb-6 leading-relaxed">
+            <Body className="text-placeholder text-base lg:text-lg mb-6 leading-relaxed">
               Tu tienda de confianza para productos gaming y tecnología. Llevamos tu experiencia al siguiente nivel.
             </Body>
 
@@ -67,7 +67,7 @@ export default function Footer() {
                 <Link
                   key={index}
                   href="#"
-                  className="block text-zinc-300 hover:text-cyan-400 transition-colors text-base"
+                  className="block text-placeholder hover:text-cyan-400 transition-colors text-base"
                 >
                   {item}
                 </Link>
@@ -91,7 +91,7 @@ export default function Footer() {
                 <Link
                   key={index}
                   href="#"
-                  className="block text-zinc-300 hover:text-cyan-400 transition-colors text-base"
+                  className="block text-placeholder hover:text-cyan-400 transition-colors text-base"
                 >
                   {item}
                 </Link>
@@ -106,20 +106,20 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <EnvelopeIcon className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <Body className="text-zinc-300 text-base">support@ratacueva.com</Body>
-                  <Body className="text-zinc-300 text-base">pedidos@ratacueva.com</Body>
+                  <Body className="text-placeholder text-base">support@ratacueva.com</Body>
+                  <Body className="text-placeholder text-base">pedidos@ratacueva.com</Body>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <PhoneIcon className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <Body className="text-zinc-300 text-base">+506 2222-3333</Body>
-                  <Body className="text-zinc-300 text-base">+506 8888-9999</Body>
+                  <Body className="text-placeholder text-base">+506 2222-3333</Body>
+                  <Body className="text-placeholder text-base">+506 8888-9999</Body>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <MapPinIcon className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
-                <Body className="text-zinc-300 text-base">
+                <Body className="text-placeholder text-base">
                   San José, Costa Rica
                   <br />
                   Centro Comercial Plaza Real
@@ -130,19 +130,19 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-zinc-800 mt-12 pt-8">
+        <div className="border-t border-gray mt-12 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
-            <Caption className="text-zinc-400 text-sm lg:text-base text-center lg:text-left">
+            <Caption className="text-placeholder text-sm lg:text-base text-center lg:text-left">
               © 2025 RataCueva. Todos los derechos reservados.
             </Caption>
             <div className="flex flex-wrap justify-center lg:justify-end gap-6">
-              <Link href="#" className="text-zinc-400 hover:text-cyan-400 transition-colors text-sm lg:text-base">
+              <Link href="#" className="text-placeholder hover:text-cyan-400 transition-colors text-sm lg:text-base">
                 Términos de servicio
               </Link>
-              <Link href="#" className="text-zinc-400 hover:text-cyan-400 transition-colors text-sm lg:text-base">
+              <Link href="#" className="text-placeholder hover:text-cyan-400 transition-colors text-sm lg:text-base">
                 Política de privacidad
               </Link>
-              <Link href="#" className="text-zinc-400 hover:text-cyan-400 transition-colors text-sm lg:text-base">
+              <Link href="#" className="text-placeholder hover:text-cyan-400 transition-colors text-sm lg:text-base">
                 Cookies
               </Link>
             </div>

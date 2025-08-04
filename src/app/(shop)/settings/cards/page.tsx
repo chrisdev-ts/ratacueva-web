@@ -79,14 +79,14 @@ export default function CardsPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 relative bg-white rounded-[99px] flex items-center justify-center flex-shrink-0">
-                        <CreditCardIcon className="w-8 h-8 text-zinc-800" />
+                        <CreditCardIcon className="w-8 h-8 text-gray" />
                       </div>
                       <div>
                         <Subheading className="text-white font-medium">
                           {card.type} terminada en {card.lastFour}
                         </Subheading>
-                        <Body className="text-zinc-400 text-sm">{card.bank}</Body>
-                        <Body className="text-zinc-400 text-sm">
+                        <Body className="text-placeholder text-sm">{card.bank}</Body>
+                        <Body className="text-placeholder text-sm">
                           Vencimiento: {card.expiry}
                           {card.isDefault && (
                             <span className="ml-2 px-2 py-1 bg-primary text-white text-xs rounded-full">

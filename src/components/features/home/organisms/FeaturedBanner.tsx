@@ -20,14 +20,14 @@ export default function FeaturedBanner() {
       <section className="py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12">
           {/* Main Featured Item Skeleton */}
-          <div className="relative h-[300px] lg:h-[500px] bg-zinc-800 rounded-lg animate-pulse"></div>
+          <div className="relative h-[300px] lg:h-[500px] bg-gray rounded-lg animate-pulse"></div>
           
           {/* Secondary Items Grid Skeleton */}
           <div className="grid grid-cols-2 gap-4 lg:gap-6">
             {[...Array(4)].map((_, index) => (
               <div
                 key={index}
-                className="relative h-[140px] lg:h-[240px] bg-zinc-800 rounded-lg animate-pulse"
+                className="relative h-[140px] lg:h-[240px] bg-gray rounded-lg animate-pulse"
               />
             ))}
           </div>
@@ -39,7 +39,7 @@ export default function FeaturedBanner() {
   if (error || !categories) {
     return (
       <section className="py-8 lg:py-12">
-        <div className="text-center text-zinc-400">
+        <div className="text-center text-dark">
           Error cargando categorías
         </div>
       </section>
@@ -51,7 +51,7 @@ export default function FeaturedBanner() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12">
         {/* Main Featured Item */}
         <div 
-          className="relative h-[300px] lg:h-[500px] bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg overflow-hidden group cursor-pointer"
+          className="relative h-[300px] lg:h-[500px] bg-gradient-to-br from-gray to-dark rounded-lg overflow-hidden group cursor-pointer"
           onClick={() => handleCategoryClick(categories[0].id)}
         >
           <Image
@@ -63,7 +63,7 @@ export default function FeaturedBanner() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           <div className="absolute bottom-6 left-6 right-6">
             <Subheading className="text-white mb-2">{categories[0].name}</Subheading>
-            <Body className="text-zinc-300 text-lg mb-4">{categories[0].productCount} productos disponibles</Body>
+            <Body className="text-placeholder text-lg mb-4">{categories[0].productCount} productos disponibles</Body>
             <Button>
               Ver productos
             </Button>
@@ -75,7 +75,7 @@ export default function FeaturedBanner() {
           {categories.slice(1).map((category) => (
             <div
               key={category.id}
-              className="relative h-[140px] lg:h-[240px] bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg overflow-hidden group cursor-pointer"
+              className="relative h-[140px] lg:h-[240px] bg-gradient-to-br from-dark to-gray rounded-lg overflow-hidden group cursor-pointer"
               onClick={() => handleCategoryClick(category.id)}
             >
               <Image
@@ -87,7 +87,7 @@ export default function FeaturedBanner() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-3 left-3 right-3">
                 <Subheading className="text-white text-sm lg:text-lg mb-1">{category.name}</Subheading>
-                <Body className="text-zinc-300 text-xs lg:text-sm">
+                <Body className="text-placeholder text-xs lg:text-sm">
                   {category.productCount} productos
                 </Body>
               </div>

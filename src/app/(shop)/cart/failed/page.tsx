@@ -17,7 +17,7 @@ export default function FailedPurchasePage() {
           
           <div className="w-full flex flex-col justify-start items-start gap-8">
             {/* Card de error */}
-            <div className="w-full p-6 bg-zinc-800 rounded-lg flex flex-col justify-center items-center gap-4">
+            <div className="w-full p-6 bg-dark rounded-lg flex flex-col justify-center items-center gap-4">
               <Heading className="text-white text-center">
                 No se pudo completar la transacción
               </Heading>

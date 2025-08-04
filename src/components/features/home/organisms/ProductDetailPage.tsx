@@ -72,7 +72,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
   const ProductCard = ({ product }: { product: Product }) => (
     <Link
       href={`/products/${product.id}`}
-      className="flex-1 bg-zinc-800 rounded-lg inline-flex flex-col justify-center items-center overflow-hidden group cursor-pointer"
+      className="flex-1 bg-gray rounded-lg inline-flex flex-col justify-center items-center overflow-hidden group cursor-pointer"
     >
       <div className="self-stretch h-56 p-4 flex flex-col justify-center items-center gap-2.5">
         <Image
@@ -123,7 +123,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
           <div className="w-full lg:w-[847px] self-stretch inline-flex flex-col justify-start items-start gap-8 overflow-hidden">
             {/* Main Image & Thumbnails */}
             <div className="self-stretch inline-flex flex-col sm:flex-row justify-start items-start gap-8">
-              <div className="self-stretch p-6 bg-zinc-800 rounded-lg flex justify-center items-center flex-grow overflow-hidden">
+              <div className="self-stretch p-6 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border rounded-lg flex justify-center items-center flex-grow overflow-hidden">
                 <Image
                   className="w-full h-auto max-w-96 max-h-96 object-contain"
                   src={product.images?.[0] || product.image}
@@ -136,7 +136,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                 {product.images?.slice(1, 4).map((img, index) => (
                   <div
                     key={index}
-                    className="p-3 sm:p-6 bg-zinc-800 rounded-lg flex justify-center items-center overflow-hidden"
+                    className="p-3 sm:p-6 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border rounded-lg flex justify-center items-center overflow-hidden"
                   >
                     <Image
                       className="w-24 h-24 sm:w-36 sm:h-36 object-contain"
@@ -152,7 +152,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
 
             {/* Product Description */}
             <div className="justify-start text-white text-2xl font-bold ">Descripción del producto</div>
-            <div className="self-stretch flex-1 p-6 bg-zinc-800 rounded-lg flex flex-col justify-center items-start gap-6 overflow-hidden">
+            <div className="self-stretch flex-1 p-6 bg-gray rounded-lg flex flex-col justify-center items-start gap-6 overflow-hidden">
               <div className="self-stretch inline-flex justify-start items-center gap-2">
                 <div className="text-center justify-start text-white text-base font-normal ">
                   {product.rating}
@@ -193,7 +193,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
 
           {/* Right Column: Price, Actions, Payment */}
           <div className="flex-1 inline-flex flex-col justify-start items-center gap-8 w-full">
-            <div className="self-stretch p-6 bg-zinc-800 rounded-lg flex flex-col justify-start items-center gap-12 overflow-hidden">
+            <div className="self-stretch p-6 bg-gray rounded-lg flex flex-col justify-start items-center gap-12 overflow-hidden">
               <div className="self-stretch flex flex-col justify-start items-start gap-6">
                 <div className="justify-start text-white text-3xl font-bold ">
                   ${product.price.toLocaleString()}
@@ -259,13 +259,13 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                 </button>
               </div>
             </div>
-            <div className="self-stretch p-6 bg-zinc-800 rounded-lg flex flex-col justify-start items-start gap-6 overflow-hidden">
+            <div className="self-stretch p-6 bg-gray rounded-lg flex flex-col justify-start items-start gap-6 overflow-hidden">
               <div className="justify-start text-white text-xl font-bold ">Medios de pago</div>
               <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
               <div className="self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start">
                 {/* Placeholder for payment methods */}
                 {Array.from({ length: 8 }).map((_, i) => (
-                  <div key={i} className="w-20 h-8 relative bg-zinc-900 rounded-lg" />
+                  <div key={i} className="w-20 h-8 relative bg-dark rounded-lg" />
                 ))}
               </div>
               <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
@@ -305,7 +305,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
             {reviews.map((review) => (
               <div
                 key={review.id}
-                className="self-stretch p-6 bg-zinc-800 rounded-lg flex flex-col justify-center items-start gap-6 overflow-hidden"
+                className="self-stretch p-6 bg-gray rounded-lg flex flex-col justify-center items-start gap-6 overflow-hidden"
               >
                 <div className="self-stretch inline-flex justify-between items-center">
                   <div className="flex justify-start items-center gap-4">
@@ -320,11 +320,11 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                     </div>
                   </div>
                   <div className="flex justify-start items-center gap-4">
-                    <button className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors">
+                    <button className="flex items-center gap-1 text-white hover:text-white transition-colors">
                       <HandThumbUpIcon className="w-5 h-5" />
                       <span className="text-sm">{review.upvotes}</span>
                     </button>
-                    <button className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors">
+                    <button className="flex items-center gap-1 text-whnite hover:text-white transition-colors">
                       <HandThumbDownIcon className="w-5 h-5" />
                       <span className="text-sm">{review.downvotes}</span>
                     </button>
@@ -342,7 +342,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
               </div>
             ))}
           </div>
-          <div className="flex-1 self-stretch p-6 bg-zinc-800 rounded-lg inline-flex flex-col justify-start items-start gap-6 overflow-hidden w-full">
+          <div className="flex-1 self-stretch p-6 bg-gray rounded-lg inline-flex flex-col justify-start items-start gap-6 overflow-hidden w-full">
             <div className="inline-flex justify-center items-center gap-2.5">
               <div className="text-center justify-center text-white text-5xl font-bold ">
                 {product.rating}
@@ -353,7 +353,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                   {Array.from({ length: 5 }).map((_, i) => (
                     <StarIcon
                       key={i}
-                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-zinc-600"}`}
+                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-placeholder"}`}
                     />
                   ))}
                 </div>
@@ -370,7 +370,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                   (star === 5 ? 0.8 : star === 4 ? 0.2 : star === 3 ? 0.05 : star === 2 ? 0.02 : 0.01) * 100 // Mock percentages
                 return (
                   <div key={star} className="self-stretch inline-flex justify-start items-center gap-4">
-                    <div className="flex-1 flex justify-start items-start h-2 bg-zinc-900 rounded-full overflow-hidden">
+                    <div className="flex-1 flex justify-start items-start h-2 bg-dark rounded-full overflow-hidden">
                       <div className="h-full bg-white" style={{ width: `${percentage}%` }}></div>
                     </div>
                     <div className="flex justify-center items-center gap-2.5">
