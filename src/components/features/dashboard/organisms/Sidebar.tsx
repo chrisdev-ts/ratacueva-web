@@ -59,7 +59,7 @@ export default function Sidebar() {
                 </div>
 
                 {/* Main Navigation */}
-                <nav className="flex flex-col items-start w-full mb-8 gap-y-1">
+                <nav className="flex flex-col items-start w-full mb-8">
                     {navigationItems.map((item) => {
                         const isActive = pathname === item.href;
                         const Icon = item.icon;
