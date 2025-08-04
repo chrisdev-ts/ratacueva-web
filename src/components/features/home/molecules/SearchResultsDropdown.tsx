@@ -30,7 +30,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
       {" "}
       {/* Added relative */}
       <Link 
-        href={`/products/${product.id}`} 
+        href={`/product/${product.id}`} 
         className="absolute inset-0 z-10"
         onClick={() => console.log('ProductCard - Clicked product:', product.id, product.name)}
       >

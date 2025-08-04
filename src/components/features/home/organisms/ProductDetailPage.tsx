@@ -43,13 +43,13 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
       
       try {
         setLoadingRelated(true)
-        const response = await fetch(`/api/products/related?category=${product.category}&exclude=${product.id}&limit=8`)
+        const response = await fetch(`/api/product/related?category=${product.category}&exclude=${product.id}&limit=8`)
         if (response.ok) {
           const related = await response.json()
           console.log('API Response - Related Products:', related)
           console.log('Product category:', product.category)
           console.log('Product ID:', product.id)
-          console.log('API URL:', `/api/products/related?category=${product.category}&exclude=${product.id}&limit=8`)
+          console.log('API URL:', `/api/product/related?category=${product.category}&exclude=${product.id}&limit=8`)
           setApiRelatedProducts(related)
         } else {
           console.error('API Response Error:', response.status, response.statusText)
@@ -110,7 +110,7 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
 
   const ProductCard = ({ product }: { product: Product }) => (
     <Link
-      href={`/products/${product.id}`}
+      href={`/product/${product.id}`}
       className="flex-1 bg-gray rounded-lg inline-flex flex-col justify-center items-center overflow-hidden group cursor-pointer"
     >
       <div className="self-stretch h-56 p-4 flex flex-col justify-center items-center gap-2.5">
@@ -124,46 +124,23 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
       </div>
       <div className="self-stretch h-0 outline-1 outline-offset-[-0.50px] outline-white"></div>
       <div className="self-stretch p-6 flex flex-col justify-start items-start gap-2">
-        <div className="self-stretch justify-start text-white text-xl font-semibold  line-clamp-2">
+        <div className="self-stretch justify-start text-white text-xl font-semibold line-clamp-2">
           {product.name}
         </div>
-      );
-    }
-
-    return (
-      <Link
-        href={`/product/${productId}`}
-        className="flex-1 bg-zinc-800 rounded-lg inline-flex flex-col justify-center items-center overflow-hidden group cursor-pointer"
-      >
-        <div className="self-stretch h-56 p-4 flex flex-col justify-center items-center gap-2.5">
-          <Image
-            className="w-48 flex-1 object-contain group-hover:scale-105 transition-transform duration-300"
-            src={product.image || "/placeholder.svg"}
-            alt={product.name}
-            width={189}
-            height={189}
-          />
-        </div>
-        <div className="self-stretch h-0 outline-1 outline-offset-[-0.50px] outline-white"></div>
-        <div className="self-stretch p-6 flex flex-col justify-start items-start gap-2">
-          <div className="self-stretch justify-start text-white text-xl font-semibold line-clamp-2">
-            {product.name}
+        <div className="self-stretch inline-flex justify-start items-center gap-2">
+          <div className="text-center justify-start text-white text-base font-normal">
+            {product.rating || 0}
           </div>
-          <div className="self-stretch inline-flex justify-start items-center gap-2">
-            <div className="text-center justify-start text-white text-base font-normal">
-              {product.rating || 0}
-            </div>
-            <div className="text-center justify-start text-white text-base font-normal">
-              ({product.reviews || 0})
-            </div>
-          </div>
-          <div className="self-stretch justify-start text-white text-xl font-semibold">
-            ${(product.price || 0).toLocaleString()}
+          <div className="text-center justify-start text-white text-base font-normal">
+            ({product.reviews || 0})
           </div>
         </div>
-      </Link>
-    )
-  }
+        <div className="self-stretch justify-start text-white text-xl font-semibold">
+          ${(product.price || 0).toLocaleString()}
+        </div>
+      </div>
+    </Link>
+  )
 
   // Mostrar productos relacionados solo después de hidratación
   const shouldShowRelatedProducts = isHydrated && apiRelatedProducts.length > 0

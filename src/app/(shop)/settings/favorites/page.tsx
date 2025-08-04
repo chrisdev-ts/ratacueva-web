@@ -64,7 +64,7 @@ export default function FavoritesPage() {
                   />
                   <div className="flex-1 flex flex-col sm:flex-row justify-between items-start w-full">
                     <div className="flex-1 flex flex-col justify-center items-start gap-4 mb-4 sm:mb-0">
-                      <Link href={`/products/${item.id}`}>
+                      <Link href={`/product/${item.id}`}>
                         <Subheading className="text-white hover:underline cursor-pointer">
                           {item.name}
                         </Subheading>

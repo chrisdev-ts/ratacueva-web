@@ -51,7 +51,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     })
   }
   return (
-    <Link href={`/products/${product.id}`} className="block">
+    <Link href={`/product/${product.id}`} className="block">
       <div className="bg-gray hover:bg-dark transition-colors rounded-lg overflow-hidden group cursor-pointer">
       {/* Image Container */}
       <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center bg-dark">

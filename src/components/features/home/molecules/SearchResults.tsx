@@ -55,10 +55,9 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
     })
   }
 
-
   const ProductCard = ({ product }: { product: Product }) => (
     <Link 
-      href={`/products/${product.id}`}
+      href={`/product/${product.id}`}
       className="block bg-gray hover:bg-dark border border-2 border-transparent hover:border-gray transition-colors transition-border rounded-lg overflow-hidden group cursor-pointer"
     >
       {/* Image Container */}
