@@ -14,8 +14,7 @@ import DashboardContentLayout from "@/components/features/dashboard/templates/Da
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
-import { useEmployees, useDeleteEmployee } from "@/hook/dashboard/UseEmployees";
-import type { Address } from "@/hook/dashboard/UseEmployees";
+import { useDeleteEmployee, useEmployees, type Address } from "@/hook/dashboard/useEmployees";
 
 
 export default function Employees() {
@@ -143,74 +142,74 @@ export default function Employees() {
     };
 
     return (
-            <DashboardContentLayout>
-                <div className="flex justify-between items-center pb-3">
-                    <Heading>Administrar empleados</Heading>
-                    <Link href="/employees/add">
-                        <Button
-                            variant="success"
-                            className="px-4 py-3 rounded-full font-bold text-dark flex items-center gap-3">
-                            Agregar empleado
-                        </Button>
-                    </Link>
-                </div>
+        <DashboardContentLayout>
+            <div className="flex justify-between items-center pb-3">
+                <Heading>Administrar empleados</Heading>
+                <Link href="/employees/add">
+                    <Button
+                        variant="success"
+                        className="px-4 py-3 rounded-full font-bold text-dark flex items-center gap-3">
+                        Agregar empleado
+                    </Button>
+                </Link>
+            </div>
 
-                <div className="flex flex-col gap-6">
-                    <div className="flex justify-between items-center flex-wrap gap-6">
-                        <div className="flex items-center py-1">
-                            <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer">
-                                <Body className="text-placeholder">{itemsPerPage}</Body>
-                                <ChevronDownIcon className="w-6 h-6 text-placeholder" />
-                            </div>
-                            <Body className="text-text p-2">entradas por página</Body>
+            <div className="flex flex-col gap-6">
+                <div className="flex justify-between items-center flex-wrap gap-6">
+                    <div className="flex items-center py-1">
+                        <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer">
+                            <Body className="text-placeholder">{itemsPerPage}</Body>
+                            <ChevronDownIcon className="w-6 h-6 text-placeholder" />
                         </div>
-                        <div className="w-[341px] min-w-[240px] relative">
-                            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-placeholder pointer-events-none" />
-                            <Input
-                                variant="searchbar"
-                                type="text"
-                                placeholder="Buscar empleado..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10"/>
-                        </div>
+                        <Body className="text-text p-2">entradas por página</Body>
                     </div>
-
-                    {isLoading ? (
-                        <p className="text-gray-400">Cargando empleados...</p>
-                    ) : error ? (
-                        <p className="text-red-400">Error al cargar empleados</p>
-                    ) : (
-                        <BaseTable data={currentData} columns={columns} />
-                    )}
-
-                    <div className="flex justify-between items-center flex-wrap gap-6">
-                        <Body className="text-text">
-                            Mostrando {startItem} a {endItem} de {totalRecords} registros
-                        </Body>
-
-                        <div className="flex items-center gap-1">
-                            {["«", "‹", ...Array.from({ length: Math.min(totalPages, 6) }, (_, i) => i + 1), "›", "»"].map(
-                                (label, i) => (
-                                    <Button
-                                        key={i}
-                                        variant="pagination"
-                                        onClick={() => {
-                                            if (label === "«") setCurrentPage(1);
-                                            else if (label === "‹" && currentPage > 1) setCurrentPage(currentPage - 1);
-                                            else if (label === "›" && currentPage < totalPages) setCurrentPage(currentPage + 1);
-                                            else if (label === "»") setCurrentPage(totalPages);
-                                            else if (typeof label === "number") setCurrentPage(label);
-                                        }}
-                                        className={currentPage === label ? "bg-gray" : ""}
-                                    >
-                                        {label}
-                                    </Button>
-                                )
-                            )}
-                        </div>
+                    <div className="w-[341px] min-w-[240px] relative">
+                        <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-placeholder pointer-events-none" />
+                        <Input
+                            variant="searchbar"
+                            type="text"
+                            placeholder="Buscar empleado..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="pl-10" />
                     </div>
                 </div>
-            </DashboardContentLayout>
+
+                {isLoading ? (
+                    <p className="text-gray-400">Cargando empleados...</p>
+                ) : error ? (
+                    <p className="text-red-400">Error al cargar empleados</p>
+                ) : (
+                    <BaseTable data={currentData} columns={columns} />
+                )}
+
+                <div className="flex justify-between items-center flex-wrap gap-6">
+                    <Body className="text-text">
+                        Mostrando {startItem} a {endItem} de {totalRecords} registros
+                    </Body>
+
+                    <div className="flex items-center gap-1">
+                        {["«", "‹", ...Array.from({ length: Math.min(totalPages, 6) }, (_, i) => i + 1), "›", "»"].map(
+                            (label, i) => (
+                                <Button
+                                    key={i}
+                                    variant="pagination"
+                                    onClick={() => {
+                                        if (label === "«") setCurrentPage(1);
+                                        else if (label === "‹" && currentPage > 1) setCurrentPage(currentPage - 1);
+                                        else if (label === "›" && currentPage < totalPages) setCurrentPage(currentPage + 1);
+                                        else if (label === "»") setCurrentPage(totalPages);
+                                        else if (typeof label === "number") setCurrentPage(label);
+                                    }}
+                                    className={currentPage === label ? "bg-gray" : ""}
+                                >
+                                    {label}
+                                </Button>
+                            )
+                        )}
+                    </div>
+                </div>
+            </div>
+        </DashboardContentLayout>
     );
 }
