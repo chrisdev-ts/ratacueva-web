@@ -14,8 +14,8 @@ import DashboardContentLayout from "@/components/features/dashboard/templates/Da
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
-import { useEmployees, useDeleteEmployee } from "@/hook/dashboard/useEmployees";
-import type { Address } from "@/hook/dashboard/useEmployees";
+import { useEmployees, useDeleteEmployee } from "@/hook/dashboard/UseEmployees";
+import type { Address } from "@/hook/dashboard/UseEmployees";
 
 
 export default function Employees() {

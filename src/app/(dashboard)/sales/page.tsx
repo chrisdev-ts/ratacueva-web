@@ -12,9 +12,9 @@ import {
 } from "@heroicons/react/24/solid";
 import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 import { ColumnDef } from "@tanstack/react-table";
-import { useSales } from "@/hook/dashboard/useSales";
-import { Sale } from "@/lib/salesData";
+import { Sale } from "@/libs/salesData";
 import Link from "next/link";
+import { useSales } from "@/hook/dashboard/useSales";
 
 export default function Sales() {
     const [currentPage, setCurrentPage] = useState(1);

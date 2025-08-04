@@ -1,5 +1,5 @@
 import Sidebar from "@/components/features/dashboard/organisms/Sidebar";
-import { AuthGuard } from "@/guard/AuthGuard";
+import { AuthGuard } from "@/guards/AuthGuard";
 import React from "react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

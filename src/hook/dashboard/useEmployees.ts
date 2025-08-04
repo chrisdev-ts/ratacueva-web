@@ -1,7 +1,7 @@
 // hooks/useEmployees.ts
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-const API_URL = "http://localhost:3001/api/users";
+const API_URL = "https://ratacueva-api.onrender.com/api/users";
 
 type Address = {
     postalCode: string;
@@ -32,7 +32,7 @@ export const useEmployees = () => {
         queryKey: ["employees"],
         queryFn: async () => {
             const token = localStorage.getItem("token");
-            const res = await fetch("http://localhost:3001/api/users/employees", {
+            const res = await fetch("https://ratacueva-api.onrender.com/api/users/employees", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
