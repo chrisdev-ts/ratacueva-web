@@ -1,13 +1,11 @@
 //C:\Users\Misrael\Documents\WEBS\ratacueva-web\src\components\organisms\search\search-client-page.tsx
 "use client"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import SearchFilters from "@/components/features/home/molecules/SearchFilters"
 import SearchResults from "@/components/features/home/molecules/SearchResults"
-import { FunnelIcon } from "@heroicons/react/24/outline"
 import type { Product, Filters } from "@/app/lib/data"
-import Button from "@/components/atoms/Button"
 import { PageLayout } from "@/components/templates/PageLayout"
 
 interface SearchClientPageProps {
@@ -27,6 +25,8 @@ export default function SearchClientPage({
   const searchParams = useSearchParams()
 
   const [showFilters, setShowFilters] = useState(false)
+  const [products, setProducts] = useState(initialProducts)
+  const [currentSortBy, setCurrentSortBy] = useState(initialSortBy)
 
   const updateSearchParams = useCallback(
     (newParams: Record<string, string | string[] | number[] | boolean | undefined>) => {
@@ -57,22 +57,41 @@ export default function SearchClientPage({
   }
 
   const handleSortChange = (sort: string) => {
+    setCurrentSortBy(sort)
     updateSearchParams({ sortBy: sort })
   }
+
+  // Función para ordenar productos
+  const sortProducts = (productsToSort: Product[], sortBy: string): Product[] => {
+    const sortedProducts = [...productsToSort]
+    
+    switch (sortBy) {
+      case "price-low":
+        return sortedProducts.sort((a, b) => a.price - b.price)
+      case "price-high":
+        return sortedProducts.sort((a, b) => b.price - a.price)
+      case "rating":
+        return sortedProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0))
+      case "reviews":
+        return sortedProducts.sort((a, b) => (b.reviews || 0) - (a.reviews || 0))
+      default:
+        return sortedProducts
+    }
+  }
+
+  // Ordenar productos cuando cambia el sortBy
+  const sortedProducts = sortProducts(products, currentSortBy)
+
+  // Actualizar productos cuando cambien los filtros (nueva navegación)
+  useEffect(() => {
+    setProducts(initialProducts)
+    setCurrentSortBy(initialSortBy)
+  }, [initialProducts, initialSortBy])
 
   return (
     <PageLayout className="py-6">
       <div className="mb-6">
-        <div className="flex justify-end items-center mb-4">
-          {/* Mobile Filter Toggle */}
-          <Button
-            onClick={() => setShowFilters(!showFilters)}
-            
-          >
-            <FunnelIcon className="w-5 h-5 text-white" />
-            <span className="text-white font-medium">Filtros</span>
-          </Button>
-        </div>
+        
         {/* Results Count */}
         {initialQuery && (
           <div className="text-placeholder">
@@ -92,8 +111,8 @@ export default function SearchClientPage({
         {/* Results */}
         <div className="flex-1">
           <SearchResults
-            products={initialProducts}
-            sortBy={initialSortBy}
+            products={sortedProducts}
+            sortBy={currentSortBy}
             onSortChange={handleSortChange}
             query={initialQuery}
           />

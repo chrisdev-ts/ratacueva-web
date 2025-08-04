@@ -8,6 +8,7 @@ import { registerUser, RegisterPayload } from "@/services/auth/register";
 import { useRouter } from "next/navigation";
 import { PageLayout } from "@/components/templates/PageLayout";
 import Image from "next/image";
+import { EyeIcon, EyeSlashIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 interface ValidationErrors {
   name?: string[];
@@ -16,6 +17,30 @@ interface ValidationErrors {
   password?: string[];
   [key: string]: string[] | undefined;
 }
+
+// Password validation requirements
+const passwordRequirements = [
+  {
+    label: 'Al menos 6 caracteres',
+    test: (pw: string) => pw.length >= 6,
+  },
+  {
+    label: 'Al menos una mayúscula',
+    test: (pw: string) => /[A-Z]/.test(pw),
+  },
+  {
+    label: 'Al menos una minúscula',
+    test: (pw: string) => /[a-z]/.test(pw),
+  },
+  {
+    label: 'Al menos un número',
+    test: (pw: string) => /[0-9]/.test(pw),
+  },
+  {
+    label: 'Al menos un carácter especial',
+    test: (pw: string) => /[^A-Za-z0-9]/.test(pw),
+  },
+];
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -26,8 +51,15 @@ const RegisterPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false); // Nuevo estado para saber si el campo fue tocado
 
   const router = useRouter();
+
+  // Password validation checks
+  const passwordChecks = passwordRequirements.map(req => req.test(password));
+  const allPasswordValid = passwordChecks.every(Boolean);
 
   const clearErrors = () => {
     setErrors({});
@@ -40,6 +72,12 @@ const RegisterPage = () => {
     // Client-side validation
     if (password !== confirmPassword) {
       setErrors({ password: ["Las contraseñas no coinciden"] });
+      return;
+    }
+
+    // Validate password requirements
+    if (!allPasswordValid) {
+      setErrors({ password: ["La contraseña no cumple con todos los requisitos"] });
       return;
     }
 
@@ -61,10 +99,26 @@ const RegisterPage = () => {
       console.error("Error al registrar:", error);
       
       if (error && typeof error === 'object' && 'response' in error) {
-        const axiosError = error as { response?: { data?: { errors?: ValidationErrors } } };
-        if (axiosError.response?.data?.errors) {
+        const axiosError = error as { 
+          response?: { 
+            data?: { errors?: ValidationErrors, message?: string },
+            status?: number 
+          } 
+        };
+        
+        // Handle specific HTTP status codes
+        if (axiosError.response?.status === 409) {
+          setErrors({ 
+            email: ["Este correo electrónico ya está registrado. Por favor, usa otro correo o inicia sesión."] 
+          });
+        } else if (axiosError.response?.data?.errors) {
           // Handle validation errors from API
           setErrors(axiosError.response.data.errors);
+        } else if (axiosError.response?.data?.message) {
+          // Handle general API error messages
+          setErrors({ 
+            general: [axiosError.response.data.message] 
+          });
         } else {
           // Handle other errors
           setErrors({ 
@@ -113,6 +167,8 @@ const RegisterPage = () => {
                 </Body>
               </div>
             )}
+
+
 
             <div className="flex flex-col gap-2">
               <Body as="label" htmlFor="name" className="block text-white">
@@ -203,18 +259,54 @@ const RegisterPage = () => {
               <Body as="label" htmlFor="password" className="block text-white">
                 Contraseña
               </Body>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  if (hasFieldError('password')) clearErrors();
-                }}
-                placeholder="********"
-                required
-                className={`min-w-[240px] ${hasFieldError('password') ? 'border-red-500' : ''}`}
-              />
+              <div className="relative">
+                <Input
+                  id="password"
+                  type="text"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setPasswordTouched(true); // Marcar como tocado cuando el usuario empiece a escribir
+                    if (hasFieldError('password')) clearErrors();
+                  }}
+                  placeholder="********"
+                  required
+                  className={`min-w-[240px] pr-10 ${hasFieldError('password') ? 'border-red-500' : ''}`}
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                >
+                  {showPassword ? (
+                    <EyeSlashIcon className="w-5 h-5" />
+                  ) : (
+                    <EyeIcon className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
+              
+              {/* Password requirements - solo muestra las que faltan */}
+              {passwordTouched && password && (
+                <div className="mt-2 space-y-1">
+                  {passwordRequirements.map((req, index) => {
+                    // Solo mostrar si NO se cumple
+                    if (passwordChecks[index]) return null;
+                    
+                    return (
+                      <div key={index} className="flex items-center gap-2">
+                        <XMarkIcon className="w-4 h-4 text-red-500" />
+                        <Body className="text-xs text-red-400">
+                          {req.label}
+                        </Body>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              
               {getFieldError('password') && (
                 <div className="mt-1">
                   {errors.password?.map((error, index) => (
@@ -224,9 +316,6 @@ const RegisterPage = () => {
                   ))}
                 </div>
               )}
-              <Body className="text-gray-400 text-xs">
-                La contraseña debe contener al menos una mayúscula y un número
-              </Body>
             </div>
 
             <div className="flex flex-col gap-2">
@@ -237,22 +326,42 @@ const RegisterPage = () => {
               >
                 Repetir contraseña
               </Body>
-              <Input
-                id="confirmPassword"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="********"
-                required
-                className="min-w-[240px]"
-              />
+              <div className="relative">
+                <Input
+                  id="confirmPassword"
+                  type="text"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="********"
+                  required
+                  className="min-w-[240px] pr-10"
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  onClick={() => setShowConfirmPassword((prev) => !prev)}
+                  aria-label={showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                >
+                  {showConfirmPassword ? (
+                    <EyeSlashIcon className="w-5 h-5" />
+                  ) : (
+                    <EyeIcon className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
+              {confirmPassword && password !== confirmPassword && (
+                <Body className="text-red-400 text-sm mt-1">
+                  Las contraseñas no coinciden
+                </Body>
+              )}
             </div>
 
             <Button 
               type="submit" 
               variant="primary" 
               className="w-full"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !allPasswordValid || password !== confirmPassword}
             >
               {isSubmitting ? "Registrando..." : "Registrarse"}
             </Button>

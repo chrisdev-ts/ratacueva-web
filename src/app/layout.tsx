@@ -5,6 +5,7 @@ import { ReactQueryProvider } from "@/querys/ReactQueryProvider"
 import { CartProvider } from "@/contexts/CartContext";
 import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { OrderProvider } from "@/contexts/OrderContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,13 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ReactQueryProvider>
           <AuthProvider>
             <CartProvider>
               <FavoritesProvider>
-                {children}
+                <OrderProvider>
+                  {children}
+                </OrderProvider>
               </FavoritesProvider>
             </CartProvider>
           </AuthProvider>

@@ -1,10 +1,11 @@
 "use client"
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { XMarkIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline"
 import { Subheading, Body } from "@/components/atoms/Typography"
 import Button from "@/components/atoms/Button"
 import type { Filters } from "@/app/lib/data"
+import { getProducts } from "@/services/home/products"
 
 interface SearchFiltersProps {
   filters: Filters
@@ -12,18 +13,11 @@ interface SearchFiltersProps {
   onClose: () => void
 }
 
-const categories = [
-  "Tarjetas Gráficas",
-  "Procesadores",
-  "Memoria RAM",
-  "Tarjetas Madre",
-  "Almacenamiento",
-  "Periféricos",
-]
-const brands = ["NVIDIA", "AMD", "Intel", "Corsair", "ASUS", "MSI", "Samsung", "Logitech"]
-const locations = ["San José", "Cartago", "Alajuela", "Heredia", "Puntarenas", "Guanacaste", "Limón"]
-
 export default function SearchFilters({ filters, onFiltersChange, onClose }: SearchFiltersProps) {
+  // Categorías y marcas dinámicas
+  const [categories, setCategories] = useState<string[]>([])
+  const [brands, setBrands] = useState<string[]>([])
+  const locations = ["San José", "Cartago", "Alajuela", "Heredia", "Puntarenas", "Guanacaste", "Limón"]
   const [expandedSections, setExpandedSections] = useState({
     price: true,
     category: true,
@@ -31,6 +25,57 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
     location: false,
     shipping: true,
   })
+
+  // Cargar categorías y marcas dinámicamente
+  useEffect(() => {
+    const fetchCategoriesAndBrands = async () => {
+      try {
+        console.log('🔍 Fetching categories and brands from API...')
+        // Obtener todos los productos para extraer categorías y marcas únicas
+        const response = await getProducts({ limit: 1000 })
+        console.log('📦 API Response:', response)
+        
+        const products = response.data || []
+        console.log('📋 Products array:', products)
+        console.log('📊 Number of products:', products.length)
+        
+        // Extraer categorías únicas
+        const allCategories = products.map((product) => product.category)
+        console.log('🏷️ All categories from products:', allCategories)
+        
+        const uniqueCategories = [...new Set(allCategories.filter(Boolean))] as string[]
+        console.log('✨ Unique categories:', uniqueCategories)
+        setCategories(uniqueCategories.sort())
+        
+        // Extraer marcas únicas
+        const allBrands = products.map((product) => product.brand)
+        console.log('🏭 All brands from products:', allBrands)
+        
+        const uniqueBrands = [...new Set(allBrands.filter(Boolean))] as string[]
+        console.log('✨ Unique brands:', uniqueBrands)
+        setBrands(uniqueBrands.sort())
+        
+        console.log('✅ Categories and brands loaded successfully!')
+      } catch (error) {
+        console.error('💥 Error fetching categories and brands:', error)
+        // Fallback a categorías básicas si falla la API
+        console.log('🔄 Using fallback categories and brands...')
+        setCategories([
+          "Graphics Cards",
+          "Processors", 
+          "RAM",
+          "Motherboards",
+          "Solid State Drives",
+          "Streaming Tools",
+          "Accessories",
+          "Components",
+        ])
+        setBrands(["NVIDIA", "AMD", "Intel", "Corsair", "ASUS", "MSI", "Samsung", "Logitech", "Elgato"])
+      }
+    }
+
+    fetchCategoriesAndBrands()
+  }, [])
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections((prev) => ({

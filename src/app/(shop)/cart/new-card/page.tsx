@@ -141,10 +141,10 @@ export default function AddCardPage() {
             
             {/* Continue Button */}
             <div className="flex justify-end">
-              <Link href="/payment-options">
+              <Link href="/cart/payment-options">
                 <Button 
                   onClick={() => handleSubmit(new Event("submit") as unknown as React.FormEvent<HTMLFormElement>)}
-                  className="bg-pink-600 hover:bg-pink-700"
+                  className="bg-primary-600 hover:bg-primary-700"
                   disabled={!isFormValid}
                 >
                   Continuar
@@ -160,7 +160,7 @@ export default function AddCardPage() {
               <div className="h-px bg-white/20"></div>
               <div className="flex justify-between items-center">
                 <Body className="text-white text-xl">Producto</Body>
-                <Body className="text-white text-xl">₡{subtotal.toLocaleString()}</Body>
+                <Body className="text-white text-xl">${subtotal.toLocaleString()}</Body>
               </div>
               <div className="flex justify-between items-center">
                 <Body className="text-white text-xl">Envío</Body>
@@ -169,7 +169,7 @@ export default function AddCardPage() {
               <div className="h-px bg-white/20"></div>
               <div className="flex justify-between items-center">
                 <Body className="text-white text-xl">Total</Body>
-                <Subheading className="text-white text-xl">₡{total.toLocaleString()}</Subheading>
+                <Subheading className="text-white text-xl">${total.toLocaleString()}</Subheading>
               </div>
             </div>
           </div>

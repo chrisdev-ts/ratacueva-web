@@ -33,10 +33,13 @@ interface ProductPageProps {
 
 // Transform API product to component format
 function transformApiProductToComponent(apiProduct: ApiProduct): Product {
+  // Extract the actual ID from the MongoDB ObjectId
+  const objectId = typeof apiProduct._id === 'object' && '$oid' in apiProduct._id 
+    ? apiProduct._id.$oid 
+    : apiProduct._id as string;
+  
   return {
-    id:
-      parseInt(apiProduct._id.slice(-6), 16) ||
-      Math.floor(Math.random() * 1000000),
+    id: objectId,
     name: apiProduct.name,
     price: apiProduct.price,
     originalPrice: apiProduct.discountPercentage
@@ -79,9 +82,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
     // Get related products
     let relatedProducts: Product[] = [];
     try {
+      // Extract the actual ID from the MongoDB ObjectId for related products
+      const objectId = typeof apiProduct._id === 'object' && '$oid' in apiProduct._id 
+        ? apiProduct._id.$oid 
+        : apiProduct._id as string;
+        
       const relatedResponse = await getRelatedProducts(
         apiProduct.category,
-        apiProduct._id,
+        objectId,
         4
       );
       const relatedApiProducts = isWrappedArrayResponse(relatedResponse)

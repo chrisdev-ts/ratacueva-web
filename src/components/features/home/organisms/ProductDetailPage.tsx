@@ -2,7 +2,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"  
+import { useState, useEffect } from "react"  
 import { ChevronRightIcon, StarIcon, MinusIcon, PlusIcon, HandThumbUpIcon, HandThumbDownIcon, HeartIcon, ShoppingCartIcon } from "@heroicons/react/24/outline"
 import type { Product, Review } from "@/app/lib/data"
 import Link from "next/link"
@@ -14,16 +14,57 @@ import { useRouter } from "next/navigation"
 
 interface ProductDetailPageProps {
   product: Product
-  relatedProducts: Product[]
+  relatedProducts?: Product[] 
   reviews: Review[]
 }
 
-export default function ProductDetailPage({ product, relatedProducts, reviews }: ProductDetailPageProps) {
+export default function ProductDetailPage({ product, relatedProducts = [], reviews }: ProductDetailPageProps) {
+  console.log('ProductDetailPage Props:', { product, relatedProducts, reviews })
+  
   const [showFullDescription, setShowFullDescription] = useState(false)
   const [quantity, setQuantity] = useState(1)
+  const [apiRelatedProducts, setApiRelatedProducts] = useState<Product[]>(relatedProducts)
+  const [loadingRelated, setLoadingRelated] = useState(false)
+  const [isHydrated, setIsHydrated] = useState(false)
+  
   const { addToCart } = useCart()
   const { addToFavorites, isInFavorites } = useFavorites()
   const router = useRouter()
+
+  // Manejar hidratación
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
+
+  // Obtener productos relacionados de la API
+  useEffect(() => {
+    const fetchRelatedProducts = async () => {
+      if (apiRelatedProducts.length > 0) return
+      
+      try {
+        setLoadingRelated(true)
+        const response = await fetch(`/api/products/related?category=${product.category}&exclude=${product.id}&limit=8`)
+        if (response.ok) {
+          const related = await response.json()
+          console.log('API Response - Related Products:', related)
+          console.log('Product category:', product.category)
+          console.log('Product ID:', product.id)
+          console.log('API URL:', `/api/products/related?category=${product.category}&exclude=${product.id}&limit=8`)
+          setApiRelatedProducts(related)
+        } else {
+          console.error('API Response Error:', response.status, response.statusText)
+        }
+      } catch (error) {
+        console.error('Error fetching related products:', error)
+      } finally {
+        setLoadingRelated(false)
+      }
+    }
+
+    if (isHydrated) {
+      fetchRelatedProducts()
+    }
+  }, [product.id, product.category, apiRelatedProducts.length, isHydrated])
 
   const displayDescription = showFullDescription ? product.description : `${product.description?.substring(0, 250)}...`
 
@@ -54,7 +95,6 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
   }
 
   const handleBuyNow = () => {
-    // Add the product to cart with the selected quantity
     for (let i = 0; i < quantity; i++) {
       addToCart({
         id: product.id.toString(),
@@ -65,7 +105,6 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
         category: product.category || '',
       })
     }
-    // Redirect to the form page
     router.push('/cart/form-page')
   }
 
@@ -88,20 +127,46 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
         <div className="self-stretch justify-start text-white text-xl font-semibold  line-clamp-2">
           {product.name}
         </div>
-        <div className="self-stretch inline-flex justify-start items-center gap-2">
-          <div className="text-center justify-start text-white text-base font-normal ">
-            {product.rating}
+      );
+    }
+
+    return (
+      <Link
+        href={`/product/${productId}`}
+        className="flex-1 bg-zinc-800 rounded-lg inline-flex flex-col justify-center items-center overflow-hidden group cursor-pointer"
+      >
+        <div className="self-stretch h-56 p-4 flex flex-col justify-center items-center gap-2.5">
+          <Image
+            className="w-48 flex-1 object-contain group-hover:scale-105 transition-transform duration-300"
+            src={product.image || "/placeholder.svg"}
+            alt={product.name}
+            width={189}
+            height={189}
+          />
+        </div>
+        <div className="self-stretch h-0 outline-1 outline-offset-[-0.50px] outline-white"></div>
+        <div className="self-stretch p-6 flex flex-col justify-start items-start gap-2">
+          <div className="self-stretch justify-start text-white text-xl font-semibold line-clamp-2">
+            {product.name}
           </div>
-          <div className="text-center justify-start text-white text-base font-normal ">
-            ({product.reviews})
+          <div className="self-stretch inline-flex justify-start items-center gap-2">
+            <div className="text-center justify-start text-white text-base font-normal">
+              {product.rating || 0}
+            </div>
+            <div className="text-center justify-start text-white text-base font-normal">
+              ({product.reviews || 0})
+            </div>
+          </div>
+          <div className="self-stretch justify-start text-white text-xl font-semibold">
+            ${(product.price || 0).toLocaleString()}
           </div>
         </div>
-        <div className="self-stretch justify-start text-white text-xl font-semibold ">
-          ${product.price.toLocaleString()}
-        </div>
-      </div>
-    </Link>
-  )
+      </Link>
+    )
+  }
+
+  // Mostrar productos relacionados solo después de hidratación
+  const shouldShowRelatedProducts = isHydrated && apiRelatedProducts.length > 0
 
   return (
     <PageLayout className="py-6">
@@ -286,16 +351,27 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
         </div>
 
         {/* Related Products */}
-        <div className="justify-start text-white text-2xl font-bold ">Productos relacionados</div>
-        <div className="self-stretch grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8">
-          {relatedProducts.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </div>
-        {relatedProducts.length > 0 && (
-          <Button>
-            <div className="justify-start text-white text-base font-bold ">Cargar más</div>
-          </Button>
+        <div className="justify-start text-white text-2xl font-bold">Productos relacionados</div>
+        
+        {loadingRelated ? (
+          <div className="flex justify-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        ) : shouldShowRelatedProducts ? (
+          <>
+            <div className="self-stretch grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8">
+              {apiRelatedProducts.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+            {apiRelatedProducts.length > 4 && (
+              <Button>
+                <div className="justify-start text-white text-base font-bold">Cargar más</div>
+              </Button>
+            )}
+          </>
+        ) : (
+          <div className="text-white text-center py-8">No hay productos relacionados disponibles</div>
         )}
 
         {/* Product Reviews */}
@@ -364,7 +440,6 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
             </div>
             <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
             <div className="self-stretch flex flex-col justify-start items-start gap-1">
-              {/* Rating distribution bars */}
               {[5, 4, 3, 2, 1].map((star) => {
                 const percentage =
                   (star === 5 ? 0.8 : star === 4 ? 0.2 : star === 3 ? 0.05 : star === 2 ? 0.02 : 0.01) * 100 // Mock percentages

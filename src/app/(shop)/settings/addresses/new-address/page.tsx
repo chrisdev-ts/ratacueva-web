@@ -1,5 +1,7 @@
 "use client"
 
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { PageLayout } from "@/components/templates/PageLayout"
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 import { MapPinIcon, CheckIcon } from "@heroicons/react/24/outline"
@@ -8,8 +10,54 @@ import Button from "@/components/atoms/Button"
 import { RadioGroup, RadioGroupItem } from "@/components/atoms/radio-group"
 import { Subheading } from "@/components/atoms/Typography";
 import { Body, BodySmall } from "@/components/atoms/Typography";
+import { createAddress, CreateAddressPayload } from "@/services/settings/address"
 
 export default function NewAddressPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [formData, setFormData] = useState<CreateAddressPayload>({
+    postalCode: "",
+    street: "",
+    externalNumber: "",
+    internalNumber: "",
+    neighborhood: "",
+    city: "",
+    state: "",
+    country: "México",
+    isDefault: false
+  });
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      setLoading(true);
+      setError("");
+      
+      await createAddress(formData);
+      router.push("/settings/addresses");
+    } catch (error: unknown) {
+      console.error('Error creating address:', error);
+      const errorMessage = error && typeof error === 'object' && 'response' in error 
+        ? (error.response as { data?: { message?: string } })?.data?.message || "Error al crear la dirección"
+        : "Error al crear la dirección";
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const isFormValid = formData.postalCode && formData.street && formData.neighborhood && 
+                     formData.city && formData.state && formData.country;
+
   return (
     <PageLayout className="px-[240px]">
       <div className="pt-8 pb-4">
@@ -24,158 +72,170 @@ export default function NewAddressPage() {
           className="mb-8"
         />
         <div className="overflow-hidden rounded-lg bg-gray p-6">
-          <div className="mb-6 flex w-full flex-col items-start gap-6 self-stretch">
-            <div className="inline-flex h-auto min-h-11 items-center justify-start gap-3 px-0 py-0 text-cyan-400">
-              <MapPinIcon className="h-6 w-6 text-cyan-400" />
-              <Subheading className="text-cyan-400">Usar mi ubicación</Subheading>
-            </div>
-
-            <div className="h-px w-full bg-white" />
-
-            <div className="flex w-full flex-col items-start gap-8 self-stretch">
-              <div className="flex w-full flex-col items-start gap-4">
-                <BodySmall as="label" htmlFor="deliveryAddress" className="text-base font-medium text-white">
-                  Dirección o lugar de entrega
-                </BodySmall>
-                <Input
-                  id="deliveryAddress"
-                  type="text"
-                  placeholder="Ej: Avenida los leones 4563"
-                />
+          <form onSubmit={handleSubmit}>
+            <div className="mb-6 flex w-full flex-col items-start gap-6 self-stretch">
+              <div className="inline-flex h-auto min-h-11 items-center justify-start gap-3 px-0 py-0 text-cyan-400">
+                <MapPinIcon className="h-6 w-6 text-cyan-400" />
+                <Subheading className="text-cyan-400">Usar mi ubicación</Subheading>
               </div>
 
-              <div className="flex w-full flex-col items-start gap-4">
-                <BodySmall as="label" htmlFor="postalCode" className="text-base font-medium text-white">
-                  Código postal
-                </BodySmall>
-                <Input
-                  id="postalCode"
-                  type="text"
-                  placeholder="Ej: 09440"
-                />
-              </div>
+              <div className="h-px w-full bg-white" />
 
-              <div className="flex w-full items-start gap-4 sm:gap-8">
-                <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
-                  <BodySmall as="label" htmlFor="state" className="text-base font-medium text-white">
-                    Estado
-                  </BodySmall>
-                  <Input
-                    id="state"
-                    type="text"
-                    placeholder="Debes seleccionar una opción"
-                  />
+              {/* Error Message */}
+              {error && (
+                <div className="w-full p-3 bg-red-500/20 border border-red-500 rounded-lg">
+                  <Body className="text-red-400">{error}</Body>
                 </div>
-                <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
-                  <BodySmall as="label" htmlFor="municipality" className="text-base font-medium text-white">
-                    Municipio o alcaldía
-                  </BodySmall>
-                  <Input
-                    id="municipality"
-                    type="text"
-                    placeholder="Ej: Córdoba"
-                  />
-                </div>
-              </div>
+              )}
 
-              <div className="flex w-full items-start gap-4 sm:gap-8">
-                <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
-                  <BodySmall as="label" htmlFor="locality" className="text-base font-medium text-white">
-                    Localidad
+              <div className="flex w-full flex-col items-start gap-8 self-stretch">
+                <div className="flex w-full flex-col items-start gap-4">
+                  <BodySmall as="label" htmlFor="street" className="text-base font-medium text-white">
+                    Dirección o lugar de entrega
                   </BodySmall>
                   <Input
-                    id="locality"
+                    id="street"
                     type="text"
-                    placeholder="Ej: Córdoba"
+                    value={formData.street}
+                    onChange={(e) => handleInputChange('street', e.target.value)}
+                    placeholder="Ej: Avenida los leones 4563"
+                    required
                   />
                 </div>
-                <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
-                  <BodySmall as="label" htmlFor="neighborhood" className="text-base font-medium text-white">
-                    Colonia o barrio
+
+                <div className="flex w-full flex-col items-start gap-4">
+                  <BodySmall as="label" htmlFor="postalCode" className="text-base font-medium text-white">
+                    Código postal
                   </BodySmall>
                   <Input
-                    id="neighborhood"
+                    id="postalCode"
                     type="text"
+                    value={formData.postalCode}
+                    onChange={(e) => handleInputChange('postalCode', e.target.value)}
+                    placeholder="Ej: 09440"
+                    maxLength={5}
+                    required
+                  />
+                </div>
+
+                <div className="flex w-full items-start gap-4 sm:gap-8">
+                  <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
+                    <BodySmall as="label" htmlFor="state" className="text-base font-medium text-white">
+                      Estado
+                    </BodySmall>
+                    <Input
+                      id="state"
+                      type="text"
+                      value={formData.state}
+                      onChange={(e) => handleInputChange('state', e.target.value)}
+                      placeholder="Ej: Veracruz"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
+                    <BodySmall as="label" htmlFor="city" className="text-base font-medium text-white">
+                      Ciudad
+                    </BodySmall>
+                    <Input
+                      id="city"
+                      type="text"
+                      value={formData.city}
+                      onChange={(e) => handleInputChange('city', e.target.value)}
+                      placeholder="Ej: Córdoba"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="flex w-full items-start gap-4 sm:gap-8">
+                  <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
+                    <BodySmall as="label" htmlFor="neighborhood" className="text-base font-medium text-white">
+                      Colonia o barrio
+                    </BodySmall>
+                    <Input
+                      id="neighborhood"
+                      type="text"
+                      value={formData.neighborhood}
+                      onChange={(e) => handleInputChange('neighborhood', e.target.value)}
+                      placeholder="Ej: Centro"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
+                    <BodySmall as="label" htmlFor="externalNumber" className="text-base font-medium text-white">
+                      Número exterior
+                    </BodySmall>
+                    <Input
+                      id="externalNumber"
+                      type="text"
+                      value={formData.externalNumber}
+                      onChange={(e) => handleInputChange('externalNumber', e.target.value)}
+                      placeholder="Ej: 123"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex w-full flex-col items-start gap-4">
+                  <BodySmall as="label" htmlFor="internalNumber" className="text-base font-medium text-white">
+                    Número interior / Departamento (opcional)
+                  </BodySmall>
+                  <Input
+                    id="internalNumber"
+                    type="text"
+                    value={formData.internalNumber}
+                    onChange={(e) => handleInputChange('internalNumber', e.target.value)}
+                    placeholder="Ej: 266"
+                  />
+                </div>
+
+                <div className="flex w-full flex-col items-start gap-4">
+                  <BodySmall as="label" htmlFor="country" className="text-base font-medium text-white">
+                    País
+                  </BodySmall>
+                  <Input
+                    id="country"
+                    type="text"
+                    value={formData.country}
+                    onChange={(e) => handleInputChange('country', e.target.value)}
                     placeholder="Ej: México"
+                    required
                   />
                 </div>
-              </div>
 
-              <div className="flex w-full flex-col items-start gap-4">
-                <BodySmall as="label" htmlFor="interiorNumber" className="text-base font-medium text-white">
-                  Número interior / Departamento (opcional)
-                </BodySmall>
-                <Input
-                  id="interiorNumber"
-                  type="text"
-                  placeholder="Ej: 266"
-                />
-              </div>
-
-              <div className="flex w-full flex-col items-start gap-4">
-                <BodySmall as="label" htmlFor="deliveryInstructions" className="text-base font-medium text-white">
-                  Indicaciones para la entrega (opcional)
-                </BodySmall>
-                <Input
-                  id="deliveryInstructions"
-                  type="text"
-                  placeholder="Ej: Entre calles, color del edificio, no tiene timbre."
-                />
-              </div>
-
-              <div className="flex w-full flex-col items-start gap-4">
-                <BodySmall className="text-base font-medium text-white">Tipo de domicilio</BodySmall>
-                <RadioGroup defaultValue="residential" className="flex flex-col items-start gap-2">
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="residential" id="residential" className="border-white text-primary" />
-                    <BodySmall as="label" htmlFor="residential" className="text-base font-medium text-white">
-                      Residencial
-                    </BodySmall>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="work" id="work" className="border-white text-primary" />
-                    <BodySmall as="label" htmlFor="work" className="text-base font-medium text-white">
-                      Laboral
-                    </BodySmall>
-                  </div>
-                </RadioGroup>
-              </div>
-
-              <div className="flex w-full flex-col items-start gap-4">
-                <BodySmall className="text-base font-medium text-white">Datos de contacto</BodySmall>
-                <Body className="text-base font-normal text-white">Te llamaremos si hay un problema con la entrega.</Body>
-              </div>
-
-              <div className="flex w-full flex-col items-start gap-4">
-                <BodySmall as="label" htmlFor="contactName" className="text-base font-medium text-white">
-                  Nombre y apellido
-                </BodySmall>
-                <Input
-                  id="contactName"
-                  type="text"
-                  placeholder="Ej: Juan Martinez"
-                />
-              </div>
-
-              <div className="flex w-full flex-col items-start gap-4">
-                <BodySmall as="label" htmlFor="contactPhone" className="text-base font-medium text-white">
-                  Teléfono
-                </BodySmall>
-                <Input
-                  id="contactPhone"
-                  type="tel"
-                  placeholder="Ej: 2712667564"
-                />
+                <div className="flex w-full flex-col items-start gap-4">
+                  <BodySmall className="text-base font-medium text-white">Establecer como predeterminada</BodySmall>
+                  <RadioGroup 
+                    value={formData.isDefault ? "true" : "false"}
+                    onValueChange={(value) => handleInputChange('isDefault', value === "true" ? "true" : "false")}
+                    className="flex flex-col items-start gap-2"
+                  >
+                    <div className="flex items-center gap-2">
+                      <RadioGroupItem value="true" id="default" className="border-white text-primary" />
+                      <BodySmall as="label" htmlFor="default" className="text-base font-medium text-white">
+                        Sí, establecer como predeterminada
+                      </BodySmall>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <RadioGroupItem value="false" id="not-default" className="border-white text-primary" />
+                      <BodySmall as="label" htmlFor="not-default" className="text-base font-medium text-white">
+                        No, solo agregar como dirección adicional
+                      </BodySmall>
+                    </div>
+                  </RadioGroup>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="flex w-full justify-end">
-            <Button>
-              <CheckIcon className="w-5 h-5 mr-2" />
-              Guardar nueva dirección
-            </Button>
-          </div>
+            <div className="flex w-full justify-end">
+              <Button 
+                type="submit"
+                disabled={!isFormValid || loading}
+              >
+                <CheckIcon className="w-5 h-5 mr-2" />
+                {loading ? "Guardando..." : "Guardar nueva dirección"}
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
     </PageLayout>

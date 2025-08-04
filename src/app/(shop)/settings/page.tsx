@@ -12,8 +12,15 @@ import {
   BellIcon 
 } from "@heroicons/react/24/outline"
 import { PageLayout } from "@/components/templates/PageLayout"
+import { useAuth } from "@/contexts/AuthContext"
+import { getInitials, getAvatarColor } from "@/lib/utils"
 
 export default function SettingsPage() {
+  const { user } = useAuth();
+  
+  // Console log para ver los datos del usuario
+  console.log('User data in settings:', user);
+  
   const row1 = [
     {
       icon: DocumentTextIcon,
@@ -67,20 +74,28 @@ export default function SettingsPage() {
     <PageLayout className="px-[240px]">
       <div className="self-stretch flex-1 pt-12 pb-8 flex flex-col justify-start items-center gap-8">
         <div className="self-stretch flex flex-col sm:flex-row justify-start items-center gap-8">
-          <div className="w-20 h-20 p-2.5 bg-gray rounded-[99px] flex items-center justify-center overflow-hidden">
-            <Image
-              src="/placeholder.svg?height=80&width=80"
-              alt="User Avatar"
-              width={80}
-              height={80}
-              className="rounded-full object-cover"
-            />
+          <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+            {user?.avatar ? (
+              <Image
+                src={user.avatar}
+                alt="User Avatar"
+                width={80}
+                height={80}
+                className="rounded-full object-cover"
+              />
+            ) : (
+              <div className={`w-full h-full rounded-full flex items-center justify-center text-white text-2xl font-bold ${getAvatarColor(user?.name || '')}`}>
+                {getInitials(user?.name || '')}
+              </div>
+            )}
           </div>
           <div className="flex flex-col justify-center items-start gap-2 text-center sm:text-left">
             <div className="text-white text-3xl font-bold">
-              Jorge Christian Serrano Puertos
+              {user?.name && user?.lastName && user?.secondLastName 
+                ? `${user.name} ${user.lastName} ${user.secondLastName}`
+                : user?.name || 'Usuario'}
             </div>
-            <div className="text-white text-base font-normal">christiansp7231@gmail.com</div>
+            <div className="text-white text-base font-normal">{user?.email || 'usuario@ejemplo.com'}</div>
           </div>
         </div>
 

@@ -6,6 +6,8 @@ import { HeartIcon, ShoppingCartIcon, ChevronDownIcon } from "@heroicons/react/2
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid"
 import { Subheading, Body, BodySmall, Caption } from "@/components/atoms/Typography"
 import type { Product } from "@/app/lib/data"
+import { useCart } from "@/contexts/CartContext"
+import { useFavorites } from "@/contexts/FavoritesContext"
 
 interface SearchResultsProps {
   products: Product[]
@@ -24,6 +26,35 @@ const sortOptions = [
 
 export default function SearchResults({ products, sortBy, onSortChange, query }: SearchResultsProps) {
   const [showSortDropdown, setShowSortDropdown] = useState(false)
+  const { addToCart } = useCart()
+  const { addToFavorites, isInFavorites } = useFavorites()
+
+  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addToCart({
+      id: String(product.id),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      brand: product.brand || '',
+      category: product.category || '',
+    })
+  }
+
+  const handleToggleFavorite = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addToFavorites({
+      id: String(product.id),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      brand: product.brand || '',
+      category: product.category || '',
+    })
+  }
+
 
   const ProductCard = ({ product }: { product: Product }) => (
     <Link 
@@ -42,22 +73,20 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
         {/* Action Buttons */}
         <div className="absolute top-2 right-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <button 
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              console.log('Agregar a favoritos:', product.id)
-            }}
-            className="w-8 h-8 bg-primary hover:bg-primary/80 rounded-full flex items-center justify-center"
+            onClick={(e) => handleToggleFavorite(e, product)}
+            className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+              isInFavorites(String(product.id))
+                ? 'bg-red-500 hover:bg-red-600'
+                : 'bg-primary hover:bg-primary/80'
+            }`}
+            title={isInFavorites(String(product.id)) ? "Remover de favoritos" : "Agregar a favoritos"}
           >
             <HeartIcon className="w-4 h-4 text-white" />
           </button>
           <button 
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              console.log('Agregar al carrito:', product.id)
-            }}
+            onClick={(e) => handleAddToCart(e, product)}
             className="w-8 h-8 bg-primary hover:bg-primary/80 rounded-full flex items-center justify-center"
+            title="Agregar al carrito"
           >
             <ShoppingCartIcon className="w-4 h-4 text-white" />
           </button>

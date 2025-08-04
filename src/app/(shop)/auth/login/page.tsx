@@ -27,15 +27,22 @@ const LoginPage = () => {
     try {
       const data = await loginService({ email, password });
 
-      login(data.token, data.user);
+      // Asegurar que el usuario tenga un id (usar _id si id no existe)
+      const userData = {
+        ...data.user,
+        id: data.user.id || data.user._id || '',
+      };
+
+      login(data.token, userData);
 
       router.push("/settings");
-    } catch (error: any) {
-      if (error.response) {
+    } catch (error: unknown) {
+      if (error && typeof error === 'object' && 'response' in error) {
+        const axiosError = error as { response: { data: { message?: string } } };
         setErrorMessage(
-          error.response.data.message || "Error al iniciar sesión"
+          axiosError.response.data.message || "Error al iniciar sesión"
         );
-      } else if (error.request) {
+      } else if (error && typeof error === 'object' && 'request' in error) {
         setErrorMessage("Error de conexión. Verifica tu internet.");
       } else {
         setErrorMessage("Error inesperado. Inténtalo de nuevo.");
@@ -57,6 +64,7 @@ const LoginPage = () => {
                 width={126}
                 height={22}
                 className="w-[60%] h-auto"
+                style={{ height: 'auto' }}
               />
             </div>
 

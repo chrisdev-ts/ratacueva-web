@@ -21,6 +21,7 @@ export default function Footer() {
                 alt="RataCueva Logo"
                 width={126}
                 height={22}
+                style={{ height: 'auto' }}
               />
             </Link>
             <Body className="text-placeholder text-base lg:text-lg mb-6 leading-relaxed">
