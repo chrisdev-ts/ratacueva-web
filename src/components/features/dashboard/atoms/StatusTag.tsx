@@ -33,6 +33,28 @@ export const mapOrderStatusToStatusType = (orderStatus: string): StatusType => {
     }
 };
 
+export const mapStatusToStatusType = (status: string): StatusType => {
+    const normalized = status.toLowerCase();
+    switch (normalized) {
+        case "shipped":
+        case "is_delivered":
+            return "completed";
+
+        case "pending":
+        case "pending_pickup":
+            return "pending";
+
+        case "processing":
+        case "in_transit":
+            return "processing";
+
+        case "cancelled":
+            return "cancelled";
+
+        default:
+            return "processing";
+    }
+};
 
 const StatusTag: React.FC<StatusTagProps> = ({ status, className = "", children }) => (
     <div className={clsx(

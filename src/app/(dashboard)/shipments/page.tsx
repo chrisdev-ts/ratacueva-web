@@ -13,6 +13,7 @@ import {
 import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 import { ColumnDef } from "@tanstack/react-table";
 import { useShipments } from "@/hook/dashboard/useShipments";
+import Link from "next/link";
 
 interface Shipment {
     id: string;
@@ -25,6 +26,7 @@ interface Shipment {
 
 export default function Shipments() {
     const { data: shipments = [], isLoading, error } = useShipments();
+    console.log(shipments);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10);
@@ -49,17 +51,32 @@ export default function Shipments() {
         {
             accessorKey: "id",
             header: "SHIPMENT ID",
-            cell: (info) => <Body className="text-text">{String(info.getValue())}</Body>,
+            size: 122,
+            cell: (info) => (
+                <Link href={`/shipments/${info.getValue()}`} className="text-text underline hover:no-underline transition-all">
+                    <Body className="text-current truncate max-w-[120px]">{String(info.getValue())}</Body>
+                </Link>
+            ),
         },
         {
             accessorKey: "trackingNumber",
             header: "TRACK NO.",
-            cell: (info) => <Body className="text-text">{String(info.getValue())}</Body>,
+            size: 122,
+            cell: (info) => (
+                <Body className="text-text truncate max-w-[120px]">
+                    {String(info.getValue())}
+                </Body>
+            ),
         },
         {
             accessorKey: "carrier",
             header: "CARRIER",
-            cell: (info) => <Body className="text-text">{String(info.getValue())}</Body>,
+            size: 122,
+            cell: (info) => (
+                <Body className="text-text truncate max-w-[120px]">
+                    {String(info.getValue())}
+                </Body>
+            ),
         },
         {
             accessorKey: "destination",
@@ -69,6 +86,7 @@ export default function Shipments() {
         {
             accessorKey: "status",
             header: "STATUS",
+            size: 122,
             cell: (info) => {
                 const status = info.getValue() as "completed" | "pending" | "processing" | "cancelled";
                 return <StatusTag status={status} />;

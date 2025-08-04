@@ -61,6 +61,13 @@ export default function Sales() {
     console.log("filteredSales:", filteredSales);
     console.log("paginatedSales:", paginatedSales);
 
+    const paymentMethodLabels: Record<string, string> = {
+        credit_card: "Tarjeta de crédito o débito",
+        debit_card: "Tarjeta de crédito o débito", // si quieres que debit_card sea igual que credit_card
+        paypal: "Paypal",
+        oxxo_cash: "Oxxo",
+        cash: "Efectivo", // si existe cash o algo similar
+    };
 
     const columns: ColumnDef<Sale>[] = [
         {
@@ -69,7 +76,7 @@ export default function Sales() {
             size: 122,
             cell: info => (
                 <Link href={`/sales/${info.getValue()}`} className="text-text underline hover:no-underline transition-all">
-                    <Body className="text-current truncate max-w-[130px]">{String(info.getValue())}</Body>
+                    <Body className="text-current truncate max-w-[120px]">{String(info.getValue())}</Body>
                 </Link>
             ),
         },
@@ -80,7 +87,7 @@ export default function Sales() {
             cell: info => {
                 const sale = info.row.original;
                 return (
-                    <Body className="text-text truncate max-w-[150px]">
+                    <Body className="text-text truncate max-w-[120px]">
                         {sale.userId ? `${sale.userId.name} ${sale.userId.lastName}` : ""}
                     </Body>
                 );
@@ -91,7 +98,7 @@ export default function Sales() {
             header: "SHIPPING CITY",
             size: 122,
             cell: info => (
-                <Body className="text-text truncate max-w-[130px]">{String(info.getValue() || "")}</Body>
+                <Body className="text-text truncate max-w-[120px]">{String(info.getValue() || "")}</Body>
             ),
         },
         {
@@ -99,7 +106,7 @@ export default function Sales() {
             header: "TOTAL PRICE",
             size: 122,
             cell: info => (
-                <Body className="text-text truncate max-w-[100px]">{String(info.getValue())}</Body>
+                <Body className="text-text truncate max-w-[120px]">{String(info.getValue())}</Body>
             ),
         },
         {
@@ -116,9 +123,11 @@ export default function Sales() {
             accessorKey: "paymentDetails.type",
             header: "PAY METHOD",
             size: 122,
-            cell: info => (
-                <Body className="text-text truncate max-w-[110px]">{String(info.getValue() || "")}</Body>
-            ),
+            cell: (info) => {
+                const method = info.getValue() as string;
+                const label = paymentMethodLabels[method] ?? method;
+                return <Body className="text-text truncate max-w-[120px]">{label}</Body>;
+            },
         },
     ];
 
