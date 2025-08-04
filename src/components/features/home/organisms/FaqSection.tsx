@@ -48,7 +48,7 @@ export default function FaqSection() {
         <div className="space-y-8 lg:space-y-12">
           <div>
             <Heading className="text-white mb-4 lg:mb-6">Preguntas frecuentes</Heading>
-            <Body className="text-lg text-zinc-300">
+            <Body className="text-lg text-white">
               Encuentra respuestas a las preguntas más comunes sobre nuestros productos y servicios.
             </Body>
           </div>
@@ -57,14 +57,14 @@ export default function FaqSection() {
 
           <div>
             <Subheading className="text-white mb-4 lg:mb-6">Métodos de pago disponibles</Subheading>
-            <Body className="text-zinc-300 mb-6">
+            <Body className="text-white mb-6">
               Ofrecemos múltiples opciones para que puedas pagar de la forma que prefieras.
             </Body>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
               {paymentMethods.map((method, index) => (
                 <div
                   key={index}
-                  className="px-4 py-3 bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg text-center text-white text-sm lg:text-base"
+                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base"
                 >
                   {method}
                 </div>
@@ -78,7 +78,7 @@ export default function FaqSection() {
               {cashDepositLocations.map((location, index) => (
                 <div
                   key={index}
-                  className="px-4 py-3 bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg text-center text-white text-sm lg:text-base"
+                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base"
                 >
                   {location}
                 </div>
@@ -90,14 +90,14 @@ export default function FaqSection() {
 
           <div>
             <Subheading className="text-white mb-4 lg:mb-6">Empresas de envío</Subheading>
-            <Body className="text-zinc-300 mb-6">
+            <Body className="text-white mb-6">
               Tu paquete en las mejores manos, trabajamos con las empresas más confiables.
             </Body>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
               {shippingCompanies.map((company, index) => (
                 <div
                   key={index}
-                  className="px-4 py-3 bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg text-center text-white text-sm lg:text-base"
+                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base"
                 >
                   {company}
                 </div>
@@ -109,7 +109,7 @@ export default function FaqSection() {
         {/* Right Column - FAQ Items */}
         <div className="space-y-4">
           {faqItems.map((item, index) => (
-            <div key={index} className="bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg overflow-hidden">
+            <div key={index} className="bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg overflow-hidden">
               <button
                 className="w-full px-6 py-4 text-left flex justify-between items-center"
                 onClick={() => toggleFaq(index)}
@@ -118,12 +118,12 @@ export default function FaqSection() {
                 {activeIndex === index ? (
                   <ChevronUpIcon className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                 ) : (
-                  <ChevronDownIcon className="w-5 h-5 text-zinc-400 flex-shrink-0" />
+                  <ChevronDownIcon className="w-5 h-5 text- flex-shrink-0" />
                 )}
               </button>
               {activeIndex === index && (
                 <div className="px-6 pb-4">
-                  <Body className="text-zinc-300 text-sm lg:text-base leading-relaxed">{item.answer}</Body>
+                  <Body className="text-white text-sm lg:text-base leading-relaxed">{item.answer}</Body>
                 </div>
               )}
             </div>

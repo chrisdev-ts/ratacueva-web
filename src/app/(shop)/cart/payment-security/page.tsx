@@ -76,7 +76,7 @@ export default function PaymentSecurityPage() {
                 </div>
                 
                 {/* Card Visual */}
-                <div className="w-96 h-48 bg-zinc-900 rounded-2xl flex items-center justify-center">
+                <div className="w-96 h-48 bg-dark rounded-2xl flex items-center justify-center">
                   <Body className="text-white/50">Tarjeta Visual</Body>
                 </div>
               </div>

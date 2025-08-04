@@ -79,7 +79,7 @@ export default function PurchasesPage() {
 
         <div className="mb-8 flex items-center gap-6">
           <div className="flex-1 relative">
-            <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-zinc-400 z-10" />
+            <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-placeholder z-10" />
             <Input
               type="text"
               placeholder="Buscar productos..."

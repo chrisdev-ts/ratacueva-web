@@ -97,7 +97,7 @@ export default function OrderDetailsPage() {
               
               <div className="p-6 bg-gray rounded-lg space-y-6">
                 <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-zinc-900 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-dark rounded-full flex items-center justify-center">
                     <BodySmall className="text-white text-xs">VISA</BodySmall>
                   </div>
                   <div className="space-y-2">

@@ -75,7 +75,7 @@ export default function SearchClientPage({
         </div>
         {/* Results Count */}
         {initialQuery && (
-          <div className="text-zinc-300">
+          <div className="text-placeholder">
             {initialProducts.length} resultados para &quot;{initialQuery}&quot;
           </div>
         )}

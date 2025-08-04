@@ -43,7 +43,7 @@ export default function FavoritesPage() {
         />
         <div className="space-y-6">
           {favoriteItems.length === 0 ? (
-            <div className="p-6 bg-zinc-800 rounded-lg">
+            <div className="p-6 bg-dark rounded-lg">
               <Body className="text-white text-center text-xl">
                 No tienes productos favoritos. ¡Añade algunos!
               </Body>

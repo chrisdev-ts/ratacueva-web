@@ -28,10 +28,10 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
   const ProductCard = ({ product }: { product: Product }) => (
     <Link 
       href={`/products/${product.id}`}
-      className="block bg-zinc-800 hover:bg-zinc-750 transition-colors rounded-lg overflow-hidden group cursor-pointer"
+      className="block bg-gray hover:bg-dark border border-2 border-transparent hover:border-gray transition-colors transition-border rounded-lg overflow-hidden group cursor-pointer"
     >
       {/* Image Container */}
-      <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center bg-zinc-800/50">
+      <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center">
         <Image
           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
           src={product.image || "/placeholder.svg"}
@@ -94,21 +94,21 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
                   className={`w-4 h-4 ${
                     index < Math.floor(product.rating)
                       ? "text-yellow-400"
-                      : "text-zinc-600"
+                      : "text-dark"
                   }`}
                 />
               ))}
             </div>
             <BodySmall className="text-white font-medium">{product.rating}</BodySmall>
           </div>
-          <Caption className="text-zinc-400">({product.reviews} reseñas)</Caption>
+          <Caption className="text-placeholder">({product.reviews} reseñas)</Caption>
         </div>
 
         {/* Price */}
         <div className="flex items-center justify-between mb-3">
           <div className="space-y-1">
             {product.originalPrice && (
-              <div className="text-zinc-500 text-sm line-through">${product.originalPrice.toLocaleString()}</div>
+              <div className="text-placeholder text-sm line-through">${product.originalPrice.toLocaleString()}</div>
             )}
             <div className="text-white text-xl lg:text-2xl font-bold">${product.price.toLocaleString()}</div>
           </div>
@@ -118,7 +118,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
         <div className="flex flex-wrap gap-1.5 mb-2">
           {/* Category Badge */}
           {product.category && (
-            <span className="bg-zinc-700/50 text-zinc-300 text-xs px-2 py-1 rounded-full border border-zinc-600">
+            <span className="bg-dark-100 text-white text-xs px-2 py-1 rounded-full border border-gray">
               {product.category}
             </span>
           )}
@@ -138,7 +138,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
         
         {/* Location */}
         {product.location && (
-          <Caption className="text-zinc-400 text-xs">{product.location}</Caption>
+          <Caption className="text-placeholder text-xs">{product.location}</Caption>
         )}
       </div>
     </Link>
@@ -149,7 +149,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
       <div className="text-center py-12">
         <div className="text-6xl mb-4">🔍</div>
         <Subheading className="text-white mb-2">No encontramos productos</Subheading>
-        <Body className="text-zinc-400">
+        <Body className="text-placeholder">
           {query ? `No hay resultados para "${query}"` : "Intenta con otros términos de búsqueda"}
         </Body>
       </div>
@@ -160,13 +160,13 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
     <div>
       {/* Sort Controls */}
       <div className="flex justify-between items-center mb-6">
-        <Body className="text-zinc-300">
+        <Body className="text-placeholder">
           {products.length} {products.length === 1 ? "resultado" : "resultados"}
         </Body>
         <div className="relative">
           <button
             onClick={() => setShowSortDropdown(!showSortDropdown)}
-            className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 rounded-lg text-white text-sm transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-dark hover:bg-gray border border-2 border-gray rounded-lg text-white text-sm transition-colors"
           >
             <span>Ordenar: {sortOptions.find((opt) => opt.value === sortBy)?.label}</span>
             <ChevronDownIcon className="w-4 h-4" />
@@ -174,7 +174,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
           {showSortDropdown && (
             <>
               <div className="fixed inset-0 z-40" onClick={() => setShowSortDropdown(false)} />
-              <div className="absolute top-full right-0 mt-2 w-48 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl z-50">
+              <div className="absolute top-full right-0 mt-2 w-48 bg-gray border border-placeholder rounded-lg shadow-xl z-50">
                 {sortOptions.map((option) => (
                   <button
                     key={option.value}
@@ -182,8 +182,8 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
                       onSortChange(option.value)
                       setShowSortDropdown(false)
                     }}
-                    className={`w-full px-4 py-3 text-left text-sm hover:bg-zinc-700 transition-colors ${
-                      sortBy === option.value ? "text-cyan-400" : "text-white"
+                    className={`w-full px-4 py-3 text-left text-sm hover:bg-dark transition-colors ${
+                      sortBy === option.value ? "text-secondary" : "text-white"
                     }`}
                   >
                     {option.label}

@@ -38,7 +38,7 @@ export default function SuccessfulPurchasePage() {
           
           <div className="w-full flex flex-col justify-start items-start gap-8">
             {/* Card del producto comprado */}
-            <div className="w-full p-6 bg-zinc-800 rounded-lg flex justify-start items-center gap-6">
+            <div className="w-full p-6 bg-dark rounded-lg flex justify-start items-center gap-6">
               <div className="flex-1 flex flex-col justify-start items-start gap-4">
                 {/* Fecha de llegada */}
                 <div className="w-full flex justify-start items-center gap-2.5">

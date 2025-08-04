@@ -45,7 +45,7 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-2 h-2 rounded-full transition-colors ${
-              index === currentIndex ? 'bg-primary' : 'bg-zinc-600'
+              index === currentIndex ? 'bg-primary' : 'bg-dark'
             }`}
           />
         ))}

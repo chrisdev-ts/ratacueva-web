@@ -42,7 +42,7 @@ export default function PaymentPointsPage() {
           
           <div className="w-full flex flex-col justify-start items-start gap-8">
             {/* Card principal de pago */}
-            <div className="w-full p-6 relative bg-zinc-800 rounded-lg flex justify-end items-end gap-6">
+            <div className="w-full p-6 relative bg-dark rounded-lg flex justify-end items-end gap-6">
               <div className="flex-1 flex flex-col justify-start items-start gap-6">
                 {/* Instrucciones */}
                 <Body className="w-full text-center text-emerald-400 text-xl font-bold">

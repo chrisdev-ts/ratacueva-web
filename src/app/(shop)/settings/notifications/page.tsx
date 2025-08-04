@@ -56,12 +56,12 @@ export default function NotificationsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <Body className="text-white font-medium">Estado de pedidos</Body>
-                  <BodySmall className="text-zinc-400 text-sm">Actualizaciones sobre tus compras</BodySmall>
+                  <BodySmall className="text-placeholder text-sm">Actualizaciones sobre tus compras</BodySmall>
                 </div>
                 <button
                   onClick={() => updateEmailSetting('orders')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    emailNotifications.orders ? 'bg-primary' : 'bg-zinc-600'
+                    emailNotifications.orders ? 'bg-primary' : 'bg-dark'
                   }`}
                 >
                   <span
@@ -74,12 +74,12 @@ export default function NotificationsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <Body className="text-white font-medium">Promociones y ofertas</Body>
-                  <BodySmall className="text-zinc-400 text-sm">Descuentos y productos especiales</BodySmall>
+                  <BodySmall className="text-placeholder text-sm">Descuentos y productos especiales</BodySmall>
                 </div>
                 <button
                   onClick={() => updateEmailSetting('promotions')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    emailNotifications.promotions ? 'bg-primary' : 'bg-zinc-600'
+                    emailNotifications.promotions ? 'bg-primary' : 'bg-dark'
                   }`}
                 >
                   <span
@@ -92,12 +92,12 @@ export default function NotificationsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <Body className="text-white font-medium">Newsletter</Body>
-                  <BodySmall className="text-zinc-400 text-sm">Noticias y contenido relevante</BodySmall>
+                  <BodySmall className="text-placeholder text-sm">Noticias y contenido relevante</BodySmall>
                 </div>
                 <button
                   onClick={() => updateEmailSetting('newsletter')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    emailNotifications.newsletter ? 'bg-primary' : 'bg-zinc-600'
+                    emailNotifications.newsletter ? 'bg-primary' : 'bg-dark'
                   }`}
                 >
                   <span
@@ -110,12 +110,12 @@ export default function NotificationsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <Body className="text-white font-medium">Alertas de seguridad</Body>
-                  <BodySmall className="text-zinc-400 text-sm">Notificaciones importantes de tu cuenta</BodySmall>
+                  <BodySmall className="text-placeholder text-sm">Notificaciones importantes de tu cuenta</BodySmall>
                 </div>
                 <button
                   onClick={() => updateEmailSetting('security')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    emailNotifications.security ? 'bg-primary' : 'bg-zinc-600'
+                    emailNotifications.security ? 'bg-primary' : 'bg-dark'
                   }`}
                 >
                   <span
@@ -136,12 +136,12 @@ export default function NotificationsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <Body className="text-white font-medium">Estado de pedidos</Body>
-                  <BodySmall className="text-zinc-400 text-sm">Actualizaciones en tiempo real</BodySmall>
+                  <BodySmall className="text-placeholder text-sm">Actualizaciones en tiempo real</BodySmall>
                 </div>
                 <button
                   onClick={() => updatePushSetting('orders')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    pushNotifications.orders ? 'bg-primary' : 'bg-zinc-600'
+                    pushNotifications.orders ? 'bg-primary' : 'bg-dark'
                   }`}
                 >
                   <span
@@ -154,12 +154,12 @@ export default function NotificationsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <Body className="text-white font-medium">Promociones</Body>
-                  <BodySmall className="text-zinc-400 text-sm">Ofertas especiales y descuentos</BodySmall>
+                  <BodySmall className="text-placeholder text-sm">Ofertas especiales y descuentos</BodySmall>
                 </div>
                 <button
                   onClick={() => updatePushSetting('promotions')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    pushNotifications.promotions ? 'bg-primary' : 'bg-zinc-600'
+                    pushNotifications.promotions ? 'bg-primary' : 'bg-dark'
                   }`}
                 >
                   <span
@@ -172,12 +172,12 @@ export default function NotificationsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <Body className="text-white font-medium">Chat y soporte</Body>
-                  <BodySmall className="text-zinc-400 text-sm">Mensajes del equipo de soporte</BodySmall>
+                  <BodySmall className="text-placeholder text-sm">Mensajes del equipo de soporte</BodySmall>
                 </div>
                 <button
                   onClick={() => updatePushSetting('chat')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    pushNotifications.chat ? 'bg-primary' : 'bg-zinc-600'
+                    pushNotifications.chat ? 'bg-primary' : 'bg-dark'
                   }`}
                 >
                   <span
@@ -190,12 +190,12 @@ export default function NotificationsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <Body className="text-white font-medium">Actualizaciones de la app</Body>
-                  <BodySmall className="text-zinc-400 text-sm">Nuevas funciones y mejoras</BodySmall>
+                  <BodySmall className="text-placeholder text-sm">Nuevas funciones y mejoras</BodySmall>
                 </div>
                 <button
                   onClick={() => updatePushSetting('updates')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    pushNotifications.updates ? 'bg-primary' : 'bg-zinc-600'
+                    pushNotifications.updates ? 'bg-primary' : 'bg-dark'
                   }`}
                 >
                   <span
