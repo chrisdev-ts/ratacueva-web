@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline"
 import { Heading, Subheading, Body } from "@/components/atoms/Typography"
+import Image from "next/image"
 
 const faqItems = [
   {
@@ -30,9 +31,47 @@ const faqItems = [
   },
 ]
 
-const paymentMethods = ["Visa", "Mastercard", "American Express", "PayPal", "Transferencia bancaria", "Efectivo"]
-const cashDepositLocations = ["Banco Nacional", "Banco Popular", "Banco BCR"]
-const shippingCompanies = ["DHL", "FedEx", "UPS", "Correos", "Mensajería local"]
+const paymentMethods = [
+  {
+    name: "Visa",
+    image: "https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/visa.svg",
+  },
+  {
+    name: "Mastercard",
+    image: "https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/mastercard.svg",
+  },
+  {
+    name: "American Express",
+    image: "https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/amex.svg",
+  },
+  {
+    name: "PayPal",
+    image: "https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/paypal.svg",
+  },
+  {
+    name: "Transferencia bancaria",
+    image: "https://cdn-icons-png.flaticon.com/512/1077/1077976.png",
+  },
+  {
+    name: "Efectivo",
+    image: "https://cdn-icons-png.flaticon.com/512/2830/2830284.png",
+  },
+]
+
+const shippingCompanies = [
+  {
+    name: "DHL",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/DHL_Logo.svg/1200px-DHL_Logo.svg.png",
+  },
+  {
+    name: "FedEx",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/FedEx_Express.svg/1200px-FedEx_Express.svg.png",
+  },
+  {
+    name: "Mensajería local",
+    image: "https://cdn-icons-png.flaticon.com/512/411/411763.png",
+  },
+]
 
 export default function FaqSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
@@ -64,23 +103,18 @@ export default function FaqSection() {
               {paymentMethods.map((method, index) => (
                 <div
                   key={index}
-                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base"
+                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base flex flex-col items-center gap-2 group"
                 >
-                  {method}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <Subheading className="text-white mb-4 lg:mb-6">Depósitos en efectivo</Subheading>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-4">
-              {cashDepositLocations.map((location, index) => (
-                <div
-                  key={index}
-                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base"
-                >
-                  {location}
+                  <div className="w-12 h-8 relative bg-white rounded p-1 flex items-center justify-center overflow-hidden">
+                    <Image
+                      src={method.image}
+                      alt={method.name}
+                      width={40}
+                      height={24}
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"
+                    />
+                  </div>
+                  <span className="text-xs lg:text-sm">{method.name}</span>
                 </div>
               ))}
             </div>
@@ -97,9 +131,18 @@ export default function FaqSection() {
               {shippingCompanies.map((company, index) => (
                 <div
                   key={index}
-                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base"
+                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base flex flex-col items-center gap-2 group"
                 >
-                  {company}
+                  <div className="w-14 h-8 relative bg-white rounded p-1 flex items-center justify-center overflow-hidden">
+                    <Image
+                      src={company.image}
+                      alt={company.name}
+                      width={48}
+                      height={24}
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"
+                    />
+                  </div>
+                  <span className="text-xs lg:text-sm">{company.name}</span>
                 </div>
               ))}
             </div>
@@ -118,7 +161,7 @@ export default function FaqSection() {
                 {activeIndex === index ? (
                   <ChevronUpIcon className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                 ) : (
-                  <ChevronDownIcon className="w-5 h-5 text- flex-shrink-0" />
+                  <ChevronDownIcon className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                 )}
               </button>
               {activeIndex === index && (

@@ -164,10 +164,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
           )}
         </div>
         
-        {/* Location */}
-        {product.location && (
-          <Caption className="text-placeholder text-xs">{product.location}</Caption>
-        )}
+       
       </div>
     </Link>
   )

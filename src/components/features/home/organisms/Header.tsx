@@ -99,7 +99,7 @@ export default function Header() {
     if (isAuthenticated) {
       setShowUserDropdown(!showUserDropdown)
     } else {
-      router.push("/auth/login");
+      router.push("/login");
     }
   };
 

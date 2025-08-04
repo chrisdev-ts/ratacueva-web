@@ -79,8 +79,18 @@ export default function SearchClientPage({
     }
   }
 
+  // Filtrar productos por categoría, rango de precio, marca, envío gratis y con descuento en el frontend (sin ubicación)
+  const filteredProducts = products.filter(product => (
+    (!initialFilters.categories.length || initialFilters.categories.includes(product.category)) &&
+    product.price >= initialFilters.priceRange[0] &&
+    product.price <= initialFilters.priceRange[1] &&
+    (!initialFilters.brands.length || initialFilters.brands.includes(product.brand)) &&
+    (!initialFilters.freeShipping || product.shipping === "Envío gratis") &&
+    (!initialFilters.withDiscount || !!product.discount)
+  ));
+
   // Ordenar productos cuando cambia el sortBy
-  const sortedProducts = sortProducts(products, currentSortBy)
+  const sortedProducts = sortProducts(filteredProducts, currentSortBy)
 
   // Actualizar productos cuando cambien los filtros (nueva navegación)
   useEffect(() => {

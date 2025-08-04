@@ -1,4 +1,3 @@
-//C:\Users\Misrael\Documents\WEBS\ratacueva-web\src\components\organisms\search\product-detail-page.tsx
 "use client"
 
 import Image from "next/image"
@@ -30,6 +29,42 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
   const { addToCart } = useCart()
   const { addToFavorites, isInFavorites } = useFavorites()
   const router = useRouter()
+
+  // Medios de pago con enlaces públicos
+  const paymentMethods = [
+    {
+      name: 'Visa',
+      image: 'https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/visa.svg'
+    },
+    {
+      name: 'Mastercard', 
+      image: 'https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/mastercard.svg'
+    },
+    {
+      name: 'American Express',
+      image: 'https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/amex.svg'
+    },
+    {
+      name: 'PayPal',
+      image: 'https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/paypal.svg'
+    },
+    {
+      name: 'Mercado Pago',
+      image: '/cards/mercado-pago.avif'
+    },
+    {
+      name: 'OXXO',
+      image: '/cards/oxo.png'
+    },
+    {
+      name: 'BBVA',
+      image: '/cards/bbva.png'
+    },
+    {
+      name: 'Santander',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/1200px-Banco_Santander_Logotipo.svg.png'
+    }
+  ]
 
   // Manejar hidratación
   useEffect(() => {
@@ -199,6 +234,14 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
                 <div className="text-center justify-start text-white text-base font-normal ">
                   {product.rating}
                 </div>
+                <div className="flex items-center ml-2">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <StarIcon
+                      key={i}
+                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-placeholder"}`}
+                    />
+                  ))}
+                </div>
                 <div className="text-center justify-center text-white text-xs font-normal ">
                   / 5 de {product.reviews} opiniones
                 </div>
@@ -301,15 +344,30 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
                 </button>
               </div>
             </div>
+
+            {/* Payment Methods Section - ACTUALIZADA */}
             <div className="self-stretch p-6 bg-gray rounded-lg flex flex-col justify-start items-start gap-6 overflow-hidden">
               <div className="justify-start text-white text-xl font-bold ">Medios de pago</div>
               <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
-              <div className="self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start">
-                {/* Placeholder for payment methods */}
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div key={i} className="w-20 h-8 relative bg-dark rounded-lg" />
+              
+              {/* Grid de medios de pago con imágenes públicas */}
+              <div className="self-stretch grid grid-cols-4 gap-3">
+                {paymentMethods.map((method, i) => (
+                  <div 
+                    key={i} 
+                    className="w-full h-12 relative bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden hover:shadow-lg transition-shadow duration-200 group"
+                  >
+                    <Image
+                      src={method.image}
+                      alt={method.name}
+                      width={48}
+                      height={32}
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"
+                    />
+                  </div>
                 ))}
               </div>
+
               <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
               <div className="self-stretch justify-start">
                 <span className="text-emerald-400 text-xl font-bold ">Devolución gratis. </span>
@@ -377,7 +435,7 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
                       <HandThumbUpIcon className="w-5 h-5" />
                       <span className="text-sm">{review.upvotes}</span>
                     </button>
-                    <button className="flex items-center gap-1 text-whnite hover:text-white transition-colors">
+                    <button className="flex items-center gap-1 text-white hover:text-white transition-colors">
                       <HandThumbDownIcon className="w-5 h-5" />
                       <span className="text-sm">{review.downvotes}</span>
                     </button>

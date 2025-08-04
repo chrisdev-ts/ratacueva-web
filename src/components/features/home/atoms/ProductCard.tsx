@@ -51,13 +51,8 @@ export default function ProductCard({ product }: ProductCardProps) {
     })
   }
   return (
-<<<<<<< HEAD
     <Link href={`/product/${product.id}`} className="block">
       <div className="bg-gray hover:bg-dark transition-colors rounded-lg overflow-hidden group cursor-pointer">
-=======
-    <Link href={`/products/${product.id}`} className="block w-[270px]">
-      <div className="bg-gray hover:bg-dark hover:border-gray border-transparent border-2 transition-border transition-colors rounded-lg overflow-hidden group cursor-pointer">
->>>>>>> 69985f4a50ae7412e02457a63396f784ca8ee577
       {/* Image Container */}
       <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center">
         <Image

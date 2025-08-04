@@ -60,6 +60,7 @@ export const useNewProducts = (limit: number = 20) => {
 export const transformProduct = (apiProduct: Product) => ({
   id: apiProduct._id, // Use original MongoDB ID for navigation
   name: apiProduct.name,
+  description: apiProduct.description, // <-- Agregado
   rating: apiProduct.rating || 0, // Default to 0 if not present
   reviews: apiProduct.reviewCount || 0, // Default to 0 if not present
   price: apiProduct.price,

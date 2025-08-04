@@ -101,14 +101,9 @@ export default function Footer() {
               <Image
                 src="/images/logotipo-base.svg"
                 alt="RataCueva Logo"
-<<<<<<< HEAD
                 width={126}
                 height={22}
                 style={{ height: 'auto' }}
-=======
-                width={200}
-                height={36}
->>>>>>> 69985f4a50ae7412e02457a63396f784ca8ee577
               />
             </Link>
             <Body className="text-placeholder text-base lg:text-lg mb-6 leading-relaxed">

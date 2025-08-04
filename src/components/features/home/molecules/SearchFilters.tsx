@@ -17,7 +17,6 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
   // Categorías y marcas dinámicas
   const [categories, setCategories] = useState<string[]>([])
   const [brands, setBrands] = useState<string[]>([])
-  const locations = ["San José", "Cartago", "Alajuela", "Heredia", "Puntarenas", "Guanacaste", "Limón"]
   const [expandedSections, setExpandedSections] = useState({
     price: true,
     category: true,
@@ -228,32 +227,9 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
           ))}
         </div>
       </FilterSection>
-      {/* Location */}
-      <FilterSection
-        title="Ubicación"
-        isExpanded={expandedSections.location}
-        onToggle={() => toggleSection("location")}
-      >
-        <div className="space-y-2">
-          {locations.map((location) => (
-            <label
-              key={location}
-              className="flex items-center gap-3 cursor-pointer hover:bg-dark p-2 rounded-lg"
-            >
-              <input
-                type="checkbox"
-                checked={filters.locations.includes(location)}
-                onChange={() => handleArrayFilter("locations", location)}
-                className="w-4 h-4 text-primary bg-dark border-dark rounded focus:ring-pink-500"
-              />
-              <Body className="text-white text-sm">{location}</Body>
-            </label>
-          ))}
-        </div>
-      </FilterSection>
       {/* Shipping & Discounts */}
       <FilterSection
-        title="Envío y Ofertas"
+        title="Envío y ofertas"
         isExpanded={expandedSections.shipping}
         onToggle={() => toggleSection("shipping")}
       >

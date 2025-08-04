@@ -6,9 +6,11 @@ import { Body } from "@/components/atoms/Typography";
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
 import { login } from "@/services/auth/login";
+import { useAuth } from "@/contexts/AuthContext";
 
 const LoginPage = () => {
   const router = useRouter();
+  const { login: loginContext } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,12 +27,13 @@ const LoginPage = () => {
       // Guarda el token y el usuario
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
+      loginContext(data.token, data.user); // Actualiza el contexto global
       console.log("Token y usuario guardados en localStorage");
       // Redirige según el rol
       const role = data.user?.role;
       if (role === "client") {
-        router.push("/home");
-        console.log("Redirigiendo a /home por rol client");
+        router.push("/settings");
+        console.log("Redirigiendo a /settings por rol client");
       } else if (role === "admin" || role === "employee") {
         router.push("/overview");
         console.log("Redirigiendo a /overview por rol admin/employee");
