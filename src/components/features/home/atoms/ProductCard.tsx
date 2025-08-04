@@ -51,10 +51,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     })
   }
   return (
-    <Link href={`/products/${product.id}`} className="block">
-      <div className="bg-gray hover:bg-dark transition-colors rounded-lg overflow-hidden group cursor-pointer">
+    <Link href={`/products/${product.id}`} className="block w-[270px]">
+      <div className="bg-gray hover:bg-dark hover:border-gray border-transparent border-2 transition-border transition-colors rounded-lg overflow-hidden group cursor-pointer">
       {/* Image Container */}
-      <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center bg-dark">
+      <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center">
         <Image
           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
           src={product.image || "/placeholder.svg"}
@@ -70,7 +70,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Info */}
       <div className="p-4 lg:p-6">
-        <Subheading className="text-white mb-2 line-clamp-2 group-hover:text-cyan-400 transition-colors">
+        <Subheading className="text-white mb-2 truncate-multiline w-[230px] group-hover:text-cyan-400 transition-colors">
           {product.name}
         </Subheading>
 
