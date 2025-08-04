@@ -84,7 +84,7 @@ export default function PurchasesPage() {
               type="text"
               placeholder="Buscar productos..."
               className="h-11 pl-12"
-              variant="search"
+              variant="searchbar" // En este que me encontré por accidente también solo era poner "searchbar"
             />
           </div>
           <button className="h-11 min-h-11 rounded-[99px] border border-cyan-400 px-4 py-2.5 font-bold text-cyan-400 hover:bg-cyan-400/10 flex items-center gap-2">

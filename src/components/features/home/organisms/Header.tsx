@@ -90,8 +90,8 @@ export default function Header() {
             <form onSubmit={handleSearch}>
               <Input
                 type="search"
-/*                 variant="search"
- */                placeholder="Buscar productos..."
+                variant="searchbar"      // Solo era poner el tipo correcto de variante, en este caso "searchbar"          
+                placeholder="Buscar productos..."
                 value={searchQuery}
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}

@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-export type InputVariant = "default" | "error" | "success" | "disabled" | "searchbar";
+export type InputVariant = "default" | "error" | "success" | "disabled" | "searchbar"; // Aquí está lo relacionado al problema de variant
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     variant?: InputVariant;
