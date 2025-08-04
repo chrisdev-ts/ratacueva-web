@@ -5,7 +5,7 @@ import React from "react";
 import { BaseTypographyInternalProps } from "./types";
 
 /**
- * BaseTypography - Componente base para aplicar estilos de tipografía definidos en CSS variables.
+ * BaseTypography - Componente base para aplicar estilos de tipografía usando clases nativas de Tailwind CSS.
  * Este componente es interno y no debe ser usado directamente, sino a través de los componentes exportados (Display, Body, etc.).
  */
 export const BaseTypography: React.FC<BaseTypographyInternalProps> = ({
@@ -15,14 +15,27 @@ export const BaseTypography: React.FC<BaseTypographyInternalProps> = ({
   defaultElement,
   as: Component = defaultElement,
 }) => {
-  // Clases de Tailwind CSS que utilizan las variables CSS definidas globalmente.
-  // La intención es usar clases de Tailwind.
-  // donde `fontSize` extiende con los nombres de tus variantes (`display`, `heading`, etc.)
-  // para que se generen clases como `text-display`, `font-bold` (si mapeas font-weight).
+  // Mapeo de variantes a clases nativas de Tailwind CSS
+  const getVariantClasses = (variant: string) => {
+    switch (variant) {
+      case "display":
+        return "text-[32px] font-bold"; // 32px, bold
+      case "heading":
+        return "text-2xl font-bold"; // 24px, bold
+      case "subheading":
+        return "text-xl font-bold"; // 20px, bold
+      case "body":
+        return "text-base"; // 16px, normal
+      case "body-small":
+        return "text-sm"; // 14px, normal
+      case "caption":
+        return "text-xs"; // 12px, normal
+      default:
+        return "text-base";
+    }
+  };
 
-  // Agrega font-bold por defecto para display, heading y subheading
-  const isBold = ["display", "heading", "subheading"].includes(variant);
-  const baseClasses = `text-${variant}${isBold ? " font-bold" : ""}`;
+  const baseClasses = getVariantClasses(variant);
 
   return (
     <Component className={`${baseClasses} ${className}`.trim()}>
