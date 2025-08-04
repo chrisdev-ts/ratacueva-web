@@ -11,6 +11,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/atoms/radio-group"
 import { Subheading } from "@/components/atoms/Typography";
 import { Body, BodySmall } from "@/components/atoms/Typography";
 import { createAddress, CreateAddressPayload } from "@/services/settings/address"
+import Toast from "@/components/atoms/Toast";
 
 export default function NewAddressPage() {
   const router = useRouter();
@@ -238,6 +239,12 @@ export default function NewAddressPage() {
           </form>
         </div>
       </div>
+      <Toast
+        message={toastMessage}
+        isVisible={isToastVisible}
+        onClose={() => setIsToastVisible(false)}
+        type={toastType}
+      />
     </PageLayout>
   )
 }
