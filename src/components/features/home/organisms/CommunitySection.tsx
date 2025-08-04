@@ -3,7 +3,7 @@
 import { Heading, Body } from "@/components/atoms/Typography"
 import { motion } from "framer-motion"
 import { SocialMediaButtons, DualReviewsCarousel } from "../molecules"
-import { userReviews } from "@/lib/userReviews"
+import { userReviews } from "@/libs/userReviews"
 
 // Atomic Design - Organism: Community Section
 export default function CommunitySection() {

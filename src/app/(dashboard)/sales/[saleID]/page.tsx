@@ -3,7 +3,7 @@
 import React from "react";
 import { Display, Body } from "@/components/atoms/Typography";
 import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
-import { mockSalesData } from "@/lib/salesData";
+import { mockSalesData } from "@/libs/salesData";
 import { notFound } from "next/navigation";
 
 interface SaleDetailPageProps {

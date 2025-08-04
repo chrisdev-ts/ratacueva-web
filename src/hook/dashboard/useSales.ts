@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { mockSalesData, Sale } from "@/lib/salesData";
+import { mockSalesData, Sale } from "@/libs/salesData";
 
 export const useSales = () => {
   return useQuery({

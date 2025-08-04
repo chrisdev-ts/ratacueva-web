@@ -1,7 +1,7 @@
 // hooks/useProducts.ts
 import { useQuery } from "@tanstack/react-query";
 
-const API_URL = "http://localhost:3001/api/products";
+const API_URL = "https://ratacueva-api.onrender.com/api/products";
 
 type Product = {
     _id: string;
