@@ -23,6 +23,17 @@ export const getStockStatus = (stock: number): StatusType => {
     return "cancelled";
 };
 
+export const mapOrderStatusToStatusType = (orderStatus: string): StatusType => {
+    switch (orderStatus) {
+        case "shipped": return "completed";
+        case "pending": return "pending";
+        case "processing": return "processing";
+        case "cancelled": return "cancelled";
+        default: return "processing";
+    }
+};
+
+
 const StatusTag: React.FC<StatusTagProps> = ({ status, className = "", children }) => (
     <div className={clsx(
         "flex px-3 py-2 justify-center items-center rounded-[100px] w-fit text-sm font-bold leading-normal",
