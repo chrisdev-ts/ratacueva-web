@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Button from "@/components/atoms/Button";
-import { Body, Display } from "@/components/atoms/Typography";
+import { Body, Heading } from "@/components/atoms/Typography";
 import Input from "@/components/atoms/Input";
 import BaseTable from "@/components/features/dashboard/atoms/BaseTable";
 import StatusTag, { getStockStatus } from "@/components/features/dashboard/atoms/StatusTag";
@@ -92,10 +92,9 @@ export default function Items() {
     ];
 
     return (
-        <div className="flex flex-col max-w-none mx-auto p-8 lg:px-7 lg:py-8 gap-8 flex-1 text-text font-body">
             <DashboardContentLayout>
                 <div className="flex justify-between items-center pb-3">
-                    <Display>Administrar productos</Display>
+                    <Heading>Administrar productos</Heading>
                     <Link href="/items/add">
                         <Button
                             variant="success"
@@ -162,6 +161,5 @@ export default function Items() {
                     </div>
                 </div>
             </DashboardContentLayout>
-        </div>
     );
 }

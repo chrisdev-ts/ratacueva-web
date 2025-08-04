@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Button from "@/components/atoms/Button";
-import { Body, Display } from "@/components/atoms/Typography";
+import { Body, Display, Heading } from "@/components/atoms/Typography";
 import Input from "@/components/atoms/Input";
 import BaseTable from "@/components/features/dashboard/atoms/BaseTable";
 import {
@@ -143,10 +143,9 @@ export default function Employees() {
     };
 
     return (
-        <div className="flex flex-col max-w-none mx-auto p-8 lg:px-7 lg:py-8 gap-8 flex-1 text-text font-body">
             <DashboardContentLayout>
                 <div className="flex justify-between items-center pb-3">
-                    <Display>Administrar empleados</Display>
+                    <Heading>Administrar empleados</Heading>
                     <Link href="/employees/add">
                         <Button
                             variant="success"
@@ -213,6 +212,5 @@ export default function Employees() {
                     </div>
                 </div>
             </DashboardContentLayout>
-        </div>
     );
 }
