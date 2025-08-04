@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { mapStatusToStatusType, StatusType } from "@/components/features/dashboard/atoms/StatusTag";
 
-const API_URL = "https://ratacueva-api.onrender.com/api/shipments";
+const API_URL = "https://ratacueva-api.onrender.com/api/shipping";
 
 export interface Shipment {
     id: string;
@@ -19,7 +19,11 @@ interface ShipmentApiResponse {
         _id: string;
         trackingNumber: string;
         shippingProvider: string;
-        destination: string;
+        shippingAddress: {
+            city: string;
+            state: string;
+            country?: string;
+        };
         currentStatus: string;
         createdAt: string;
     }>;
@@ -47,9 +51,12 @@ export const useShipments = () => {
                 id: item._id,
                 trackingNumber: item.trackingNumber,
                 carrier: item.shippingProvider,
-                destination: item.destination,
+                destination:
+                    item.shippingAddress?.city && item.shippingAddress?.state
+                        ? `${item.shippingAddress.city}, ${item.shippingAddress.state}`
+                        : "Desconocido",
                 status: mapStatusToStatusType(item.currentStatus),
-                createdAt: new Date(item.createdAt).toLocaleDateString(),
+                createdAt: new Date(item.createdAt).toLocaleDateString("es-MX"),
             }));
         },
     });

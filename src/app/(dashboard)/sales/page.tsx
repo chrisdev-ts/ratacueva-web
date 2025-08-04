@@ -201,13 +201,9 @@ export default function Sales() {
                 </div>
 
                 {isLoading ? (
-                    <div className="bg-gray rounded-lg p-8 text-center">
-                        <Body className="text-placeholder">Cargando ventas...</Body>
-                    </div>
+                    <p className="text-gray-400">Cargando ventas...</p>
                 ) : error ? (
-                    <div className="bg-gray rounded-lg p-8 text-center">
-                        <Body className="text-danger">Error al cargar ventas</Body>
-                    </div>
+                    <p className="text-red-400">Error al cargar las ventas</p>
                 ) : (
                     <BaseTable data={paginatedSales} columns={columns} />
                 )}

@@ -129,7 +129,14 @@ export default function Shipments() {
                     </div>
                 </div>
 
+
+                {isLoading ? (
+                    <p className="text-gray-400">Cargando envíos...</p>
+                ) : error ? (
+                    <p className="text-red-400">Error al cargar los envíos</p>
+                ) : (
                 <BaseTable data={paginatedShipments} columns={columns} />
+                )}
 
                 <div className="flex justify-between items-center flex-wrap gap-6">
                     <Body className="text-text">
