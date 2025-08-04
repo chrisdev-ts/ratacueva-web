@@ -183,7 +183,7 @@ export default function Header() {
           {/* Desktop Actions */}
           <div className="hidden lg:flex justify-start items-center gap-4 xl:gap-6">
             <Link
-              href="/build-pc"
+              href="/search"
               className="h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center gap-3"
             >
               <ShoppingCartIcon className="w-5 h-5 text-white" />
