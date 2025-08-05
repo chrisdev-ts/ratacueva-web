@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Body } from "@/components/atoms/Typography/index";
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
@@ -37,9 +38,16 @@ const RegisterPage = () => {
       const response = await registerUser(payload);
       console.log("Usuario registrado:", response);
       router.push("/login");
-    } catch (error: any) {
-      console.error("Error al registrar:", error.response?.data || error.message);
-      alert(error.response?.data?.message || "Hubo un error al registrar");
+    } catch (error: unknown) {
+      console.error("Error al registrar:", error);
+      const errorMessage =
+        error && typeof error === "object" && "response" in error
+          ? (error.response as { data?: { message?: string } })?.data
+              ?.message ||
+            (error as { message?: string })?.message ||
+            "Hubo un error al registrar"
+          : "Hubo un error al registrar";
+      alert(errorMessage);
     }
   };
 
@@ -48,10 +56,12 @@ const RegisterPage = () => {
       <div className="w-full lg:w-1/2  flex flex-col justify-center items-center px-4 sm:px-12 lg:px-20 py-10 lg:py-0 order-1 lg:order-1">
         <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
           <div className="flex justify-center py-7 pb-0">
-            <img
+            <Image
               src="/images/logotipo-base.svg"
               alt="Rata Cueva Logo"
               className="w-[60%] h-auto"
+              width={240}
+              height={80}
             />
           </div>
 
@@ -150,14 +160,17 @@ const RegisterPage = () => {
             />
           </div>
 
-          <Button type="submit" variant="primary" className="w-full">Registrarse</Button>
+          <Button type="submit" variant="primary" className="w-full">
+            Registrarse
+          </Button>
 
           <div className="text-center pb-8">
             <Body className="text-text">
               ¿Ya tienes una cuenta?{" "}
               <a
                 href="/login"
-                className="font-bold hover:text-primary transition-colors">
+                className="font-bold hover:text-primary transition-colors"
+              >
                 Inicia sesión
               </a>
             </Body>

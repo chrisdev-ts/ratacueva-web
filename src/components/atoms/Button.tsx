@@ -61,8 +61,7 @@ const shapeClasses: Record<ButtonShape, string> = {
 
 const getVariantSpecificClasses = (
   variant: ButtonVariant,
-  size: ButtonSize,
-  shape: ButtonShape
+  size: ButtonSize
 ): string => {
   switch (variant) {
     case "icon":
@@ -96,11 +95,7 @@ const Button: React.FC<ButtonProps> = ({
   target,
   ...props
 }) => {
-  const variantSpecificClasses = getVariantSpecificClasses(
-    variant,
-    size,
-    shape
-  );
+  const variantSpecificClasses = getVariantSpecificClasses(variant, size);
   const sizeSpecificClasses = getSizeClasses(size, shape);
 
   const buttonClasses = clsx(
