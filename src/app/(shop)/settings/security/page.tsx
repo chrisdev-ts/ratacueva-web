@@ -106,7 +106,7 @@ export default function SecurityPage() {
                   <div className="text-white font-medium">Chrome en Windows</div>
                   <div className="text-dark text-sm">Última actividad: hace 2 horas</div>
                 </div>
-                <button className="text-red-400 hover:text-red-300 text-sm font-medium">
+                <button className="text-danger hover:text-red-300 text-sm font-medium">
                   Cerrar sesión
                 </button>
               </div>
@@ -115,7 +115,7 @@ export default function SecurityPage() {
                   <div className="text-white font-medium">Safari en iPhone</div>
                   <div className="text-dark text-sm">Última actividad: hace 1 día</div>
                 </div>
-                <button className="text-red-400 hover:text-red-300 text-sm font-medium">
+                <button className="text-danger hover:text-red-300 text-sm font-medium">
                   Cerrar sesión
                 </button>
               </div>

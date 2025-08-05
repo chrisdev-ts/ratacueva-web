@@ -108,7 +108,7 @@ const RegisterPage = () => {
             {/* General error message */}
             {errors.general && (
               <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
-                <Body className="text-red-400 text-sm">
+                <Body className="text-danger text-sm">
                   {errors.general[0]}
                 </Body>
               </div>
@@ -131,7 +131,7 @@ const RegisterPage = () => {
                 className={`min-w-[240px] ${hasFieldError('name') ? 'border-red-500' : ''}`}
               />
               {getFieldError('name') && (
-                <Body className="text-red-400 text-sm mt-1">
+                <Body className="text-danger text-sm mt-1">
                   {getFieldError('name')}
                 </Body>
               )}
@@ -155,7 +155,7 @@ const RegisterPage = () => {
                   className={`w-full min-w-0 ${hasFieldError('lastName') ? 'border-red-500' : ''}`}
                 />
                 {getFieldError('lastName') && (
-                  <Body className="text-red-400 text-sm mt-1">
+                  <Body className="text-danger text-sm mt-1">
                     {getFieldError('lastName')}
                   </Body>
                 )}
@@ -193,7 +193,7 @@ const RegisterPage = () => {
                 className={`min-w-[240px] ${hasFieldError('email') ? 'border-red-500' : ''}`}
               />
               {getFieldError('email') && (
-                <Body className="text-red-400 text-sm mt-1">
+                <Body className="text-danger text-sm mt-1">
                   {getFieldError('email')}
                 </Body>
               )}
@@ -218,13 +218,13 @@ const RegisterPage = () => {
               {getFieldError('password') && (
                 <div className="mt-1">
                   {errors.password?.map((error, index) => (
-                    <Body key={index} className="text-red-400 text-sm block">
+                    <Body key={index} className="text-danger text-sm block">
                       • {error}
                     </Body>
                   ))}
                 </div>
               )}
-              <Body className="text-gray-400 text-xs">
+              <Body className="text-placeholder text-xs">
                 La contraseña debe contener al menos una mayúscula y un número
               </Body>
             </div>

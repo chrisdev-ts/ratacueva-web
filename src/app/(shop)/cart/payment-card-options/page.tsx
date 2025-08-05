@@ -91,7 +91,7 @@ export default function PaymentCardOptionsPage() {
                   )}
                 </div>
                 <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center">
-                  <CreditCardIcon className="w-4 h-4 text-gray-800" />
+                  <CreditCardIcon className="w-4 h-4 text-placeholder" />
                 </div>
                 <Body className="text-white text-xl">Bancoppel Débito **** 3832</Body>
               </div>
@@ -113,7 +113,7 @@ export default function PaymentCardOptionsPage() {
                       )}
                     </div>
                     <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center">
-                      <CreditCardIcon className="w-4 h-4 text-gray-800" />
+                      <CreditCardIcon className="w-4 h-4 text-placeholder" />
                     </div>
                     <Body className="text-white text-xl">{option.name}</Body>
                   </div>

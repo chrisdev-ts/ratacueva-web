@@ -106,7 +106,7 @@ export default function Header() {
           >
             <form onSubmit={handleSearch} className="relative">
               <div className="relative">
-                <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2 z-10" />
+                <MagnifyingGlassIcon className="w-6 h-6 text-placeholder absolute left-4 top-1/2 transform -translate-y-1/2 z-10" />
                 <Input
                   type="search"
                   variant="searchbar"

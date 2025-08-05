@@ -249,7 +249,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                   className={`self-stretch h-11 min-h-11 px-4 py-2.5 rounded-[99px] outline outline-1 outline-offset-[-1px] inline-flex justify-center items-center gap-3 transition-colors ${
                     isInFavorites(product.id.toString())
                       ? 'outline-red-500 text-red-500 hover:bg-red-500 hover:text-white'
-                      : 'outline-gray-400 text-gray-400 hover:bg-gray-400 hover:text-white'
+                      : 'outline-gray-400 text-placeholder hover:bg-gray-400 hover:text-white'
                   }`}
                 >
                   <HeartIcon className="w-5 h-5" />

@@ -31,7 +31,7 @@ export default function DynamicProductSections() {
 
   if (error) {
     return (
-      <div className="text-red-400 p-8 text-center">
+      <div className="text-danger p-8 text-center">
         Error cargando productos: {error.message}
       </div>
     );

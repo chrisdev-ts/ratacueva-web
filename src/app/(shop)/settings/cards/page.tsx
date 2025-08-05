@@ -79,7 +79,7 @@ export default function CardsPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 relative bg-white rounded-[99px] flex items-center justify-center flex-shrink-0">
-                        <CreditCardIcon className="w-8 h-8 text-gray" />
+                        <CreditCardIcon className="w-8 h-8 text-placeholder" />
                       </div>
                       <div>
                         <Subheading className="text-white font-medium">
