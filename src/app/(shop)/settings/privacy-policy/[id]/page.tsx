@@ -6,9 +6,9 @@ import {
 import { getPrivacySectionData } from "@/constants/privacySectionsData";
 
 interface PrivacySectionPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function PrivacySectionPage({
