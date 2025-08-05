@@ -15,7 +15,7 @@ import {
 import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import { useProducts } from "@/hook/dashboard/UseProduct";
+import { useProducts } from "@/hook/dashboard/useProduct";
 
 export default function Items() {
     const [currentPage, setCurrentPage] = useState(1);
