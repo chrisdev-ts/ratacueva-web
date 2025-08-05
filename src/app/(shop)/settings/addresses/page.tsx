@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { PageLayout } from "@/components/templates/PageLayout"
 import { HomeIcon, PlusIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
@@ -8,7 +7,7 @@ import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 import { Body, BodySmall } from "@/components/atoms/Typography"
 import { useState, useEffect } from "react";
 
-import { getAddresses, Address } from "@/services/settings/addresses";
+import { getAddresses, Address } from "@/services/settings/address/addresses";
 
 export default function AddressesPage() {
   const [savedAddresses, setSavedAddresses] = useState<Address[]>([]);
@@ -41,12 +40,14 @@ export default function AddressesPage() {
     }
   };
 
+
   useEffect(() => {
     if (token) {
       fetchAddresses();
     }
-  }, [token]);
+  }, [token]); // Se ejecuta cuando el token cambia
 
+  // Mostrar estado de carga o error
   if (isLoading) {
     return (
       <PageLayout>
