@@ -1,31 +1,41 @@
 "use client";
 
-import { ShoppingCartIcon, UserIcon, HeartIcon, Bars3Icon, ArrowRightOnRectangleIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline"
-import Link from "next/link"
-import Image from "next/image"
-import { useState, useRef, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { searchProducts, Product } from "@/services/home/products"
-import SearchSuggestions from "@/components/features/home/atoms/SearchSuggestions"
-import Input from "@/components/atoms/Input"
-import { useCart } from "@/contexts/CartContext"
-import { useFavorites } from "@/contexts/FavoritesContext"
-import { useAuth } from "@/contexts/AuthContext"
+import {
+  ShoppingCartIcon,
+  UserIcon,
+  HeartIcon,
+  Bars3Icon,
+  ComputerDesktopIcon,
+  Cog6ToothIcon,
+  ArrowRightOnRectangleIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/solid";
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { searchProducts, Product } from "@/services/home/products";
+import SearchSuggestions from "@/components/features/home/atoms/SearchSuggestions";
+import Input from "@/components/atoms/Input";
+import Button from "@/components/atoms/Button";
+import { useCart } from "@/contexts/CartContext";
+import { useFavorites } from "@/contexts/FavoritesContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function Header() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [showSuggestions, setShowSuggestions] = useState(false)
-  const [showUserDropdown, setShowUserDropdown] = useState(false)
-  const [searchResults, setSearchResults] = useState<Product[]>([])
-  const [isSearching, setIsSearching] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-  const router = useRouter()
-  const searchRef = useRef<HTMLDivElement>(null)
-  const userDropdownRef = useRef<HTMLDivElement>(null)
-  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null)  
-  const { getCartCount } = useCart()
-  const { getFavoritesCount } = useFavorites()
-  const { isAuthenticated, logout } = useAuth()
+  const router = useRouter();
+  const searchRef = useRef<HTMLDivElement>(null);
+  const userDropdownRef = useRef<HTMLDivElement>(null);
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const { getCartCount } = useCart();
+  const { getFavoritesCount } = useFavorites();
+  const { isAuthenticated, logout } = useAuth();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,81 +52,81 @@ export default function Header() {
   };
 
   const handleProductSelect = (productId: string) => {
-    router.push(`/product/${productId}`)
-    setShowSuggestions(false)
-    setSearchQuery("")
-  }
+    router.push(`/product/${productId}`);
+    setShowSuggestions(false);
+    setSearchQuery("");
+  };
 
   // Función para buscar productos en tiempo real
   const performSearch = async (query: string) => {
     if (query.trim().length < 2) {
-      setSearchResults([])
-      return
+      setSearchResults([]);
+      return;
     }
 
-    setIsSearching(true)
+    setIsSearching(true);
     try {
-      const response = await searchProducts(query.trim(), 5) // Limitar a 5 resultados para el dropdown
-      setSearchResults(response.data)
+      const response = await searchProducts(query.trim(), 5); // Limitar a 5 resultados para el dropdown
+      setSearchResults(response.data);
     } catch (error) {
-      console.error("Error al buscar productos:", error)
-      setSearchResults([])
+      console.error("Error al buscar productos:", error);
+      setSearchResults([]);
     } finally {
-      setIsSearching(false)
+      setIsSearching(false);
     }
-  }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setSearchQuery(value)
-    setShowSuggestions(value.length > 0)
+    const value = e.target.value;
+    setSearchQuery(value);
+    setShowSuggestions(value.length > 0);
 
     // Cancelar búsqueda anterior
     if (searchTimeoutRef.current) {
-      clearTimeout(searchTimeoutRef.current)
+      clearTimeout(searchTimeoutRef.current);
     }
 
     // Realizar nueva búsqueda con debounce
     if (value.trim().length >= 2) {
       searchTimeoutRef.current = setTimeout(() => {
-        performSearch(value)
-      }, 300) // 300ms de debounce
+        performSearch(value);
+      }, 300); // 300ms de debounce
     } else {
-      setSearchResults([])
+      setSearchResults([]);
     }
-  }
+  };
 
   const handleInputFocus = () => {
     if (searchQuery.length > 0) {
-      setShowSuggestions(true)
+      setShowSuggestions(true);
       if (searchQuery.trim().length >= 2) {
-        performSearch(searchQuery)
+        performSearch(searchQuery);
       }
     }
   };
 
   const handleUserButtonClick = () => {
     if (isAuthenticated) {
-      setShowUserDropdown(!showUserDropdown)
+      setShowUserDropdown(!showUserDropdown);
     } else {
       router.push("/login");
     }
   };
 
   const handleLogout = () => {
-    logout()
-    setShowUserDropdown(false)
-    router.push('/')
-  }
+    logout();
+    setShowUserDropdown(false);
+    router.push("/");
+  };
 
   // Limpiar timeout al desmontar
   useEffect(() => {
     return () => {
       if (searchTimeoutRef.current) {
-        clearTimeout(searchTimeoutRef.current)
+        clearTimeout(searchTimeoutRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   // Cerrar sugerencias y dropdown al hacer clic fuera
   useEffect(() => {
@@ -127,10 +137,13 @@ export default function Header() {
       ) {
         setShowSuggestions(false);
       }
-      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
-        setShowUserDropdown(false)
+      if (
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowUserDropdown(false);
       }
-    }
+    };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -150,10 +163,10 @@ export default function Header() {
             <Image
               src="/images/logotipo-base.svg"
               alt="RataCueva Logo"
-              width={126}
-              height={22}
+              width={200}
+              height={36}
               priority
-              style={{ height: 'auto' }}
+              style={{ height: "auto" }}
             />
           </Link>
 
@@ -191,47 +204,47 @@ export default function Header() {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex justify-start items-center gap-4 xl:gap-6">
-            <Link
-              href="/search"
-              className="h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center gap-3"
-            >
-              <ShoppingCartIcon className="w-5 h-5 text-white" />
-              <span className="text-white text-sm xl:text-base font-bold">Arma tu PC</span>
-            </Link>
-            <div className="flex justify-start items-center gap-3">
-              <Link
-                href="/settings/favorites"
-                className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center relative"
-              >
-                <HeartIcon className="w-5 h-5 text-white" />
+          <div className="hidden lg:flex justify-start items-center gap-6">
+            <Button variant="primary" size="lg" shape="pill" href="/search">
+              <ComputerDesktopIcon className="w-5 h-5" />
+              <span className="text-sm xl:text-base font-bold">Arma tu PC</span>
+            </Button>
+            <div className="flex justify-start items-center gap-4">
+              <div className="relative">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  shape="circle"
+                  href="/settings/favorites"
+                >
+                  <HeartIcon className="w-6 h-6" />
+                </Button>
                 {getFavoritesCount() > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
                     {getFavoritesCount() > 99 ? "99+" : getFavoritesCount()}
                   </span>
                 )}
-              </Link>
+              </div>
               <div className="relative">
-                <Link
-                  href="/cart"
-                  className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center relative"
-                >
-                  <ShoppingCartIcon className="w-5 h-5 text-white" />
-                  {getCartCount() > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-                      {getCartCount() > 99 ? "99+" : getCartCount()}
-                    </span>
-                  )}
-                </Link>
+                <Button variant="primary" size="lg" shape="circle" href="/cart">
+                  <ShoppingCartIcon className="w-6 h-6" />
+                </Button>
+                {getCartCount() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                    {getCartCount() > 99 ? "99+" : getCartCount()}
+                  </span>
+                )}
               </div>
               <div className="relative" ref={userDropdownRef}>
-                <button
+                <Button
+                  variant="primary"
+                  size="lg"
+                  shape="circle"
                   onClick={handleUserButtonClick}
-                  className="h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center"
                 >
-                  <UserIcon className="w-5 h-5 text-white" />
-                </button>
-                
+                  <Cog6ToothIcon className="w-6 h-6" />
+                </Button>
+
                 {/* User Dropdown */}
                 {showUserDropdown && isAuthenticated && (
                   <div className="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-zinc-700 z-50">
@@ -259,9 +272,14 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="lg:hidden h-11 min-h-11 p-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] flex justify-center items-center">
-            <Bars3Icon className="w-5 h-5 text-white" />
-          </button>
+          <Button
+            variant="primary"
+            size="lg"
+            shape="circle"
+            className="lg:hidden"
+          >
+            <Bars3Icon className="w-6 h-6" />
+          </Button>
         </div>
       </div>
     </header>
@@ -274,14 +292,14 @@ export default function Header() {
  * @returns Las iniciales en mayúsculas
  */
 export function getInitials(name: string): string {
-  if (!name || typeof name !== 'string') {
-    return '';
+  if (!name || typeof name !== "string") {
+    return "";
   }
-  
+
   return name
-    .split(' ')
-    .map(word => word.charAt(0))
-    .join('')
+    .split(" ")
+    .map((word) => word.charAt(0))
+    .join("")
     .toUpperCase()
     .substring(0, 2); // Limitar a 2 caracteres máximo
 }
@@ -292,29 +310,29 @@ export function getInitials(name: string): string {
  * @returns Color en formato hex
  */
 export function getAvatarColor(name: string): string {
-  if (!name || typeof name !== 'string') {
-    return '#6B7280'; // Color gris por defecto
+  if (!name || typeof name !== "string") {
+    return "#6B7280"; // Color gris por defecto
   }
-  
+
   const colors = [
-    '#EF4444', // red-500
-    '#F59E0B', // amber-500
-    '#10B981', // emerald-500
-    '#3B82F6', // blue-500
-    '#8B5CF6', // violet-500
-    '#EC4899', // pink-500
-    '#F97316', // orange-500
-    '#84CC16', // lime-500
-    '#06B6D4', // cyan-500
-    '#6366F1', // indigo-500
+    "#EF4444", // red-500
+    "#F59E0B", // amber-500
+    "#10B981", // emerald-500
+    "#3B82F6", // blue-500
+    "#8B5CF6", // violet-500
+    "#EC4899", // pink-500
+    "#F97316", // orange-500
+    "#84CC16", // lime-500
+    "#06B6D4", // cyan-500
+    "#6366F1", // indigo-500
   ];
-  
+
   // Generar un índice basado en el nombre
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
     hash = name.charCodeAt(i) + ((hash << 5) - hash);
   }
-  
+
   const colorIndex = Math.abs(hash) % colors.length;
   return colors[colorIndex];
 }
@@ -325,7 +343,7 @@ export function getAvatarColor(name: string): string {
  * @returns String con las clases combinadas
  */
 export function cn(...classes: (string | undefined | null | false)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 /**
@@ -334,9 +352,9 @@ export function cn(...classes: (string | undefined | null | false)[]): string {
  * @returns String formateado como moneda
  */
 export function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat('es-CR', {
-    style: 'currency',
-    currency: 'CRC',
+  return new Intl.NumberFormat("es-CR", {
+    style: "currency",
+    currency: "CRC",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);
@@ -352,5 +370,5 @@ export function truncateText(text: string, length: number): string {
   if (!text || text.length <= length) {
     return text;
   }
-  return text.substring(0, length) + '...';
+  return text.substring(0, length) + "...";
 }
