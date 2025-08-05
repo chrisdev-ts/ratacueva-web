@@ -5,11 +5,7 @@ import Button from "@/components/atoms/Button";
 import { Body, Heading } from "@/components/atoms/Typography";
 import Input from "@/components/atoms/Input";
 import BaseTable from "@/components/features/dashboard/atoms/BaseTable";
-import {
-  TrashIcon,
-  MagnifyingGlassIcon,
-  ChevronDownIcon,
-} from "@heroicons/react/24/solid";
+import { TrashIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import DashboardContentLayout from "@/components/features/dashboard/templates/DashboardContentLayout";
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
@@ -17,20 +13,19 @@ import { useRouter } from "next/navigation";
 import {
   useDeleteEmployee,
   useEmployees,
-  type Employee,
   type Address,
+  type Employee,
 } from "@/hook/dashboard/useEmployees";
+import Dropdown from "@/components/atoms/Dropdown";
 
 export default function Employees() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data: employees, isLoading, error } = useEmployees();
-  console.log("Employees data:", employees);
   const { mutate: deleteEmployee } = useDeleteEmployee();
-
   const router = useRouter();
 
   useEffect(() => {
@@ -47,6 +42,10 @@ export default function Employees() {
       setLoading(false);
     }
   }, [router]);
+
+  useEffect(() => {
+    setCurrentPage(1); // reset page on search or items per page change
+  }, [searchTerm, itemsPerPage]);
 
   if (loading) return null;
 
@@ -66,7 +65,6 @@ export default function Employees() {
 
   const totalRecords = filteredEmployees.length;
   const totalPages = Math.ceil(totalRecords / itemsPerPage);
-
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalRecords);
 
@@ -103,7 +101,6 @@ export default function Employees() {
         );
       },
     },
-
     {
       accessorKey: "phone",
       header: "PHONE NUMBER",
@@ -156,6 +153,20 @@ export default function Employees() {
     },
   ];
 
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const pageSizeOptions = [
+    { label: "5", value: 5 },
+    { label: "10", value: 10 },
+    { label: "20", value: 20 },
+    { label: "50", value: 50 },
+  ];
+
   return (
     <DashboardContentLayout>
       <div className="flex justify-between items-center pb-3">
@@ -163,7 +174,7 @@ export default function Employees() {
         <Link href="/employees/add">
           <Button
             variant="success"
-            className="px-4 py-3 rounded-full font-bold text-dark flex items-center gap-3"
+            className="px-4 py-2.5 rounded-full font-bold text-body flex items-center gap-2"
           >
             Agregar empleado
           </Button>
@@ -172,13 +183,18 @@ export default function Employees() {
 
       <div className="flex flex-col gap-6">
         <div className="flex justify-between items-center flex-wrap gap-6">
+          {/* Entradas por página */}
           <div className="flex items-center py-1">
-            <div className="flex items-center gap-3 border border-border rounded-2xl px-4 py-2.5 cursor-pointer">
-              <Body className="text-placeholder">{itemsPerPage}</Body>
-              <ChevronDownIcon className="w-6 h-6 text-placeholder" />
-            </div>
+            <Dropdown
+              value={itemsPerPage}
+              onChange={setItemsPerPage}
+              options={pageSizeOptions}
+              className="w-[100px]"
+            />
             <Body className="text-text p-2">entradas por página</Body>
           </div>
+
+          {/* Buscador */}
           <div className="w-[341px] min-w-[240px] relative">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-placeholder pointer-events-none" />
             <Input
@@ -192,17 +208,19 @@ export default function Employees() {
           </div>
         </div>
 
+        {/* Tabla */}
         {isLoading ? (
-          <p className="text-gray-400">Cargando empleados...</p>
+          <p className="text-placeholder">Cargando empleados...</p>
         ) : error ? (
-          <p className="text-red-400">Error al cargar los empleados</p>
+          <p className="text-danger">Error al cargar los empleados</p>
         ) : (
           <BaseTable data={currentData} columns={columns} />
         )}
 
+        {/* Footer de paginación */}
         <div className="flex justify-between items-center flex-wrap gap-6">
           <Body className="text-text">
-            Mostrando {startItem} a {endItem} de {totalRecords} registros
+            Mostrando {startItem} - {endItem} de {totalRecords} registros
           </Body>
 
           <div className="flex items-center gap-1">
@@ -221,10 +239,8 @@ export default function Employees() {
                 variant="pagination"
                 onClick={() => {
                   if (label === "«") setCurrentPage(1);
-                  else if (label === "‹" && currentPage > 1)
-                    setCurrentPage(currentPage - 1);
-                  else if (label === "›" && currentPage < totalPages)
-                    setCurrentPage(currentPage + 1);
+                  else if (label === "‹") handlePrev();
+                  else if (label === "›") handleNext();
                   else if (label === "»") setCurrentPage(totalPages);
                   else if (typeof label === "number") setCurrentPage(label);
                 }}
