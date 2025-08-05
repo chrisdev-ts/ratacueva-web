@@ -1,13 +1,16 @@
-"use client"
-import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '@/services/home/products';
-import ProductSection from './ProductSection';
-import { transformProduct } from '@/hook/useProducts';
+"use client";
+import { useQuery } from "@tanstack/react-query";
+import { getProducts } from "@/services/home/products";
+import ProductSection from "./ProductSection";
+import { transformProduct } from "@/hook/useProducts";
 
 export default function DynamicProductSections() {
-  // Fetch all products to get available categories
-  const { data: allProducts, isLoading, error } = useQuery({
-    queryKey: ['products', 'all'],
+  const {
+    data: allProducts,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["products", "all"],
     queryFn: () => getProducts({ limit: 100 }),
     staleTime: 10 * 60 * 1000,
   });
@@ -45,7 +48,6 @@ export default function DynamicProductSections() {
     );
   }
 
-  // Group products by category
   const productsByCategory = allProducts.data.reduce((acc, product) => {
     const category = product.category;
     if (!acc[category]) {
@@ -55,7 +57,6 @@ export default function DynamicProductSections() {
     return acc;
   }, {} as Record<string, typeof allProducts.data>);
 
-  // Get unique categories
   const categories = Object.keys(productsByCategory);
 
   if (categories.length === 0) {
@@ -66,23 +67,23 @@ export default function DynamicProductSections() {
     );
   }
 
-            return (
-            <>
-              {categories.map((category) => {
-                const products = productsByCategory[category];
-                const transformedProducts = products.map(transformProduct);
-                const categoryId = category.toLowerCase().replace(/\s+/g, '-');
+  return (
+    <>
+      {categories.map((category) => {
+        const products = productsByCategory[category];
+        const transformedProducts = products.map(transformProduct);
+        const categoryId = category.toLowerCase().replace(/\s+/g, "-");
 
-                return (
-                  <section key={category} id={categoryId} className="py-8">
-                    <ProductSection
-                      title={category}
-                      products={transformedProducts}
-                      showViewAll={true}
-                    />
-                  </section>
-                );
-              })}
-            </>
-          );
-} 
+        return (
+          <section key={category} id={categoryId} className="py-8">
+            <ProductSection
+              title={category}
+              products={transformedProducts}
+              showViewAll={true}
+            />
+          </section>
+        );
+      })}
+    </>
+  );
+}
