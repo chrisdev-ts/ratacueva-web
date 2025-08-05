@@ -11,6 +11,8 @@ type Product = {
     price: number;
 };
 
+export type { Product };
+
 export const useProducts = () => {
     return useQuery<Product[]>({
         queryKey: ["products"],
