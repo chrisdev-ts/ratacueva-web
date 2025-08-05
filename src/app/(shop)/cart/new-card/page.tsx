@@ -254,11 +254,33 @@ export default function AddCardPage() {
                   type="submit"
                   className="bg-pink-600 hover:bg-pink-700"
                   disabled={isLoading}
+>>>>>>> c4fb7ab011d613dc4c87b19bfe052955c0985ea4
                 >
                   Guardar y continuar
                 </Button>
               </div>
             </div>
+<<<<<<< HEAD
+          </div>
+          
+          {/* Right Column: Purchase Summary */}
+          <div className="flex-1 w-full lg:w-auto">
+            <div className="p-6 bg-gray rounded-lg space-y-6">
+              <Subheading className="text-white">Resumen de la compra</Subheading>
+              <div className="h-px bg-white/20"></div>
+              <div className="flex justify-between items-center">
+                <Body className="text-white text-xl">Producto</Body>
+                <Body className="text-white text-xl">${subtotal.toLocaleString()}</Body>
+              </div>
+              <div className="flex justify-between items-center">
+                <Body className="text-white text-xl">Envío</Body>
+                <Body className="text-emerald-400 text-xl">Gratis</Body>
+              </div>
+              <div className="h-px bg-white/20"></div>
+              <div className="flex justify-between items-center">
+                <Body className="text-white text-xl">Total</Body>
+                <Subheading className="text-white text-xl">${total.toLocaleString()}</Subheading>
+=======
 
             {/* Resumen */}
           <PurchaseSummary subtotal={subtotal} total={total} />

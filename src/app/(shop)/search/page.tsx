@@ -1,6 +1,41 @@
-//C:\Users\Misrael\Documents\WEBS\ratacueva-web\src\app\search\page.tsx
-import { mockProducts, type Filters } from "@/app/lib/data"
+import { getProducts } from "@/services/home/products"
+import type { Filters } from "@/app/lib/data"
+import type { Product as ApiProduct } from "@/services/home/products"
+import type { Product } from "@/app/lib/data"
 import SearchClientPage from "@/components/features/home/organisms/SearchClientPage"
+
+// Transform API product to component format
+function transformApiProductToComponent(apiProduct: ApiProduct): Product {
+  // Extract the actual ID from the MongoDB ObjectId
+  const objectId = typeof apiProduct._id === 'object' && '$oid' in apiProduct._id 
+    ? apiProduct._id.$oid 
+    : apiProduct._id as string;
+  
+  return {
+    id: objectId,
+    name: apiProduct.name,
+    price: apiProduct.price,
+    originalPrice: apiProduct.discountPercentage
+      ? apiProduct.price / (1 - apiProduct.discountPercentage / 100)
+      : undefined,
+    image: apiProduct.images[0] || "/placeholder.svg",
+    rating: apiProduct.rating || 0,
+    reviews: apiProduct.reviewCount || 0,
+    shipping: "Envío gratis", // Default value
+    discount: apiProduct.discountPercentage,
+    category: apiProduct.category,
+    brand: apiProduct.brand,
+    location: "San José", // Default value
+    description: apiProduct.description,
+    specs: apiProduct.specs
+      ? Object.entries(apiProduct.specs).map(([key, value]) => ({
+          label: key,
+          value: value,
+        }))
+      : [],
+    images: apiProduct.images,
+  };
+}
 
 interface SearchPageProps {
   searchParams: Promise<{
@@ -36,8 +71,78 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const parsedFreeShipping = params.freeShipping === "true"
   const parsedWithDiscount = params.withDiscount === "true"
 
+  // Preparar filtros para la API
+  const apiFilters: any = {
+    limit: 100, // Obtener más productos para tener una buena selección
+  }
+
+  // Agregar búsqueda si hay query
+  if (query) {
+    apiFilters.search = query
+  }
+
+  // Agregar filtros de categoría
+  if (parsedCategories.length > 0) {
+    apiFilters.category = parsedCategories.join(',')
+  }
+
+  // Agregar filtros de marca
+  if (parsedBrands.length > 0) {
+    apiFilters.brand = parsedBrands.join(',')
+  }
+
+  // Agregar filtros de precio
+  if (effectivePriceRange[0] > 0 || effectivePriceRange[1] < 2000000) {
+    apiFilters.minPrice = effectivePriceRange[0]
+    apiFilters.maxPrice = effectivePriceRange[1]
+  }
+
+  // Agregar ordenamiento
+  switch (sortBy) {
+    case "price-low":
+      apiFilters.sortBy = "price"
+      apiFilters.sortOrder = "asc"
+      break
+    case "price-high":
+      apiFilters.sortBy = "price"
+      apiFilters.sortOrder = "desc"
+      break
+    case "rating":
+      apiFilters.sortBy = "rating"
+      apiFilters.sortOrder = "desc"
+      break
+    case "reviews":
+      apiFilters.sortBy = "reviewCount"
+      apiFilters.sortOrder = "desc"
+      break
+    default:
+      // relevancia - mantener el orden original
+      break
+  }
+
+  // Obtener productos de la API
+  let products: Product[] = []
+  try {
+    const response = await getProducts(apiFilters)
+    const apiProducts = response.data || []
+    products = apiProducts.map(transformApiProductToComponent)
+  } catch (error) {
+    console.error("Error fetching products:", error)
+    // En caso de error, devolver array vacío
+    products = []
+  }
+
+  // Aplicar filtros adicionales que no están disponibles en la API
+  const filteredProducts = products.filter((product) => {
+    const matchesLocation = parsedLocations.length === 0 || parsedLocations.includes(product.location)
+    const matchesShipping = !parsedFreeShipping || product.shipping === "Envío gratis"
+    const matchesDiscount = !parsedWithDiscount || product.discount
+
+    return matchesLocation && matchesShipping && matchesDiscount
+  })
+
   const currentFilters: Filters = {
-    priceRange: effectivePriceRange, // Usar el rango de precios efectivo aquí
+    priceRange: effectivePriceRange,
     categories: parsedCategories,
     brands: parsedBrands,
     locations: parsedLocations,
@@ -45,55 +150,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     withDiscount: parsedWithDiscount,
   }
 
-  // Lógica de filtrado
-  const filtered = mockProducts.filter((product) => {
-    const matchesQuery =
-      query === "" ||
-      product.name.toLowerCase().includes(query.toLowerCase()) ||
-      product.category.toLowerCase().includes(query.toLowerCase()) ||
-      product.brand.toLowerCase().includes(query.toLowerCase())
-    const matchesPrice = product.price >= currentFilters.priceRange[0] && product.price <= currentFilters.priceRange[1]
-    const matchesCategory =
-      currentFilters.categories.length === 0 || currentFilters.categories.includes(product.category)
-    const matchesBrand = currentFilters.brands.length === 0 || currentFilters.brands.includes(product.brand)
-    const matchesLocation = currentFilters.locations.length === 0 || currentFilters.locations.includes(product.location)
-    const matchesShipping = !currentFilters.freeShipping || product.shipping === "Envío gratis"
-    const matchesDiscount = !currentFilters.withDiscount || product.discount
-
-    return (
-      matchesQuery &&
-      matchesPrice &&
-      matchesCategory &&
-      matchesBrand &&
-      matchesLocation &&
-      matchesShipping &&
-      matchesDiscount
-    )
-  })
-
-  // Lógica de ordenación
-  const sortedProducts = [...filtered] // Crear una copia para no mutar el array original
-  switch (sortBy) {
-    case "price-low":
-      sortedProducts.sort((a, b) => a.price - b.price)
-      break
-    case "price-high":
-      sortedProducts.sort((a, b) => b.price - a.price)
-      break
-    case "rating":
-      sortedProducts.sort((a, b) => b.rating - a.rating)
-      break
-    case "reviews":
-      sortedProducts.sort((a, b) => b.reviews - a.reviews)
-      break
-    default:
-      // relevancia - mantener el orden original
-      break
-  }
-
   return (
     <SearchClientPage
-      initialProducts={sortedProducts}
+      initialProducts={filteredProducts}
       initialQuery={query}
       initialFilters={currentFilters}
       initialSortBy={sortBy}

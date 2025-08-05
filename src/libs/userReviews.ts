@@ -9,86 +9,86 @@ export interface Review {
 export const userReviews: Review[] = [
   {
     id: 1,
-    name: "María González",
-    platform: "Facebook",
+    name: "Carlos Rodríguez",
+    platform: "Amazon",
     stars: 5,
-    text: "Increíble experiencia en RataCueva! La comida estaba deliciosa y el ambiente muy acogedor. Definitivamente volveremos pronto."
+    text: "La RTX 4090 es una bestia absoluta! Juego en 4K con ray tracing activado y mantiene 120+ FPS. El precio es alto pero vale cada peso."
   },
   {
     id: 2,
-    name: "Carlos Ruiz",
-    platform: "Google",
+    name: "Ana Martínez",
+    platform: "Newegg",
     stars: 5,
-    text: "El mejor lugar para pasar un rato agradable. La atención es excelente y los precios muy justos. 100% recomendado."
+    text: "El Ryzen 9 7950X es increíble para mi trabajo de edición de video. Los 16 núcleos hacen que el renderizado sea súper rápido."
   },
   {
     id: 3,
-    name: "Ana Martínez",
-    platform: "Instagram",
+    name: "Luis Hernández",
+    platform: "Best Buy",
     stars: 4,
-    text: "Me encantó la decoración del lugar y la variedad del menú. Los postres están espectaculares, sobre todo el tiramisú."
+    text: "El Samsung 980 Pro es súper rápido. Mi PC arranca en segundos y los juegos cargan instantáneamente. Excelente relación calidad-precio."
   },
   {
     id: 4,
-    name: "Luis Hernández",
-    platform: "TikTok",
+    name: "Sofia López",
+    platform: "Micro Center",
     stars: 5,
-    text: "Un lugar único en la ciudad. La música en vivo los viernes es genial y la comida tiene un sabor casero increíble."
+    text: "La RAM Corsair DDR5 funciona perfectamente con mi Ryzen 9. Los 6000MHz dan un rendimiento excepcional en juegos y multitarea."
   },
   {
     id: 5,
-    name: "Sofia López",
-    platform: "YouTube",
+    name: "Roberto Díaz",
+    platform: "Amazon",
     stars: 4,
-    text: "Perfecto para celebraciones familiares. El personal es muy atento y el lugar tiene una energía muy positiva."
+    text: "La motherboard ASUS ROG Strix X670E es muy estable y tiene todas las conexiones que necesito. La BIOS es fácil de usar."
   },
   {
     id: 6,
-    name: "Roberto Díaz",
-    platform: "TripAdvisor",
-    stars: 5,
-    text: "Excelente servicio y comida de calidad. El ambiente es perfecto para una cena romántica o reunión con amigos."
+    name: "Carmen Vega",
+    platform: "Newegg",
+    stars: 4,
+    text: "La fuente MSI MPG A1000G es muy silenciosa y eficiente. El cableado modular hace que la instalación sea limpia y ordenada."
   },
   {
     id: 7,
-    name: "Carmen Vega",
-    platform: "Yelp",
-    stars: 4,
-    text: "Muy buena relación calidad-precio. Los platos son abundantes y sabrosos. El personal es muy amable."
+    name: "Diego Morales",
+    platform: "Best Buy",
+    stars: 5,
+    text: "El case NZXT H710i es hermoso y espacioso. La gestión de cables es excelente y el control RGB integrado es muy útil."
   },
   {
     id: 8,
-    name: "Diego Morales",
-    platform: "Google",
+    name: "Patricia Silva",
+    platform: "Micro Center",
     stars: 5,
-    text: "El mejor café de la ciudad y los pasteles están deliciosos. Ambiente perfecto para trabajar o estudiar."
+    text: "El mouse Logitech G Pro X Superlight es perfecto para gaming. Es súper ligero y el sensor HERO es muy preciso."
   },
   {
     id: 9,
-    name: "Patricia Silva",
-    platform: "Facebook",
-    stars: 5,
-    text: "Lugar mágico con decoración única. La música en vivo crea una atmósfera especial. Comida excepcional."
+    name: "Miguel Torres",
+    platform: "Amazon",
+    stars: 4,
+    text: "El monitor LG UltraGear 27GP950 es espectacular para gaming. Los 144Hz en 4K son increíbles y los colores son muy vibrantes."
   },
   {
     id: 10,
-    name: "Miguel Torres",
-    platform: "Instagram",
-    stars: 4,
-    text: "Gran variedad de opciones vegetarianas. El servicio es rápido y la presentación de los platos es hermosa."
+    name: "Laura Jiménez",
+    platform: "Newegg",
+    stars: 5,
+    text: "El Stream Deck XL de Elgato ha revolucionado mi streaming. Los 32 botones son perfectos para macros y la calidad es excepcional."
   },
   {
     id: 11,
-    name: "Laura Jiménez",
-    platform: "TikTok",
-    stars: 5,
-    text: "Mi lugar favorito para desayunar. Los pancakes son increíbles y el café está perfecto. Ambiente muy acogedor."
+    name: "Fernando Castro",
+    platform: "Best Buy",
+    stars: 4,
+    text: "Compré la RTX 4090 para trabajo de IA y es increíble. El entrenamiento de modelos es 3x más rápido que con mi GPU anterior."
   },
   {
     id: 12,
-    name: "Fernando Castro",
-    platform: "YouTube",
-    stars: 4,
-    text: "Perfecto para eventos especiales. El personal se adapta a todas las necesidades y la comida es consistente."
+    name: "María González",
+    platform: "Micro Center",
+    stars: 5,
+    text: "El Ryzen 9 7950X junto con la RAM DDR5 han transformado mi experiencia de gaming. Los tiempos de carga son mínimos."
   }
 ] 

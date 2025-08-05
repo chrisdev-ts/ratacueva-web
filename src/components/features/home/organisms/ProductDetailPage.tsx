@@ -1,8 +1,7 @@
-//C:\Users\Misrael\Documents\WEBS\ratacueva-web\src\components\organisms\search\product-detail-page.tsx
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"  
+import { useState, useEffect } from "react"  
 import { ChevronRightIcon, StarIcon, MinusIcon, PlusIcon, HandThumbUpIcon, HandThumbDownIcon, HeartIcon, ShoppingCartIcon } from "@heroicons/react/24/outline"
 import type { Product, Review } from "@/app/lib/data"
 import Link from "next/link"
@@ -14,16 +13,93 @@ import { useRouter } from "next/navigation"
 
 interface ProductDetailPageProps {
   product: Product
-  relatedProducts: Product[]
+  relatedProducts?: Product[] 
   reviews: Review[]
 }
 
-export default function ProductDetailPage({ product, relatedProducts, reviews }: ProductDetailPageProps) {
+export default function ProductDetailPage({ product, relatedProducts = [], reviews }: ProductDetailPageProps) {
+  console.log('ProductDetailPage Props:', { product, relatedProducts, reviews })
+  
   const [showFullDescription, setShowFullDescription] = useState(false)
   const [quantity, setQuantity] = useState(1)
+  const [apiRelatedProducts, setApiRelatedProducts] = useState<Product[]>(relatedProducts)
+  const [loadingRelated, setLoadingRelated] = useState(false)
+  const [isHydrated, setIsHydrated] = useState(false)
+  
   const { addToCart } = useCart()
   const { addToFavorites, isInFavorites } = useFavorites()
   const router = useRouter()
+
+  // Medios de pago con enlaces públicos
+  const paymentMethods = [
+    {
+      name: 'Visa',
+      image: 'https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/visa.svg'
+    },
+    {
+      name: 'Mastercard', 
+      image: 'https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/mastercard.svg'
+    },
+    {
+      name: 'American Express',
+      image: 'https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/amex.svg'
+    },
+    {
+      name: 'PayPal',
+      image: 'https://cdn.jsdelivr.net/gh/aaronfagan/svg-credit-card-payment-icons/flat/paypal.svg'
+    },
+    {
+      name: 'Mercado Pago',
+      image: '/cards/mercado-pago.avif'
+    },
+    {
+      name: 'OXXO',
+      image: '/cards/oxo.png'
+    },
+    {
+      name: 'BBVA',
+      image: '/cards/bbva.png'
+    },
+    {
+      name: 'Santander',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/1200px-Banco_Santander_Logotipo.svg.png'
+    }
+  ]
+
+  // Manejar hidratación
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
+
+  // Obtener productos relacionados de la API
+  useEffect(() => {
+    const fetchRelatedProducts = async () => {
+      if (apiRelatedProducts.length > 0) return
+      
+      try {
+        setLoadingRelated(true)
+        const response = await fetch(`/api/product/related?category=${product.category}&exclude=${product.id}&limit=8`)
+        if (response.ok) {
+          const related = await response.json()
+          console.log('API Response - Related Products:', related)
+          console.log('Product category:', product.category)
+          console.log('Product ID:', product.id)
+          console.log('API URL:', `/api/product/related?category=${product.category}&exclude=${product.id}&limit=8`)
+          setApiRelatedProducts(related)
+        } else {
+          console.error('API Response Error:', response.status, response.statusText)
+        }
+      } catch (error) {
+        console.error('Error fetching related products:', error)
+      } finally {
+        setLoadingRelated(false)
+      }
+    }
+
+    if (isHydrated) {
+      fetchRelatedProducts()
+    }
+  }, [product.id, product.category, apiRelatedProducts.length, isHydrated])
 
   const displayDescription = showFullDescription ? product.description : `${product.description?.substring(0, 250)}...`
 
@@ -54,7 +130,6 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
   }
 
   const handleBuyNow = () => {
-    // Add the product to cart with the selected quantity
     for (let i = 0; i < quantity; i++) {
       addToCart({
         id: product.id.toString(),
@@ -65,13 +140,12 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
         category: product.category || '',
       })
     }
-    // Redirect to the form page
     router.push('/cart/form-page')
   }
 
   const ProductCard = ({ product }: { product: Product }) => (
     <Link
-      href={`/products/${product.id}`}
+      href={`/product/${product.id}`}
       className="flex-1 bg-gray rounded-lg inline-flex flex-col justify-center items-center overflow-hidden group cursor-pointer"
     >
       <div className="self-stretch h-56 p-4 flex flex-col justify-center items-center gap-2.5">
@@ -85,23 +159,26 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
       </div>
       <div className="self-stretch h-0 outline-1 outline-offset-[-0.50px] outline-white"></div>
       <div className="self-stretch p-6 flex flex-col justify-start items-start gap-2">
-        <div className="self-stretch justify-start text-white text-xl font-semibold  line-clamp-2">
+        <div className="self-stretch justify-start text-white text-xl font-semibold line-clamp-2">
           {product.name}
         </div>
         <div className="self-stretch inline-flex justify-start items-center gap-2">
-          <div className="text-center justify-start text-white text-base font-normal ">
-            {product.rating}
+          <div className="text-center justify-start text-white text-base font-normal">
+            {product.rating || 0}
           </div>
-          <div className="text-center justify-start text-white text-base font-normal ">
-            ({product.reviews})
+          <div className="text-center justify-start text-white text-base font-normal">
+            ({product.reviews || 0})
           </div>
         </div>
-        <div className="self-stretch justify-start text-white text-xl font-semibold ">
-          ${product.price.toLocaleString()}
+        <div className="self-stretch justify-start text-white text-xl font-semibold">
+          ${(product.price || 0).toLocaleString()}
         </div>
       </div>
     </Link>
   )
+
+  // Mostrar productos relacionados solo después de hidratación
+  const shouldShowRelatedProducts = isHydrated && apiRelatedProducts.length > 0
 
   return (
     <PageLayout className="py-6">
@@ -156,6 +233,14 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
               <div className="self-stretch inline-flex justify-start items-center gap-2">
                 <div className="text-center justify-start text-white text-base font-normal ">
                   {product.rating}
+                </div>
+                <div className="flex items-center ml-2">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <StarIcon
+                      key={i}
+                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-placeholder"}`}
+                    />
+                  ))}
                 </div>
                 <div className="text-center justify-center text-white text-xs font-normal ">
                   / 5 de {product.reviews} opiniones
@@ -259,15 +344,30 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                 </button>
               </div>
             </div>
+
+            {/* Payment Methods Section - ACTUALIZADA */}
             <div className="self-stretch p-6 bg-gray rounded-lg flex flex-col justify-start items-start gap-6 overflow-hidden">
               <div className="justify-start text-white text-xl font-bold ">Medios de pago</div>
               <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
-              <div className="self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start">
-                {/* Placeholder for payment methods */}
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div key={i} className="w-20 h-8 relative bg-dark rounded-lg" />
+              
+              {/* Grid de medios de pago con imágenes públicas */}
+              <div className="self-stretch grid grid-cols-4 gap-3">
+                {paymentMethods.map((method, i) => (
+                  <div 
+                    key={i} 
+                    className="w-full h-12 relative bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden hover:shadow-lg transition-shadow duration-200 group"
+                  >
+                    <Image
+                      src={method.image}
+                      alt={method.name}
+                      width={48}
+                      height={32}
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"
+                    />
+                  </div>
                 ))}
               </div>
+
               <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
               <div className="self-stretch justify-start">
                 <span className="text-emerald-400 text-xl font-bold ">Devolución gratis. </span>
@@ -286,16 +386,27 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
         </div>
 
         {/* Related Products */}
-        <div className="justify-start text-white text-2xl font-bold ">Productos relacionados</div>
-        <div className="self-stretch grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8">
-          {relatedProducts.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </div>
-        {relatedProducts.length > 0 && (
-          <Button>
-            <div className="justify-start text-white text-base font-bold ">Cargar más</div>
-          </Button>
+        <div className="justify-start text-white text-2xl font-bold">Productos relacionados</div>
+        
+        {loadingRelated ? (
+          <div className="flex justify-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        ) : shouldShowRelatedProducts ? (
+          <>
+            <div className="self-stretch grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8">
+              {apiRelatedProducts.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+            {apiRelatedProducts.length > 4 && (
+              <Button>
+                <div className="justify-start text-white text-base font-bold">Cargar más</div>
+              </Button>
+            )}
+          </>
+        ) : (
+          <div className="text-white text-center py-8">No hay productos relacionados disponibles</div>
         )}
 
         {/* Product Reviews */}
@@ -324,7 +435,7 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
                       <HandThumbUpIcon className="w-5 h-5" />
                       <span className="text-sm">{review.upvotes}</span>
                     </button>
-                    <button className="flex items-center gap-1 text-whnite hover:text-white transition-colors">
+                    <button className="flex items-center gap-1 text-white hover:text-white transition-colors">
                       <HandThumbDownIcon className="w-5 h-5" />
                       <span className="text-sm">{review.downvotes}</span>
                     </button>
@@ -364,7 +475,6 @@ export default function ProductDetailPage({ product, relatedProducts, reviews }:
             </div>
             <div className="self-stretch h-px bg-white/20"></div> {/* Divider */}
             <div className="self-stretch flex flex-col justify-start items-start gap-1">
-              {/* Rating distribution bars */}
               {[5, 4, 3, 2, 1].map((star) => {
                 const percentage =
                   (star === 5 ? 0.8 : star === 4 ? 0.2 : star === 3 ? 0.05 : star === 2 ? 0.02 : 0.01) * 100 // Mock percentages

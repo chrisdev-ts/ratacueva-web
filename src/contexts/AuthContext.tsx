@@ -1,10 +1,14 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { checkTokenValidity, clearAuthData } from '@/libs/checkAuth'
 
 interface User {
-  id: string
-  name: string
+  id?: string
+  _id?: string
+  name?: string
+  lastName?: string
+  secondLastName?: string
   email: string
   avatar?: string
 }
@@ -14,6 +18,7 @@ interface AuthContextType {
   isAuthenticated: boolean
   login: (token: string, userData: User) => void
   logout: () => void
+  updateUser: (userData: User) => void
   loading: boolean
 }
 
@@ -22,7 +27,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider')
+    throw new Error('useAuth debe ser usado dentro de un AuthProvider')
   }
   return context
 }
@@ -36,22 +41,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Verificar si hay un token guardado al cargar la aplicación
-    const token = localStorage.getItem('token')
-    const userData = localStorage.getItem('user')
-    
-    if (token && userData) {
-      try {
-        const parsedUser = JSON.parse(userData)
-        setUser(parsedUser)
-      } catch (error) {
-        console.error('Error parsing user data:', error)
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
+    const initializeAuth = () => {
+      const token = localStorage.getItem('token')
+      const userData = localStorage.getItem('user')
+      
+      if (token && userData) {
+        try {
+          const parsedUser = JSON.parse(userData)
+          
+          // Verificar si el token existe (validación local solamente)
+          const isValid = checkTokenValidity()
+          
+          if (isValid) {
+            setUser(parsedUser)
+          } else {
+            console.log('No se encontró token válido, limpiando datos de autenticación')
+            clearAuthData()
+          }
+        } catch (error) {
+          console.error('Error al analizar datos del usuario:', error)
+          clearAuthData()
+        }
       }
+      
+      setLoading(false)
     }
-    
-    setLoading(false)
+
+    initializeAuth()
   }, [])
 
   const login = (token: string, userData: User) => {
@@ -61,9 +77,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
 
   const logout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
+    clearAuthData()
     setUser(null)
+  }
+
+  const updateUser = (userData: User) => {
+    setUser(userData)
+    localStorage.setItem('user', JSON.stringify(userData))
   }
 
   const value: AuthContextType = {
@@ -71,6 +91,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     isAuthenticated: !!user,
     login,
     logout,
+    updateUser,
     loading
   }
 
@@ -79,4 +100,4 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       {children}
     </AuthContext.Provider>
   )
-} 
+}

@@ -205,7 +205,7 @@ export const mockProducts = [
   ]
   
   export interface Product {
-    id: number
+    id: number | string
     name: string
     price: number
     originalPrice?: number

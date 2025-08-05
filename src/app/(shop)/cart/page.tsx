@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
 import { HeartIcon, MinusIcon, PlusIcon, TrashIcon, ShoppingCartIcon } from "@heroicons/react/24/outline"
 import { PageLayout } from "@/components/templates/PageLayout"
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb"
@@ -9,10 +8,24 @@ import { Body, Subheading, BodySmall } from "@/components/atoms/Typography"
 import Button from "@/components/atoms/Button"
 import { useCart } from "@/contexts/CartContext"
 import { useFavorites } from "@/contexts/FavoritesContext"
+import { useState } from "react"
+import Toast from "@/components/atoms/Toast"
+import { useRouter } from "next/navigation"
 
 export default function CartPage() {
   const { items: cartItems, updateQuantity, removeFromCart, getCartTotal } = useCart()
   const { addToFavorites, isInFavorites } = useFavorites()
+  const [toast, setToast] = useState({ isVisible: false, message: '', type: 'info' as 'info' | 'success' | 'warning' })
+  const router = useRouter()
+
+  // Function to check if user is authenticated
+  const isAuthenticated = () => {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+      return !!token
+    }
+    return false
+  }
 
   const handleQuantityChange = (productId: string, delta: number) => {
     const currentItem = cartItems.find(item => item.id === productId)
@@ -23,7 +36,15 @@ export default function CartPage() {
   }
 
   const handleRemoveItem = (productId: string) => {
+    const item = cartItems.find(item => item.id === productId)
     removeFromCart(productId)
+    if (item) {
+      setToast({ 
+        isVisible: true, 
+        message: `"${item.name}" eliminado del carrito`, 
+        type: 'info' 
+      })
+    }
   }
 
   const handleToggleFavorite = (item: { id: string; name: string; price: number; image: string; brand: string; category: string }) => {
@@ -37,9 +58,43 @@ export default function CartPage() {
     })
   }
 
+  const handlePurchase = () => {
+    if (cartItems.length === 0) {
+      setToast({ 
+        isVisible: true, 
+        message: 'No puedes realizar una compra con el carrito vacío', 
+        type: 'warning' 
+      })
+      return
+    }
+
+    // Check if user is authenticated
+    if (!isAuthenticated()) {
+      setToast({ 
+        isVisible: true, 
+        message: 'Debes iniciar sesión para realizar una compra', 
+        type: 'warning' 
+      })
+      // Redirect to login after showing toast
+      setTimeout(() => {
+        router.push('/auth/login')
+      }, 1500)
+      return
+    }
+
+    // Guardar datos iniciales del carrito en localStorage para el flujo de checkout
+    const checkoutData = {
+      cartItems: cartItems,
+      subtotal: getCartTotal(),
+      timestamp: Date.now()
+    }
+    localStorage.setItem('checkoutData', JSON.stringify(checkoutData))
+
+    // Proceder con la compra
+    router.push('/cart/form-page')
+  }
+
   const subtotal = getCartTotal()
-  const shippingCost = 90 // Example fixed shipping cost
-  const total = subtotal + shippingCost
 
   return (
     <PageLayout>
@@ -83,7 +138,7 @@ export default function CartPage() {
                       <Subheading className="text-white text-center sm:text-left">
                         {item.name}
                       </Subheading>
-                                             <div className="flex justify-center sm:justify-start items-center gap-3">
+                      <div className="flex justify-center sm:justify-start items-center gap-3">
                          <Button 
                            onClick={() => handleToggleFavorite(item)}
                            className={isInFavorites(item.id) ? 'bg-red-500 hover:bg-red-600' : ''}
@@ -139,28 +194,30 @@ export default function CartPage() {
               <Subheading className="text-white">Resumen de la compra</Subheading>
               <div className="h-px bg-white/20"></div>
               <div className="flex justify-between items-center">
-                <Body className="text-white">Producto</Body>
+                <Body className="text-white">Subtotal</Body>
                 <Body className="text-white">${subtotal.toLocaleString()}</Body>
-              </div>
-              <div className="flex justify-between items-center">
-                <Body className="text-white">Envío</Body>
-                <Body className="text-white">${shippingCost.toLocaleString()}</Body>
               </div>
               <div className="h-px bg-white/20"></div>
               <div className="flex justify-between items-center">
                 <Body className="text-white">Total</Body>
-                <Subheading className="text-white">${total.toLocaleString()}</Subheading>
+                <Subheading className="text-white">${subtotal.toLocaleString()}</Subheading>
               </div>
-              <Link href="/cart/form-page" className="w-full">
-                <Button className="w-full">
-                  <ShoppingCartIcon className="w-4 h-4 mr-2" />
-                  Comprar ahora
-                </Button>
-              </Link>
+              <Button className="w-full" onClick={handlePurchase}>
+                <ShoppingCartIcon className="w-4 h-4 mr-2" />
+                Comprar ahora
+              </Button>
             </div>
           </div>
         </div>
       </div>
+      {toast.isVisible && (
+        <Toast 
+          message={toast.message} 
+          isVisible={toast.isVisible}
+          type={toast.type} 
+          onClose={() => setToast({ ...toast, isVisible: false })}
+        />
+      )}
     </PageLayout>
   )
 }

@@ -21,9 +21,10 @@ export default function OrderDetailsPage() {
         <SettingsBreadcrumb
           items={[
             { label: "Carrito", href: "/cart" },
-            { label: "Envío", href: "/shipping" },
-            { label: "Mensualidades", href: "/payment-options" },
-            { label: "Seguridad", href: "/payment-security" },
+            { label: "Envío", href: "/cart/form-page" },
+            { label: "Día de entrega", href: "/cart/delivery-day" },
+            { label: "Método de pago", href: "/cart/payment-card-options" },
+            { label: "Mensualidades", href: "/cart/payment-options" },
             { label: "Detalles" },
           ]}
           title="Confirma tu pedido"
@@ -104,7 +105,7 @@ export default function OrderDetailsPage() {
                     <Subheading className="text-white text-xl">
                       Visa Débito ******4180
                     </Subheading>
-                    <Body className="text-white text-xl">₡{total.toLocaleString()}</Body>
+                    <Body className="text-white text-xl">${total.toLocaleString()}</Body>
                   </div>
                 </div>
                 <button className="text-cyan-400 text-base font-bold hover:underline">
@@ -115,7 +116,7 @@ export default function OrderDetailsPage() {
 
             {/* Confirm Button */}
             <div className="flex justify-end">
-              <Button className="bg-pink-600 hover:bg-pink-700">
+              <Button className="bg-primary-600 hover:bg-primary-700">
                 Confirmar pedido
               </Button>
             </div>
@@ -128,7 +129,7 @@ export default function OrderDetailsPage() {
               <div className="h-px bg-white/20"></div>
               <div className="flex justify-between items-center">
                 <Body className="text-white text-xl">Producto</Body>
-                <Body className="text-white text-xl">₡{subtotal.toLocaleString()}</Body>
+                <Body className="text-white text-xl">${subtotal.toLocaleString()}</Body>
               </div>
               <div className="flex justify-between items-center">
                 <Body className="text-white text-xl">Envío</Body>
@@ -137,7 +138,7 @@ export default function OrderDetailsPage() {
               <div className="h-px bg-white/20"></div>
               <div className="flex justify-between items-center">
                 <Body className="text-white text-xl">Total</Body>
-                <Subheading className="text-white text-xl">₡{total.toLocaleString()}</Subheading>
+                <Subheading className="text-white text-xl">${total.toLocaleString()}</Subheading>
               </div>
             </div>
           </div>

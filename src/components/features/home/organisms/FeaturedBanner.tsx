@@ -19,10 +19,7 @@ export default function FeaturedBanner() {
     return (
       <section className="py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12">
-          {/* Main Featured Item Skeleton */}
           <div className="relative h-[300px] lg:h-[500px] bg-gray rounded-lg animate-pulse"></div>
-          
-          {/* Secondary Items Grid Skeleton */}
           <div className="grid grid-cols-2 gap-4 lg:gap-6">
             {[...Array(4)].map((_, index) => (
               <div
@@ -49,7 +46,6 @@ export default function FeaturedBanner() {
   return (
     <section className="py-8 lg:py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12">
-        {/* Main Featured Item */}
         <div 
           className="relative h-[300px] lg:h-[500px] bg-gradient-to-br from-gray to-dark rounded-lg overflow-hidden group cursor-pointer"
           onClick={() => handleCategoryClick(categories[0].id)}
@@ -70,7 +66,6 @@ export default function FeaturedBanner() {
           </div>
         </div>
 
-        {/* Secondary Items Grid */}
         <div className="grid grid-cols-2 gap-4 lg:gap-6">
           {categories.slice(1).map((category) => (
             <div

@@ -53,6 +53,7 @@ export default function Sidebar() {
                             width={220}
                             height={100}
                             className="object-contain"
+                            style={{ height: 'auto' }}
                         />
                     </div>
                     <div className="w-[234px] h-px bg-white" />
