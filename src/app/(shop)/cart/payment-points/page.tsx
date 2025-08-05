@@ -1,53 +1,53 @@
-"use client"
+"use client";
 
-import { DocumentDuplicateIcon, CheckIcon } from "@heroicons/react/24/outline"
-import { PageLayout } from "@/components/templates/PageLayout"
-import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb"
-import Button from "@/components/atoms/Button"
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { Body, Subheading } from "@/components/atoms/Typography"
-import { useCart } from "@/contexts/CartContext"
+import { DocumentDuplicateIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { PageLayout } from "@/components/templates/PageLayout";
+import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
+import Button from "@/components/atoms/Button";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Body, Subheading } from "@/components/atoms/Typography";
+import { useCart } from "@/contexts/CartContext";
 
 export default function PaymentPointsPage() {
-  const [copied, setCopied] = useState(false)
-  const [loading, setLoading] = useState(true)
-  
-  type PaymentData = {
-    barcode: string
-    paymentType: string
-    paymentCode: string
-    amount: string
-  }
-  
-  const [paymentData, setPaymentData] = useState<PaymentData | null>(null)
-  const [error, setError] = useState('')
-  const router = useRouter()
-  const { getCartTotal } = useCart()
+  const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const subtotal = getCartTotal()
-  const shipping = 0
-  const total = subtotal + shipping
+  type PaymentData = {
+    barcode: string;
+    paymentType: string;
+    paymentCode: string;
+    amount: string;
+  };
+
+  const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const { getCartTotal } = useCart();
+
+  const subtotal = getCartTotal();
+  const shipping = 0;
+  const total = subtotal + shipping;
 
   // Generar datos de pago al cargar la página (sin crear orden todavía)
   useEffect(() => {
     const generatePaymentData = async () => {
       try {
-        setLoading(true)
-        
+        setLoading(true);
+
         // Verificar que existan datos del checkout
-        const checkoutData = localStorage.getItem('checkoutData')
+        const checkoutData = localStorage.getItem("checkoutData");
         if (!checkoutData) {
-          setError('No se encontraron datos del checkout')
-          return
+          setError("No se encontraron datos del checkout");
+          return;
         }
 
-        const parsedCheckoutData = JSON.parse(checkoutData)
-        
+        const parsedCheckoutData = JSON.parse(checkoutData);
+
         // Verificar que sea pago en efectivo
         if (parsedCheckoutData.paymentMethod?.type !== "oxxo_cash") {
-          setError('Esta página es solo para pagos en efectivo')
-          return
+          setError("Esta página es solo para pagos en efectivo");
+          return;
         }
 
         // Generar datos del punto de pago
@@ -55,68 +55,68 @@ export default function PaymentPointsPage() {
           barcode: generateBarcode(),
           paymentType: "Servicios de la ecommerce",
           paymentCode: generatePaymentCode(),
-          amount: `$${total.toLocaleString()}`
-        }
-        
-        setPaymentData(paymentInfo)
-      } catch (err) {
-        console.error('Error generating payment data:', err)
-        setError('Error al generar el código de pago')
-      } finally {
-        setLoading(false)
-      }
-    }
+          amount: `$${total.toLocaleString()}`,
+        };
 
-    generatePaymentData()
-  }, [total])
+        setPaymentData(paymentInfo);
+      } catch (err) {
+        console.error("Error generating payment data:", err);
+        setError("Error al generar el código de pago");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    generatePaymentData();
+  }, [total]);
 
   // Generar código de barras único
   const generateBarcode = () => {
-    return Date.now().toString() + Math.random().toString(36).substr(2, 9)
-  }
+    return Date.now().toString() + Math.random().toString(36).substr(2, 9);
+  };
 
   // Generar código de pago
   const generatePaymentCode = () => {
-    return Math.random().toString(36).substr(2, 9).toUpperCase()
-  }
+    return Math.random().toString(36).substr(2, 9).toUpperCase();
+  };
 
   const handleCopyBarcode = async () => {
-    if (!paymentData) return
-    
+    if (!paymentData) return;
+
     try {
-      await navigator.clipboard.writeText(paymentData.barcode)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      await navigator.clipboard.writeText(paymentData.barcode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error("Error al copiar:", err)
+      console.error("Error al copiar:", err);
     }
-  }
+  };
 
   const handlePaymentConfirmed = async () => {
     try {
       // Actualizar el checkoutData con información del pago en efectivo
-      const checkoutData = localStorage.getItem('checkoutData')
+      const checkoutData = localStorage.getItem("checkoutData");
       if (checkoutData) {
-        const parsedData = JSON.parse(checkoutData)
+        const parsedData = JSON.parse(checkoutData);
         const updatedData = {
           ...parsedData,
           cashPayment: {
             barcode: paymentData?.barcode,
             paymentCode: paymentData?.paymentCode,
             confirmed: true,
-            timestamp: Date.now()
-          }
-        }
-        localStorage.setItem('checkoutData', JSON.stringify(updatedData))
+            timestamp: Date.now(),
+          },
+        };
+        localStorage.setItem("checkoutData", JSON.stringify(updatedData));
       }
-      
+
       // Ir a success para crear la orden
-      router.push('/cart/success')
+      router.push("/cart/success");
     } catch (err) {
-      console.error('Error confirming payment:', err)
-      setError('Error al confirmar el pago')
+      console.error("Error confirming payment:", err);
+      setError("Error al confirmar el pago");
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -127,7 +127,7 @@ export default function PaymentPointsPage() {
           </div>
         </div>
       </PageLayout>
-    )
+    );
   }
 
   if (error) {
@@ -136,13 +136,13 @@ export default function PaymentPointsPage() {
         <div className="pt-8 pb-4">
           <div className="flex flex-col justify-center items-center min-h-[400px] gap-4">
             <Body className="text-red-400">{error}</Body>
-            <Button onClick={() => router.push('/cart')}>
+            <Button onClick={() => router.push("/cart")}>
               Volver al carrito
             </Button>
           </div>
         </div>
       </PageLayout>
-    )
+    );
   }
 
   if (!paymentData) {
@@ -150,50 +150,17 @@ export default function PaymentPointsPage() {
       <PageLayout>
         <div className="pt-8 pb-4">
           <div className="flex justify-center items-center min-h-[400px]">
-            <Body className="text-white">Error al generar el código de pago</Body>
+            <Body className="text-white">
+              Error al generar el código de pago
+            </Body>
           </div>
         </div>
       </PageLayout>
-    )
+    );
   }
 
   return (
     <PageLayout>
-<<<<<<< Updated upstream
-      <div className="px-4 lg:px-60 py-8 flex flex-col justify-center items-center gap-8">
-        <div className="w-full flex flex-col justify-start items-center gap-12">
-          {/* Título principal */}
-          <Heading className="text-center text-white">
-            Paga en un punto de pago para <br />
-            asegurar tu stock
-          </Heading>
-          
-          <div className="w-full flex flex-col justify-start items-start gap-8">
-            {/* Card principal de pago */}
-            <div className="w-full p-6 relative bg-dark rounded-lg flex justify-end items-end gap-6">
-              <div className="flex-1 flex flex-col justify-start items-start gap-6">
-                {/* Instrucciones */}
-                <Body className="w-full text-center text-emerald-400 text-xl font-bold">
-                  Muestra el código de barras al pagar o menciona estos datos
-                </Body>
-                
-                {/* Código de barras */}
-                <div className="w-full flex flex-col justify-start items-start gap-2">
-                  <div className="w-full flex justify-start items-center gap-6">
-                    <div className="w-full h-36 bg-white rounded-lg flex items-center justify-center">
-                      {/* Simulación de código de barras */}
-                      <div className="flex gap-1">
-                        {Array.from({ length: 30 }).map((_, i) => (
-                          <div
-                            key={i}
-                            className="bg-black"
-                            style={{
-                              width: `${Math.random() * 4 + 1}px`,
-                              height: "120px"
-                            }}
-                          />
-                        ))}
-=======
       <div className="pt-8 pb-4">
         <SettingsBreadcrumb
           items={[
@@ -208,7 +175,7 @@ export default function PaymentPointsPage() {
           color="text-white"
           className="mb-8"
         />
-        
+
         <div className="px-4 lg:px-60 py-8 flex flex-col justify-center items-center gap-8">
           <div className="w-full flex flex-col justify-start items-center gap-12">
             <div className="w-full flex flex-col justify-start items-start gap-8">
@@ -219,7 +186,7 @@ export default function PaymentPointsPage() {
                   <Body className="w-full text-center text-emerald-400 text-xl font-bold">
                     Muestra el código de barras al pagar o menciona estos datos
                   </Body>
-                  
+
                   {/* Código de barras */}
                   <div className="w-full flex flex-col justify-start items-start gap-2">
                     <div className="w-full flex justify-start items-center gap-6">
@@ -232,29 +199,26 @@ export default function PaymentPointsPage() {
                               className="bg-black"
                               style={{
                                 width: `${Math.random() * 4 + 1}px`,
-                                height: "120px"
+                                height: "120px",
                               }}
                             />
                           ))}
                         </div>
->>>>>>> Stashed changes
                       </div>
                     </div>
                     <Body className="w-full text-center text-white select-all">
                       {paymentData.barcode}
                     </Body>
                   </div>
-                  
+
                   {/* Tipo de pago */}
                   <div className="flex flex-col justify-start items-start gap-2">
-                    <Subheading className="text-white">
-                      Tipo de pago
-                    </Subheading>
+                    <Subheading className="text-white">Tipo de pago</Subheading>
                     <Body className="text-white">
                       {paymentData.paymentType}
                     </Body>
                   </div>
-                  
+
                   {/* Código de pago */}
                   <div className="flex flex-col justify-start items-start gap-2">
                     <Subheading className="text-white">
@@ -264,18 +228,14 @@ export default function PaymentPointsPage() {
                       {paymentData.paymentCode}
                     </Body>
                   </div>
-                  
+
                   {/* Monto */}
                   <div className="flex flex-col justify-start items-start gap-2">
-                    <Subheading className="text-white">
-                      Monto
-                    </Subheading>
-                    <Body className="text-white">
-                      {paymentData.amount}
-                    </Body>
+                    <Subheading className="text-white">Monto</Subheading>
+                    <Body className="text-white">{paymentData.amount}</Body>
                   </div>
                 </div>
-                
+
                 {/* Botón de copiar */}
                 <button
                   onClick={handleCopyBarcode}
@@ -284,7 +244,7 @@ export default function PaymentPointsPage() {
                 >
                   <DocumentDuplicateIcon className="w-6 h-6 text-cyan-400" />
                 </button>
-                
+
                 {/* Mensaje de copiado */}
                 {copied && (
                   <div className="absolute right-6 bottom-20 bg-emerald-500 text-white px-3 py-1 rounded text-sm">
@@ -292,10 +252,10 @@ export default function PaymentPointsPage() {
                   </div>
                 )}
               </div>
-              
+
               {/* Botones de acción */}
               <div className="w-full flex justify-center items-center">
-                <Button 
+                <Button
                   onClick={handlePaymentConfirmed}
                   className="w-full max-w-xs h-11 bg-emerald-600 hover:bg-emerald-700 rounded-[99px] px-4 py-2.5"
                 >
@@ -308,5 +268,5 @@ export default function PaymentPointsPage() {
         </div>
       </div>
     </PageLayout>
-  )
+  );
 }

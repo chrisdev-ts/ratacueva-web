@@ -13,7 +13,6 @@ interface ContentLayoutProps {
   children: React.ReactNode;
   title?: string;
   breadcrumbs?: BreadcrumbItem[];
-  hasNavbar?: boolean;
   className?: string;
 }
 
@@ -30,7 +29,6 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({
   children,
   title,
   breadcrumbs,
-  hasNavbar = true,
   className = "",
 }) => {
   return (
