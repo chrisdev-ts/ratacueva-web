@@ -11,7 +11,7 @@ export interface TypographyProps {
   children: React.ReactNode;
   className?: string;
   as?: React.ElementType;
-  [key: string]: any; // Permite props HTML arbitrarios como htmlFor
+  [key: string]: unknown; // Permite props HTML arbitrarios como htmlFor
 }
 
 /**

@@ -22,7 +22,7 @@ export interface Product {
   specs: Record<string, string>;
   discountPercentage?: number;
   discount?: number; // Alias
-  rating?: number; 
+  rating?: number;
   reviewCount?: number;
   reviews?: number; // Alias
   isFeatured: boolean;
@@ -34,29 +34,40 @@ export interface Product {
 }
 
 // Función auxiliar para transformar productos COMPLETA
-const transformProduct = (product: any): Product => {
+const transformProduct = (product: Record<string, unknown>): Product => {
   // Extract the actual ID from the MongoDB ObjectId
-  const objectId = typeof product._id === 'object' && '$oid' in product._id 
-    ? product._id.$oid 
-    : product._id || product.id;
-  
+  const objectId =
+    typeof product._id === "object" &&
+    product._id !== null &&
+    "$oid" in product._id
+      ? (product._id as { $oid: string }).$oid
+      : (product._id as string) || (product.id as string);
+
   return {
     ...product,
     id: objectId,
-    image: product.images?.[0] || product.image, // Primera imagen
-    originalPrice: product.originalPrice || (product.price && product.discountPercentage 
-      ? product.price / (1 - product.discountPercentage / 100)
-      : undefined),
-    discount: product.discountPercentage || product.discount,
-    reviews: product.reviewCount || product.reviews,
-    shipping: product.shipping || "Envío gratis",
-    location: product.location || "San José",
-  };
+    image: (Array.isArray(product.images)
+      ? product.images[0]
+      : product.image) as string, // Primera imagen
+    originalPrice:
+      (product.originalPrice as number) ||
+      (typeof product.price === "number" &&
+      typeof product.discountPercentage === "number"
+        ? product.price / (1 - product.discountPercentage / 100)
+        : undefined),
+    discount:
+      (product.discountPercentage as number) || (product.discount as number),
+    reviews: (product.reviewCount as number) || (product.reviews as number),
+    shipping: (product.shipping as string) || "Envío gratis",
+    location: (product.location as string) || "San José",
+  } as Product;
 };
 
 // Función auxiliar para transformar array de productos
 const transformProducts = (products: unknown[]): Product[] => {
-  return products.map(transformProduct);
+  return products.map((product) =>
+    transformProduct(product as Record<string, unknown>)
+  );
 };
 
 // Obtener todos los productos con filtros opcionales
@@ -80,7 +91,7 @@ export const getProducts = async (
     if (Array.isArray(response.data)) {
       // Transformar productos antes de devolver
       const transformedProducts = transformProducts(response.data);
-      
+
       return {
         success: true,
         data: transformedProducts,
@@ -97,7 +108,7 @@ export const getProducts = async (
     // La API devolvió un objeto con paginación
     return {
       ...response.data,
-      data: transformProducts(response.data.data || response.data)
+      data: transformProducts(response.data.data || response.data),
     };
   } catch (error) {
     console.error("Error al obtener productos:", error);
@@ -111,15 +122,15 @@ export const getProductById = async (
 ): Promise<Product | { success: boolean; data: Product }> => {
   try {
     const response = await axios.get(`${API_URL}/products/${id}`);
-    
+
     // Si la respuesta tiene una estructura con success y data
     if (response.data.success && response.data.data) {
       return {
         success: response.data.success,
-        data: transformProduct(response.data.data)
+        data: transformProduct(response.data.data),
       };
     }
-    
+
     // Si la respuesta es directamente el producto
     return transformProduct(response.data);
   } catch (error) {
@@ -146,9 +157,10 @@ export const getRelatedProducts = async (
       const filteredProducts = products
         .filter((product: Product) => {
           // Extract the actual ID from the MongoDB ObjectId for comparison
-          const productId = typeof product._id === 'object' && '$oid' in product._id 
-            ? product._id.$oid 
-            : product._id;
+          const productId =
+            typeof product._id === "object" && "$oid" in product._id
+              ? product._id.$oid
+              : product._id;
           return productId !== currentProductId;
         })
         .slice(0, limit);
@@ -168,7 +180,7 @@ export const getRelatedProducts = async (
 
     return {
       ...response.data,
-      data: transformProducts(response.data.data || response.data)
+      data: transformProducts(response.data.data || response.data),
     };
   } catch (error) {
     console.error("Error al obtener productos relacionados:", error);

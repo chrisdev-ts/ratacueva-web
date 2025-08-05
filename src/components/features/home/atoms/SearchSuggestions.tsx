@@ -1,50 +1,52 @@
 //C:\Users\Misrael\Documents\WEBS\ratacueva-web\src\components\organisms\search\search-suggestions.tsx
-"use client"
-import Button from "@/components/atoms/Button"
-import { Body, BodySmall, Caption } from "@/components/atoms/Typography"
-import { Product } from "@/services/home/products"
-import { MagnifyingGlassIcon, ArrowTrendingUpIcon, TruckIcon } from "@heroicons/react/24/outline"
-import { StarIcon } from "@heroicons/react/24/solid"
-import Image from "next/image"
-import Link from "next/link"
+"use client";
+import Button from "@/components/atoms/Button";
+import { Body, BodySmall, Caption } from "@/components/atoms/Typography";
+import { Product } from "@/services/home/products";
+import {
+  MagnifyingGlassIcon,
+  ArrowTrendingUpIcon,
+  TruckIcon,
+} from "@heroicons/react/24/outline";
+import { StarIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
+import Link from "next/link";
 
 interface SearchSuggestionsProps {
-  query: string
-  products: Product[]
-  isLoading?: boolean
-  onProductSelect: (productId: string) => void
-  onSuggestionSelect: (suggestion: string) => void
-  onClose: () => void
+  query: string;
+  products: Product[];
+  isLoading?: boolean;
+  onProductSelect: (productId: string) => void;
+  onSuggestionSelect: (suggestion: string) => void;
+  onClose: () => void;
 }
 
 export default function SearchSuggestions({
   query,
   products,
-  isLoading = false,
-  onProductSelect,
   onSuggestionSelect,
-  onClose
+  onClose,
 }: SearchSuggestionsProps) {
-  
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('es-CL', {
-      style: 'currency',
-      currency: 'CLP',
-      minimumFractionDigits: 0
-    }).format(price)
-  }
+    return new Intl.NumberFormat("es-CL", {
+      style: "currency",
+      currency: "CLP",
+      minimumFractionDigits: 0,
+    }).format(price);
+  };
 
   const filteredProducts = products
-    .filter((product) => 
-      product.name.toLowerCase().includes(query.toLowerCase()) ||
-      product.category.toLowerCase().includes(query.toLowerCase()) ||
-      product.brand.toLowerCase().includes(query.toLowerCase())
+    .filter(
+      (product) =>
+        product.name.toLowerCase().includes(query.toLowerCase()) ||
+        product.category.toLowerCase().includes(query.toLowerCase()) ||
+        product.brand.toLowerCase().includes(query.toLowerCase())
     )
-    .slice(0, 3)
+    .slice(0, 3);
 
-  const hasResults = filteredProducts.length > 0
+  const hasResults = filteredProducts.length > 0;
 
-  if (!hasResults) return null
+  if (!hasResults) return null;
 
   return (
     <>
@@ -85,7 +87,9 @@ export default function SearchSuggestions({
                       <div className="flex items-center gap-2 mt-1">
                         <div className="flex items-center gap-1">
                           <StarIcon className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                          <BodySmall className="text-white text-xs">{product.rating}</BodySmall>
+                          <BodySmall className="text-white text-xs">
+                            {product.rating}
+                          </BodySmall>
                         </div>
                         <div className="text-sm font-semibold text-primary">
                           {formatPrice(product.price)}
@@ -93,7 +97,9 @@ export default function SearchSuggestions({
                         {product.shipping && (
                           <div className="flex items-center gap-1">
                             <TruckIcon className="w-3 h-3 text-green-400" />
-                            <Caption className="text-green-400 text-xs">{product.shipping}</Caption>
+                            <Caption className="text-green-400 text-xs">
+                              {product.shipping}
+                            </Caption>
                           </div>
                         )}
                       </div>
@@ -120,7 +126,7 @@ export default function SearchSuggestions({
               <div className="px-4 py-2 text-xs font-medium text-placeholder uppercase tracking-wide">
                 Sugerencias
               </div>
-              {filteredProducts.map((product, index) => (
+              {filteredProducts.map((product) => (
                 <Button
                   key={`suggestion-${product.id}`}
                   onClick={() => onSuggestionSelect(product.name)}
@@ -147,6 +153,5 @@ export default function SearchSuggestions({
         </div>
       </div>
     </>
-  )
+  );
 }
-

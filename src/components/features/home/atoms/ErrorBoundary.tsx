@@ -1,6 +1,6 @@
-"use client"
-import { Component, ReactNode } from 'react';
-import { BodySmall } from '@/components/atoms/Typography';
+"use client";
+import { Component, ReactNode } from "react";
+import { BodySmall } from "@/components/atoms/Typography";
 
 interface Props {
   children: ReactNode;
@@ -22,8 +22,8 @@ export class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: any) {
-    console.error('Error caught by boundary:', error, errorInfo);
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error("Error caught by boundary:", error, errorInfo);
   }
 
   render() {
@@ -50,4 +50,4 @@ export class ErrorBoundary extends Component<Props, State> {
 
     return this.props.children;
   }
-} 
+}
