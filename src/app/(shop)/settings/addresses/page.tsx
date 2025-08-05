@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { PageLayout } from "@/components/templates/PageLayout"
-import { HomeIcon, PlusIcon } from "@heroicons/react/24/outline"
-import Link from "next/link"
+import { PageLayout } from "@/components/templates/PageLayout";
+import { HomeIcon, PlusIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
-import { Body, BodySmall } from "@/components/atoms/Typography"
-import { useState, useEffect } from "react";
+import { Body, BodySmall } from "@/components/atoms/Typography";
+import { useState, useEffect, useCallback } from "react";
 
-import { getAddresses, Address } from "@/services/settings/address/addresses"
+import { getAddresses, Address } from "@/services/settings/address/addresses";
 
 export default function AddressesPage() {
   const [savedAddresses, setSavedAddresses] = useState<Address[]>([]);
@@ -25,7 +25,7 @@ export default function AddressesPage() {
     }
   }, []);
 
-  const fetchAddresses = async () => {
+  const fetchAddresses = useCallback(async () => {
     if (!token) {
       return;
     }
@@ -38,20 +38,21 @@ export default function AddressesPage() {
       setError("No se pudieron cargar las direcciones. Inténtalo de nuevo.");
       setIsLoading(false);
     }
-  };
-
+  }, [token]);
 
   useEffect(() => {
     if (token) {
       fetchAddresses();
     }
-  }, [token]); // Se ejecuta cuando el token cambia
+  }, [token, fetchAddresses]); // Se ejecuta cuando el token cambia
 
   // Mostrar estado de carga o error
   if (isLoading) {
     return (
       <PageLayout>
-        <div className="pt-8 pb-4 text-center text-white">Cargando direcciones...</div>
+        <div className="pt-8 pb-4 text-center text-white">
+          Cargando direcciones...
+        </div>
       </PageLayout>
     );
   }
@@ -83,7 +84,10 @@ export default function AddressesPage() {
             </div>
           ) : (
             savedAddresses.map((address) => (
-              <div key={address._id} className="mb-6 flex flex-col items-end gap-6 self-stretch">
+              <div
+                key={address._id}
+                className="mb-6 flex flex-col items-end gap-6 self-stretch"
+              >
                 <div className="inline-flex w-full items-start justify-between">
                   <div className="flex items-start gap-6">
                     <div className="relative h-12 w-12 overflow-hidden">
@@ -91,15 +95,20 @@ export default function AddressesPage() {
                     </div>
                     <div className="inline-flex flex-col items-start justify-center gap-2">
                       <Body className="text-xl font-normal text-white">
-                        {address.street} {address.externalNumber} {address.internalNumber ? `- Int. ${address.internalNumber}` : ''}
+                        {address.street} {address.externalNumber}{" "}
+                        {address.internalNumber
+                          ? `- Int. ${address.internalNumber}`
+                          : ""}
                       </Body>
                       <BodySmall className="text-base font-normal text-white">
-                        {address.neighborhood}, {address.city}, {address.state}, {address.country} - C.P. {address.postalCode}
+                        {address.neighborhood}, {address.city}, {address.state},{" "}
+                        {address.country} - C.P. {address.postalCode}
                       </BodySmall>
                     </div>
                   </div>
                 </div>
-                <div className="h-px w-full bg-white/50" /> {/* Horizontal line */}
+                <div className="h-px w-full bg-white/50" />{" "}
+                {/* Horizontal line */}
               </div>
             ))
           )}
@@ -112,5 +121,5 @@ export default function AddressesPage() {
         </div>
       </div>
     </PageLayout>
-  )
+  );
 }
