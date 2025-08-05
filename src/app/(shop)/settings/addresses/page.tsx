@@ -7,7 +7,7 @@ import { SettingsBreadcrumb } from "@/components/organisms/SettingsBreadcrumb";
 import { Body, BodySmall } from "@/components/atoms/Typography"
 import { useState, useEffect } from "react";
 
-import { getAddresses, Address } from "@/services/settings/address/addresses";
+import { getAddresses, Address } from "@/services/settings/address/addresses"
 
 export default function AddressesPage() {
   const [savedAddresses, setSavedAddresses] = useState<Address[]>([]);

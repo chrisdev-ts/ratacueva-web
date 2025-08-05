@@ -7,7 +7,8 @@ module.exports = {
       "upload.wikimedia.org",
       "example.com",
       "tse4.mm.bing.net",
-      "cdn-icons-png.flaticon.com"
+      "cdn-icons-png.flaticon.com",
+      "res.cloudinary.com"
     ],
   },
 };
