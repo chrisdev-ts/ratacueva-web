@@ -10,6 +10,7 @@ import { PageLayout } from "@/components/templates/PageLayout"
 import { useCart } from "@/contexts/CartContext"
 import { useFavorites } from "@/contexts/FavoritesContext"
 import { useRouter } from "next/navigation"
+import Toast from "@/components/atoms/Toast"
 
 interface ProductDetailPageProps {
   product: Product
@@ -25,10 +26,20 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
   const [apiRelatedProducts, setApiRelatedProducts] = useState<Product[]>(relatedProducts)
   const [loadingRelated, setLoadingRelated] = useState(false)
   const [isHydrated, setIsHydrated] = useState(false)
+  const [toast, setToast] = useState({ isVisible: false, message: '', type: 'info' as 'info' | 'success' | 'warning' })
   
   const { addToCart } = useCart()
   const { addToFavorites, isInFavorites } = useFavorites()
   const router = useRouter()
+
+  // Function to check if user is authenticated
+  const isAuthenticated = () => {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+      return !!token
+    }
+    return false
+  }
 
   // Medios de pago con enlaces públicos
   const paymentMethods = [
@@ -130,6 +141,17 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
   }
 
   const handleBuyNow = () => {
+    // Check if user is authenticated
+    if (!isAuthenticated()) {
+      setToast({ 
+        isVisible: true, 
+        message: 'Debes iniciar sesión para realizar una compra', 
+        type: 'warning' 
+      })
+      // No redirect immediately, just show the toast
+      return
+    }
+
     for (let i = 0; i < quantity; i++) {
       addToCart({
         id: product.id.toString(),
@@ -522,6 +544,14 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
           </div>
         </div>
       </div>
+      {toast.isVisible && (
+        <Toast 
+          message={toast.message} 
+          isVisible={toast.isVisible}
+          type={toast.type} 
+          onClose={() => setToast({ ...toast, isVisible: false })}
+        />
+      )}
     </PageLayout>
   )
 }
