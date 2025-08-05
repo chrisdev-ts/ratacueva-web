@@ -116,7 +116,6 @@ export default function Items() {
         <Link href="/items/add">
           <Button
             variant="success"
-            className="px-4 py-2.5 rounded-full font-bold text-body flex items-center gap-2"
           >
             Agregar producto
           </Button>
