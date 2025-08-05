@@ -91,7 +91,7 @@ export default function Sidebar() {
                                 onClick={() => {
                                     localStorage.removeItem("token");
                                     localStorage.removeItem("user");
-                                    window.location.href = "/login"; // o router.push("/login");
+                                    window.location.href = "/home"; // o router.push("/login");
                                 }}
                                 className="flex px-4 py-4 items-center gap-4 w-full rounded-lg transition-all duration-200 hover:bg-dark"
                             >
