@@ -5,9 +5,9 @@ import { useRouter, usePathname } from 'next/navigation'
 import { checkTokenValidity, redirectToLogin } from '@/libs/checkAuth'
 
 const PUBLIC_ROUTES = [
-  '/auth/login',
-  '/auth/register',
-  '/auth/forgot-password',
+  '/login',
+  '/register',
+  '/forgot-password',
   '/',
   '/products',
   '/about',

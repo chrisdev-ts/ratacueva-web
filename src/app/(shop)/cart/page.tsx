@@ -77,7 +77,7 @@ export default function CartPage() {
       })
       // Redirect to login after showing toast
       setTimeout(() => {
-        router.push('/auth/login')
+        router.push('/login')
       }, 1500)
       return
     }

@@ -24,7 +24,7 @@ export const redirectToLogin = (currentPath?: string) => {
   if (typeof window === 'undefined') return;
   
   // Guardar la ruta actual para redirigir después del login
-  if (currentPath && currentPath !== '/auth/login' && !currentPath.startsWith('/auth/')) {
+  if (currentPath && currentPath !== '/login' && !currentPath.startsWith('/login')) {
     localStorage.setItem('redirectAfterLogin', currentPath);
   }
   
@@ -32,5 +32,5 @@ export const redirectToLogin = (currentPath?: string) => {
   clearAuthData();
   
   // Redirigir al login
-  window.location.href = '/auth/login';
+  window.location.href = '/login';
 };
