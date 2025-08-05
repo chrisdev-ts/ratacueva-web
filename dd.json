@@ -1,0 +1,881 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a0c892e7-3f34-428c-afee-60df996b500c",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "schema",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "ee97ab7a-9921-4c3b-95dd-2ede83a31a25",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "google",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "6326ca6f-8dc1-4ef4-8325-31100e23f0db",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "gg",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "2b01c0dd-ec51-43b9-84f8-fd080a446e24",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "gstatic",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "6659d028-9d54-4fac-8f53-930c3c832680",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "whatsapp",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "7edbb875-1e2b-470a-8092-8c70f344232f",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "wa.link",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "1aafcb3c-5a40-4483-9dfc-a5c944938457",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "facebook",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "f486bcab-39f1-4726-a0c3-2c1afd5498ec",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "wa.me",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "18bdea02-0121-4887-996a-7b4c5c5dfc45",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "instagram",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "e21e8d7c-b485-4bd6-9848-bbab66bc7955",
+              "leftValue": "={{ $json.websiteUri }}",
+              "rightValue": "facebook",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -1500,
+        1260
+      ],
+      "id": "10657fd1-d67f-46ba-b9ea-15cc647ad593",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1840,
+        1240
+      ],
+      "id": "1a2fc79b-bf9b-4945-a3a8-6e282e639e09",
+      "name": "Loop Over Items",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "42862ea8-a8c9-4f54-9dbd-898e9f4fe8a9",
+              "name": "maps_url",
+              "value": "={{ \n  (() => {\n    const niche = $json.niche;\n    const city = $json.city;\n    const query = `${niche} ${city}`;\n    const gl = 'es';\n    return `https://www.google.com/maps/search/${encodeURIComponent(query)}?hl=es&gl=${gl}&region=${gl}`;\n  })() \n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1800,
+        740
+      ],
+      "id": "f20b7774-0e90-413c-a6db-185d92ca29b3",
+      "name": "Construir URL"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2360,
+        240
+      ],
+      "id": "28d4dbc5-69c8-4c59-9a69-6bfa6de0fdb3",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4",
+          "mode": "list",
+          "cachedResultName": "GPT-4"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Actúa como un usuario que está realizando una búsqueda rápida y directa. \n\nTu tarea es generar una frase corta del estilo:  \n**\"Búscame [tipo de negocio] en [provincia española]\"**.\n\n## TIPOS DE NEGOCIOS\n- médicos\n- abogados\n- clínicas dentales\n- dentistas\n- inmobiliarias\n- asesorías\n- clínicas médicas\n- clínicas de belleza\n- Salones de belleza\n- Fisioterapeutas\n- Masajistas\n- Odontólogos\n- Osteópatas\n\n## REQUERIMIENTOS\n\n- Varía constantemente el tipo de negocio.\n- Varía la provincia de forma aleatoria entre todas las provincias de España.\n- La frase debe ser simple, informal y directa. No añadas explicaciones ni repitas formatos exactos.\n- La provincia debe ser siempre española.\n\nEjemplos de posibles respuestas:\n- \"Búscame médicos en Sevilla.\"\n- \"Búscame inmobiliarias en Zaragoza.\"\n- \"Búscame clínicas dentales en Valencia.\"\n\nDevuelve solo una frase por vez. Cambia cada vez que se active.\n\nNo repitas los mismos [tipos de negocio] ni los mismas [provincias] de manera consecutiva."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -2180,
+        280
+      ],
+      "id": "e4ad4557-77fb-40de-a420-3c2b202f9215",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "M726uoHqzTtt5vWL",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "correo",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "web",
+              "fieldValue": "={{ $json.web }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        820,
+        1340
+      ],
+      "id": "19bdae59-fa0c-46cb-acfc-a7db65ad6de1",
+      "name": "Supabase Insert",
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "retryOnFail": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "NbzOz846yBbVHXYr",
+          "name": "Supabase account 3"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Debug: Log información antes de insertar\nconsole.log('💾 Debug - Intentando insertar en Supabase:');\nconsole.log('📧 Email:', $input.first().json.email);\nconsole.log('🌐 Website:', $input.first().json.web);\nconsole.log('📊 Datos completos:', JSON.stringify($input.first().json, null, 2));\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        1120
+      ],
+      "id": "3d54f45d-5ff5-4acb-aac0-8829b2b32b7f",
+      "name": "Debug Before Insert"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Función para quitar tildes y limpiar texto\nconst normalize = (str) =>\n  str.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\").toLowerCase().trim();\n\nconst originalText = $json.text || '';\nconst text = normalize(originalText);\n\n// Nuevos patrones: buscame, quiero, necesito, hay... [nicho] en [ciudad]\nconst regex = /\\b(?:busc(a|ame|qu?ame)|quiero|necesito|hay)\\s+(.*?)\\s+en\\s+(.+?)([.,\\s]|$)/i;\nconst match = text.match(regex);\n\nif (match && match[2] && match[3]) {\n  const niche = match[2].trim();\n  const city = match[3].trim();\n  return [\n    {\n      json: {\n        niche,\n        city,\n        original: originalText\n      }\n    }\n  ];\n} else {\n  return [\n    {\n      json: {\n        error: \"❌ No se pudo extraer el nicho y la ciudad.\",\n        original: originalText\n      }\n    }\n  ];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1800,
+        540
+      ],
+      "id": "5323f025-fc6f-44e8-81bf-ede43b29fe9d",
+      "name": "Diferenciar nicho de ciudad"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a7f57ab7-bd4f-408b-83d9-67943051eeed",
+              "name": "text",
+              "value": "={{ $json.chatInput }}",
+              "type": "string"
+            },
+            {
+              "id": "6c6e831f-588a-4c8d-b483-523d2a9506ba",
+              "name": "text",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1800,
+        320
+      ],
+      "id": "618de34d-7393-40c6-bf71-81fad48c7026",
+      "name": "Mapeo de texto"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.websiteUri }}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -840,
+        1260
+      ],
+      "id": "d21a07b1-ca2b-4e50-8884-7b7707494df7",
+      "name": "Scrapeo de páginas",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = ($input.first().json.data || '').toString();\n\n// Buscar todos los emails usando expresión regular\nconst regex = /\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b/gi;\nconst matches = input.match(regex) || [];\n\nconsole.log('🔍 Emails encontrados en bruto:', matches);\n\n// Palabras clave a excluir (emails genéricos)\nconst filtrosBloqueo = [\n  'info', 'contact', 'admin', 'support', 'noreply', 'ventas', 'marketing',\n  'hello', 'service', 'help', 'mail', 'email', 'contacto', 'reservas', 'hola',\n  'wp-', 'wordpress', 'woocommerce'\n];\n\n// Filtrar solo correos reales (ni genéricos ni técnicos)\nconst emails = matches.filter(email => {\n  const user = email.split('@')[0].toLowerCase();\n  const domain = email.split('@')[1].toLowerCase();\n  \n  // Excluir dominios comunes de tracking/analytics\n  const badDomains = ['sentry.io', 'wixpress.com', 'googletagmanager.com'];\n  if (badDomains.some(bad => domain.includes(bad))) return false;\n  \n  return !filtrosBloqueo.some(bloqueado => user.includes(bloqueado));\n});\n\nconsole.log('📧 Emails filtrados:', emails);\n\n// Si no encuentra ninguno, continuar el flujo pero marcando como \"sin email\"\nif (emails.length === 0) {\n  console.log('❌ No se encontraron emails válidos');\n  return [{ json: { \n    email: '', \n    web: $input.first().json.web || '',\n    hasEmail: false \n  }}];\n}\n\n// Si encuentra, devolver el primer email filtrado con la web\nreturn [{\n  json: {\n    email: emails[0],\n    web: $input.first().json.web || '',\n    hasEmail: true\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        1260
+      ],
+      "id": "5fb02567-e00e-481f-8e87-e69db69a400d",
+      "name": "Extraer emails",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        20,
+        1260
+      ],
+      "id": "6178ca5d-5645-4854-92f5-6b71d603ec00",
+      "name": "Borrar duplicados1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://places.googleapis.com/v1/places:searchText",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Goog-Api-Key",
+              "value": "AIzaSyAMREZsYSeS2xSJfQOsfWC5ve08qz3zVQ0"
+            },
+            {
+              "name": "X-Goog-FieldMask",
+              "value": "places.websiteUri"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"textQuery\": \"{{ $('Diferenciar nicho de ciudad').item.json.niche }} en {{ $('Diferenciar nicho de ciudad').item.json.city }}\"\n} ",
+        "options": {
+          "allowUnauthorizedCerts": true,
+          "redirect": {
+            "redirect": {
+              "maxRedirects": 2
+            }
+          },
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1800,
+        960
+      ],
+      "id": "885146ed-94d2-40a2-a407-8d336bb99878",
+      "name": "Scrapeo Google Maps1"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "body.places",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -2100,
+        1240
+      ],
+      "id": "d9befe60-e6cc-4ace-952b-b3a7d9a805d3",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Este código toma cada item, revisa si comienza con \"www.\" y lo elimina\nreturn items.map(item => {\n  const original = $input.first().json.websiteUri || '';\n  const cleaned = original.replace(/^https?:\\/\\/(www\\.)?/i, 'https://');\n  return {\n    json: {\n      ...item.json,\n      web: cleaned\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1280,
+        1260
+      ],
+      "id": "e554d747-128d-49e3-92bc-03814d07d769",
+      "name": "Limpiamos web"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "671ac39a-b1fe-40ae-b7cb-8e0cdbdceea7",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "25df11cf-6576-47e8-b6f2-a468a8896bc5",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": ".jpg",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "625e79ef-2723-4a98-a5ef-549210dadee9",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": ".png",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "338e9ca9-fb8e-43b9-aaaf-d8df691f8d85",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "doctoralia",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "e89f7b46-f0bc-450e-b9cd-fe1d48c52b8a",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "-",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "2feeb7f2-13a1-496c-b295-2fc53a7813d3",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "_",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "55e965ee-c60a-4a34-bde7-e430ed24fd64",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "wixpress",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "263ddc03-40bc-4686-8ae3-17003c1f40f2",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "sentry",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "87c00765-eb4b-461b-92aa-5fce007afed9",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": ".webp",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -240,
+        1260
+      ],
+      "id": "45059118-8793-4730-9e52-393c1bd95cd6",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -640,
+        1260
+      ],
+      "id": "1b32e9cc-5bc1-4acb-b62e-d25f5f0023ef",
+      "name": "Wait2",
+      "webhookId": "53742f3b-6ebe-40c9-8c8f-ad44dad6ff43"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1040,
+        1260
+      ],
+      "id": "56ae896e-4c92-4e33-9ea2-f24b1c229708",
+      "name": "Wait3",
+      "webhookId": "00f5960a-b958-4618-8f58-bbbebe9c3a99"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "leads",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "correo",
+              "condition": "eq",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        180,
+        1020
+      ],
+      "id": "f93e0999-38b1-4344-ac5a-d99f2bf5b4e7",
+      "name": "Check Duplicates",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "NbzOz846yBbVHXYr",
+          "name": "Supabase account 3"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Debug: Log información del item actual\nconsole.log('🔍 Debug - Item actual:', JSON.stringify($input.first().json, null, 2));\n\n// Verificar si hay datos de duplicados\nconst duplicateData = $input.first().json;\nconsole.log('📊 Debug - Datos de duplicados:', duplicateData);\nconsole.log('📊 Debug - Tipo de datos:', typeof duplicateData);\nconsole.log('📊 Debug - Es array:', Array.isArray(duplicateData));\n\nif (duplicateData && Array.isArray(duplicateData)) {\n  console.log('📊 Debug - Longitud del array:', duplicateData.length);\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        340,
+        1020
+      ],
+      "id": "dca18dde-019d-48b6-8913-35013585a1e6",
+      "name": "Debug Duplicates"
+    },
+{
+  "parameters": {
+    "conditions": {
+      "options": {
+        "caseSensitive": true,
+        "leftValue": "",
+        "typeValidation": "loose",
+        "version": 2
+      },
+      "conditions": [
+        {
+          "id": "no-duplicate-condition",
+          "leftValue": "={{ Array.isArray($json) ? $json.length : 0 }}",
+          "rightValue": 0,
+          "operator": {
+            "type": "number",
+            "operation": "equal"
+          }
+        }
+      ],
+      "combinator": "and"
+    },
+    "looseTypeValidation": true,
+    "options": {
+      "includeOtherNodes": true
+    }
+  },
+  "type": "n8n-nodes-base.if",
+  "typeVersion": 2.2,
+  "position": [
+    500,
+    1020
+  ],
+  "id": "bb8d4b07-378e-4357-93ed-b947c4f498ac",
+  "name": "If No Duplicates"
+}
+  ],
+  "connections": {
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Limpiamos web",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Construir URL": {
+      "main": [
+        [
+          {
+            "node": "Scrapeo Google Maps1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Mapeo de texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Insert": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Debug Before Insert": {
+      "main": [
+        [
+          {
+            "node": "Supabase Insert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diferenciar nicho de ciudad": {
+      "main": [
+        [
+          {
+            "node": "Construir URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapeo de texto": {
+      "main": [
+        [
+          {
+            "node": "Diferenciar nicho de ciudad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrapeo de páginas": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer emails": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Borrar duplicados1": {
+      "main": [
+        [
+          {
+            "node": "Check Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrapeo Google Maps1": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiamos web": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Borrar duplicados1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Extraer emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Scrapeo de páginas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Debug Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Debug Duplicates": {
+      "main": [
+        [
+          {
+            "node": "If No Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If No Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Debug Before Insert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49fe6a53168eba37cbbc299e7907e50e883d84d78ef633a6da0a18dde2dc7932"
+  }
+}
