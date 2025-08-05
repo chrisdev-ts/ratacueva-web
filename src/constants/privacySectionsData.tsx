@@ -80,7 +80,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // ¿Quién es responsable de tus datos?
   {
     id: "quien-es-responsable",
-    path: "/privacy-policy/quien-es-responsable",
+    path: "/settings/privacy-policy/quien-es-responsable",
     title: "¿Quién es responsable de tus datos?",
     subtitle:
       "RataCueva es la entidad legal responsable del tratamiento de sus datos personales. Esto significa que RataCueva es quien decide sobre el uso y la protección de la información que usted nos confía. Nuestro compromiso es cumplir cabalmente con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su reglamento, así como con cualquier otra normativa aplicable en la materia.",
@@ -287,7 +287,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // ¿Qué datos personales recopilamos?
   {
     id: "que-datos-recopilamos",
-    path: "/privacy-policy/que-datos-recopilamos",
+    path: "/settings/privacy-policy/que-datos-recopilamos",
     title: "¿Qué datos personales recopilamos?",
     subtitle:
       "Para poder ofrecerte una experiencia de compra completa y eficiente en RataCueva, y cumplir con las diversas finalidades que se detallan más adelante en este aviso de privacidad, es necesario que recopilemos ciertas categorías de datos personales. Estos datos son esenciales para la operación de nuestro e-commerce y para brindarte un servicio de calidad.",
@@ -551,7 +551,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // ¿Para qué usamos tus datos?
   {
     id: "para-que-usamos-datos",
-    path: "/privacy-policy/para-que-usamos-datos",
+    path: "/settings/privacy-policy/para-que-usamos-datos",
     title: "¿Para qué usamos tus datos?",
     subtitle:
       "Sus datos personales son recopilados y tratados por RataCueva con un conjunto de finalidades claramente definidas, las cuales se dividen en primarias (necesarias para la prestación del servicio) y secundarias (que nos permiten mejorar su experiencia, pero no son indispensables para la funcionalidad básica).",
@@ -802,7 +802,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // ¿Con quién compartimos tus datos?
   {
     id: "con-quien-compartimos-datos",
-    path: "/privacy-policy/con-quien-compartimos-datos",
+    path: "/settings/privacy-policy/con-quien-compartimos-datos",
     title: "¿Con quién compartimos tus datos?",
     subtitle:
       "Para brindarte una experiencia de compra completa, necesitamos trabajar con terceros confiables y certificados. Te explicamos exactamente con quién, qué datos y por qué, siempre bajo estrictas medidas de protección y contratos de confidencialidad.",
@@ -1241,7 +1241,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // ¿Cómo protegemos tus datos?
   {
     id: "como-protegemos-datos",
-    path: "/privacy-policy/como-protegemos-datos",
+    path: "/settings/privacy-policy/como-protegemos-datos",
     title: "¿Cómo protegemos tus datos?",
     subtitle:
       "La seguridad de tu información es nuestra máxima prioridad. Implementamos múltiples capas de protección técnica, administrativa y de monitoreo para mantener tus datos completamente seguros las 24 horas del día.",
@@ -1541,7 +1541,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // Cookies y tecnologías de rastreo
   {
     id: "cookies-tecnologias",
-    path: "/privacy-policy/cookies-tecnologias",
+    path: "/settings/privacy-policy/cookies-tecnologias",
     title: "Cookies y tecnologías de rastreo",
     subtitle:
       "Utilizamos cookies y tecnologías similares para mejorar tu experiencia de navegación, recordar tus preferencias y analizar cómo interactúas con nuestro sitio. Te explicamos qué tipos usamos y cómo puedes controlarlas.",
@@ -1875,7 +1875,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // Tus derechos sobre tus datos (ARCO)
   {
     id: "tus-derechos-arco",
-    path: "/privacy-policy/tus-derechos-arco",
+    path: "/settings/privacy-policy/tus-derechos-arco",
     title: "Tus derechos sobre tus datos (ARCO)",
     subtitle:
       "Como titular de datos personales, tienes derechos fundamentales que puedes ejercer en cualquier momento para controlar el tratamiento que RataCueva hace de tu información personal. Estos derechos son tu garantía para la transparencia y el control.",
@@ -2367,7 +2367,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // Privacidad de menores
   {
     id: "privacidad-menores",
-    path: "/privacy-policy/privacidad-menores",
+    path: "/settings/privacy-policy/privacidad-menores",
     title: "Privacidad de menores de edad",
     subtitle:
       "En RataCueva implementamos las medidas más estrictas para proteger los datos personales de menores de 18 años, cumpliendo con las normativas especiales de protección infantil y priorizando siempre su bienestar digital.",
@@ -2819,7 +2819,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // ¿Cuánto tiempo conservamos tus datos?
   {
     id: "cuanto-tiempo-conservamos",
-    path: "/privacy-policy/cuanto-tiempo-conservamos",
+    path: "/settings/privacy-policy/cuanto-tiempo-conservamos",
     title: "¿Cuánto tiempo conservamos tus datos?",
     subtitle:
       "Conservamos tus datos personales solo durante el tiempo estrictamente necesario para cumplir con las finalidades informadas y las obligaciones legales aplicables. Te explicamos los plazos y criterios de conservación, así como tus derechos para solicitar la eliminación anticipada.",
@@ -3116,7 +3116,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // Cambios al aviso de privacidad
   {
     id: "cambios-aviso-privacidad",
-    path: "/privacy-policy/cambios-aviso-privacidad",
+    path: "/settings/privacy-policy/cambios-aviso-privacidad",
     title: "Cambios a este aviso de privacidad",
     subtitle:
       "RataCueva se reserva el derecho de actualizar este aviso de privacidad para adaptarse a cambios legales, tecnológicos y operacionales, siempre manteniendo la transparencia y respetando tus derechos.",
@@ -3520,7 +3520,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
   // Dónde presentar quejas o denuncias
   {
     id: "donde-presentar-quejas",
-    path: "/privacy-policy/donde-presentar-quejas",
+    path: "/settings/privacy-policy/donde-presentar-quejas",
     title: "¿Dónde presentar quejas o denuncias?",
     subtitle:
       "En RataCueva nos esforzamos por tratar tus datos personales de manera ética y en estricto apego a la legislación mexicana. Si consideras que tu derecho a la protección de datos ha sido lesionado, tienes el derecho de interponer una queja ante la autoridad competente.",
@@ -3782,7 +3782,7 @@ export const getSidebarSections = (): SidebarSection[] => {
   const overviewSection: SidebarSection = {
     id: "overview",
     title: "Aviso de privacidad",
-    href: "/privacy-policy",
+    href: "/settings/privacy-policy",
   };
 
   const transformedSections = PRIVACY_POLICY_SECTIONS.map((section) => ({

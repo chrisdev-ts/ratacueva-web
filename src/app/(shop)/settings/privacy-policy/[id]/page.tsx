@@ -7,17 +7,17 @@ import { getPrivacySectionData } from "@/constants/privacySectionsData";
 
 interface PrivacySectionPageProps {
   params: Promise<{
-    sectionId: string;
+    id: string;
   }>;
 }
 
 export default async function PrivacySectionPage({
   params,
 }: PrivacySectionPageProps) {
-  const { sectionId } = await params;
+  const { id } = await params;
 
   // Busca los datos de la sección basados en el ID de la URL
-  const sectionData = getPrivacySectionData(sectionId);
+  const sectionData = getPrivacySectionData(id);
 
   if (!sectionData) {
     notFound();
@@ -25,7 +25,7 @@ export default async function PrivacySectionPage({
 
   const breadcrumbItems = [
     { label: "Configuración", href: "/settings" },
-    { label: "Aviso de privacidad", href: "/privacy-policy" },
+    { label: "Aviso de privacidad", href: "/settings/privacy-policy" },
     { label: sectionData.title, href: sectionData.path },
   ];
 
