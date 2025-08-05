@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Body } from "@/components/atoms/Typography";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/atoms/Button";
@@ -13,9 +14,11 @@ const PasswordResetSuccessPage = () => {
   return (
     <div className="min-h-screen w-full  relative">
       <div className="absolute top-15 left-20">
-        <img
+        <Image
           src="/images/logotipo-base.svg"
           alt="Rata Cueva Logo"
+          width={180}
+          height={60}
           className="w-[120px] sm:w-[150px] md:w-[180px] h-auto"
         />
       </div>
@@ -33,7 +36,9 @@ const PasswordResetSuccessPage = () => {
             Tu contraseña ha sido restablecida exitosamente.
           </Body>
 
-          <Button type="submit" variant="primary" className="mx-auto">Inicio de sesión</Button>
+          <Button type="submit" variant="primary" className="mx-auto">
+            Inicio de sesión
+          </Button>
         </form>
       </div>
     </div>

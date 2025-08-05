@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Body } from "@/components/atoms/Typography";
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
@@ -41,13 +42,16 @@ const LoginPage = () => {
         router.push("/");
         console.log("Rol desconocido, redirigiendo a /");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error en login:", error);
-      setErrorMessage(
-        error.response?.data?.message ||
-          error.message ||
-          "Error al iniciar sesión"
-      );
+      const errorMessage =
+        error && typeof error === "object" && "response" in error
+          ? (error.response as { data?: { message?: string } })?.data
+              ?.message ||
+            (error as { message?: string })?.message ||
+            "Error al iniciar sesión"
+          : "Error al iniciar sesión";
+      setErrorMessage(errorMessage);
     }
     // Verifica si el token está en localStorage después del intento
     setTimeout(() => {
@@ -64,9 +68,11 @@ const LoginPage = () => {
       <div className="w-full lg:w-1/2 flex flex-col justify-center items-center px-4 sm:px-12 lg:px-20 py-10 lg:py-0 order-1 lg:order-2">
         <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
           <div className="flex justify-center py-7 pb-0">
-            <img
+            <Image
               src="/images/logotipo-base.svg"
               alt="Rata Cueva Logo"
+              width={240}
+              height={80}
               className="w-[60%] h-auto"
             />
           </div>
