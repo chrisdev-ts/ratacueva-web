@@ -11,9 +11,7 @@ import { useOrders } from "@/hook/useOrders";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { ClipboardDocumentListIcon } from "@heroicons/react/24/outline";
 import { Body, Subheading, Heading } from "@/components/atoms/Typography";
-import {
-  type Order,
-} from "@/services/settings/purchases";
+import { type Order } from "@/services/settings/purchases";
 import { type CartItem } from "@/contexts/CartContext";
 
 interface PurchaseData {
@@ -36,9 +34,9 @@ export default function SuccessfulPurchasePage() {
   const { addOrder } = useOrders();
   const [purchaseData, setPurchaseData] = useState<PurchaseData | null>(null);
   const [orderCreated, setOrderCreated] = useState(false);
-  const [toast, setToast] = useState<Toast>({ isVisible: false, message: '' });
+  const [toast, setToast] = useState<Toast>({ isVisible: false, message: "" });
   const [processingOrder, setProcessingOrder] = useState(false);
-  
+
   // Refs para controlar ejecución única
   const hasProcessedRef = useRef(false);
   const isProcessingRef = useRef(false);
@@ -47,29 +45,32 @@ export default function SuccessfulPurchasePage() {
   // Función para mostrar toast
   const showSuccessToast = useCallback((message: string) => {
     setToast({ isVisible: true, message });
-    
+
     setTimeout(() => {
-      setToast({ isVisible: false, message: '' });
+      setToast({ isVisible: false, message: "" });
     }, 3000);
   }, []);
 
   // Verificar compra previa SOLO si no hay items en el carrito
   useEffect(() => {
     mountedRef.current = true;
-    
+
     // SOLO buscar compra previa si no hay items en el carrito actual
     if (!items || items.length === 0) {
-      const savedPurchase = localStorage.getItem('lastPurchase');
+      const savedPurchase = localStorage.getItem("lastPurchase");
       if (savedPurchase && !hasProcessedRef.current) {
         try {
           const purchaseData = JSON.parse(savedPurchase);
           setPurchaseData(purchaseData);
           setOrderCreated(true);
           hasProcessedRef.current = true;
-          console.log('Compra previa encontrada (sin items en carrito):', purchaseData);
+          console.log(
+            "Compra previa encontrada (sin items en carrito):",
+            purchaseData
+          );
         } catch (error) {
-          console.error('Error al cargar compra previa:', error);
-          localStorage.removeItem('lastPurchase');
+          console.error("Error al cargar compra previa:", error);
+          localStorage.removeItem("lastPurchase");
         }
       }
     }
@@ -82,37 +83,44 @@ export default function SuccessfulPurchasePage() {
   // Función para procesar la compra
   const processPurchase = useCallback(async () => {
     // Verificaciones de seguridad
-    if (!mountedRef.current || hasProcessedRef.current || isProcessingRef.current) {
-      console.log('Proceso bloqueado:', { 
-        mounted: mountedRef.current, 
-        processed: hasProcessedRef.current, 
-        processing: isProcessingRef.current 
+    if (
+      !mountedRef.current ||
+      hasProcessedRef.current ||
+      isProcessingRef.current
+    ) {
+      console.log("Proceso bloqueado:", {
+        mounted: mountedRef.current,
+        processed: hasProcessedRef.current,
+        processing: isProcessingRef.current,
       });
       return;
     }
 
     // Verificar condiciones básicas
     if (!items || items.length === 0 || !user) {
-      console.log('Condiciones no cumplidas:', { items: items?.length, user: !!user });
+      console.log("Condiciones no cumplidas:", {
+        items: items?.length,
+        user: !!user,
+      });
       return;
     }
 
     // Marcar como procesando
     hasProcessedRef.current = true;
     isProcessingRef.current = true;
-    
+
     if (!mountedRef.current) return;
     setProcessingOrder(true);
 
     try {
       // Limpiar cualquier compra previa antes de procesar nueva
-      localStorage.removeItem('lastPurchase');
+      localStorage.removeItem("lastPurchase");
 
       // Obtener datos del checkout
-      const checkoutDataString = localStorage.getItem('checkoutData');
-      
+      const checkoutDataString = localStorage.getItem("checkoutData");
+
       if (!checkoutDataString) {
-        console.error('No se encontraron datos del checkout');
+        console.error("No se encontraron datos del checkout");
         if (mountedRef.current) {
           showSuccessToast("Error: No se encontraron datos del checkout");
         }
@@ -123,7 +131,7 @@ export default function SuccessfulPurchasePage() {
 
       // Validar datos necesarios
       if (!checkoutData.shippingAddress || !checkoutData.paymentMethod) {
-        console.error('Faltan datos del checkout');
+        console.error("Faltan datos del checkout");
         if (mountedRef.current) {
           showSuccessToast("Error: Faltan datos del checkout");
         }
@@ -144,45 +152,53 @@ export default function SuccessfulPurchasePage() {
         items: items.map((item) => ({
           productId: item.id,
           quantity: item.quantity,
-          selectedVariation: item.selectedVariation || undefined
+          // selectedVariation removed as it doesn't exist on CartItem
         })),
         shippingAddress: {
-          postalCode: checkoutData.shippingAddress.postalCode || '',
-          street: checkoutData.shippingAddress.street || '',
-          externalNumber: checkoutData.shippingAddress.externalNumber || '',
-          internalNumber: checkoutData.shippingAddress.internalNumber || undefined,
-          neighborhood: checkoutData.shippingAddress.neighborhood || '',
-          city: checkoutData.shippingAddress.city || '',
-          state: checkoutData.shippingAddress.state || '',
-          country: checkoutData.shippingAddress.country || 'México'
+          postalCode: checkoutData.shippingAddress.postalCode || "",
+          street: checkoutData.shippingAddress.street || "",
+          externalNumber: checkoutData.shippingAddress.externalNumber || "",
+          internalNumber:
+            checkoutData.shippingAddress.internalNumber || undefined,
+          neighborhood: checkoutData.shippingAddress.neighborhood || "",
+          city: checkoutData.shippingAddress.city || "",
+          state: checkoutData.shippingAddress.state || "",
+          country: checkoutData.shippingAddress.country || "México",
         },
         billingAddress: {
-          postalCode: checkoutData.shippingAddress.postalCode || '',
-          street: checkoutData.shippingAddress.street || '',
-          externalNumber: checkoutData.shippingAddress.externalNumber || '',
-          internalNumber: checkoutData.shippingAddress.internalNumber || undefined,
-          neighborhood: checkoutData.shippingAddress.neighborhood || '',
-          city: checkoutData.shippingAddress.city || '',
-          state: checkoutData.shippingAddress.state || '',
-          country: checkoutData.shippingAddress.country || 'México'
+          postalCode: checkoutData.shippingAddress.postalCode || "",
+          street: checkoutData.shippingAddress.street || "",
+          externalNumber: checkoutData.shippingAddress.externalNumber || "",
+          internalNumber:
+            checkoutData.shippingAddress.internalNumber || undefined,
+          neighborhood: checkoutData.shippingAddress.neighborhood || "",
+          city: checkoutData.shippingAddress.city || "",
+          state: checkoutData.shippingAddress.state || "",
+          country: checkoutData.shippingAddress.country || "México",
         },
         paymentMethod: {
-          type: checkoutData.paymentMethod.type || 'debit_card',
-          paymentGatewayToken: checkoutData.paymentMethod.type === 'oxxo_cash' 
-            ? checkoutData.cashPayment?.paymentCode || 'cash_payment'
-            : checkoutData.paymentMethod.methodId || checkoutData.paymentMethod.last4 || 'tok_test'
+          type: checkoutData.paymentMethod.type || "debit_card",
+          paymentGatewayToken:
+            checkoutData.paymentMethod.type === "oxxo_cash"
+              ? checkoutData.cashPayment?.paymentCode || "cash_payment"
+              : checkoutData.paymentMethod.methodId ||
+                checkoutData.paymentMethod.last4 ||
+                "tok_test",
         },
         shippingCost: shippingCost,
         taxAmount: taxAmount,
-        discountAmount: discountAmount
+        discountAmount: discountAmount,
       };
 
-      console.log('Creando orden con datos:', JSON.stringify(orderData, null, 2));
+      console.log(
+        "Creando orden con datos:",
+        JSON.stringify(orderData, null, 2)
+      );
 
       // Crear la orden
       const newOrder = await createNewOrder(orderData);
 
-      console.log('Orden creada exitosamente:', newOrder);
+      console.log("Orden creada exitosamente:", newOrder);
 
       if (!mountedRef.current) return;
 
@@ -193,9 +209,9 @@ export default function SuccessfulPurchasePage() {
       const deliveryDate = new Date();
       const estimatedDays = checkoutData.deliveryOption?.estimatedDays || 14;
       deliveryDate.setDate(deliveryDate.getDate() + estimatedDays);
-      const formattedDate = deliveryDate.toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'long'
+      const formattedDate = deliveryDate.toLocaleDateString("es-ES", {
+        day: "numeric",
+        month: "long",
       });
 
       // Calcular total final
@@ -206,7 +222,7 @@ export default function SuccessfulPurchasePage() {
         items: items,
         total: total,
         deliveryDate: formattedDate,
-        orderNumber: newOrder._id || newOrder.id || 'N/A',
+        orderNumber: newOrder._id || "N/A",
         order: newOrder,
       };
 
@@ -215,50 +231,63 @@ export default function SuccessfulPurchasePage() {
         setOrderCreated(true);
 
         // Guardar en localStorage
-        localStorage.setItem('lastPurchase', JSON.stringify(finalPurchaseData));
+        localStorage.setItem("lastPurchase", JSON.stringify(finalPurchaseData));
 
         // Mostrar mensaje de éxito
         showSuccessToast("¡Compra exitosa! Tu orden ha sido creada.");
 
         // Limpiar datos del checkout
-        localStorage.removeItem('checkoutData');
-        
+        localStorage.removeItem("checkoutData");
+
         // Limpiar carrito al final
         clearCart();
       }
-
-    } catch (error) {
-      console.error('Error al crear la orden:', error);
+    } catch (error: unknown) {
+      console.error("Error al crear la orden:", error);
 
       // Solo resetear si hay error de red o servidor para permitir reintento
-      if (error.message?.includes('Network') || error.message?.includes('Backend no disponible')) {
+      const errorMessage = error instanceof Error ? error.message : "";
+      if (
+        errorMessage.includes("Network") ||
+        errorMessage.includes("Backend no disponible")
+      ) {
         hasProcessedRef.current = false;
       }
 
       if (!mountedRef.current) return;
 
       if (typeof error === "object" && error !== null && "response" in error) {
-        const err = error as any;
+        const err = error as {
+          response?: { status?: number; data?: { message?: string } };
+        };
 
         if (err.response?.status === 400) {
-          showSuccessToast(`Error: ${err.response?.data?.message || 'Datos de compra inválidos'}`);
+          showSuccessToast(
+            `Error: ${
+              err.response?.data?.message || "Datos de compra inválidos"
+            }`
+          );
         } else if (err.response?.status === 401) {
           showSuccessToast("Error: Sesión expirada. Inicia sesión nuevamente.");
         } else if (err.response?.status === 409) {
-          const errorMessage = err.response?.data?.message || 'Stock insuficiente o problema con el pago.';
+          const errorMessage =
+            err.response?.data?.message ||
+            "Stock insuficiente o problema con el pago.";
           showSuccessToast(`Error: ${errorMessage}`);
-          
+
           setTimeout(() => {
             if (mountedRef.current) {
-              window.location.href = '/cart';
+              window.location.href = "/cart";
             }
           }, 3000);
         } else {
           showSuccessToast("Error al procesar la compra. Inténtalo de nuevo.");
         }
-      } else if (error.message?.includes('Network')) {
-        showSuccessToast("Error de conexión. Verifica que el servidor esté ejecutándose.");
-      } else if (error.message?.includes('Backend no disponible')) {
+      } else if (errorMessage.includes("Network")) {
+        showSuccessToast(
+          "Error de conexión. Verifica que el servidor esté ejecutándose."
+        );
+      } else if (errorMessage.includes("Backend no disponible")) {
         showSuccessToast("Servidor no disponible. Contacta al administrador.");
       } else {
         showSuccessToast("Error al procesar la compra. Inténtalo de nuevo.");
@@ -269,13 +298,19 @@ export default function SuccessfulPurchasePage() {
       }
       isProcessingRef.current = false;
     }
-  }, []); // Sin dependencias para evitar recreaciones
+  }, [items, user, addOrder, clearCart, createNewOrder, showSuccessToast]); // Include all dependencies
 
   // Effect para procesar la compra SOLO una vez
   useEffect(() => {
     // Solo procesar si hay items y usuario, y no se ha procesado antes
-    if (items && items.length > 0 && user && !hasProcessedRef.current && !orderCreated) {
-      console.log('Iniciando procesamiento de nueva compra...');
+    if (
+      items &&
+      items.length > 0 &&
+      user &&
+      !hasProcessedRef.current &&
+      !orderCreated
+    ) {
+      console.log("Iniciando procesamiento de nueva compra...");
       const timer = setTimeout(() => {
         processPurchase();
       }, 1000); // Delay para asegurar que todo esté listo
@@ -306,7 +341,8 @@ export default function SuccessfulPurchasePage() {
           <div className="w-full flex flex-col justify-start items-center gap-12">
             <Heading className="text-white">Problema con la compra</Heading>
             <Body className="text-white text-center">
-              Hubo un problema al procesar tu compra. Verifica que el servidor esté ejecutándose y que los productos tengan stock disponible.
+              Hubo un problema al procesar tu compra. Verifica que el servidor
+              esté ejecutándose y que los productos tengan stock disponible.
             </Body>
             <div className="flex gap-4">
               <Link href="/cart" className="w-full max-w-xs">
@@ -315,7 +351,7 @@ export default function SuccessfulPurchasePage() {
                 </Button>
               </Link>
               <Link href="/shop" className="w-full max-w-xs">
-                <Button  className="w-full h-11 px-4 py-2.5">
+                <Button className="w-full h-11 px-4 py-2.5">
                   Continuar comprando
                 </Button>
               </Link>
@@ -332,7 +368,9 @@ export default function SuccessfulPurchasePage() {
       <PageLayout>
         <div className="px-4 lg:px-60 py-8 flex flex-col justify-center items-center gap-8">
           <div className="text-center">
-            <Body className="text-white text-xl">Cargando información de la compra...</Body>
+            <Body className="text-white text-xl">
+              Cargando información de la compra...
+            </Body>
           </div>
         </div>
       </PageLayout>
@@ -379,7 +417,9 @@ export default function SuccessfulPurchasePage() {
                         height={96}
                       />
                       <div className="flex-1 flex flex-col justify-start items-start gap-2">
-                        <Subheading className="text-white">{item.name}</Subheading>
+                        <Subheading className="text-white">
+                          {item.name}
+                        </Subheading>
                         <Body className="text-white">
                           Cantidad: {item.quantity}
                         </Body>
