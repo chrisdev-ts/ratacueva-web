@@ -19,8 +19,7 @@ const PasswordResetSuccessPage = () => {
           alt="Rata Cueva Logo"
           width={180}
           height={60}
-          className="w-[120px] sm:w-[150px] md:w-[180px] h-auto"
-        />
+          className="w-[120px] sm:w-[150px] md:w-[180px] h-auto"/>
       </div>
 
       <div className="flex flex-col justify-center items-center min-h-screen px-4 sm:px-12 lg:px-20 py-10">
@@ -28,8 +27,7 @@ const PasswordResetSuccessPage = () => {
           <div className="flex justify-center items-center pt-5">
             <ArrowPathIcon
               className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[214px] md:h-[214px] aspect-square"
-              aria-label="Restart icon"
-            />
+              aria-label="Restart icon"/>
           </div>
 
           <Body className="text-base sm:text-lg text-center w-full max-w-lg px-2.5 sm:px-0 text-text">

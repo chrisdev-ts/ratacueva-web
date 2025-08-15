@@ -81,8 +81,7 @@ export default function Employees() {
       cell: (info) => (
         <Link
           href={`/employees/${info.getValue()}`}
-          className="text-text underline hover:no-underline transition-all"
-        >
+          className="text-text underline hover:no-underline transition-all">
           <Body className="text-current truncate max-w-[120px]">
             {String(info.getValue())}
           </Body>
@@ -144,8 +143,7 @@ export default function Employees() {
         <div className="flex items-center gap-2">
           <Button
             variant="icon"
-            onClick={() => handleDeleteEmployee(row.original._id)}
-          >
+            onClick={() => handleDeleteEmployee(row.original._id)}>
             <TrashIcon className="w-6 h-6 text-danger" />
           </Button>
         </div>
@@ -174,8 +172,7 @@ export default function Employees() {
         <Link href="/employees/add">
           <Button
             variant="success"
-            className="px-4 py-2.5 rounded-full font-bold text-body flex items-center gap-2"
-          >
+            className="px-4 py-2.5 rounded-full font-bold text-body flex items-center gap-2">
             Agregar empleado
           </Button>
         </Link>
@@ -189,8 +186,7 @@ export default function Employees() {
               value={itemsPerPage}
               onChange={setItemsPerPage}
               options={pageSizeOptions}
-              className="w-[100px]"
-            />
+              className="w-[100px]"/>
             <Body className="text-text p-2">entradas por página</Body>
           </div>
 
@@ -203,8 +199,7 @@ export default function Employees() {
               placeholder="Buscar empleado..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
+              className="pl-10"/>
           </div>
         </div>
 
@@ -244,8 +239,7 @@ export default function Employees() {
                   else if (label === "»") setCurrentPage(totalPages);
                   else if (typeof label === "number") setCurrentPage(label);
                 }}
-                className={currentPage === label ? "bg-gray" : ""}
-              >
+                className={currentPage === label ? "bg-gray" : ""}>
                 {label}
               </Button>
             ))}

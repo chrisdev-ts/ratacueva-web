@@ -16,8 +16,7 @@ export default function CommunitySection() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="space-y-6 lg:space-y-8"
-        >
+          className="space-y-6 lg:space-y-8">
           <Heading className="text-white">
             ¿Qué opina la comunidad de RataCueva?
           </Heading>
@@ -38,8 +37,7 @@ export default function CommunitySection() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          className="flex-1"
-        >
+          className="flex-1">
           <DualReviewsCarousel reviews={userReviews} />
         </motion.div>
       </div>

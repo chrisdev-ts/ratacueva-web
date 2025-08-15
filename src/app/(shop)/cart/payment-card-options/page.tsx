@@ -18,8 +18,7 @@ export default function PaymentCardOptionsPage() {
   const { getCartTotal } = useCart();
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
-    string | null
-  >(null);
+    string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
@@ -115,8 +114,7 @@ export default function PaymentCardOptionsPage() {
           ]}
           title="Elige cómo pagar"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
 
         <div className="flex flex-col lg:flex-row justify-start items-start gap-8">
           <div className="w-full lg:w-[847px] space-y-6">
@@ -124,13 +122,11 @@ export default function PaymentCardOptionsPage() {
               <div key={method._id} className="p-6 bg-gray rounded-lg">
                 <div
                   className="flex items-center gap-4 cursor-pointer"
-                  onClick={() => handlePaymentMethodSelect(method._id)}
-                >
+                  onClick={() => handlePaymentMethodSelect(method._id)}>
                   <div
                     className={`w-5 h-5 p-2.5 rounded-[99px] border border-cyan-400 flex justify-center items-center ${
                       selectedPaymentMethod === method._id ? "bg-cyan-400" : ""
-                    }`}
-                  >
+                    }`}>
                     {selectedPaymentMethod === method._id && (
                       <div className="w-3.5 h-3.5 bg-cyan-400 rounded-full" />
                     )}
@@ -155,8 +151,7 @@ export default function PaymentCardOptionsPage() {
             <div className="flex justify-end">
               <Button
                 onClick={handleContinue}
-                className="bg-pink-600 hover:bg-pink-700"
-              >
+                className="bg-pink-600 hover:bg-pink-700">
                 Continuar
                 <ArrowRightIcon className="w-5 h-5 ml-2" />
               </Button>

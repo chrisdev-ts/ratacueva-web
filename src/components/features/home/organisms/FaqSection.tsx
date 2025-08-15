@@ -103,16 +103,14 @@ export default function FaqSection() {
               {paymentMethods.map((method, index) => (
                 <div
                   key={index}
-                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base flex flex-col items-center gap-2 group"
-                >
+                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base flex flex-col items-center gap-2 group">
                   <div className="w-12 h-8 relative bg-white rounded p-1 flex items-center justify-center overflow-hidden">
                     <Image
                       src={method.image}
                       alt={method.name}
                       width={40}
                       height={24}
-                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"
-                    />
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"/>
                   </div>
                   <span className="text-xs lg:text-sm">{method.name}</span>
                 </div>
@@ -131,16 +129,14 @@ export default function FaqSection() {
               {shippingCompanies.map((company, index) => (
                 <div
                   key={index}
-                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base flex flex-col items-center gap-2 group"
-                >
+                  className="px-4 py-3 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg text-center text-white text-sm lg:text-base flex flex-col items-center gap-2 group">
                   <div className="w-14 h-8 relative bg-white rounded p-1 flex items-center justify-center overflow-hidden">
                     <Image
                       src={company.image}
                       alt={company.name}
                       width={48}
                       height={24}
-                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"
-                    />
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"/>
                   </div>
                   <span className="text-xs lg:text-sm">{company.name}</span>
                 </div>
@@ -155,8 +151,7 @@ export default function FaqSection() {
             <div key={index} className="bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border transition-colors rounded-lg overflow-hidden">
               <button
                 className="w-full px-6 py-4 text-left flex justify-between items-center"
-                onClick={() => toggleFaq(index)}
-              >
+                onClick={() => toggleFaq(index)}>
                 <span className="text-white text-base lg:text-lg font-medium pr-4">{item.question}</span>
                 {activeIndex === index ? (
                   <ChevronUpIcon className="w-5 h-5 text-cyan-400 flex-shrink-0" />

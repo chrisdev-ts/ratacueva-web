@@ -149,16 +149,14 @@ export default function Overview() {
           return (
             <div
               key={index}
-              className="flex flex-col gap-6 p-6 rounded-lg bg-gray"
-            >
+              className="flex flex-col gap-6 p-6 rounded-lg bg-gray">
               <div className="flex items-center gap-2">
                 <IconComponent className="w-5 h-5" />
                 <Body>{metric.title}</Body>
               </div>
               <Heading>{metric.value}</Heading>
               <Body
-                className={metric.isPositive ? "text-success" : "text-danger"}
-              >
+                className={metric.isPositive ? "text-success" : "text-danger"}>
                 {metric.change}
               </Body>
             </div>
@@ -173,16 +171,14 @@ export default function Overview() {
           return (
             <div
               key={index + 3}
-              className="flex flex-col gap-6 p-6 rounded-lg bg-gray"
-            >
+              className="flex flex-col gap-6 p-6 rounded-lg bg-gray">
               <div className="flex items-center gap-2">
                 <IconComponent className="w-5 h-5" />
                 <Body>{metric.title}</Body>
               </div>
               <Heading>{metric.value}</Heading>
               <Body
-                className={metric.isPositive ? "text-success" : "text-danger"}
-              >
+                className={metric.isPositive ? "text-success" : "text-danger"}>
                 {metric.change}
               </Body>
             </div>
@@ -196,8 +192,7 @@ export default function Overview() {
           <Heading>Pedidos recientes</Heading>
           <Button
             variant="outlineSecondary"
-            className="min-h-11 rounded-[99px]"
-          >
+            className="min-h-11 rounded-[99px]">
             Ver todo
           </Button>
         </div>
@@ -251,8 +246,7 @@ export default function Overview() {
                       | "pending"
                       | "processing"
                       | "cancelled"
-                  }
-                />
+                  }/>
               ),
             },
             {
@@ -264,8 +258,7 @@ export default function Overview() {
                 </div>
               ),
             },
-          ]}
-        />
+          ]}/>
       </div>
 
       {/* Chart Section */}
@@ -281,8 +274,7 @@ export default function Overview() {
           {topProducts.map((product, index) => (
             <div
               key={index}
-              className="flex gap-4 p-4 border-t border-dark first:border-t-0"
-            >
+              className="flex gap-4 p-4 border-t border-dark first:border-t-0">
               <div className="flex flex-col gap-2 flex-1">
                 <h4 className="text-text text-base font-bold">
                   {product.name}

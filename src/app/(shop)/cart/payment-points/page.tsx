@@ -173,8 +173,7 @@ export default function PaymentPointsPage() {
           ]}
           title="Paga en un punto de pago"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
 
         <div className="px-4 lg:px-60 py-8 flex flex-col justify-center items-center gap-8">
           <div className="w-full flex flex-col justify-start items-center gap-12">
@@ -200,8 +199,7 @@ export default function PaymentPointsPage() {
                               style={{
                                 width: `${Math.random() * 4 + 1}px`,
                                 height: "120px",
-                              }}
-                            />
+                              }}/>
                           ))}
                         </div>
                       </div>
@@ -240,8 +238,7 @@ export default function PaymentPointsPage() {
                 <button
                   onClick={handleCopyBarcode}
                   className="absolute right-6 bottom-6 h-11 min-h-11 p-2.5 rounded-[99px] border border-cyan-400 flex justify-center items-center gap-3 hover:bg-cyan-400/10 transition-colors"
-                  title="Copiar código de barras"
-                >
+                  title="Copiar código de barras">
                   <DocumentDuplicateIcon className="w-6 h-6 text-cyan-400" />
                 </button>
 
@@ -257,8 +254,7 @@ export default function PaymentPointsPage() {
               <div className="w-full flex justify-center items-center">
                 <Button
                   onClick={handlePaymentConfirmed}
-                  className="w-full max-w-xs h-11 bg-emerald-600 hover:bg-emerald-700 rounded-[99px] px-4 py-2.5"
-                >
+                  className="w-full max-w-xs h-11 bg-emerald-600 hover:bg-emerald-700 rounded-[99px] px-4 py-2.5">
                   <CheckIcon className="w-5 h-5 mr-2" />
                   Ya pagué - Continuar
                 </Button>

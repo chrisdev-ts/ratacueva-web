@@ -70,8 +70,7 @@ export default function AddCardModal({ isOpen, onClose, onSuccess }: AddCardModa
           <Subheading className="text-white">Agregar nueva tarjeta</Subheading>
           <button
             onClick={onClose}
-            className="text-white hover:text-zinc-400 transition-colors"
-          >
+            className="text-white hover:text-zinc-400 transition-colors">
             <XMarkIcon className="w-6 h-6" />
           </button>
         </div>
@@ -93,8 +92,7 @@ export default function AddCardModal({ isOpen, onClose, onSuccess }: AddCardModa
             <select
               value={cardData.type}
               onChange={(e) => handleInputChange('type', e.target.value)}
-              className="w-full h-11 px-4 py-3 bg-gray rounded-lg border border-neutral-600 text-white focus:outline-none focus:border-cyan-400"
-            >
+              className="w-full h-11 px-4 py-3 bg-gray rounded-lg border border-neutral-600 text-white focus:outline-none focus:border-cyan-400">
               <option value="credit_card">Tarjeta de Crédito</option>
               <option value="debit_card">Tarjeta de Débito</option>
               <option value="paypal">PayPal</option>
@@ -115,8 +113,7 @@ export default function AddCardModal({ isOpen, onClose, onSuccess }: AddCardModa
               className="w-full h-11 px-4 py-3 bg-gray rounded-lg border border-neutral-600 text-white focus:outline-none focus:border-cyan-400"
               placeholder="1234"
               maxLength={4}
-              required
-            />
+              required/>
           </div>
 
           {/* Provider/Bank */}
@@ -131,8 +128,7 @@ export default function AddCardModal({ isOpen, onClose, onSuccess }: AddCardModa
               onChange={(e) => handleInputChange('provider', e.target.value)}
               className="w-full h-11 px-4 py-3 bg-gray rounded-lg border border-neutral-600 text-white focus:outline-none focus:border-cyan-400"
               placeholder="BBVA, Banamex, etc."
-              required
-            />
+              required/>
           </div>
 
           {/* Expiration Date */}
@@ -160,16 +156,14 @@ export default function AddCardModal({ isOpen, onClose, onSuccess }: AddCardModa
               type="button"
               variant="primary"
               onClick={onClose}
-              disabled={loading}
-            >
+              disabled={loading}>
               <XCircleIcon className="w-5 h-5 mr-2" />
               Cancelar
             </Button>
             <Button
               type="submit"
               variant="primary"
-              disabled={!isFormValid || loading}
-            >
+              disabled={!isFormValid || loading}>
               <CheckIcon className="w-5 h-5 mr-2" />
               {loading ? "Agregando..." : "Agregar tarjeta"}
             </Button>

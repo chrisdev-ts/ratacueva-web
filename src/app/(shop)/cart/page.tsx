@@ -105,8 +105,7 @@ export default function CartPage() {
           ]}
           title="Productos en tu carrito"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         
         <div className="flex flex-col lg:flex-row justify-start items-start gap-8">
           {/* Left Column: Cart Items */}
@@ -122,16 +121,14 @@ export default function CartPage() {
                 {cartItems.map((item) => (
                   <div
                     key={item.id}
-                    className="p-6 bg-gray rounded-lg grid grid-cols-1 sm:grid-cols-[auto_1fr_auto] gap-6 items-center"
-                  >
+                    className="p-6 bg-gray rounded-lg grid grid-cols-1 sm:grid-cols-[auto_1fr_auto] gap-6 items-center">
                     {/* Imagen */}
                     <Image
                       className="w-24 h-24 object-contain justify-self-center sm:justify-self-start"
                       src={item.image || "/placeholder.svg"}
                       alt={item.name}
                       width={96}
-                      height={96}
-                    />
+                      height={96}/>
                     
                     {/* Información del producto */}
                     <div className="flex flex-col justify-center gap-4">
@@ -141,14 +138,12 @@ export default function CartPage() {
                       <div className="flex justify-center sm:justify-start items-center gap-3">
                          <Button 
                            onClick={() => handleToggleFavorite(item)}
-                           className={isInFavorites(item.id) ? 'bg-red-500 hover:bg-red-600' : ''}
-                         >
+                           className={isInFavorites(item.id) ? 'bg-red-500 hover:bg-red-600' : ''}>
                            <HeartIcon className="w-4 h-4 mr-2" />
                            {isInFavorites(item.id) ? 'En favoritos' : 'Favoritos'}
                          </Button>
                          <Button 
-                           onClick={() => handleRemoveItem(item.id)}
-                         >
+                           onClick={() => handleRemoveItem(item.id)}>
                            <TrashIcon className="w-4 h-4 mr-2" />
                            Eliminar
                          </Button>
@@ -164,8 +159,7 @@ export default function CartPage() {
                         <button
                           onClick={() => handleQuantityChange(item.id, -1)}
                           className="h-11 min-h-11 p-2.5 rounded-tl-[99px] rounded-bl-[99px] flex justify-center items-center gap-3 text-cyan-400 hover:bg-cyan-400 hover:text-white transition-colors"
-                          aria-label="Disminuir cantidad"
-                        >
+                          aria-label="Disminuir cantidad">
                           <MinusIcon className="w-4 h-4" />
                         </button>
                         <div className="h-11 min-h-11 p-2.5 flex justify-center items-center gap-3">
@@ -176,8 +170,7 @@ export default function CartPage() {
                         <button
                           onClick={() => handleQuantityChange(item.id, 1)}
                           className="h-11 min-h-11 p-2.5 rounded-tr-[99px] rounded-br-[99px] flex justify-center items-center gap-3 text-cyan-400 hover:bg-cyan-400 hover:text-white transition-colors"
-                          aria-label="Aumentar cantidad"
-                        >
+                          aria-label="Aumentar cantidad">
                           <PlusIcon className="w-4 h-4" />
                         </button>
                       </div>
@@ -215,8 +208,7 @@ export default function CartPage() {
           message={toast.message} 
           isVisible={toast.isVisible}
           type={toast.type} 
-          onClose={() => setToast({ ...toast, isVisible: false })}
-        />
+          onClose={() => setToast({ ...toast, isVisible: false })}/>
       )}
     </PageLayout>
   )

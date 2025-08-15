@@ -168,16 +168,14 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
   const ProductCard = ({ product }: { product: Product }) => (
     <Link
       href={`/product/${product.id}`}
-      className="flex-1 bg-gray rounded-lg inline-flex flex-col justify-center items-center overflow-hidden group cursor-pointer"
-    >
+      className="flex-1 bg-gray rounded-lg inline-flex flex-col justify-center items-center overflow-hidden group cursor-pointer">
       <div className="self-stretch h-56 p-4 flex flex-col justify-center items-center gap-2.5">
         <Image
           className="w-48 flex-1 object-contain group-hover:scale-105 transition-transform duration-300"
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           width={189}
-          height={189}
-        />
+          height={189}/>
       </div>
       <div className="self-stretch h-0 outline-1 outline-offset-[-0.50px] outline-white"></div>
       <div className="self-stretch p-6 flex flex-col justify-start items-start gap-2">
@@ -228,22 +226,19 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
                   src={product.images?.[0] || product.image}
                   alt={product.name}
                   width={400}
-                  height={400}
-                />
+                  height={400}/>
               </div>
               <div className="inline-flex flex-row sm:flex-col justify-start items-start gap-4 sm:gap-8 flex-wrap">
                 {product.images?.slice(1, 4).map((img, index) => (
                   <div
                     key={index}
-                    className="p-3 sm:p-6 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border rounded-lg flex justify-center items-center overflow-hidden"
-                  >
+                    className="p-3 sm:p-6 bg-gray hover:bg-dark hover:border-gray border border-transparent border-2 transition-border rounded-lg flex justify-center items-center overflow-hidden">
                     <Image
                       className="w-24 h-24 sm:w-36 sm:h-36 object-contain"
                       src={img || "/placeholder.svg"}
                       alt={`${product.name} thumbnail ${index + 1}`}
                       width={150}
-                      height={150}
-                    />
+                      height={150}/>
                   </div>
                 ))}
               </div>
@@ -260,8 +255,7 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
                   {Array.from({ length: 5 }).map((_, i) => (
                     <StarIcon
                       key={i}
-                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-placeholder"}`}
-                    />
+                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-placeholder"}`}/>
                   ))}
                 </div>
                 <div className="text-center justify-center text-white text-xs font-normal ">
@@ -274,8 +268,7 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
               {product.description && product.description.length > 250 && (
                 <button
                   onClick={() => setShowFullDescription(!showFullDescription)}
-                  className="self-stretch h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] inline-flex justify-center items-center gap-3"
-                >
+                  className="self-stretch h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] inline-flex justify-center items-center gap-3">
                   <div className="justify-start text-white text-base font-bold ">
                     {showFullDescription ? "Leer menos" : "Leer más"}
                   </div>
@@ -321,15 +314,13 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
                     <button
                       onClick={() => handleQuantityChange(-1)}
                       className="w-6 h-6 flex items-center justify-center rounded-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white transition-colors"
-                      aria-label="Disminuir cantidad"
-                    >
+                      aria-label="Disminuir cantidad">
                       <MinusIcon className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleQuantityChange(1)}
                       className="w-6 h-6 flex items-center justify-center rounded-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white transition-colors"
-                      aria-label="Aumentar cantidad"
-                    >
+                      aria-label="Aumentar cantidad">
                       <PlusIcon className="w-4 h-4" />
                     </button>
                   </div>
@@ -339,15 +330,13 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
               <div className="self-stretch flex flex-col justify-start items-start gap-4">
                 <button 
                   onClick={handleBuyNow}
-                  className="self-stretch h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] inline-flex justify-center items-center gap-3"
-                >
+                  className="self-stretch h-11 min-h-11 px-4 py-2.5 bg-primary hover:bg-primary/80 transition-colors rounded-[99px] inline-flex justify-center items-center gap-3">
                   <ShoppingCartIcon className="w-5 h-5 text-white" />
                   <div className="justify-start text-white text-base font-bold ">Comprar ahora</div>
                 </button>
                 <button 
                   onClick={handleAddToCart}
-                  className="self-stretch h-11 min-h-11 px-4 py-2.5 rounded-[99px] outline outline-1 outline-offset-[-1px] outline-primary inline-flex justify-center items-center gap-3 text-primary hover:bg-primary hover:text-white transition-colors"
-                >
+                  className="self-stretch h-11 min-h-11 px-4 py-2.5 rounded-[99px] outline outline-1 outline-offset-[-1px] outline-primary inline-flex justify-center items-center gap-3 text-primary hover:bg-primary hover:text-white transition-colors">
                   <ShoppingCartIcon className="w-5 h-5" />
                   <div className="justify-start text-base font-bold ">Agregar al carrito</div>
                 </button>
@@ -357,8 +346,7 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
                     isInFavorites(product.id.toString())
                       ? 'outline-red-500 text-red-500 hover:bg-red-500 hover:text-white'
                       : 'outline-gray-400 text-gray-400 hover:bg-gray-400 hover:text-white'
-                  }`}
-                >
+                  }`}>
                   <HeartIcon className="w-5 h-5" />
                   <div className="justify-start text-base font-bold">
                     {isInFavorites(product.id.toString()) ? "Remover de favoritos" : "Agregar a favoritos"}
@@ -377,15 +365,13 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
                 {paymentMethods.map((method, i) => (
                   <div 
                     key={i} 
-                    className="w-full h-12 relative bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden hover:shadow-lg transition-shadow duration-200 group"
-                  >
+                    className="w-full h-12 relative bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden hover:shadow-lg transition-shadow duration-200 group">
                     <Image
                       src={method.image}
                       alt={method.name}
                       width={48}
                       height={32}
-                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"
-                    />
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-200"/>
                   </div>
                 ))}
               </div>
@@ -438,8 +424,7 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
             {reviews.map((review) => (
               <div
                 key={review.id}
-                className="self-stretch p-6 bg-gray rounded-lg flex flex-col justify-center items-start gap-6 overflow-hidden"
-              >
+                className="self-stretch p-6 bg-gray rounded-lg flex flex-col justify-center items-start gap-6 overflow-hidden">
                 <div className="self-stretch inline-flex justify-between items-center">
                   <div className="flex justify-start items-center gap-4">
                     <div className="flex justify-center items-center gap-2">
@@ -486,8 +471,7 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
                   {Array.from({ length: 5 }).map((_, i) => (
                     <StarIcon
                       key={i}
-                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-placeholder"}`}
-                    />
+                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-placeholder"}`}/>
                   ))}
                 </div>
                 <div className="text-center justify-center text-white text-xs font-normal ">
@@ -549,8 +533,7 @@ export default function ProductDetailPage({ product, relatedProducts = [], revie
           message={toast.message} 
           isVisible={toast.isVisible}
           type={toast.type} 
-          onClose={() => setToast({ ...toast, isVisible: false })}
-        />
+          onClose={() => setToast({ ...toast, isVisible: false })}/>
       )}
     </PageLayout>
   )

@@ -29,12 +29,10 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
+          className="absolute inset-0">
           <ReviewCard 
             review={reviews[currentIndex]} 
-            index={currentIndex} 
-          />
+            index={currentIndex} />
         </motion.div>
       </AnimatePresence>
       
@@ -46,8 +44,7 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
             onClick={() => setCurrentIndex(index)}
             className={`w-2 h-2 rounded-full transition-colors ${
               index === currentIndex ? 'bg-primary' : 'bg-dark'
-            }`}
-          />
+            }`}/>
         ))}
       </div>
     </div>

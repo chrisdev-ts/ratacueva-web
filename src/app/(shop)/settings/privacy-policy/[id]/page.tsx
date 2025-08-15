@@ -37,8 +37,7 @@ export default async function PrivacySectionPage({
         currentPageNumber={sectionData.currentPageNumber}
         highlightBox={sectionData.highlightBox}
         quickAccessCards={sectionData.quickAccessCards ?? []}
-        faqs={sectionData.faqs}
-      >
+        faqs={sectionData.faqs}>
         {sectionData.content}{" "}
       </PolicyPageLayout>
     </PrivacyLayout>

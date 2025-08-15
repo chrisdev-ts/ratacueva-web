@@ -48,14 +48,12 @@ export default function FeaturedBanner() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12">
         <div 
           className="relative h-[300px] lg:h-[500px] bg-gradient-to-br from-gray to-dark rounded-lg overflow-hidden group cursor-pointer"
-          onClick={() => handleCategoryClick(categories[0].id)}
-        >
+          onClick={() => handleCategoryClick(categories[0].id)}>
           <Image
             src={categories[0].image}
             alt={categories[0].name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+            className="object-cover group-hover:scale-105 transition-transform duration-300"/>
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           <div className="absolute bottom-6 left-6 right-6">
             <Subheading className="text-white mb-2">{categories[0].name}</Subheading>
@@ -71,8 +69,7 @@ export default function FeaturedBanner() {
             <div
               key={category.id}
               className="relative h-[140px] lg:h-[240px] bg-gradient-to-br from-dark to-gray rounded-lg overflow-hidden group cursor-pointer"
-              onClick={() => handleCategoryClick(category.id)}
-            >
+              onClick={() => handleCategoryClick(category.id)}>
               <Image
                 src={category.image}
                 alt={category.name}

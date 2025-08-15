@@ -110,8 +110,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <ProductDetailPage
         product={product}
         relatedProducts={relatedProducts}
-        reviews={[]} // TODO: Implement reviews
-      />
+        reviews={[]} // TODO: Implement reviews/>
     );
   } catch (error) {
     console.error("Error fetching product:", error);

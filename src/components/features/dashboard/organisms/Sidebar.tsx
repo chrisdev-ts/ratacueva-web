@@ -52,8 +52,7 @@ export default function Sidebar() {
                             alt="RataCueva Logo"
                             width={220}
                             height={100}
-                            className="object-contain"
-                        />
+                            className="object-contain"/>
                     </div>
                     <div className="w-[234px] h-px bg-white" />
                 </div>
@@ -69,8 +68,7 @@ export default function Sidebar() {
                                 key={item.name}
                                 href={item.href}
                                 className={`flex px-4 py-4 items-center gap-4 w-full rounded-lg transition-all duration-200 
-                ${isActive ? "bg-dark" : "hover:bg-dark"}`}
-                            >
+                ${isActive ? "bg-dark" : "hover:bg-dark"}`}>
                                 <Icon className="w-6 h-6 text-white" />
                                 <Body as="span" className="font-bold">{item.name}</Body>
                             </Link>
@@ -93,8 +91,7 @@ export default function Sidebar() {
                                     localStorage.removeItem("user");
                                     window.location.href = "/home"; // o router.push("/login");
                                 }}
-                                className="flex px-4 py-4 items-center gap-4 w-full rounded-lg transition-all duration-200 hover:bg-dark"
-                            >
+                                className="flex px-4 py-4 items-center gap-4 w-full rounded-lg transition-all duration-200 hover:bg-dark">
                                 <Icon className="w-6 h-6 text-white" />
                                 <Body as="span" className="font-bold">{item.name}</Body>
                             </button>

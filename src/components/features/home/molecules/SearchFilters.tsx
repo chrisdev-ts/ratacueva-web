@@ -123,8 +123,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
       <Button
         onClick={onToggle}
         variant="icon"
-        className="w-full px-4 py-4 flex justify-between items-center hover:bg-dark transition-colors h-auto bg-transparent border-none shadow-none rounded-none font-normal text-left"
-      >
+        className="w-full px-4 py-4 flex justify-between items-center hover:bg-dark transition-colors h-auto bg-transparent border-none shadow-none rounded-none font-normal text-left">
         <Subheading className="text-white">{title}</Subheading>
         {isExpanded ? (
           <ChevronUpIcon className="w-5 h-5 text-white" />
@@ -180,8 +179,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
               <button
                 key={price}
                 onClick={() => onFiltersChange({ ...filters, priceRange: [0, price] })}
-                className="px-3 py-1 bg-dark hover:bg-gray text-white text-xs rounded-full transition-colors"
-              >
+                className="px-3 py-1 bg-dark hover:bg-gray text-white text-xs rounded-full transition-colors">
                 Hasta ${price.toLocaleString()}
               </button>
             ))}
@@ -192,14 +190,12 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
       <FilterSection
         title="Categoría"
         isExpanded={expandedSections.category}
-        onToggle={() => toggleSection("category")}
-      >
+        onToggle={() => toggleSection("category")}>
         <div className="space-y-2">
           {categories.map((category) => (
             <label
               key={category}
-              className="flex items-center gap-3 cursor-pointer hover:bg-dark p-2 rounded-lg"
-            >
+              className="flex items-center gap-3 cursor-pointer hover:bg-dark p-2 rounded-lg">
               <input
                 type="checkbox"
                 checked={filters.categories.includes(category)}
@@ -231,16 +227,14 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
       <FilterSection
         title="Envío y ofertas"
         isExpanded={expandedSections.shipping}
-        onToggle={() => toggleSection("shipping")}
-      >
+        onToggle={() => toggleSection("shipping")}>
         <div className="space-y-3">
           <label className="flex items-center gap-3 cursor-pointer hover:bg-dark p-2 rounded-lg">
             <input
               type="checkbox"
               checked={filters.freeShipping}
               onChange={(e) => onFiltersChange({ ...filters, freeShipping: e.target.checked })}
-              className="w-4 h-4 text-primary bg-dark border-dark rounded focus:ring-pink-500"
-            />
+              className="w-4 h-4 text-primary bg-dark border-dark rounded focus:ring-pink-500"/>
             <Body className="text-white text-sm">Envío gratis</Body>
           </label>
           <label className="flex items-center gap-3 cursor-pointer hover:bg-dark p-2 rounded-lg">
@@ -248,8 +242,7 @@ export default function SearchFilters({ filters, onFiltersChange, onClose }: Sea
               type="checkbox"
               checked={filters.withDiscount}
               onChange={(e) => onFiltersChange({ ...filters, withDiscount: e.target.checked })}
-              className="w-4 h-4 text-primary bg-dark border-dark rounded focus:ring-pink-500"
-            />
+              className="w-4 h-4 text-primary bg-dark border-dark rounded focus:ring-pink-500"/>
             <Body className="text-white text-sm">Con descuento</Body>
           </label>
         </div>

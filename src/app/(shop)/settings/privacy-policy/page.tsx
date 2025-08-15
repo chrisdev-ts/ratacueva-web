@@ -21,8 +21,7 @@ export default function PrivacyPolicyPage() {
           ]}
           title="Declaración de privacidad y confidencialidad de la información de RataCueva"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         {/* Row 2: Sidebar y contenido */}
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
@@ -67,8 +66,7 @@ export default function PrivacyPolicyPage() {
                     title={section.title}
                     summary={section.summary}
                     href={section.href}
-                    icon={section.icon}
-                  />
+                    icon={section.icon}/>
                 ))}
               </div>
             </div>

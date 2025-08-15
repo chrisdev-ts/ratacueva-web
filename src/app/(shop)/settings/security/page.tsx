@@ -33,13 +33,11 @@ export default function SecurityPage() {
                 <div className="relative">
                   <input
                     type={showCurrentPassword ? "text" : "password"}
-                    className="w-full p-3 bg-dark text-white rounded-lg border border-dark focus:border-pink-600 focus:outline-none pr-12"
-                  />
+                    className="w-full p-3 bg-dark text-white rounded-lg border border-dark focus:border-pink-600 focus:outline-none pr-12"/>
                   <button
                     type="button"
                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-dark hover:text-white"
-                  >
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-dark hover:text-white">
                     {showCurrentPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
                   </button>
                 </div>
@@ -49,13 +47,11 @@ export default function SecurityPage() {
                 <div className="relative">
                   <input
                     type={showNewPassword ? "text" : "password"}
-                    className="w-full p-3 bg-dark text-white rounded-lg border border-dark focus:border-pink-600 focus:outline-none pr-12"
-                  />
+                    className="w-full p-3 bg-dark text-white rounded-lg border border-dark focus:border-pink-600 focus:outline-none pr-12"/>
                   <button
                     type="button"
                     onClick={() => setShowNewPassword(!showNewPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-dark hover:text-white"
-                  >
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-dark hover:text-white">
                     {showNewPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
                   </button>
                 </div>
@@ -65,13 +61,11 @@ export default function SecurityPage() {
                 <div className="relative">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
-                    className="w-full p-3 bg-dark text-white rounded-lg border border-dark focus:border-pink-600 focus:outline-none pr-12"
-                  />
+                    className="w-full p-3 bg-dark text-white rounded-lg border border-dark focus:border-pink-600 focus:outline-none pr-12"/>
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-dark hover:text-white"
-                  >
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-dark hover:text-white">
                     {showConfirmPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
                   </button>
                 </div>

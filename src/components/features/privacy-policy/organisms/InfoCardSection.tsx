@@ -23,16 +23,14 @@ export function InfoCardSection({
 }: InfoCardSectionProps) {
   return (
     <div
-      className={`border rounded-lg p-4 transition-all duration-200 bg-gray-800/30 hover:bg-gray-800/50 border-gray-600/50`}
-    >
+      className={`border rounded-lg p-4 transition-all duration-200 bg-gray-800/30 hover:bg-gray-800/50 border-gray-600/50`}>
       {/* Section Header */}
       <div
         className={`
           flex items-center justify-between 
           ${section.collapsible ? "cursor-pointer" : ""}
         `}
-        onClick={section.collapsible ? () => onToggleSection(index) : undefined}
-      >
+        onClick={section.collapsible ? () => onToggleSection(index) : undefined}>
         <div className="flex items-center gap-2 flex-1">
           <BodySmall className={`font-semibold`}>{section.subtitle}</BodySmall>
         </div>
@@ -57,8 +55,7 @@ export function InfoCardSection({
               ? "grid-rows-[0fr] opacity-0"
               : "grid-rows-[1fr] opacity-100 mt-2"
           }
-        `}
-      >
+        `}>
         <div className="overflow-hidden">
           {/* Basic content */}
           {section.basicContent && (
@@ -73,16 +70,14 @@ export function InfoCardSection({
           <div
             className={
               section.basicContent && section.detailedContent ? "space-y-2" : ""
-            }
-          >
+            }>
             {section.basicContent && section.detailedContent && (
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onToggleDetailed(index);
                 }}
-                className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
-              >
+                className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1">
                 {isDetailedExpanded ? (
                   <ChevronDownIcon className="h-3 w-3" />
                 ) : (
@@ -102,8 +97,7 @@ export function InfoCardSection({
                     ? "grid-rows-[0fr] opacity-0"
                     : "grid-rows-[1fr] opacity-100"
                 }
-              `}
-            >
+              `}>
               <div className="overflow-hidden">
                 {/* Original list content */}
                 {section.list && (
@@ -134,8 +128,7 @@ export function InfoCardSection({
                         {section.detailedContent.map((item, itemIndex) => (
                           <li
                             key={itemIndex}
-                            className="flex items-start gap-3"
-                          >
+                            className="flex items-start gap-3">
                             <ChevronRightIcon className="text-success mt-1.5 h-3 w-3" />
                             <BodySmall className="leading-relaxed">
                               {item}

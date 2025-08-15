@@ -79,8 +79,7 @@ export default function Toast({ message, isVisible, onClose, duration = 3000, ty
             setIsAnimating(false)
             setTimeout(onClose, 300)
           }}
-          className={`${styles.close} transition-colors`}
-        >
+          className={`${styles.close} transition-colors`}>
           <XMarkIcon className="w-5 h-5" />
         </button>
       </div>

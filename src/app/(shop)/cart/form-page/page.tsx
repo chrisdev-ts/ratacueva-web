@@ -158,8 +158,7 @@ function FormPageContent() {
           items={[{ label: "Carrito", href: "/cart" }, { label: "Envío" }]}
           title="Elige la forma de entrega"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
 
         <div className="flex flex-col lg:flex-row justify-start items-start gap-8">
           {/* Left Column: Delivery Options */}
@@ -167,13 +166,11 @@ function FormPageContent() {
             {/* Opción 1: Enviar a domicilio */}
             <div
               className="p-6 bg-gray rounded-lg flex justify-start items-start gap-6 cursor-pointer"
-              onClick={() => setSelectedDeliveryOption("domicilio")}
-            >
+              onClick={() => setSelectedDeliveryOption("domicilio")}>
               <div
                 className={`w-5 h-5 p-2.5 rounded-[99px] border border-cyan-400 flex justify-center items-center ${
                   selectedDeliveryOption === "domicilio" ? "bg-cyan-400" : ""
-                }`}
-              >
+                }`}>
                 {selectedDeliveryOption === "domicilio" && (
                   <div className="w-3.5 h-3.5 bg-cyan-400 rounded-full" />
                 )}
@@ -231,8 +228,7 @@ function FormPageContent() {
                             onClick={(e) => {
                               e.stopPropagation();
                               setSelectedAddressId(address._id);
-                            }}
-                          >
+                            }}>
                             <Body className="text-white text-sm">
                               {formatAddress(address)}
                               {address.isDefault && (
@@ -259,13 +255,11 @@ function FormPageContent() {
             {/* Opción 2: Retirar en punto de entrega */}
             <div
               className="p-6 bg-gray rounded-lg flex justify-start items-start gap-6 cursor-pointer"
-              onClick={() => setSelectedDeliveryOption("punto")}
-            >
+              onClick={() => setSelectedDeliveryOption("punto")}>
               <div
                 className={`w-5 h-5 p-2.5 rounded-[99px] border border-cyan-400 flex justify-center items-center ${
                   selectedDeliveryOption === "punto" ? "bg-cyan-400" : ""
-                }`}
-              >
+                }`}>
                 {selectedDeliveryOption === "punto" && (
                   <div className="w-3.5 h-3.5 bg-cyan-400 rounded-full" />
                 )}

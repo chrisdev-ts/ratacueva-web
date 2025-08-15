@@ -40,8 +40,7 @@ export default function PaymentSecurityPage() {
           ]}
           title="Completa tu código de seguridad"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         
         <div className="flex flex-col lg:flex-row justify-start items-start gap-8">
           {/* Left Column: Security Form */}
@@ -70,8 +69,7 @@ export default function PaymentSecurityPage() {
                       onChange={(e) => setSecurityCode(e.target.value)}
                       className="w-full h-11 px-4 py-3 bg-gray rounded-lg border border-neutral-600 text-white focus:outline-none focus:border-cyan-400"
                       placeholder="***"
-                      maxLength={4}
-                    />
+                      maxLength={4}/>
                   </div>
                 </div>
                 
@@ -87,8 +85,7 @@ export default function PaymentSecurityPage() {
               <Button 
                 onClick={() => handleSubmit(new Event("submit") as unknown as React.FormEvent<HTMLFormElement>)}
                 className="bg-pink-600 hover:bg-pink-700"
-                disabled={securityCode.length < 3}
-              >
+                disabled={securityCode.length < 3}>
                 Continuar
                 <ArrowRightIcon className="w-5 h-5 ml-2" />
               </Button>

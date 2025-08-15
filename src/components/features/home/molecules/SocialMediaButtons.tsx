@@ -14,8 +14,7 @@ const Button = ({
 }) => (
   <button
     onClick={onClick}
-    className={`flex items-center justify-center gap-2 px-3 py-3 bg-white hover:bg-gray-50 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl border border-gray-200 text-center min-h-[60px] w-full ${className}`}
-  >
+    className={`flex items-center justify-center gap-2 px-3 py-3 bg-white hover:bg-gray-50 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl border border-gray-200 text-center min-h-[60px] w-full ${className}`}>
     {children}
   </button>
 );
@@ -78,8 +77,7 @@ const SocialMediaButtons = () => {
         return (
           <Button
             key={platform.name}
-            onClick={() => window.open(platform.url, "_blank")}
-          >
+            onClick={() => window.open(platform.url, "_blank")}>
             <Image
               src={platform.image}
               alt={`${platform.name} logo`}
@@ -89,8 +87,7 @@ const SocialMediaButtons = () => {
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.style.display = "none";
-              }}
-            />
+              }}/>
             <span className="text-gray-800 text-sm font-semibold truncate">
               {platform.name}
             </span>

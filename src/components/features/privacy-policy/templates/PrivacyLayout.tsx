@@ -51,8 +51,7 @@ export const PrivacyLayout: React.FC<PrivacyLayoutProps> = ({
                   <Body className="font-bold">Navegación</Body>
                   <button
                     onClick={() => setIsMobileSidebarOpen(false)}
-                    className="hover:text-success transition-colors"
-                  >
+                    className="hover:text-success transition-colors">
                     <XMarkIcon className="w-6 h-6" />
                   </button>
                 </div>
@@ -66,8 +65,7 @@ export const PrivacyLayout: React.FC<PrivacyLayoutProps> = ({
             <button
               onClick={() => setIsMobileSidebarOpen(true)}
               className="bg-success text-black p-4 rounded-full shadow-lg hover:bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-success focus:ring-offset-2 focus:ring-offset-dark"
-              aria-label="Abrir navegación"
-            >
+              aria-label="Abrir navegación">
               <Bars3Icon className="w-6 h-6" />
             </button>
           </div>

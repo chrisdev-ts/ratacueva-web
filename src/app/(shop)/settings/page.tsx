@@ -90,8 +90,7 @@ export default function SettingsPage() {
               />
             ) : (
               <div 
-                className={`w-full h-full rounded-full flex items-center justify-center text-white font-bold text-xl ${avatarColor}`}
-              >
+                className={`w-full h-full rounded-full flex items-center justify-center text-white font-bold text-xl ${avatarColor}`}>
                 {userInitials}
               </div>
             )}
@@ -110,8 +109,7 @@ export default function SettingsPage() {
             <Link
               key={index}
               href={category.href}
-              className="flex-1 self-stretch p-6 bg-gray hover:bg-dark transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group"
-            >
+              className="flex-1 self-stretch p-6 bg-gray hover:bg-dark transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group">
               <div className="self-stretch flex justify-start items-center gap-2.5">
                 <div className="p-0.5 py-1 flex flex-col justify-start items-start gap-2.5 overflow-hidden">
                   <category.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors" />
@@ -135,8 +133,7 @@ export default function SettingsPage() {
             <Link
               key={index}
               href={category.href}
-              className="flex-1 self-stretch p-6 bg-gray hover:bg-dark transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group"
-            >
+              className="flex-1 self-stretch p-6 bg-gray hover:bg-dark transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group">
               <div className="self-stretch flex justify-start items-center gap-2.5">
                 <div className="p-0.5 py-1 flex flex-col justify-start items-start gap-2.5 overflow-hidden">
                   <category.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors" />
@@ -160,8 +157,7 @@ export default function SettingsPage() {
             <Link
               key={index}
               href={category.href}
-              className="flex-1 self-stretch p-6 bg-gray hover:bg-dark transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group"
-            >
+              className="flex-1 self-stretch p-6 bg-gray hover:bg-dark transition-all duration-200 rounded-lg flex flex-col justify-start items-start gap-4 overflow-hidden group">
               <div className="self-stretch flex justify-start items-center gap-2.5">
                 <div className="p-0.5 py-1 flex flex-col justify-start items-start gap-2.5 overflow-hidden">
                   <category.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors" />

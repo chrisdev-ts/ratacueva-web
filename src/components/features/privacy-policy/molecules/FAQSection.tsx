@@ -35,13 +35,11 @@ export function FAQSection({
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="bg-gray rounded-lg"
-          >
+            className="bg-gray rounded-lg">
             <button
               onClick={() => toggleFAQ(index)}
               className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-700/50 transition-colors rounded-lg"
-              aria-expanded={openIndex === index}
-            >
+              aria-expanded={openIndex === index}>
               <Subheading className="font-medium pr-4">
                 {faq.question}
               </Subheading>

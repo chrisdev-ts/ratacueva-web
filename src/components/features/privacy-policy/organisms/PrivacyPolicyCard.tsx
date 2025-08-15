@@ -21,8 +21,7 @@ export function PrivacyPolicyCard({
     <Link
       key={id}
       href={href}
-      className="bg-gray rounded-lg p-6 hover:bg-gray/80 transition-all duration-300 group"
-    >
+      className="bg-gray rounded-lg p-6 hover:bg-gray/80 transition-all duration-300 group">
       <div className="h-full">
         <div className="flex items-center mb-3">
           <div className="mr-3 flex-shrink-0">{icon}</div>

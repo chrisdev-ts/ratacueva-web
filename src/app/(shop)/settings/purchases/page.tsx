@@ -92,8 +92,7 @@ export default function PurchasesPage() {
             ]}
             title="Compras"
             color="text-white"
-            className="mb-8"
-          />
+            className="mb-8"/>
           <div className="text-white text-center">Cargando compras...</div>
         </div>
       </PageLayout>
@@ -110,8 +109,7 @@ export default function PurchasesPage() {
           ]}
           title="Compras"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
 
         {error && (
           <div className="mb-4 p-3 bg-red-500/20 border border-red-500 rounded-lg">
@@ -128,15 +126,13 @@ export default function PurchasesPage() {
               className="h-11 pl-12"
               variant="searchbar" // En este que me encontré por accidente también solo era poner "searchbar"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+              onChange={(e) => setSearchTerm(e.target.value)}/>
           </div>
           <div className="relative">
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="h-11 min-h-11 rounded-[99px] border border-cyan-400 px-4 pr-10 py-2.5 font-bold text-cyan-400 hover:bg-cyan-400/10 bg-transparent appearance-none cursor-pointer [&>option]:bg-gray [&>option]:text-white"
-            >
+              className="h-11 min-h-11 rounded-[99px] border border-cyan-400 px-4 pr-10 py-2.5 font-bold text-cyan-400 hover:bg-cyan-400/10 bg-transparent appearance-none cursor-pointer [&>option]:bg-gray [&>option]:text-white">
               <option value="all">Todas</option>
               <option value="pending">Pendientes</option>
               <option value="processing">Procesando</option>
@@ -162,8 +158,7 @@ export default function PurchasesPage() {
             filteredGroups.map((group) => (
               <div
                 key={group.date}
-                className="overflow-hidden rounded-lg bg-gray p-6"
-              >
+                className="overflow-hidden rounded-lg bg-gray p-6">
                 <Body className="mb-6 text-white font-bold">{group.date}</Body>
                 <div className="h-px w-full bg-white" />
                 <div className="mt-6 space-y-6">
@@ -177,8 +172,7 @@ export default function PurchasesPage() {
                             src={item.imageUrl || "/placeholder.svg"}
                             alt={item.name}
                             width={80}
-                            height={80}
-                          />
+                            height={80}/>
                         ))}
                         {order.items.length > 2 && (
                           <div className="h-20 w-20 flex-shrink-0 rounded-md bg-zinc-700 flex items-center justify-center">

@@ -57,8 +57,7 @@ export function InfoCard({
         hover:shadow-lg hover:scale-[1.01]
         group
       `}
-      id={id}
-    >
+      id={id}>
       <InfoCardHeader
         icon={icon}
         title={title}
@@ -69,8 +68,7 @@ export function InfoCard({
         isCardExpanded={isCardExpanded}
         showDetailed={showDetailed}
         onToggleCard={toggleCard}
-        onToggleDetailed={toggleDetailed}
-      />
+        onToggleDetailed={toggleDetailed}/>
 
       <div
         className={`
@@ -80,8 +78,7 @@ export function InfoCard({
               ? "grid-rows-[1fr] opacity-100 mt-4"
               : "grid-rows-[0fr] opacity-0 mt-0"
           }
-        `}
-      >
+        `}>
         <div className="overflow-hidden">
           <div className="space-y-4">
             {sections.length > 0 && (
@@ -94,8 +91,7 @@ export function InfoCard({
                     isExpanded={expandedSections.has(index)}
                     isDetailedExpanded={expandedSections.has(index + 1000)}
                     onToggleSection={toggleSection}
-                    onToggleDetailed={(idx) => toggleSection(idx + 1000)}
-                  />
+                    onToggleDetailed={(idx) => toggleSection(idx + 1000)}/>
                 ))}
               </div>
             )}
