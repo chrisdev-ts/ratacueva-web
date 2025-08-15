@@ -9,7 +9,7 @@ export interface Shipment {
     trackingNumber: string;
     carrier: string;
     destination: string;
-    status: StatusType;
+    status: "completed" | "pending" | "processing" | "cancelled";
     createdAt: string;
 }
 
@@ -28,6 +28,22 @@ interface ShipmentApiResponse {
         createdAt: string;
     }>;
     meta: any;
+}
+
+interface ShipmentDetailApiResponse {
+    message: string;
+    data: {
+        _id: string;
+        trackingNumber: string;
+        shippingProvider: string;
+        shippingAddress: {
+            city: string;
+            state: string;
+            country?: string;
+        };
+        currentStatus: string;
+        createdAt: string;
+    };
 }
 
 export const useShipments = () => {
@@ -59,5 +75,39 @@ export const useShipments = () => {
                 createdAt: new Date(item.createdAt).toLocaleDateString("es-MX"),
             }));
         },
+    });
+};
+
+export const useShipmentDetails = (orderId: string) => {
+    return useQuery<Shipment>({
+        queryKey: ["shipment", orderId],
+        queryFn: async () => {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${API_URL}/orders/${orderId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (!res.ok) {
+                throw new Error("Error al cargar los detalles del envío");
+            }
+
+            const response: ShipmentDetailApiResponse = await res.json();
+            const item = response.data;
+
+            return {
+                id: item._id,
+                trackingNumber: item.trackingNumber,
+                carrier: item.shippingProvider,
+                destination:
+                    item.shippingAddress?.city && item.shippingAddress?.state
+                        ? `${item.shippingAddress.city}, ${item.shippingAddress.state}`
+                        : "Desconocido",
+                status: mapStatusToStatusType(item.currentStatus),
+                createdAt: new Date(item.createdAt).toLocaleDateString("es-MX"),
+            };
+        },
+        enabled: !!orderId, // Solo se ejecuta si hay un ID
     });
 };

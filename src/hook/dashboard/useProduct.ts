@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const API_URL = "https://ratacueva-api.onrender.com/api/products";
 
-type Product = {
+export type Item = {
     _id: string;
     name: string;
     category: string;
@@ -12,7 +12,7 @@ type Product = {
 };
 
 export const useProducts = () => {
-    return useQuery<Product[]>({
+    return useQuery<Item[]>({
         queryKey: ["products"],
         queryFn: async () => {
             const res = await fetch(API_URL);

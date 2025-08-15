@@ -15,7 +15,7 @@ type Address = {
     isDefault: boolean;
 };
 
-type Employee = {
+export type Employee = {
     _id: string;
     name: string;
     lastName: string;
