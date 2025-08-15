@@ -63,8 +63,7 @@ export function PolicyPageLayout({
         <HighlightBox
           icon={highlightBox.icon}
           title={highlightBox.title}
-          content={highlightBox.content}
-        />
+          content={highlightBox.content}/>
       </section>
 
       {/* Quick Access Cards */}

@@ -58,8 +58,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
   const ProductCard = ({ product }: { product: Product }) => (
     <Link 
       href={`/product/${product.id}`}
-      className="block bg-gray hover:bg-dark border border-2 border-transparent hover:border-gray transition-colors transition-border rounded-lg overflow-hidden group cursor-pointer"
-    >
+      className="block bg-gray hover:bg-dark border border-2 border-transparent hover:border-gray transition-colors transition-border rounded-lg overflow-hidden group cursor-pointer">
       {/* Image Container */}
       <div className="relative h-56 lg:h-64 p-4 flex flex-col justify-center items-center">
         <Image
@@ -67,8 +66,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           width={300}
-          height={300}
-        />
+          height={300}/>
         {/* Action Buttons */}
         <div className="absolute top-2 right-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <button 
@@ -78,15 +76,13 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
                 ? 'bg-red-500 hover:bg-red-600'
                 : 'bg-primary hover:bg-primary/80'
             }`}
-            title={isInFavorites(String(product.id)) ? "Remover de favoritos" : "Agregar a favoritos"}
-          >
+            title={isInFavorites(String(product.id)) ? "Remover de favoritos" : "Agregar a favoritos"}>
             <HeartIcon className="w-4 h-4 text-white" />
           </button>
           <button 
             onClick={(e) => handleAddToCart(e, product)}
             className="w-8 h-8 bg-primary hover:bg-primary/80 rounded-full flex items-center justify-center"
-            title="Agregar al carrito"
-          >
+            title="Agregar al carrito">
             <ShoppingCartIcon className="w-4 h-4 text-white" />
           </button>
         </div>
@@ -123,8 +119,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
                     index < Math.floor(product.rating)
                       ? "text-yellow-400"
                       : "text-dark"
-                  }`}
-                />
+                  }`}/>
               ))}
             </div>
             <BodySmall className="text-white font-medium">{product.rating}</BodySmall>
@@ -191,8 +186,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
         <div className="relative">
           <button
             onClick={() => setShowSortDropdown(!showSortDropdown)}
-            className="flex items-center gap-2 px-4 py-2 bg-dark hover:bg-gray border border-2 border-gray rounded-lg text-white text-sm transition-colors"
-          >
+            className="flex items-center gap-2 px-4 py-2 bg-dark hover:bg-gray border border-2 border-gray rounded-lg text-white text-sm transition-colors">
             <span>Ordenar: {sortOptions.find((opt) => opt.value === sortBy)?.label}</span>
             <ChevronDownIcon className="w-4 h-4" />
           </button>
@@ -209,8 +203,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
                     }}
                     className={`w-full px-4 py-3 text-left text-sm hover:bg-dark transition-colors ${
                       sortBy === option.value ? "text-secondary" : "text-white"
-                    }`}
-                  >
+                    }`}>
                     {option.label}
                   </button>
                 ))}

@@ -40,8 +40,7 @@ export class ErrorBoundary extends Component<Props, State> {
           </BodySmall>
           <button
             onClick={() => this.setState({ hasError: false })}
-            className="text-cyan-400 hover:text-cyan-300 transition-colors"
-          >
+            className="text-cyan-400 hover:text-cyan-300 transition-colors">
             Intentar de nuevo
           </button>
         </div>

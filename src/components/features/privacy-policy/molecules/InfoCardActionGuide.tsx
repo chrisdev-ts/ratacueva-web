@@ -51,8 +51,7 @@ export function InfoCardActionGuide({ actionGuide }: InfoCardActionGuideProps) {
                 ? "noopener noreferrer"
                 : undefined
             }
-            className="inline-flex items-center gap-2 px-4 py-2 bg-success text-dark font-bold rounded-full transition-colors text-sm"
-          >
+            className="inline-flex items-center gap-2 px-4 py-2 bg-success text-dark font-bold rounded-full transition-colors text-sm">
             <span>{actionGuide.nextAction.label}</span>
             {actionGuide.nextAction.external && (
               <ArrowTopRightOnSquareIcon className="h-4 w-4" />

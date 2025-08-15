@@ -65,8 +65,7 @@ export function InfoCardHeader({
       className={`flex flex-col gap-4 ${
         collapsible ? "cursor-pointer group" : ""
       }`}
-      onClick={collapsible ? onToggleCard : undefined}
-    >
+      onClick={collapsible ? onToggleCard : undefined}>
       <div className="flex items-center gap-3">
         <div className="flex-shrink-0">{icon}</div>
         <Subheading className={`flex-1 transition-colors`}>{title}</Subheading>
@@ -84,8 +83,7 @@ export function InfoCardHeader({
       {legalBadge && (
         <div
           className={`border inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium w-fit ${badgeClass}`}
-          title={legalBadge.tooltip}
-        >
+          title={legalBadge.tooltip}>
           <span>{legalBadgeIcons[legalBadge.type]}</span>
           <span>{legalBadgeLabels[legalBadge.type]}</span>
           {legalBadge.lawReference && (
@@ -114,8 +112,7 @@ export function InfoCardHeader({
               e.stopPropagation();
               onToggleDetailed();
             }}
-            className={`transition-colors hover:text-white mt-2 self-start`}
-          >
+            className={`transition-colors hover:text-white mt-2 self-start`}>
             {showDetailed
               ? "Ver versión simplificada"
               : "Ver versión detallada"}

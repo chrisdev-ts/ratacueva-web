@@ -43,19 +43,16 @@ export function QuickAccessCard({
         className={`
           ${base} border rounded-lg p-4 transition-all duration-300
           hover:scale-[1.02] cursor-pointer group h-full
-        `}
-      >
+        `}>
         <div className="flex flex-col h-full space-y-2">
           <div className="flex items-start gap-3">
             <div className="flex-1 min-w-0">
               <Subheading
-                className={`font-bold leading-tight transition-colors ${accent}`}
-              >
+                className={`font-bold leading-tight transition-colors ${accent}`}>
                 {title}
               </Subheading>
               <BodySmall
-                className={`bg-current/20 px-2 py-1 rounded mt-1 inline-block capitalize ${accent}`}
-              >
+                className={`bg-current/20 px-2 py-1 rounded mt-1 inline-block capitalize ${accent}`}>
                 {category}
               </BodySmall>
             </div>

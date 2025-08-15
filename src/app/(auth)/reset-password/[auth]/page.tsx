@@ -18,8 +18,7 @@ const PasswordResetPage = () => {
           alt="Rata Cueva Logo"
           className="w-[120px] sm:w-[150px] md:w-[180px] h-auto"
           width={180}
-          height={60}
-        />
+          height={60}/>
       </div>
 
       <div className="flex flex-col justify-center items-center min-h-screen px-4 sm:px-12 lg:px-20 py-10">
@@ -30,8 +29,7 @@ const PasswordResetPage = () => {
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[214px] md:h-[214px] aspect-square"
-              aria-label="Restart icon"
-            >
+              aria-label="Restart icon">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"

@@ -112,8 +112,7 @@ export default function PersonalInfoPage() {
             ]}
             title="Información personal"
             color="text-white"
-            className="mb-8"
-          />
+            className="mb-8"/>
           <div className="overflow-hidden rounded-lg bg-gray p-8">
             <div className="text-white text-center">Cargando...</div>
           </div>
@@ -132,8 +131,7 @@ export default function PersonalInfoPage() {
           ]}
           title="Información personal"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         <div className="overflow-hidden rounded-lg bg-gray p-8">
           <form onSubmit={handleSubmit}>
             <div className="mb-6 flex flex-col items-start gap-6 self-stretch">
@@ -146,8 +144,7 @@ export default function PersonalInfoPage() {
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
-                  required
-                />
+                  required/>
               </div>
               
               <div className="flex w-full items-start gap-4 sm:gap-6">
@@ -160,8 +157,7 @@ export default function PersonalInfoPage() {
                     type="text"
                     value={formData.lastName}
                     onChange={(e) => handleInputChange("lastName", e.target.value)}
-                    required
-                  />
+                    required/>
                 </div>
                 <div className="flex flex-1 min-w-0 flex-col items-start gap-4">
                   <BodySmall as="label" htmlFor="secondName" className="text-base font-medium text-white">
@@ -171,8 +167,7 @@ export default function PersonalInfoPage() {
                     id="secondName"
                     type="text"
                     value={formData.secondLastName}
-                    onChange={(e) => handleInputChange("secondLastName", e.target.value)}
-                  />
+                    onChange={(e) => handleInputChange("secondLastName", e.target.value)}/>
                 </div>
               </div>
               
@@ -185,8 +180,7 @@ export default function PersonalInfoPage() {
                   type="email"
                   value={profile?.email || ""}
                   disabled
-                  className="text-neutral-400"
-                />
+                  className="text-neutral-400"/>
               </div>
               
               <div className="flex w-full flex-col items-start gap-4">
@@ -198,8 +192,7 @@ export default function PersonalInfoPage() {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  required
-                />
+                  required/>
               </div>
               
               <div className="flex w-full flex-col items-start gap-4">
@@ -222,8 +215,7 @@ export default function PersonalInfoPage() {
                   defaultValue="********"
                   className="text-neutral-400"
                   disabled
-                  autoComplete="current-password"
-                />
+                  autoComplete="current-password"/>
               </div>
               
               <div className="flex w-full flex-col items-start gap-4">
@@ -233,8 +225,7 @@ export default function PersonalInfoPage() {
                 <Input
                   id="newPassword"
                   type="password"
-                  autoComplete="new-password"
-                />
+                  autoComplete="new-password"/>
               </div>
               
               <div className="flex w-full flex-col items-start gap-4">
@@ -244,8 +235,7 @@ export default function PersonalInfoPage() {
                 <Input
                   id="repeatNewPassword"
                   type="password"
-                  autoComplete="new-password"
-                />
+                  autoComplete="new-password"/>
               </div>
             </div>
 
@@ -265,8 +255,7 @@ export default function PersonalInfoPage() {
             <div className="flex w-full justify-end">
               <Button 
                 type="submit"
-                disabled={updating}
-              >
+                disabled={updating}>
                 <CheckIcon className="w-5 h-5 mr-2" />
                 {updating ? "Actualizando..." : "Actualizar"}
               </Button>

@@ -61,8 +61,7 @@ const RegisterPage = () => {
               alt="Rata Cueva Logo"
               className="w-[60%] h-auto"
               width={240}
-              height={80}
-            />
+              height={80}/>
           </div>
 
           <div className="space-y-2">
@@ -76,8 +75,7 @@ const RegisterPage = () => {
               onChange={(e) => setName(e.target.value)}
               placeholder="Ej: Juan"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <div className="flex gap-6 flex-col sm:flex-row">
@@ -122,8 +120,7 @@ const RegisterPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ej: correo@ejemplo.com"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <div className="space-y-2">
@@ -137,16 +134,14 @@ const RegisterPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <div className="space-y-2 pb-2">
             <Body
               as="label"
               htmlFor="confirmPassword"
-              className="block text-text"
-            >
+              className="block text-text">
               Repetir contraseña
             </Body>
             <Input
@@ -156,8 +151,7 @@ const RegisterPage = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="********"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <Button type="submit" variant="primary" className="w-full">
@@ -169,8 +163,7 @@ const RegisterPage = () => {
               ¿Ya tienes una cuenta?{" "}
               <a
                 href="/login"
-                className="font-bold hover:text-primary transition-colors"
-              >
+                className="font-bold hover:text-primary transition-colors">
                 Inicia sesión
               </a>
             </Body>

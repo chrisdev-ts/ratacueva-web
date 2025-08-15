@@ -102,8 +102,7 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         message={toast.message}
         isVisible={toast.isVisible}
         onClose={() => setToast({ isVisible: false, message: '' })}
-        type="info"
-      />
+        type="info"/>
     </FavoritesContext.Provider>
   );
 }; 

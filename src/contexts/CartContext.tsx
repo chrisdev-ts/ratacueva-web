@@ -123,8 +123,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       <Toast
         message={toast.message}
         isVisible={toast.isVisible}
-        onClose={() => setToast({ isVisible: false, message: '' })}
-      />
+        onClose={() => setToast({ isVisible: false, message: '' })}/>
     </CartContext.Provider>
   );
 }; 

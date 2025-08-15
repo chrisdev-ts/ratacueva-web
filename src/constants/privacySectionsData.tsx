@@ -169,8 +169,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Esta responsabilidad nos compromete legalmente a proteger tu privacidad y manejar tus datos con el más alto estándar de cuidado.",
-          }}
-        />
+          }}/>
         <InfoCard
           id="domicilio-oficial"
           icon={<MapPinIcon className="h-6 w-6" />}
@@ -224,8 +223,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Para solicitudes presenciales, recomendamos contactar previamente a privacidad@ratacueva.com para coordinar su visita y asegurar una atención eficiente.",
-          }}
-        />
+          }}/>
         <InfoCard
           id="contacto-privacidad"
           defaultExpanded={false}
@@ -279,8 +277,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Para acelerar la atención de tu solicitud, incluye siempre información clara sobre el tipo de consulta y tus datos de contacto.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -397,8 +394,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
               variant: "highlight",
               collapsible: true,
             },
-          ]}
-        />
+          ]}/>
 
         <InfoCard
           id="datos-financieros-pago"
@@ -448,8 +444,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Su seguridad financiera es nuestra prioridad. Por eso no almacenamos información sensible de tarjetas.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="datos-transaccion"
@@ -490,8 +485,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
               ],
               collapsible: true,
             },
-          ]}
-        />
+          ]}/>
 
         <InfoCard
           id="datos-uso-preferencias"
@@ -543,8 +537,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Todos estos datos se utilizan exclusivamente para mejorar su experiencia de compra en RataCueva y ofrecerle contenido más relevante.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -689,8 +682,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Estas finalidades son indispensables para que RataCueva pueda operar como un e-commerce y cumplir con los servicios que esperas.",
-          }}
-        />
+          }}/>
 
         {/* SECTION: FINALIDADES SECUNDARIAS */}
         <InfoCard
@@ -757,8 +749,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Puedes oponerte a estas finalidades en cualquier momento sin afectar los servicios principales de RataCueva.",
-          }}
-        />
+          }}/>
 
         {/* SECTION: DERECHO DE OPOSICIÓN */}
         <InfoCard
@@ -794,8 +785,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Las finalidades primarias no pueden ser rechazadas ya que son esenciales para el funcionamiento del servicio.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -937,8 +927,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "RataCueva prioriza tu seguridad financiera; por eso, nunca almacena ni tiene acceso a tu número completo de tarjeta o código CVV/CVC.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="empresas-logistica"
@@ -1000,8 +989,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Solo compartimos la información mínima indispensable para que tu paquete llegue a salvo y te puedan contactar si es necesario.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="servicios-nube"
@@ -1063,8 +1051,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Todos nuestros proveedores de nube cumplen con los más altos estándares de seguridad y privacidad internacional para proteger tu información.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="servicios-marketing"
@@ -1120,8 +1107,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Siempre puedes oponerte a las transferencias de datos para fines de marketing o análisis contactando a nuestro equipo de privacidad.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="proveedores-soporte"
@@ -1176,8 +1162,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Solo compartimos la información mínima indispensable para que tu consulta de soporte sea resuelta de manera eficiente y segura.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="garantias-proteccion-general"
@@ -1233,8 +1218,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Todas nuestras transferencias cumplen estrictamente con la LFPDPPP y están respaldadas por contratos sólidos de protección de datos, diseñados para tu seguridad.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -1363,8 +1347,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Te recomendamos encarecidamente activar la autenticación de dos factores (2FA) en tu cuenta para añadir una capa adicional de seguridad personal.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="protecciones-administrativas"
@@ -1421,8 +1404,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Todo nuestro personal firma rigurosos acuerdos de confidencialidad antes de tener cualquier tipo de acceso a nuestros sistemas o datos.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="monitoreo-auditorias"
@@ -1479,8 +1461,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Mantenemos un programa de recompensas por vulnerabilidades (`bug bounty program`) para colaborar con investigadores de seguridad éticos y fortalecer nuestras defensas.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="certificaciones"
@@ -1533,8 +1514,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Nuestras certificaciones son renovadas anualmente y están disponibles para consulta pública, demostrando nuestro compromiso continuo con la seguridad.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -1647,8 +1627,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Estas cookies no pueden ser desactivadas porque son absolutamente necesarias para que el sitio web funcione de manera básica y segura.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="cookies-analisis"
@@ -1706,8 +1685,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Toda la información recopilada es agregada y anónima; no te identificamos personalmente a través de estas cookies, solo buscamos mejorar el servicio.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="cookies-funcionales"
@@ -1751,8 +1729,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Estas cookies te ahorran tiempo al evitar que tengas que reconfigurar tus preferencias en cada visita al sitio, brindando una experiencia fluida.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="cookies-marketing"
@@ -1808,8 +1785,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Tienes la opción de no recibir publicidad personalizada manteniendo toda la funcionalidad y experiencia de compra en el sitio.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="control-cookies"
@@ -1867,8 +1843,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Recuerda que desactivar las cookies esenciales puede afectar seriamente la funcionalidad del sitio, incluyendo el carrito de compras y la autenticación de tu cuenta.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -1981,8 +1956,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Este derecho te brinda transparencia total sobre el manejo de tu información personal.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="derecho-rectificacion"
@@ -2031,8 +2005,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Mantener tu información precisa nos permite brindarte un mejor servicio.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="derecho-cancelacion"
@@ -2080,8 +2053,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Algunos datos pueden conservarse por obligaciones legales o para el ejercicio o defensa de reclamaciones, incluso después de una solicitud de cancelación.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="derecho-oposicion"
@@ -2129,8 +2101,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Tu oposición al marketing directo se atenderá de inmediato y sin justificación necesaria.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="como-ejercer-arco"
@@ -2192,8 +2163,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
               ],
               collapsible: true,
             },
-          ]}
-        />
+          ]}/>
 
         <InfoCard
           id="plazos-respuesta"
@@ -2236,8 +2206,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "La eficiencia en la atención a tus derechos es nuestra prioridad, cumpliendo siempre con los plazos legales.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="limitaciones-arco"
@@ -2272,8 +2241,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Estas limitaciones están establecidas por la legislación mexicana en materia de protección de datos personales para garantizar la seguridad jurídica.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="revocacion-consentimiento"
@@ -2324,8 +2292,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "La revocación del consentimiento no afecta la licitud del tratamiento basado en el consentimiento previo a su revocación, ni tampoco los tratamientos necesarios por obligación legal.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="mecanismos-automatizados"
@@ -2359,8 +2326,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Te recomendamos utilizar estos mecanismos para una gestión más rápida y eficiente de tus derechos.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -2485,8 +2451,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "La verificación de edad es obligatoria y no se puede omitir para usuarios que declaren o parezcan ser menores de 18 años.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="consentimiento-parental"
@@ -2541,8 +2506,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Para asegurar la protección continua, el consentimiento debe ser renovado anualmente para mantener activa la cuenta del menor.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="derechos-especiales-menores"
@@ -2592,8 +2556,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
               collapsible: true,
               variant: "highlight",
             },
-          ]}
-        />
+          ]}/>
 
         <InfoCard
           id="responsabilidades-padres"
@@ -2649,8 +2612,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Los padres son responsables legales de las acciones de sus hijos menores en plataformas digitales y de la veracidad del consentimiento otorgado.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="procedimiento-notificacion"
@@ -2713,8 +2675,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Actuamos con la máxima urgencia en casos de uso no autorizado de datos de menores.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="contacto-menores"
@@ -2757,8 +2718,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Nuestro equipo especializado en protección de menores está certificado en privacidad infantil para brindarte la mejor asesoría.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="compromiso-proteccion-infantil"
@@ -2811,8 +2771,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "La seguridad y privacidad de los menores es nuestra máxima prioridad, y trabajamos constantemente para superarnos en este aspecto.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -2921,8 +2880,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Algunos datos deben conservarse por ley incluso si solicitas la eliminación de tu cuenta, como los datos fiscales.",
-          }}
-        />
+          }}/>
         <InfoCard
           id="criterios-conservacion"
           icon={<DocumentTextIcon className="h-6 w-6" />}
@@ -2975,8 +2933,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Nos esforzamos en eliminar o anonimizar tus datos periódicamente para proteger tu privacidad y reducir riesgos.",
-          }}
-        />
+          }}/>
         <InfoCard
           id="eliminacion-anticipada"
           icon={<TrashIcon className="h-6 w-6" />}
@@ -3019,8 +2976,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "La eliminación anticipada no aplica a datos que deban conservarse por una obligación legal o para el cumplimiento de un contrato.",
-          }}
-        />
+          }}/>
         <InfoCard
           id="proceso-eliminacion-segura" // Este ID no estaba en tu quickAccessCards, pero es importante.
           icon={<TrashIcon className="h-6 w-6" />}
@@ -3063,8 +3019,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Puedes solicitar una certificación del proceso de eliminación de tus datos contactando a privacidad@ratacueva.com.",
-          }}
-        />
+          }}/>
         <InfoCard
           id="revision-politicas-retencion" // ID corregido y más descriptivo
           icon={<ShieldCheckIcon className="h-6 w-6" />}
@@ -3108,8 +3063,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Nuestro compromiso es no conservar tus datos más tiempo del estrictamente necesario y legalmente requerido, garantizando tu privacidad.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -3236,8 +3190,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
               variant: "highlight",
               collapsible: true,
             },
-          ]}
-        />
+          ]}/>
 
         <InfoCard
           id="publicacion-cambios"
@@ -3292,8 +3245,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Mantenemos disponible un historial completo de versiones anteriores para tu consulta y comparación detallada en cualquier momento.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="notificaciones"
@@ -3352,8 +3304,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Para cambios menores (correcciones tipográficas, actualizaciones de contacto), la notificación puede ser solo a través de una actualización en el sitio web, sin aviso directo.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="revision-periodica"
@@ -3406,8 +3357,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
               variant: "highlight",
               collapsible: true,
             },
-          ]}
-        />
+          ]}/>
 
         <InfoCard
           id="aceptacion-modificaciones"
@@ -3459,8 +3409,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "Su no aceptación de los nuevos términos no afecta la validez del tratamiento de datos realizado anteriormente bajo las versiones previas del aviso.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="cronologia-entrada-vigor"
@@ -3512,8 +3461,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "warning",
             text: "Los cambios que sean resultado de requerimientos legales o situaciones de emergencia de seguridad pueden entrar en vigor sin un período de gracia prolongado.",
-          }}
-        />
+          }}/>
       </>
     ),
   },
@@ -3624,8 +3572,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
               variant: "highlight",
               collapsible: true,
             },
-          ]}
-        />
+          ]}/>
 
         <InfoCard
           id="contacto-rata-cueva"
@@ -3672,8 +3619,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "RataCueva colaborará plenamente con el INAI en cualquier investigación que pueda surgir, buscando siempre la resolución más justa.",
-          }}
-        />
+          }}/>
 
         <InfoCard
           id="contacto-inai"
@@ -3739,8 +3685,7 @@ export const PRIVACY_POLICY_SECTIONS: PolicySectionData[] = [
           footerNote={{
             type: "tip",
             text: "El INAI también ofrece asesoría gratuita para guiarte en el proceso de tu queja o denuncia.",
-          }}
-        />
+          }}/>
       </>
     ),
   },

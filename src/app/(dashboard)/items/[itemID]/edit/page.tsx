@@ -35,8 +35,7 @@ export default function EditProduct({ params }: EditProductProps) {
 
   const handleInputChange = (
     e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -51,15 +50,13 @@ export default function EditProduct({ params }: EditProductProps) {
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <path
         d="M17 10L12 15L7 10"
         stroke="white"
         strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+        strokeLinejoin="round"/>
     </svg>
   );
 
@@ -80,8 +77,7 @@ export default function EditProduct({ params }: EditProductProps) {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="min-h-[44px]"
-                />
+                  className="min-h-[44px]"/>
               </div>
               <div className="flex-1 flex flex-col gap-4">
                 <Body className="text-text">Categoria</Body>
@@ -90,8 +86,7 @@ export default function EditProduct({ params }: EditProductProps) {
                     name="category"
                     value={formData.category}
                     onChange={handleInputChange}
-                    className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors min-h-[44px] w-full appearance-none cursor-pointer"
-                  >
+                    className="bg-gray border border-border rounded-lg px-4 py-3 text-text text-body outline-none focus:border-primary transition-colors min-h-[44px] w-full appearance-none cursor-pointer">
                     <option value="Workstation">Workstation</option>
                     <option value="Componentes">Componentes</option>
                     <option value="Hardware">Hardware</option>
@@ -112,8 +107,7 @@ export default function EditProduct({ params }: EditProductProps) {
                   name="price"
                   value={formData.price}
                   onChange={handleInputChange}
-                  className="min-h-[44px]"
-                />
+                  className="min-h-[44px]"/>
               </div>
               <div className="flex-1 flex flex-col gap-4">
                 <Body className="text-text">Modelo *</Body>
@@ -122,8 +116,7 @@ export default function EditProduct({ params }: EditProductProps) {
                   name="model"
                   value={formData.model}
                   onChange={handleInputChange}
-                  className="min-h-[44px]"
-                />
+                  className="min-h-[44px]"/>
               </div>
             </div>
             {/* Third Row - Inventory */}
@@ -159,8 +152,7 @@ export default function EditProduct({ params }: EditProductProps) {
                       alt={`Product image ${index + 1}`}
                       className="w-[225px] h-[225px] object-cover aspect-square"
                       width={225}
-                      height={225}
-                    />
+                      height={225}/>
                   </div>
                 ))}
               </div>

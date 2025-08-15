@@ -19,8 +19,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`flex items-center space-x-2 ${className}`}
-    >
+      className={`flex items-center space-x-2 ${className}`}>
       {items.map((item, index) => (
         <React.Fragment key={index}>
           {index > 0 && (
@@ -29,8 +28,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           {item.href && index < items.length - 1 ? (
             <Link
               href={item.href}
-              className="hover:underline"
-            >
+              className="hover:underline">
               <BodySmall>{item.label}</BodySmall>
             </Link>
           ) : (

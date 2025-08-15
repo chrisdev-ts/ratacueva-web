@@ -96,8 +96,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link
               href="/"
-              className="flex justify-start items-center gap-2 mb-6"
-            >
+              className="flex justify-start items-center gap-2 mb-6">
               <Image
                 src="/images/logotipo-base.svg"
                 alt="RataCueva Logo"
@@ -124,8 +123,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     className="w-10 h-10"
-                    aria-label={social.name}
-                  >
+                    aria-label={social.name}>
                     {social.icon}
                   </Button>
                 ))}
@@ -141,8 +139,7 @@ export default function Footer() {
                 <Link
                   key={index}
                   href={item.href}
-                  className="block text-placeholder hover:text-cyan-400 transition-colors text-base"
-                >
+                  className="block text-placeholder hover:text-cyan-400 transition-colors text-base">
                   {item.label}
                 </Link>
               ))}
@@ -157,8 +154,7 @@ export default function Footer() {
                 <Link
                   key={index}
                   href={item.href}
-                  className="block text-placeholder hover:text-cyan-400 transition-colors text-base"
-                >
+                  className="block text-placeholder hover:text-cyan-400 transition-colors text-base">
                   {item.label}
                 </Link>
               ))}
@@ -178,8 +174,7 @@ export default function Footer() {
                       {contact.items.map((item, itemIndex) => (
                         <Body
                           key={itemIndex}
-                          className="text-placeholder text-base"
-                        >
+                          className="text-placeholder text-base">
                           {contact.type === "address" && itemIndex > 0 ? (
                             <>
                               <br />
@@ -207,20 +202,17 @@ export default function Footer() {
             <div className="flex flex-wrap justify-center lg:justify-end gap-6">
               <Link
                 href="#"
-                className="text-placeholder hover:text-cyan-400 transition-colors text-sm lg:text-base"
-              >
+                className="text-placeholder hover:text-cyan-400 transition-colors text-sm lg:text-base">
                 Términos de servicio
               </Link>
               <Link
                 href="#"
-                className="text-placeholder hover:text-cyan-400 transition-colors text-sm lg:text-base"
-              >
+                className="text-placeholder hover:text-cyan-400 transition-colors text-sm lg:text-base">
                 Política de privacidad
               </Link>
               <Link
                 href="#"
-                className="text-placeholder hover:text-cyan-400 transition-colors text-sm lg:text-base"
-              >
+                className="text-placeholder hover:text-cyan-400 transition-colors text-sm lg:text-base">
                 Cookies
               </Link>
             </div>

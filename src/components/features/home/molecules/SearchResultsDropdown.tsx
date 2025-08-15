@@ -32,8 +32,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
       <Link 
         href={`/product/${product.id}`} 
         className="absolute inset-0 z-10"
-        onClick={() => console.log('ProductCard - Clicked product:', product.id, product.name)}
-      >
+        onClick={() => console.log('ProductCard - Clicked product:', product.id, product.name)}>
         {" "}
         {/* Link covers the entire card */}
         <span className="sr-only">View product details for {product.name}</span>
@@ -46,8 +45,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
             alt={product.name}
             width={200}
             height={200}
-            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-          />
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"/>
           {/* Discount Badge */}
           {product.discount && (
             <div className="absolute top-2 left-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">
@@ -61,8 +59,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
                 e.preventDefault()
                 e.stopPropagation()
                 // Lógica para agregar a favoritos
-              }}
-            >
+              }}>
               <HeartIcon className="w-4 h-4 text-white" />
             </Button>
             <Button 
@@ -70,8 +67,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
                 e.preventDefault()
                 e.stopPropagation()
               }}
-              
-            >
+              >
               <ShoppingCartIcon className="w-4 h-4 text-white" />
             </Button>
           </div>
@@ -133,8 +129,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
         <div className="relative">
           <button
             onClick={() => setShowSortDropdown(!showSortDropdown)}
-            className="flex items-center gap-2 px-4 py-2 bg-gray hover:bg-dark border border-gray rounded-lg text-white text-sm transition-colors"
-          >
+            className="flex items-center gap-2 px-4 py-2 bg-gray hover:bg-dark border border-gray rounded-lg text-white text-sm transition-colors">
             <span>Ordenar: {sortOptions.find((opt) => opt.value === sortBy)?.label}</span>
             <ChevronDownIcon className="w-4 h-4" />
           </button>
@@ -151,8 +146,7 @@ export default function SearchResults({ products, sortBy, onSortChange, query }:
                     }}
                     className={`w-full px-4 py-3 text-left text-sm hover:bg-dark transition-colors ${
                       sortBy === option.value ? "text-cyan-400" : "text-white"
-                    }`}
-                  >
+                    }`}>
                     {option.label}
                   </button>
                 ))}

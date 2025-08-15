@@ -64,8 +64,7 @@ export default function Items() {
       cell: (info) => (
         <Link
           href={`/items/${info.row.original._id || info.row.index}`}
-          className="text-text underline hover:no-underline transition-all"
-        >
+          className="text-text underline hover:no-underline transition-all">
           <Body className="text-current">{String(info.getValue())}</Body>
         </Link>
       ),
@@ -115,8 +114,7 @@ export default function Items() {
         <Heading>Administrar productos</Heading>
         <Link href="/items/add">
           <Button
-            variant="success"
-          >
+            variant="success">
             Agregar producto
           </Button>
         </Link>
@@ -129,8 +127,7 @@ export default function Items() {
             <Dropdown
               value={itemsPerPage}
               onChange={(val) => setItemsPerPage(val)}
-              className="w-[100px]"
-            />
+              className="w-[100px]"/>
             <Body className="text-text p-2">entradas por página</Body>
           </div>
 
@@ -143,8 +140,7 @@ export default function Items() {
               placeholder="Buscar producto..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
+              className="pl-10"/>
           </div>
         </div>
 
@@ -181,8 +177,7 @@ export default function Items() {
                   else if (label === "»") setCurrentPage(totalPages);
                   else if (typeof label === "number") setCurrentPage(label);
                 }}
-                className={currentPage === label ? "bg-gray" : ""}
-              >
+                className={currentPage === label ? "bg-gray" : ""}>
                 {label}
               </Button>
             ))}

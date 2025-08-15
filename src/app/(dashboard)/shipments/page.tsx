@@ -59,8 +59,7 @@ export default function Shipments() {
       cell: (info) => (
         <Link
           href={`/shipments/${info.getValue()}`}
-          className="text-text underline hover:no-underline transition-all"
-        >
+          className="text-text underline hover:no-underline transition-all">
           <Body className="text-current truncate max-w-[120px]">
             {String(info.getValue())}
           </Body>
@@ -139,8 +138,7 @@ export default function Shipments() {
               placeholder="Buscar envío..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
+              className="pl-10"/>
           </div>
         </div>
 
@@ -180,8 +178,7 @@ export default function Shipments() {
                   else if (label === "»") setCurrentPage(totalPages);
                   else if (typeof label === "number") setCurrentPage(label);
                 }}
-                className={currentPage === label ? "bg-gray" : ""}
-              >
+                className={currentPage === label ? "bg-gray" : ""}>
                 {label}
               </Button>
             ))}

@@ -45,8 +45,7 @@ export default function NotificationsPage() {
           ]}
           title="Notificaciones"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         <div className="space-y-6">
           <div className="p-6 bg-gray rounded-lg">
             <div className="flex items-center gap-3 mb-4">
@@ -62,13 +61,11 @@ export default function NotificationsPage() {
                   onClick={() => updateEmailSetting('orders')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     emailNotifications.orders ? 'bg-primary' : 'bg-dark'
-                  }`}
-                >
+                  }`}>
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
                       emailNotifications.orders ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
+                    }`}/>
                 </button>
               </div>
               <div className="flex items-center justify-between">
@@ -80,13 +77,11 @@ export default function NotificationsPage() {
                   onClick={() => updateEmailSetting('promotions')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     emailNotifications.promotions ? 'bg-primary' : 'bg-dark'
-                  }`}
-                >
+                  }`}>
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
                       emailNotifications.promotions ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
+                    }`}/>
                 </button>
               </div>
               <div className="flex items-center justify-between">
@@ -98,13 +93,11 @@ export default function NotificationsPage() {
                   onClick={() => updateEmailSetting('newsletter')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     emailNotifications.newsletter ? 'bg-primary' : 'bg-dark'
-                  }`}
-                >
+                  }`}>
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
                       emailNotifications.newsletter ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
+                    }`}/>
                 </button>
               </div>
               <div className="flex items-center justify-between">
@@ -116,13 +109,11 @@ export default function NotificationsPage() {
                   onClick={() => updateEmailSetting('security')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     emailNotifications.security ? 'bg-primary' : 'bg-dark'
-                  }`}
-                >
+                  }`}>
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
                       emailNotifications.security ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
+                    }`}/>
                 </button>
               </div>
             </div>
@@ -142,13 +133,11 @@ export default function NotificationsPage() {
                   onClick={() => updatePushSetting('orders')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     pushNotifications.orders ? 'bg-primary' : 'bg-dark'
-                  }`}
-                >
+                  }`}>
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
                       pushNotifications.orders ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
+                    }`}/>
                 </button>
               </div>
               <div className="flex items-center justify-between">
@@ -160,13 +149,11 @@ export default function NotificationsPage() {
                   onClick={() => updatePushSetting('promotions')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     pushNotifications.promotions ? 'bg-primary' : 'bg-dark'
-                  }`}
-                >
+                  }`}>
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
                       pushNotifications.promotions ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
+                    }`}/>
                 </button>
               </div>
               <div className="flex items-center justify-between">
@@ -178,13 +165,11 @@ export default function NotificationsPage() {
                   onClick={() => updatePushSetting('chat')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     pushNotifications.chat ? 'bg-primary' : 'bg-dark'
-                  }`}
-                >
+                  }`}>
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
                       pushNotifications.chat ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
+                    }`}/>
                 </button>
               </div>
               <div className="flex items-center justify-between">
@@ -196,13 +181,11 @@ export default function NotificationsPage() {
                   onClick={() => updatePushSetting('updates')}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     pushNotifications.updates ? 'bg-primary' : 'bg-dark'
-                  }`}
-                >
+                  }`}>
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
                       pushNotifications.updates ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
+                    }`}/>
                 </button>
               </div>
             </div>

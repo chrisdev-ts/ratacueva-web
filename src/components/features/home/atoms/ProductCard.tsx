@@ -60,8 +60,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           width={300}
-          height={300}
-        />
+          height={300}/>
 
 
       </div>
@@ -85,8 +84,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     index < Math.floor(product.rating)
                       ? "text-yellow-400"
                       : "text-white"
-                  }`}
-                />
+                  }`}/>
               ))}
             </div>
             <BodySmall className="text-white font-medium">{product.rating}</BodySmall>
@@ -105,15 +103,13 @@ export default function ProductCard({ product }: ProductCardProps) {
                   ? 'bg-red-500 text-white'
                   : 'bg-primary hover:bg-primary/80 transition-colors rounded-full text-white'
               }`}
-              title={isInFavorites(product.id) ? "Remover de favoritos" : "Agregar a favoritos"}
-            >
+              title={isInFavorites(product.id) ? "Remover de favoritos" : "Agregar a favoritos"}>
               <HeartIcon className="w-5 h-5" />
             </button>
             <button
               onClick={handleAddToCart}
               className="p-2 bg-primary hover:bg-primary/80 transition-colors rounded-full text-white"
-              title="Agregar al carrito"
-            >
+              title="Agregar al carrito">
               <ShoppingCartIcon className="w-5 h-5" />
             </button>
           </div>

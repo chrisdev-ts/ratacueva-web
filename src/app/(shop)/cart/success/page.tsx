@@ -407,15 +407,13 @@ export default function SuccessfulPurchasePage() {
                   {purchaseData.items.map((item: CartItem, index: number) => (
                     <div
                       key={`${item.id}-${index}`}
-                      className="w-full p-6 bg-zinc-800 rounded-lg flex justify-start items-center gap-6"
-                    >
+                      className="w-full p-6 bg-zinc-800 rounded-lg flex justify-start items-center gap-6">
                       <Image
                         className="w-24 h-24 object-cover rounded-lg"
                         src={item.image || "/placeholder.svg"}
                         alt={item.name}
                         width={96}
-                        height={96}
-                      />
+                        height={96}/>
                       <div className="flex-1 flex flex-col justify-start items-start gap-2">
                         <Subheading className="text-white">
                           {item.name}

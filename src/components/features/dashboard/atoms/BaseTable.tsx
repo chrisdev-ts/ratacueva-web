@@ -27,8 +27,7 @@ function BaseTable<T>({ data, columns, className = "" }: BaseTableProps<T>) {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr
               key={headerGroup.id}
-              className="flex gap-4 px-6 py-5 border-b-2 border-dark"
-            >
+              className="flex gap-4 px-6 py-5 border-b-2 border-dark">
               {headerGroup.headers.map((header) => (
                 <th key={header.id} className="flex-1 text-left">
                   {header.isPlaceholder ? null : (
@@ -48,8 +47,7 @@ function BaseTable<T>({ data, columns, className = "" }: BaseTableProps<T>) {
           {table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
-              className="flex gap-4 px-6 py-4 border-b border-dark last:border-b-0"
-            >
+              className="flex gap-4 px-6 py-4 border-b border-dark last:border-b-0">
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="flex-1">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

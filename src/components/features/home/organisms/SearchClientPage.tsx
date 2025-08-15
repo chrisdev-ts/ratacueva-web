@@ -115,8 +115,7 @@ export default function SearchClientPage({
           <SearchFilters
             filters={initialFilters}
             onFiltersChange={handleFiltersChange}
-            onClose={() => setShowFilters(false)}
-          />
+            onClose={() => setShowFilters(false)}/>
         </div>
         {/* Results */}
         <div className="flex-1">
@@ -124,8 +123,7 @@ export default function SearchClientPage({
             products={sortedProducts}
             sortBy={currentSortBy}
             onSortChange={handleSortChange}
-            query={initialQuery}
-          />
+            query={initialQuery}/>
         </div>
       </div>
     </PageLayout>

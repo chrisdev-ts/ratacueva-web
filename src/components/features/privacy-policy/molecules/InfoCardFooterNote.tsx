@@ -34,8 +34,7 @@ export function InfoCardFooterNote({ footerNote }: InfoCardFooterNoteProps) {
     base = "bg-danger/10 text-white border-danger";
   return (
     <div
-      className={`p-4 rounded-lg border ${base} transition-all duration-200`}
-    >
+      className={`p-4 rounded-lg border ${base} transition-all duration-200`}>
       <BodySmall>
         <span className="mr-2 inline-flex">
           {footerNoteIcons[footerNote.type]}

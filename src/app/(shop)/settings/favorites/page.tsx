@@ -39,8 +39,7 @@ export default function FavoritesPage() {
           ]}
           title="Favoritos"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         <div className="space-y-6">
           {favoriteItems.length === 0 ? (
             <div className="p-6 bg-dark rounded-lg">
@@ -53,15 +52,13 @@ export default function FavoritesPage() {
               {favoriteItems.map((item) => (
                 <div
                   key={item.id}
-                  className="p-6 bg-gray rounded-lg flex flex-col sm:flex-row justify-start items-center gap-6"
-                >
+                  className="p-6 bg-gray rounded-lg flex flex-col sm:flex-row justify-start items-center gap-6">
                   <Image
                     className="w-24 h-24 object-contain"
                     src={item.image || "/placeholder.svg"}
                     alt={item.name}
                     width={96}
-                    height={96}
-                  />
+                    height={96}/>
                   <div className="flex-1 flex flex-col sm:flex-row justify-between items-start w-full">
                     <div className="flex-1 flex flex-col justify-center items-start gap-4 mb-4 sm:mb-0">
                       <Link href={`/product/${item.id}`}>

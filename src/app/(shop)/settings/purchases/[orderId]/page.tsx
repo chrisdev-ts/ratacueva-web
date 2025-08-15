@@ -136,8 +136,7 @@ export default function PurchaseDetailPage() {
             ]}
             title="Detalles de la compra"
             color="text-white"
-            className="mb-8"
-          />
+            className="mb-8"/>
           <div className="text-white text-center">Cargando detalles...</div>
         </div>
       </PageLayout>
@@ -156,8 +155,7 @@ export default function PurchaseDetailPage() {
             ]}
             title="Detalles de la compra"
             color="text-white"
-            className="mb-8"
-          />
+            className="mb-8"/>
           <div className="text-red-400 text-center">{error || "No se encontró la compra"}</div>
         </div>
       </PageLayout>
@@ -175,8 +173,7 @@ export default function PurchaseDetailPage() {
           ]}
           title="Detalles de la compra"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
 
         <div className="space-y-6">
           {/* Order Status */}
@@ -216,8 +213,7 @@ export default function PurchaseDetailPage() {
                     src={item.imageUrl || "/placeholder.svg"}
                     alt={item.name}
                     width={80}
-                    height={80}
-                  />
+                    height={80}/>
                   <div className="flex-1">
                     <Body className="text-white font-medium">{item.name}</Body>
                     <Body className="text-zinc-400 text-sm">

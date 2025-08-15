@@ -20,8 +20,7 @@ export default function AddCardPage() {
     process.env.NEXT_PUBLIC_API_URL || "https://ratacueva-api.onrender.com/api";
 
   const [type, setType] = useState<
-    "credit_card" | "debit_card" | "paypal" | "oxxo_cash"
-  >("credit_card");
+    "credit_card" | "debit_card" | "paypal" | "oxxo_cash">("credit_card");
   const [last4, setLast4] = useState("");
   const [provider, setProvider] = useState("BANCO");
   const [expiration, setExpiration] = useState("");
@@ -141,8 +140,7 @@ export default function AddCardPage() {
           ]}
           title="Ingresa una nueva tarjeta"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
 
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col lg:flex-row justify-start items-start gap-8">
@@ -156,8 +154,7 @@ export default function AddCardPage() {
                       <BodySmall
                         as="label"
                         htmlFor="cardNumber"
-                        className="text-white text-base font-medium block"
-                      >
+                        className="text-white text-base font-medium block">
                         Número de tarjeta
                       </BodySmall>
                       <input
@@ -172,8 +169,7 @@ export default function AddCardPage() {
                           setLast4(onlyNums);
                         }}
                         minLength={16}
-                        maxLength={16}
-                      />
+                        maxLength={16}/>
                     </div>
 
                     {/* Nombre */}
@@ -181,8 +177,7 @@ export default function AddCardPage() {
                       <BodySmall
                         as="label"
                         htmlFor="cardName"
-                        className="text-white text-base font-medium block"
-                      >
+                        className="text-white text-base font-medium block">
                         Nombre y apellido
                       </BodySmall>
                       <div className="space-y-1">
@@ -194,8 +189,7 @@ export default function AddCardPage() {
                           value={proprietaryName}
                           onChange={(e) => setProprietaryName(e.target.value)}
                           minLength={3}
-                          maxLength={30}
-                        />
+                          maxLength={30}/>
                         <BodySmall className="text-white text-xs">
                           Como figura en la tarjeta.
                         </BodySmall>
@@ -208,8 +202,7 @@ export default function AddCardPage() {
                         <BodySmall
                           as="label"
                           htmlFor="expiryDate"
-                          className="text-white text-base font-medium block"
-                        >
+                          className="text-white text-base font-medium block">
                           Fecha de vencimiento
                         </BodySmall>
                         <div className="space-y-1">
@@ -230,8 +223,7 @@ export default function AddCardPage() {
                               setExpiration(value);
                             }}
                             minLength={5}
-                            maxLength={5}
-                          />
+                            maxLength={5}/>
                           <BodySmall className="text-white text-xs">
                             Mes / Año
                           </BodySmall>
@@ -242,8 +234,7 @@ export default function AddCardPage() {
                         <BodySmall
                           as="label"
                           htmlFor="cvv"
-                          className="text-white text-base font-medium block"
-                        >
+                          className="text-white text-base font-medium block">
                           Código de seguridad
                         </BodySmall>
                         <div className="space-y-1">
@@ -261,8 +252,7 @@ export default function AddCardPage() {
                                 ""
                               );
                               setCvv(onlyNums);
-                            }}
-                          />
+                            }}/>
                           <BodySmall className="text-white text-xs">
                             CVV
                           </BodySmall>
@@ -310,8 +300,7 @@ export default function AddCardPage() {
                 <Button
                   type="submit"
                   className="bg-pink-600 hover:bg-pink-700"
-                  disabled={isLoading}
-                >
+                  disabled={isLoading}>
                   Guardar y continuar
                 </Button>
               </div>
@@ -328,8 +317,7 @@ export default function AddCardPage() {
         message={toastMessage}
         isVisible={isToastVisible}
         onClose={() => setIsToastVisible(false)}
-        type={toastType}
-      />
+        type={toastType}/>
     </PageLayout>
   );
 }

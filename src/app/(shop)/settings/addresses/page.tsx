@@ -75,8 +75,7 @@ export default function AddressesPage() {
           ]}
           title="Direcciones"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         <div className="overflow-hidden rounded-lg bg-gray p-6">
           {savedAddresses.length === 0 ? (
             <div className="text-white text-center py-4">
@@ -86,8 +85,7 @@ export default function AddressesPage() {
             savedAddresses.map((address) => (
               <div
                 key={address._id}
-                className="mb-6 flex flex-col items-end gap-6 self-stretch"
-              >
+                className="mb-6 flex flex-col items-end gap-6 self-stretch">
                 <div className="inline-flex w-full items-start justify-between">
                   <div className="flex items-start gap-6">
                     <div className="relative h-12 w-12 overflow-hidden">

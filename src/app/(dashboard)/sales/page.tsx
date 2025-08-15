@@ -79,8 +79,7 @@ export default function Sales() {
       cell: (info) => (
         <Link
           href={`/sales/${info.getValue()}`}
-          className="text-text underline hover:no-underline transition-all"
-        >
+          className="text-text underline hover:no-underline transition-all">
           <Body className="text-current truncate max-w-[120px]">
             {String(info.getValue())}
           </Body>
@@ -208,8 +207,7 @@ export default function Sales() {
               placeholder="Buscar venta..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-12"
-            />
+              className="pl-12"/>
           </div>
         </div>
 
@@ -250,8 +248,7 @@ export default function Sales() {
                 }
                 className={`${currentPage === label ? "bg-gray" : ""} ${
                   label === "..." ? "cursor-default" : ""
-                }`}
-              >
+                }`}>
                 {label}
               </Button>
             ))}

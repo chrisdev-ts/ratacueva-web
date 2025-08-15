@@ -161,7 +161,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       initialProducts={filteredProducts}
       initialQuery={query}
       initialFilters={currentFilters}
-      initialSortBy={sortBy}
-    />
+      initialSortBy={sortBy}/>
   );
 }

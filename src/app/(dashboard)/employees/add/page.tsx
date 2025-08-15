@@ -86,21 +86,18 @@ export default function AddEmployee() {
                   placeholder="Ej: Juán"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
-                  className="bg-gray border-border text-placeholder"
-                />
+                  className="bg-gray border-border text-placeholder"/>
               </div>
               <div className="flex flex-col flex-1 min-w-[240px] relative">
                 <Body className="text-text mb-4">Rol *</Body>
                 <div className="relative">
                   <div
                     className="flex items-center justify-between bg-gray border border-border rounded-lg px-4 py-3 min-h-[44px] cursor-pointer"
-                    onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-                  >
+                    onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}>
                     <Body
                       className={
                         formData.role ? "text-text" : "text-placeholder"
-                      }
-                    >
+                      }>
                       {formData.role || "Ej: Empleado"}
                     </Body>
                     <ChevronDownIcon className="w-6 h-6 text-placeholder" />
@@ -111,8 +108,7 @@ export default function AddEmployee() {
                         <div
                           key={role}
                           className="px-4 py-3 hover:bg-dark cursor-pointer border-b border-border last:border-b-0"
-                          onClick={() => handleRoleSelect(role)}
-                        >
+                          onClick={() => handleRoleSelect(role)}>
                           <Body className="text-text">{role}</Body>
                         </div>
                       ))}
@@ -133,8 +129,7 @@ export default function AddEmployee() {
                   onChange={(e) =>
                     handleInputChange("fatherLastName", e.target.value)
                   }
-                  className="bg-gray border-border text-placeholder"
-                />
+                  className="bg-gray border-border text-placeholder"/>
               </div>
               <div className="flex flex-col flex-1 min-w-[240px]">
                 <Body className="text-text mb-4">Apellido materno *</Body>
@@ -145,8 +140,7 @@ export default function AddEmployee() {
                   onChange={(e) =>
                     handleInputChange("motherLastName", e.target.value)
                   }
-                  className="bg-gray border-border text-placeholder"
-                />
+                  className="bg-gray border-border text-placeholder"/>
               </div>
             </div>
 
@@ -159,8 +153,7 @@ export default function AddEmployee() {
                   placeholder="Ej: 2761234567"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="bg-gray border-border text-placeholder"
-                />
+                  className="bg-gray border-border text-placeholder"/>
               </div>
               <div className="flex flex-col flex-1 min-w-[240px]">
                 <Body className="text-text mb-4">Correo electrónico *</Body>
@@ -169,8 +162,7 @@ export default function AddEmployee() {
                   placeholder="Ej: juan@ejemplo.com"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
-                  className="bg-gray border-border text-placeholder"
-                />
+                  className="bg-gray border-border text-placeholder"/>
               </div>
             </div>
           </div>
@@ -180,15 +172,13 @@ export default function AddEmployee() {
             <Button
               variant="danger"
               onClick={handleCancel}
-              className="px-4 py-3 rounded-full font-bold text-body"
-            >
+              className="px-4 py-3 rounded-full font-bold text-body">
               Cancelar
             </Button>
             <Button
               variant="success"
               onClick={handleSubmit}
-              className="px-4 py-3 rounded-full font-bold text-body"
-            >
+              className="px-4 py-3 rounded-full font-bold text-body">
               Agregar empleado
             </Button>
           </div>

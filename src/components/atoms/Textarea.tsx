@@ -25,8 +25,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           "w-full min-w-[240px] px-4 py-3 rounded-lg border border-border bg-gray placeholder-placeholder transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark box-border text-text text-body resize-none h-[88px]",
           className
         )}
-        {...props}
-      />
+        {...props}/>
     </div>
   )
 );

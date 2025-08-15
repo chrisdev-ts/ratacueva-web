@@ -102,8 +102,7 @@ export default function CardsPage() {
             ]}
             title="Tarjetas"
             color="text-white"
-            className="mb-8"
-          />
+            className="mb-8"/>
           <div className="space-y-6">
             <div className="text-white text-center">Cargando tarjetas...</div>
           </div>
@@ -122,8 +121,7 @@ export default function CardsPage() {
           ]}
           title="Tarjetas"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         
         {/* Error and Success Messages */}
         {error && (
@@ -173,8 +171,7 @@ export default function CardsPage() {
                       <Button 
                         className="min-w-[160px]" 
                         onClick={() => handleDeleteCard(method._id)}
-                        disabled={deleting === method._id}
-                      >
+                        disabled={deleting === method._id}>
                         <TrashIcon className="w-5 h-5 mr-2" />
                         {deleting === method._id ? "Eliminando..." : "Eliminar"}
                       </Button>
@@ -191,8 +188,7 @@ export default function CardsPage() {
           <Button 
             className="flex items-center gap-2"
             variant="primary"
-            onClick={() => setShowAddModal(true)}
-          >
+            onClick={() => setShowAddModal(true)}>
             <PlusIcon className="w-5 h-5" />
             Agregar nueva tarjeta
           </Button>
@@ -202,8 +198,7 @@ export default function CardsPage() {
         <AddCardModal
           isOpen={showAddModal}
           onClose={() => setShowAddModal(false)}
-          onSuccess={handleAddCardSuccess}
-        />
+          onSuccess={handleAddCardSuccess}/>
       </div>
     </PageLayout>
   )

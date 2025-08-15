@@ -158,23 +158,20 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex justify-start items-center gap-2 flex-shrink-0"
-          >
+            className="flex justify-start items-center gap-2 flex-shrink-0">
             <Image
               src="/images/logotipo-base.svg"
               alt="RataCueva Logo"
               width={200}
               height={36}
               priority
-              style={{ height: "auto" }}
-            />
+              style={{ height: "auto" }}/>
           </Link>
 
           {/* Search Bar - Expandido en desktop */}
           <div
             className="flex-1 max-w-2xl mx-4 lg:mx-8 relative"
-            ref={searchRef}
-          >
+            ref={searchRef}>
             <form onSubmit={handleSearch} className="relative">
               <div className="relative">
                 <MagnifyingGlassIcon className="w-6 h-6 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2 z-10" />
@@ -185,8 +182,7 @@ export default function Header() {
                   value={searchQuery}
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
-                  className="min-h-11 rounded-2xl pl-12 border-gray-200 focus:border-primary"
-                />
+                  className="min-h-11 rounded-2xl pl-12 border-gray-200 focus:border-primary"/>
               </div>
             </form>
 
@@ -215,8 +211,7 @@ export default function Header() {
                   variant="primary"
                   size="lg"
                   shape="circle"
-                  href="/settings/favorites"
-                >
+                  href="/settings/favorites">
                   <HeartIcon className="w-6 h-6" />
                 </Button>
                 {getFavoritesCount() > 0 && (
@@ -240,8 +235,7 @@ export default function Header() {
                   variant="primary"
                   size="lg"
                   shape="circle"
-                  onClick={handleUserButtonClick}
-                >
+                  onClick={handleUserButtonClick}>
                   <Cog6ToothIcon className="w-6 h-6" />
                 </Button>
 
@@ -252,15 +246,13 @@ export default function Header() {
                       <Link
                         href="/settings"
                         className="flex items-center px-4 py-2 text-white hover:bg-zinc-700 transition-colors"
-                        onClick={() => setShowUserDropdown(false)}
-                      >
+                        onClick={() => setShowUserDropdown(false)}>
                         <UserIcon className="w-4 h-4 mr-3" />
                         Mi Perfil
                       </Link>
                       <button
                         onClick={handleLogout}
-                        className="flex items-center w-full px-4 py-2 text-white hover:bg-zinc-700 transition-colors"
-                      >
+                        className="flex items-center w-full px-4 py-2 text-white hover:bg-zinc-700 transition-colors">
                         <ArrowRightOnRectangleIcon className="w-4 h-4 mr-3" />
                         Cerrar sesión
                       </button>
@@ -276,8 +268,7 @@ export default function Header() {
             variant="primary"
             size="lg"
             shape="circle"
-            className="lg:hidden"
-          >
+            className="lg:hidden">
             <Bars3Icon className="w-6 h-6" />
           </Button>
         </div>

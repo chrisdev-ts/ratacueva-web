@@ -43,8 +43,7 @@ const DualReviewsCarousel = ({ reviews }: DualReviewsCarouselProps) => {
         <motion.div
           animate={{ y: -scrollY1 }}
           transition={{ duration: 0.05, ease: "linear" }}
-          className="space-y-6"
-        >
+          className="space-y-6">
           {duplicatedFirst.map((review, index) => (
             <div key={`first-${review.id}-${index}`} className="h-56">
               <ReviewCard 
@@ -61,8 +60,7 @@ const DualReviewsCarousel = ({ reviews }: DualReviewsCarouselProps) => {
         <motion.div
           animate={{ y: -scrollY2 }}
           transition={{ duration: 0.05, ease: "linear" }}
-          className="space-y-6"
-        >
+          className="space-y-6">
           {duplicatedSecond.map((review, index) => (
             <div key={`second-${review.id}-${index}`} className="h-56">
               <ReviewCard 

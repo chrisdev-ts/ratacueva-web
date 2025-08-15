@@ -63,8 +63,7 @@ export default function SearchSuggestions({
                   key={product.id}
                   href={`/product/${product.id}`}
                   onClick={onClose}
-                  className="block px-4 py-3 hover:bg-dark rounded-lg transition-colors"
-                >
+                  className="block px-4 py-3 hover:bg-dark rounded-lg transition-colors">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-zinc-700 rounded-lg overflow-hidden flex-shrink-0">
                       {product.images && product.images.length > 0 ? (
@@ -73,8 +72,7 @@ export default function SearchSuggestions({
                           alt={product.name}
                           width={48}
                           height={48}
-                          className="w-full h-full object-cover"
-                        />
+                          className="w-full h-full object-cover"/>
                       ) : null}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -131,8 +129,7 @@ export default function SearchSuggestions({
                   key={`suggestion-${product.id}`}
                   onClick={() => onSuggestionSelect(product.name)}
                   variant="icon"
-                  className="w-full px-4 py-3 text-left hover:bg-dark rounded-lg transition-colors flex items-center gap-3 h-auto bg-transparent border-none shadow-none"
-                >
+                  className="w-full px-4 py-3 text-left hover:bg-dark rounded-lg transition-colors flex items-center gap-3 h-auto bg-transparent border-none shadow-none">
                   <MagnifyingGlassIcon className="w-4 h-4 text-placeholder flex-shrink-0" />
                   <Body className="text-white flex-1">{product.name}</Body>
                   <ArrowTrendingUpIcon className="w-4 h-4 text-placeholder" />
@@ -145,8 +142,7 @@ export default function SearchSuggestions({
             <Link
               href={`/search?q=${encodeURIComponent(query)}`}
               onClick={onClose}
-              className="block px-4 py-3 text-center text-cyan-400 hover:bg-dark rounded-lg transition-colors text-sm font-medium"
-            >
+              className="block px-4 py-3 text-center text-cyan-400 hover:bg-dark rounded-lg transition-colors text-sm font-medium">
               Ver todos los resultados para &quot;{query}&quot;
             </Link>
           </div>

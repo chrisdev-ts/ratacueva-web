@@ -31,14 +31,12 @@ const InfiniteReviewsCarousel = ({ reviews }: InfiniteReviewsCarouselProps) => {
         className="space-y-6"
         style={{
           transform: `translateY(${-scrollY}px)`,
-        }}
-      >
+        }}>
         {duplicatedReviews.map((review, index) => (
           <div key={`${review.id}-${index}`} className="h-56">
             <ReviewCard 
               review={review} 
-              index={index} 
-            />
+              index={index} />
           </div>
         ))}
       </motion.div>

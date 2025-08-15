@@ -26,8 +26,7 @@ export default function AddProduct() {
 
     const handleInputChange = (
         e: React.ChangeEvent<
-            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        >
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
@@ -67,8 +66,7 @@ export default function AddProduct() {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleInputChange}
-                                placeholder="Ej: RTX 2030"
-                            />
+                                placeholder="Ej: RTX 2030"/>
                         </div>
                         <div className="flex-1 flex flex-col gap-4">
                             <Body>Categoría</Body>
@@ -77,8 +75,7 @@ export default function AddProduct() {
                                     name="category"
                                     value={formData.category}
                                     onChange={handleInputChange}
-                                    className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px] w-full appearance-none cursor-pointer"
-                                >
+                                    className="bg-[#2F2F2F] border border-[#555] rounded-lg px-4 py-3 text-white text-body outline-none focus:border-[#00FF95] transition-colors min-h-[44px] w-full appearance-none cursor-pointer">
                                     <option value="" className="text-[#9A9A9A]">
                                         Ej: Componentes
                                     </option>
@@ -99,8 +96,7 @@ export default function AddProduct() {
                                 name="price"
                                 value={formData.price}
                                 onChange={handleInputChange}
-                                placeholder="Ej: 15000"
-                            />
+                                placeholder="Ej: 15000"/>
                         </div>
                         <div className="flex-1 flex flex-col gap-4">
                             <Body>Modelo *</Body>
@@ -108,8 +104,7 @@ export default function AddProduct() {
                                 name="model"
                                 value={formData.model}
                                 onChange={handleInputChange}
-                                placeholder="Ej: NVIDIA Geforce"
-                            />
+                                placeholder="Ej: NVIDIA Geforce"/>
                         </div>
                     </div>
 
@@ -121,8 +116,7 @@ export default function AddProduct() {
                             value={formData.inventory}
                             onChange={handleInputChange}
                             placeholder="Ej: 276"
-                            className="max-w-[455px]"
-                        />
+                            className="max-w-[455px]"/>
                     </div>
 
                     {/* Descripción */}
@@ -132,8 +126,7 @@ export default function AddProduct() {
                             name="description"
                             value={formData.description}
                             onChange={handleInputChange}
-                            placeholder="Ej: Tarjeta gráfica ideal para gaming y productividad."
-                        />
+                            placeholder="Ej: Tarjeta gráfica ideal para gaming y productividad."/>
                     </div>
 
                     {/* Imagen */}
@@ -146,15 +139,13 @@ export default function AddProduct() {
                             onDragLeave={handleDrag}
                             onDragOver={handleDrag}
                             onDrop={handleDrop}
-                            onClick={() => document.getElementById("file-input")?.click()}
-                        >
+                            onClick={() => document.getElementById("file-input")?.click()}>
                             <input
                                 id="file-input"
                                 type="file"
                                 accept=".jpg,.jpeg,.png,.webp"
                                 onChange={handleFileSelect}
-                                className="hidden"
-                            />
+                                className="hidden"/>
                             <DocumentArrowDownIcon className="text-white w-12 h-12" />
                             <div className="flex flex-col items-center gap-2">
                                 <Body className="text-white font-bold text-center">

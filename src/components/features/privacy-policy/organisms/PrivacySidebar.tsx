@@ -32,8 +32,7 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
 
   return (
     <aside
-      className={`bg-gray space-y-8 rounded-lg p-6 sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto ${className}`}
-    >
+      className={`bg-gray space-y-8 rounded-lg p-6 sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto ${className}`}>
       {/* Header */}
       <div className="space-y-6">
         <Subheading>
@@ -48,8 +47,7 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
               width: `${
                 (getCurrentSectionIndex() / privacySections.length) * 100
               }%`,
-            }}
-          />
+            }}/>
         </div>
       </div>
 
@@ -69,8 +67,7 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
                   ? "bg-dark text-white font-bold"
                   : "text-neutral-300 hover:text-white hover:bg-neutral-700"
               }
-            `}
-          >
+            `}>
             {/* Number indicator */}
             <BodySmall
               className={`
@@ -80,8 +77,7 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
                   ? "bg-white text-dark"
                   : "bg-neutral-600 text-neutral-300 group-hover:bg-neutral-500"
               }
-            `}
-            >
+            `}>
               {index + 1}
             </BodySmall>
 
@@ -89,8 +85,7 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
             <Body
               className={`leading-tight ${
                 isActive(section.href) ? "" : ""
-              }`}
-            >
+              }`}>
               {section.title}
             </Body>
           </Link>
@@ -106,8 +101,7 @@ export const PrivacySidebar: React.FC<PrivacySidebarProps> = ({
           ¿Necesitas ayuda?{" "}
           <a
             href="/support"
-            className="font-bold hover:text-primary transition-colors"
-          >
+            className="font-bold hover:text-primary transition-colors">
             Contactar soporte
           </a>
         </Body>

@@ -73,8 +73,7 @@ const LoginPage = () => {
               alt="Rata Cueva Logo"
               width={240}
               height={80}
-              className="w-[60%] h-auto"
-            />
+              className="w-[60%] h-auto"/>
           </div>
 
           <div className="space-y-2">
@@ -88,8 +87,7 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ej: correo@ejemplo.com"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           <div className="space-y-2">
@@ -103,8 +101,7 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
               required
-              className="min-w-[240px]"
-            />
+              className="min-w-[240px]"/>
           </div>
 
           {errorMessage && (
@@ -126,8 +123,7 @@ const LoginPage = () => {
               ¿No tienes una cuenta?{" "}
               <a
                 href="/register"
-                className="font-bold hover:text-primary transition-colors"
-              >
+                className="font-bold hover:text-primary transition-colors">
                 Regístrate
               </a>
             </Body>

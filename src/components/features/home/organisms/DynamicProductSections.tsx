@@ -79,8 +79,7 @@ export default function DynamicProductSections() {
             <ProductSection
               title={category}
               products={transformedProducts}
-              showViewAll={true}
-            />
+              showViewAll={true}/>
           </section>
         );
       })}

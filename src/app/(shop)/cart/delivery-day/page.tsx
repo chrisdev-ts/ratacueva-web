@@ -85,8 +85,7 @@ export default function DeliveryDayPage() {
           ]}
           title="Elige el día de entrega"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
 
         <div className="flex flex-col lg:flex-row justify-start items-start gap-8">
           {/* Left Column: Shipping Options */}
@@ -116,15 +115,13 @@ export default function DeliveryDayPage() {
                     <div
                       key={option.id}
                       className="flex items-center gap-4 cursor-pointer"
-                      onClick={() => setSelectedDeliveryOption(option.id)}
-                    >
+                      onClick={() => setSelectedDeliveryOption(option.id)}>
                       <div
                         className={`w-5 h-5 p-2.5 rounded-[99px] border border-cyan-400 flex justify-center items-center ${
                           selectedDeliveryOption === option.id
                             ? "bg-cyan-400"
                             : ""
-                        }`}
-                      >
+                        }`}>
                         {selectedDeliveryOption === option.id && (
                           <div className="w-3.5 h-3.5 bg-cyan-400 rounded-full" />
                         )}
@@ -143,8 +140,7 @@ export default function DeliveryDayPage() {
                             option.cost === 0
                               ? "text-emerald-400"
                               : "text-white"
-                          }`}
-                        >
+                          }`}>
                           {option.cost === 0
                             ? "Gratis"
                             : `$${option.cost.toLocaleString()}`}

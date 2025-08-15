@@ -29,8 +29,7 @@ export default function OrderDetailsPage() {
           ]}
           title="Confirma tu pedido"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         
         <div className="flex flex-col lg:flex-row justify-start items-start gap-8">
           {/* Left Column: Order Details */}
@@ -72,8 +71,7 @@ export default function OrderDetailsPage() {
                   alt="Product"
                   width={48}
                   height={48}
-                  className="w-12 h-12 object-contain"
-                />
+                  className="w-12 h-12 object-contain"/>
                 <div className="flex-1">
                   <div className="flex items-start gap-4 mb-4">
                     <BodySmall className="text-white text-base">Envío 1</BodySmall>

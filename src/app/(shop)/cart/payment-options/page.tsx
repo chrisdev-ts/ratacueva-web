@@ -185,8 +185,7 @@ export default function PaymentOptionsPage() {
           ]}
           title="Elige las mensualidades"
           color="text-white"
-          className="mb-8"
-        />
+          className="mb-8"/>
         
         <div className="flex flex-col lg:flex-row justify-start items-start gap-8">
           {/* Left Column: Payment Options */}
@@ -220,8 +219,7 @@ export default function PaymentOptionsPage() {
                     <div key={option.id}>
                       <div 
                         className="flex items-center gap-4 cursor-pointer hover:bg-zinc-800/50 p-4 rounded-lg transition-colors"
-                        onClick={() => setSelectedPlan(option.id)}
-                      >
+                        onClick={() => setSelectedPlan(option.id)}>
                         <div className={`w-5 h-5 p-2.5 rounded-[99px] border border-cyan-400 flex justify-center items-center ${
                           selectedPlan === option.id ? "bg-cyan-400" : ""
                         }`}>
@@ -258,8 +256,7 @@ export default function PaymentOptionsPage() {
                 <Button 
                   onClick={handleContinue}
                   className="bg-primary-600 hover:bg-primary-700"
-                  disabled={!selectedPlan}
-                >
+                  disabled={!selectedPlan}>
                   Continuar
                   <ArrowRightIcon className="w-5 h-5 ml-2" />
                 </Button>

@@ -23,8 +23,7 @@ const ReviewCard = ({ review, index }: ReviewCardProps) => (
       delay: index * 0.2,
       ease: "easeOut"
     }}
-    className="h-56 bg-gray hover:bg-dark transition-colors rounded-lg cursor-pointer group p-6"
-  >
+    className="h-56 bg-gray hover:bg-dark transition-colors rounded-lg cursor-pointer group p-6">
     <div className="w-full h-full flex flex-col justify-between">
       <div>
         {/* Stars */}
